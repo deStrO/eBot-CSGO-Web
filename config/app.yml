@@ -1,0 +1,15 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default values
+all:
+  .array:
+    maps: [ de_dust2_se, de_nuke_se, de_nuke_ve, de_train_se, de_mirage_csgo, de_inferno_se ]
+
+  log_match: ../../ebotv3/logs/log_match
+  log_match_admin: ../../ebotv3/logs/log_match_admin
+  
+  cryptkey: rkI0aVS2QM14f53bozB4oEqm
+  
+  ebot_ip: 192.168.1.1
+  ebot_port: 12360

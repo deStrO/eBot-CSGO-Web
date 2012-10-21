@@ -1,0 +1,217 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: main, action: index }
+
+
+matchs_current:
+  url: /matchs/current
+  class: sfRequestRoute
+  param: { module: matchs, action: matchsInProgress }   
+  requirements:
+    sf_method: [get]
+
+matchs_current_page:
+  url: /matchs/current/:page
+  class: sfRequestRoute
+  param: { module: matchs, action: matchsInProgress }   
+  requirements:
+    sf_method: [get]
+    page: \d+
+
+matchs_archived:
+  url: /matchs/archived
+  class: sfRequestRoute
+  param: { module: matchs, action: matchsArchived }   
+  requirements:
+    sf_method: [get]
+
+matchs_archived_page:
+  url: /matchs/archived/:page
+  class: sfRequestRoute
+  param: { module: matchs, action: matchsArchived }   
+  requirements:
+    sf_method: [get]
+    page: \d+
+
+matchs_filters:
+  url: /matchs/filter
+  class: sfRequestRoute
+  param: { module: matchs, action: filters }   
+  requirements:
+    sf_method: [put,post]
+    
+matchs_filters_clear:
+  url: /matchs/filter/clear
+  class: sfRequestRoute
+  param: { module: matchs, action: filtersClear }   
+  requirements:
+    sf_method: [get]
+
+matchs_create:
+  url: /matchs/create
+  class: sfRequestRoute
+  param: { module: matchs, action: create }   
+  requirements:
+    sf_method: [get,put,post]
+
+matchs_start_retry:
+  url: /matchs/start/retry/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: startRetry }   
+  requirements:
+    id : \d+
+    sf_method: [get]  
+    
+match_put_archive:
+  url: /matchs/set/archive/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: setArchive }   
+  requirements:
+    id : \d+
+    sf_method: [get]  
+    
+matchs_stop:
+  url: /matchs/stop/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: stop }   
+  requirements:
+    id : \d+
+    sf_method: [get]      
+ 
+matchs_stop_back:
+  url: /matchs/stop-back/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: stopBack }   
+  requirements:
+    id : \d+
+    sf_method: [get]   
+ 
+matchs_stop_rs:
+  url: /matchs/stop/:id/rs
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: stopRS }   
+  requirements:
+    id : \d+
+    sf_method: [get]       
+    
+matchs_pass_knife:    
+  url: /matchs/pass/knife/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: passKnife }   
+  requirements:
+    id : \d+
+    sf_method: [get] 
+    
+matchs_force_knife:    
+  url: /matchs/force/knife/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: forceKnife }   
+  requirements:
+    id : \d+
+    sf_method: [get] 
+    
+matchs_force_end_knife:    
+  url: /matchs/force/knife/end/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: forceKnifeEnd }   
+  requirements:
+    id : \d+
+    sf_method: [get] 
+    
+matchs_force_start:
+  url: /matchs/force/start/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: forceStart }   
+  requirements:
+    id : \d+
+    sf_method: [get] 
+    
+matchs_start_with_server:
+  url: /matchs/start/server
+  class: sfRequestRoute
+  param: { module: matchs, action: start }   
+  requirements:
+    sf_method: [get,put,post]
+
+matchs_view:
+  url: /matchs/view/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: view }   
+  requirements:
+    id : \d+
+    sf_method: [get]  
+    
+matchs_delete:
+  url: /matchs/delete/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: delete }   
+  requirements:
+    id : \d+
+    sf_method: [get]  
+
+matchs_edit:
+  url: /matchs/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: edit }   
+  requirements:
+    id : \d+
+    sf_method: [get, put,post]  
+
+matchs_score_edit:
+  url: /matchs/edit/:id/score
+  class: sfDoctrineRoute
+  options: { model: MapsScore, type: object}
+  param: { module: matchs, action: editScore }   
+  requirements:
+    id : \d+
+    sf_method: [put,post]  
+
+servers_create:
+  url: /servers/create
+  class: sfRequestRoute
+  param: { module: servers, action: create }   
+  requirements:
+    sf_method: [get,put,post]
+
+server_delete:
+  url: /servers/delete/:id
+  class: sfDoctrineRoute
+  options: { model: Servers, type: object}
+  param: { module: servers, action: delete }   
+  requirements:
+    id : \d+
+    sf_method: [get]  
+
+matchs_logs:
+  url: /matchs/logs/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: logs }   
+  requirements:
+    id : \d+
+    sf_method: [put,post]  
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

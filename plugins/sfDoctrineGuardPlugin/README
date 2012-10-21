@@ -1,0 +1,305 @@
+# sfGuardDoctrine plugin (for symfony 1.3) #
+
+The `sfDoctrineGuardPlugin` is a symfony plugin that provides authentication and
+authorization features above the standard security feature of symfony.
+
+It gives you the model (user, group and permission objects) and the modules
+(backend and frontend) to secure your symfony application in a minute in
+a configurable plugin.
+
+## Installation ##
+
+  * Install the plugin (via a package)
+
+        symfony plugin:install sfDoctrineGuardPlugin
+
+  * Install the plugin (via a Subversion checkout)
+  
+        svn co http//svn.symfony-project.com/plugins/sfDoctrineGuardPlugin/trunk plugins/sfDoctrineGuardPlugin
+
+  * Activate the plugin in the `config/ProjectConfiguration.class.php`
+  
+        [php]
+        class ProjectConfiguration extends sfProjectConfiguration
+        {
+          public function setup()
+          {
+            $this->enablePlugins(array(
+              'sfDoctrinePlugin', 
+              'sfDoctrineGuardPlugin',
+              '...'
+            ));
+          }
+        }
+
+  * Rebuild your model
+
+        symfony doctrine:build-model
+        symfony doctrine:build-sql
+
+  * Update you database tables by starting from scratch (it will delete all
+    the existing tables, then re-create them):
+
+        symfony doctrine:insert-sql
+
+    or do everything with one command
+
+        symfony doctrine-build-all-reload frontend
+
+    or you can just create the new tables by using the generated SQL
+    statements in `data/sql/plugins.sfGuardAuth.lib.model.schema.sql`
+
+  * Load default fixtures (optional - it creates a superadmin user)
+
+        mkdir data/fixtures/
+        cp plugins/sfDoctrineGuardPlugin/data/fixtures/fixtures.yml.sample data/fixtures/sfGuard.yml
+
+        symfony doctrine:data-load frontend # replace frontend with the name of one of your application
+
+  * Enable one or more modules in your `settings.yml` (optional)
+    * For your backend application:  sfGuardUser, sfGuardGroup, sfGuardPermission
+
+              all:
+                .settings:
+                  enabled_modules:      [default, sfGuardGroup, sfGuardUser, sfGuardPermission]
+
+    * For your frontend application: sfGuardAuth
+
+              all:
+                .settings:
+                  enabled_modules:      [default, sfGuardAuth]
+
+  * Clear you cache
+
+        symfony cc
+
+  * Optionally add the "Remember Me" filter to `filters.yml` above the security filter:
+
+        [yml]
+        remember_me:
+          class: sfGuardRememberMeFilter
+
+        security: ~
+
+### Secure your application ###
+
+To secure a symfony application:
+
+  * Enable the module `sfGuardAuth` in `settings.yml`
+
+        all:
+          .settings:
+            enabled_modules: [..., sfGuardAuth]
+
+  * Change the default login and secure modules in `settings.yml`
+
+        login_module:           sfGuardAuth
+        login_action:           signin
+        
+        secure_module:          sfGuardAuth
+        secure_action:          secure
+
+  * Change the parent class in `myUser.class.php`
+
+        class myUser extends sfGuardSecurityUser
+        {
+        }
+
+  * Optionally add the following routing rules to `routing.yml`
+
+        sf_guard_signin:
+          url:   /login
+          param: { module: sfGuardAuth, action: signin }
+        
+        sf_guard_signout:
+          url:   /logout
+          param: { module: sfGuardAuth, action: signout }
+        
+        sf_guard_password:
+          url:   /request_password
+          param: { module: sfGuardAuth, action: password }
+
+    You can customize the `url` parameter of each route.
+    N.B.: You must have a `@homepage` routing rule (used when a user sign out)
+
+    These routes are automatically registered by the plugin if the module `sfGuardAuth`
+    is enabled unless you defined `sf_guard_plugin_routes_register` to false
+    in the `app.yml` configuration file:
+
+        all:
+          sf_guard_plugin:
+            routes_register: false
+
+  * Secure some modules or your entire application in `security.yml`
+
+        default:
+          is_secure: true
+
+  * You're done. Now, if you try to access a secure page, you will be redirected
+    to the login page.
+    If you have loaded the default fixture file, try to login with `admin` as
+    username and `admin` as password.
+
+## Manage your users, permissions and groups ##
+
+To be able to manage your users, permissions and groups, `sfDoctrineGuardPlugin` comes
+with 3 modules that can be integrated in your backend application.
+These modules are auto-generated thanks to the symfony admin generator.
+
+  * Enable the modules in `settings.yml`
+
+        all:
+          .settings:
+            enabled_modules: [..., sfGuardGroup, sfGuardPermission, sfGuardUser]
+
+  * Access the modules with the default route:
+
+    http://www.example.com/backend.php/sfGuardUser
+
+## Customize sfGuardAuth module templates ##
+
+By default, `sfGuardAuth` module comes with 2 very simple templates:
+
+  * `signinSuccess.php`
+  * `secureSuccess.php`
+
+If you want to customize one of these templates:
+
+  * Create a `sfGuardAuth` module in your application (don't use the
+    `init-module` task, just create a `sfGuardAuth` directory)
+
+  * Create a template with the name of the template you want to customize in
+    the `sfGuardAuth/templates` directory
+
+  * symfony now renders your template instead of the default one
+
+## Customize `sfGuardAuth` module actions ##
+
+If you want to customize or add methods to the sfGuardAuth:
+
+  * Create a `sfGuardAuth` module in your application
+
+  * Create an `actions.class.php` file in your `actions` directory that inherit
+    from `BasesfGuardAuthActions` (don't forget to include the `BasesfGuardAuthActions`
+    as it can't be autoloaded by symfony)
+
+        <?php
+    
+        require_once(sfConfig::get('sf_plugins_dir').'/sfDoctrineGuardPlugin/modules/sfGuardAuth/lib/BasesfGuardAuthActions.class.php');
+    
+        class sfGuardAuthActions extends BasesfGuardAuthActions
+        {
+          public function executeNewAction()
+          {
+            return $this->renderText('This is a new sfGuardAuth action.');
+          }
+        }
+
+## `sfGuardSecurityUser` class ##
+
+This class inherits from the `sfBasicSecurityUser` class from symfony and is
+used for the `user` object in your symfony application.
+(because you changed the `myUser` base class earlier)
+
+So, to access it, you can use the standard `$this->getUser()` in your actions
+or `$sf_user` in your templates.
+
+`sfGuardSecurityUser` adds some methods:
+
+  * `signIn()` and `signOut()` methods
+  * `getGuardUser()` that returns the `sfGuardUser` object
+  * a bunch of proxy methods to access directly the `sfGuardUser` object
+
+For example, to get the current username:
+
+    $this->getUser()->getGuardUser()->getUsername()
+
+    // or via the proxy method
+    $this->getUser()->getUsername()
+
+## Super administrator flag ##
+
+`sfDoctrineGuardPlugin` has a notion of super administrator. A user that is a super
+administrator bypasses all credential checks.
+
+The super administrator flag cannot be set on the web, you must set the flag
+directly in the database or use the pake task:
+
+    symfony guard:promote admin
+
+## Validators ##
+
+`sfDoctrineGuardPlugin` comes with a validator that you can use in your modules:
+`sfGuardUserValidator`.
+
+This validator is used by the `sfGuardAuth` module to validate a user and
+password and automatically signin the user.
+
+## Check the user password with an external method ##
+
+If you don't want to store the password in the database because you already
+have a LDAP server, a .htaccess file or if you store your passwords in another
+table, you can provide your own `checkPassword` callable (static method or
+function) in `app.yml`:
+
+    all:
+      sf_guard_plugin:
+        check_password_callable: [MyLDAPClass, checkPassword]
+
+When symfony will call the `$this->getUser()->checkPassword()` method, it will
+call your method or function. Your function must takes 2 parameters, the first
+one is the username and the second one is the password. It must returns true
+or false. Here is a template for such a function:
+
+    function checkLDAPPassword($username, $password)
+    {
+      $user = LDAP::getUser($username);
+      if ($user->checkPassword($password))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+## Change the algorithm used to store passwords ##
+
+By default, passwords are stored as a `sha1()` hash. But you can change this
+with any callable in `app.yml`:
+
+    all:
+      sf_guard_plugin:
+        algorithm_callable: [MyCryptoClass, MyCryptoMethod]
+
+or:
+
+    all:
+      sf_guard_plugin:
+        algorithm_callable: md5
+
+As the algorithm is stored for each user, you can change your mind later
+without the need to regenerate all passwords for the current users.
+
+## Change the name or expiration period of the "Remember Me" cookie ##
+
+By default, the "Remember Me" feature creates a cookie named `sfRemember`
+that will last 15 days.  You can change this behavior in `app.yml`:
+
+    all:
+      sf_guard_plugin:
+         remember_key_expiration_age:  2592000   # 30 days in seconds
+         remember_cookie_name:         myAppRememberMe
+
+## Customize `sfGuardAuth` redirect handling ##
+
+If you want to redirect the user to his profile after a success login or
+define a logout site.
+
+You can change the redirect values in `app.yml`:
+
+    all:
+      sf_guard_plugin:
+        success_signin_url:      @my_route?param=value # the plugin use the referer as default
+        success_signout_url:     module/action         # the plugin use the referer as default

@@ -1,0 +1,20 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        "eBot :: Your ingame bot managment for CS:GO"
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    #robots:       index, follow
+
+  stylesheets:    [bootstrap.min.css, tipsy.css ,datatable.bootstrap.css]
+
+  javascripts:    [jquery-1.8.2.min.js, bootstrap.min.js, jquery.validate.min.js, jquery.tipsy.js, jquery.tablesorter.min.js, jquery.datatable.min.js, datatable.bootstrap.js ]
+
+  has_layout:     true
+  layout:         layout
