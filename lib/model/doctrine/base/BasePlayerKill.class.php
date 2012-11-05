@@ -10,8 +10,10 @@
  * @property integer $map_id
  * @property varchar $killer_name
  * @property integer $killer_id
+ * @property varchar $killer_team
  * @property varchar $killed_name
  * @property integer $killed_id
+ * @property varchar $killed_team
  * @property varchar $weapon
  * @property boolean $headshot
  * @property integer $round_id
@@ -25,8 +27,10 @@
  * @method integer    getMapId()       Returns the current record's "map_id" value
  * @method varchar    getKillerName()  Returns the current record's "killer_name" value
  * @method integer    getKillerId()    Returns the current record's "killer_id" value
+ * @method varchar    getKillerTeam()  Returns the current record's "killer_team" value
  * @method varchar    getKilledName()  Returns the current record's "killed_name" value
  * @method integer    getKilledId()    Returns the current record's "killed_id" value
+ * @method varchar    getKilledTeam()  Returns the current record's "killed_team" value
  * @method varchar    getWeapon()      Returns the current record's "weapon" value
  * @method boolean    getHeadshot()    Returns the current record's "headshot" value
  * @method integer    getRoundId()     Returns the current record's "round_id" value
@@ -39,8 +43,10 @@
  * @method PlayerKill setMapId()       Sets the current record's "map_id" value
  * @method PlayerKill setKillerName()  Sets the current record's "killer_name" value
  * @method PlayerKill setKillerId()    Sets the current record's "killer_id" value
+ * @method PlayerKill setKillerTeam()  Sets the current record's "killer_team" value
  * @method PlayerKill setKilledName()  Sets the current record's "killed_name" value
  * @method PlayerKill setKilledId()    Sets the current record's "killed_id" value
+ * @method PlayerKill setKilledTeam()  Sets the current record's "killed_team" value
  * @method PlayerKill setWeapon()      Sets the current record's "weapon" value
  * @method PlayerKill setHeadshot()    Sets the current record's "headshot" value
  * @method PlayerKill setRoundId()     Sets the current record's "round_id" value
@@ -83,12 +89,20 @@ abstract class BasePlayerKill extends sfDoctrineRecord
              'type' => 'integer',
              'length' => 20,
              ));
+        $this->hasColumn('killer_team', 'varchar', 20, array(
+             'type' => 'varchar',
+             'length' => 20,
+             ));
         $this->hasColumn('killed_name', 'varchar', 100, array(
              'type' => 'varchar',
              'length' => 100,
              ));
         $this->hasColumn('killed_id', 'integer', 20, array(
              'type' => 'integer',
+             'length' => 20,
+             ));
+        $this->hasColumn('killed_team', 'varchar', 20, array(
+             'type' => 'varchar',
              'length' => 20,
              ));
         $this->hasColumn('weapon', 'varchar', 100, array(

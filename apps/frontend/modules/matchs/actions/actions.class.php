@@ -25,6 +25,7 @@ class matchsActions extends sfActions {
         $this->pager->setPage($request->getParameter('page', 1));
         $this->pager->init();
 
+        $this->page = $request->getParameter('page', 1);
         $this->url = "@matchs_current_page";
 
         $this->servers = ServersTable::getInstance()->findAll();

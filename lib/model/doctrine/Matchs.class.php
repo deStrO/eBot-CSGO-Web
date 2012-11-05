@@ -80,6 +80,17 @@ class Matchs extends BaseMatchs {
         fflush($sock);
         fclose($sock);
     }
+    
+        
+    public function pauseUnpause() {
+        $encrypt = new Encryption();
+        $text = $encrypt->encrypt("pauseunpause " . $this->getIp());
+
+        $sock = stream_socket_client("udp://" . sfConfig::get("app_ebot_ip") . ":" . sfConfig::get("app_ebot_port"), $errno, $errstr);
+        fwrite($sock, "\xFE\xFE\xFE\xFE" . $text . "\xFD\xFD\xFD\xFD");
+        fflush($sock);
+        fclose($sock);
+    }
 
     public function passKnife() {
         $encrypt = new Encryption();
@@ -178,6 +189,7 @@ class Matchs extends BaseMatchs {
                 $tab[] = array("label" => "Relancer sur un autre serveur", "route" => "matchs_start", "add_class" => "btn-success");
             }
 
+            $tab[] = array("label" => "Reset", "route" => "matchs_reset", "add_class" => "btn-warning");
             $tab[] = array("label" => "Editer", "route" => "matchs_edit", "add_class" => "btn-primary");
             $tab[] = array("label" => "Supprimer", "route" => "matchs_delete", "add_class" => "btn-danger");
 
@@ -205,6 +217,7 @@ class Matchs extends BaseMatchs {
         
         if (in_array($this->getStatus(), array(Matchs::STATUS_FIRST_SIDE, Matchs::STATUS_SECOND_SIDE, Matchs::STATUS_OT_FIRST_SIDE, Matchs::STATUS_OT_SECOND_SIDE))) {
             $actions[] = array("label" => "Stop to warmup", "route" => "matchs_stop_back");
+            $actions[] = array("label" => "Pause/Unpause", "route" => "matchs_pause_unpause");
         }
 
         return $actions;

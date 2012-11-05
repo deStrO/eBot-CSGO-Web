@@ -236,10 +236,12 @@
         $size = 450 / ($match->getMaxRound() * 2 + 1);
         ?>
 
+        <h5><i class="icon-hand-right"></i> Statistiques du match</h5>
+
+
         <table border="0" cellpadding="5" cellspacing="5" width="100%">
             <tr>
                 <td width="50%" valign="top">
-                    <h5><i class="icon-hand-right"></i> Statistiques du match</h5>
 
                     <table class="table">
                         <tr>
@@ -341,14 +343,14 @@
                         console.log(index);
                         var item = nav.find('li').get(index);
                         console.log(item);
-                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                        
                         nav.find('li.active').removeClass('active');
                         $(item).addClass('active');
                     });
-                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                        
                     $("#paginatorRound").find("li:first").addClass("active"); 
                 });
-                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                    
                 function goToRound(id) {
                     $("#myCarousel").carousel(id-1);
                 }
@@ -415,8 +417,21 @@
                                                         <td>
                                                             <?php echo image_tag("/images/icons/flag_" . ($round->bomb_exploded ? "green" : "red") . ".png"); ?>
                                                         </td>
-
                                                     </tr>
+                                                    <?php if ($round->best_action_type != ""): ?>
+                                                        <tr>
+                                                            <th width="200">Action du round</th>
+                                                            <td>
+                                                                <?php if (preg_match("!^1v(\d+)$!", $round->best_action_type, $m)): ?>
+                                                                    <?php $d = unserialize($round->getRaw("best_action_param")); ?>
+                                                                    <?php echo $d["playerName"]; ?> a mis un <?php echo $round->best_action_type; ?>
+                                                                <?php elseif (preg_match("!^(\d+)kill$!", $round->best_action_type, $m)): ?>
+                                                                    <?php $d = unserialize($round->getRaw("best_action_param")); ?>
+                                                                    <?php echo $d["playerName"]; ?> a fait <?php echo $m[1]; ?> kill
+                                                                <?php endif; ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endif; ?>
                                                 </table>
                                             </td>
                                             <td valign="top">
@@ -424,15 +439,33 @@
                                                 <table class="table table-striped table-condensed">
                                                     <?php foreach ($round->getPlayersKill() as $kill): ?>
                                                         <tr>
+                                                            <td width="250">
+                                                                <?php
+                                                                if ($kill->getKillerTeam() == "CT")
+                                                                    $color = "blue";
+                                                                elseif ($kill->getKillerTeam() == "TERRORIST")
+                                                                    $color = "red";
+                                                                else
+                                                                    $color = "black";
+                                                                ?>
+                                                                <span style="color: <?php echo $color; ?>"><?php echo $kill->getKillerName(); ?></span>
+                                                            </td>
+                                                            <td width="100">
+                                                                <?php echo image_tag("/images/kills/csgo/" . $kill->getWeapon(), array("class" => "needTips", "title" => $kill->getWeapon())); ?>
+                                                                <?php if ($kill->getHeadshot()): ?>
+                                                                    <?php echo image_tag("/images/kills/csgo/headshot.png"); ?>
+                                                                <?php endif; ?>
+                                                            </td>
                                                             <td>
-                                                                <div class="pull-left" style="width: 200px;"><?php echo $kill->getKillerName(); ?></div>
-                                                                <div class="pull-left" style="width: 95px;">
-                                                                    <?php echo image_tag("/images/kills/csgo/" . $kill->getWeapon(), array("class" => "needTips", "title" => $kill->getWeapon())); ?>
-                                                                    <?php if ($kill->getHeadshot()): ?>
-                                                                        <?php echo image_tag("/images/kills/csgo/headshot.png"); ?>
-                                                                    <?php endif; ?>
-                                                                </div>
-                                                                <div class="pull-left" style="width: 200px;"><?php echo $kill->getKilledName(); ?></div>
+                                                                <?php
+                                                                if ($kill->getKilledTeam() == "CT")
+                                                                    $color = "blue";
+                                                                elseif ($kill->getKilledTeam() == "TERRORIST")
+                                                                    $color = "red";
+                                                                else
+                                                                    $color = "black";
+                                                                ?>
+                                                                <span style="color: <?php echo $color; ?>"><?php echo $kill->getKilledName(); ?></span>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -630,7 +663,7 @@
                                     var offset = $('#end').position().top;
                                     console.log(offset);
                                     if (offset < 0 || offset > $("#logmatch").height()) {
-                                                                
+                                                                                                                                                
                                         if (offset < 0)
                                             offset = $("#logmatch").scrollTop() + offset;
                                         console.log(offset);
@@ -640,9 +673,9 @@
                             }
                         } }, "html");
                 }
-                    
+                                                                                                    
                 setInterval("refreshLog()",2000);
-                    
+                                                                                                    
             </script>
         <?php endif; ?>
         <div class="tab-pane" id="logs">

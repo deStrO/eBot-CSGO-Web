@@ -12,7 +12,7 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [bootstrap.min.css, tipsy.css ,datatable.bootstrap.css]
+  stylesheets:    [bootstrap.min.css,bootstrap-responsive.min.css, tipsy.css ,datatable.bootstrap.css]
 
   javascripts:    [jquery-1.8.2.min.js, bootstrap.min.js, jquery.validate.min.js, jquery.tipsy.js, jquery.tablesorter.min.js, jquery.datatable.min.js, datatable.bootstrap.js ]
 

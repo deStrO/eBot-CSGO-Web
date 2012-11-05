@@ -7,7 +7,7 @@
         $("#seconds").text(count);
         count--;
         if (count == 0) {
-            $("#tableMatch").load("<?php echo url_for("matchs_current"); ?> #tableMatch");
+            $("#tableMatch").load("<?php echo url_for("@matchs_current_page?page=".$page); ?> #tableMatch");
             count = 10;
         }
     }

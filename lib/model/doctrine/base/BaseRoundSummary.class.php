@@ -15,13 +15,17 @@
  * @property enum $team_win
  * @property boolean $ct_win
  * @property boolean $t_win
+ * @property integer $score_a
+ * @property integer $score_b
  * @property integer $best_killer
  * @property boolean $best_killer_fk
  * @property text $best_action_type
  * @property text $best_action_param
+ * @property varchar $backup_file_name
  * @property integer $round_id
  * @property Matchs $Match
  * @property Maps $Map
+ * @property Players $BestKiller
  * 
  * @method integer      getId()                Returns the current record's "id" value
  * @method integer      getMatchId()           Returns the current record's "match_id" value
@@ -33,13 +37,17 @@
  * @method enum         getTeamWin()           Returns the current record's "team_win" value
  * @method boolean      getCtWin()             Returns the current record's "ct_win" value
  * @method boolean      getTWin()              Returns the current record's "t_win" value
+ * @method integer      getScoreA()            Returns the current record's "score_a" value
+ * @method integer      getScoreB()            Returns the current record's "score_b" value
  * @method integer      getBestKiller()        Returns the current record's "best_killer" value
  * @method boolean      getBestKillerFk()      Returns the current record's "best_killer_fk" value
  * @method text         getBestActionType()    Returns the current record's "best_action_type" value
  * @method text         getBestActionParam()   Returns the current record's "best_action_param" value
+ * @method varchar      getBackupFileName()    Returns the current record's "backup_file_name" value
  * @method integer      getRoundId()           Returns the current record's "round_id" value
  * @method Matchs       getMatch()             Returns the current record's "Match" value
  * @method Maps         getMap()               Returns the current record's "Map" value
+ * @method Players      getBestKiller()        Returns the current record's "BestKiller" value
  * @method RoundSummary setId()                Sets the current record's "id" value
  * @method RoundSummary setMatchId()           Sets the current record's "match_id" value
  * @method RoundSummary setMapId()             Sets the current record's "map_id" value
@@ -50,13 +58,17 @@
  * @method RoundSummary setTeamWin()           Sets the current record's "team_win" value
  * @method RoundSummary setCtWin()             Sets the current record's "ct_win" value
  * @method RoundSummary setTWin()              Sets the current record's "t_win" value
+ * @method RoundSummary setScoreA()            Sets the current record's "score_a" value
+ * @method RoundSummary setScoreB()            Sets the current record's "score_b" value
  * @method RoundSummary setBestKiller()        Sets the current record's "best_killer" value
  * @method RoundSummary setBestKillerFk()      Sets the current record's "best_killer_fk" value
  * @method RoundSummary setBestActionType()    Sets the current record's "best_action_type" value
  * @method RoundSummary setBestActionParam()   Sets the current record's "best_action_param" value
+ * @method RoundSummary setBackupFileName()    Sets the current record's "backup_file_name" value
  * @method RoundSummary setRoundId()           Sets the current record's "round_id" value
  * @method RoundSummary setMatch()             Sets the current record's "Match" value
  * @method RoundSummary setMap()               Sets the current record's "Map" value
+ * @method RoundSummary setBestKiller()        Sets the current record's "BestKiller" value
  * 
  * @package    PhpProject1
  * @subpackage model
@@ -118,9 +130,17 @@ abstract class BaseRoundSummary extends sfDoctrineRecord
         $this->hasColumn('t_win', 'boolean', null, array(
              'type' => 'boolean',
              ));
-        $this->hasColumn('best_killer', 'integer', 5, array(
+        $this->hasColumn('score_a', 'integer', 2, array(
              'type' => 'integer',
-             'length' => 5,
+             'length' => 2,
+             ));
+        $this->hasColumn('score_b', 'integer', 2, array(
+             'type' => 'integer',
+             'length' => 2,
+             ));
+        $this->hasColumn('best_killer', 'integer', 20, array(
+             'type' => 'integer',
+             'length' => 20,
              ));
         $this->hasColumn('best_killer_fk', 'boolean', null, array(
              'type' => 'boolean',
@@ -130,6 +150,10 @@ abstract class BaseRoundSummary extends sfDoctrineRecord
              ));
         $this->hasColumn('best_action_param', 'text', null, array(
              'type' => 'text',
+             ));
+        $this->hasColumn('backup_file_name', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
              ));
         $this->hasColumn('round_id', 'integer', 5, array(
              'type' => 'integer',
@@ -149,6 +173,11 @@ abstract class BaseRoundSummary extends sfDoctrineRecord
              'local' => 'map_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Players as BestKiller', array(
+             'local' => 'best_killer',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

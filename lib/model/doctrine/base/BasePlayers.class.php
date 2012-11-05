@@ -37,80 +37,86 @@
  * @property integer $firstkill
  * @property Matchs $Match
  * @property Maps $Map
+ * @property Doctrine_Collection $PlayersSnapshot
  * @property Doctrine_Collection $Round
+ * @property Doctrine_Collection $RoundSummary
  * @property Doctrine_Collection $PlayerKill
  * @property Doctrine_Collection $PlayersHeatmap
  * 
- * @method integer             getId()             Returns the current record's "id" value
- * @method integer             getMatchId()        Returns the current record's "match_id" value
- * @method integer             getMapId()          Returns the current record's "map_id" value
- * @method varchar             getPlayerKey()      Returns the current record's "player_key" value
- * @method enum                getTeam()           Returns the current record's "team" value
- * @method varchar             getIp()             Returns the current record's "ip" value
- * @method varchar             getSteamid()        Returns the current record's "steamid" value
- * @method enum                getFirstSide()      Returns the current record's "first_side" value
- * @method enum                getCurrentSide()    Returns the current record's "current_side" value
- * @method varchar             getPseudo()         Returns the current record's "pseudo" value
- * @method integer             getNbKill()         Returns the current record's "nb_kill" value
- * @method integer             getAssist()         Returns the current record's "assist" value
- * @method integer             getDeath()          Returns the current record's "death" value
- * @method integer             getPoint()          Returns the current record's "point" value
- * @method integer             getHs()             Returns the current record's "hs" value
- * @method integer             getDefuse()         Returns the current record's "defuse" value
- * @method integer             getBombe()          Returns the current record's "bombe" value
- * @method integer             getTk()             Returns the current record's "tk" value
- * @method integer             getNb1()            Returns the current record's "nb1" value
- * @method integer             getNb2()            Returns the current record's "nb2" value
- * @method integer             getNb3()            Returns the current record's "nb3" value
- * @method integer             getNb4()            Returns the current record's "nb4" value
- * @method integer             getNb5()            Returns the current record's "nb5" value
- * @method integer             getNb1kill()        Returns the current record's "nb1kill" value
- * @method integer             getNb2kill()        Returns the current record's "nb2kill" value
- * @method integer             getNb3kill()        Returns the current record's "nb3kill" value
- * @method integer             getNb4kill()        Returns the current record's "nb4kill" value
- * @method integer             getNb5kill()        Returns the current record's "nb5kill" value
- * @method integer             getPluskill()       Returns the current record's "pluskill" value
- * @method integer             getFirstkill()      Returns the current record's "firstkill" value
- * @method Matchs              getMatch()          Returns the current record's "Match" value
- * @method Maps                getMap()            Returns the current record's "Map" value
- * @method Doctrine_Collection getRound()          Returns the current record's "Round" collection
- * @method Doctrine_Collection getPlayerKill()     Returns the current record's "PlayerKill" collection
- * @method Doctrine_Collection getPlayersHeatmap() Returns the current record's "PlayersHeatmap" collection
- * @method Players             setId()             Sets the current record's "id" value
- * @method Players             setMatchId()        Sets the current record's "match_id" value
- * @method Players             setMapId()          Sets the current record's "map_id" value
- * @method Players             setPlayerKey()      Sets the current record's "player_key" value
- * @method Players             setTeam()           Sets the current record's "team" value
- * @method Players             setIp()             Sets the current record's "ip" value
- * @method Players             setSteamid()        Sets the current record's "steamid" value
- * @method Players             setFirstSide()      Sets the current record's "first_side" value
- * @method Players             setCurrentSide()    Sets the current record's "current_side" value
- * @method Players             setPseudo()         Sets the current record's "pseudo" value
- * @method Players             setNbKill()         Sets the current record's "nb_kill" value
- * @method Players             setAssist()         Sets the current record's "assist" value
- * @method Players             setDeath()          Sets the current record's "death" value
- * @method Players             setPoint()          Sets the current record's "point" value
- * @method Players             setHs()             Sets the current record's "hs" value
- * @method Players             setDefuse()         Sets the current record's "defuse" value
- * @method Players             setBombe()          Sets the current record's "bombe" value
- * @method Players             setTk()             Sets the current record's "tk" value
- * @method Players             setNb1()            Sets the current record's "nb1" value
- * @method Players             setNb2()            Sets the current record's "nb2" value
- * @method Players             setNb3()            Sets the current record's "nb3" value
- * @method Players             setNb4()            Sets the current record's "nb4" value
- * @method Players             setNb5()            Sets the current record's "nb5" value
- * @method Players             setNb1kill()        Sets the current record's "nb1kill" value
- * @method Players             setNb2kill()        Sets the current record's "nb2kill" value
- * @method Players             setNb3kill()        Sets the current record's "nb3kill" value
- * @method Players             setNb4kill()        Sets the current record's "nb4kill" value
- * @method Players             setNb5kill()        Sets the current record's "nb5kill" value
- * @method Players             setPluskill()       Sets the current record's "pluskill" value
- * @method Players             setFirstkill()      Sets the current record's "firstkill" value
- * @method Players             setMatch()          Sets the current record's "Match" value
- * @method Players             setMap()            Sets the current record's "Map" value
- * @method Players             setRound()          Sets the current record's "Round" collection
- * @method Players             setPlayerKill()     Sets the current record's "PlayerKill" collection
- * @method Players             setPlayersHeatmap() Sets the current record's "PlayersHeatmap" collection
+ * @method integer             getId()              Returns the current record's "id" value
+ * @method integer             getMatchId()         Returns the current record's "match_id" value
+ * @method integer             getMapId()           Returns the current record's "map_id" value
+ * @method varchar             getPlayerKey()       Returns the current record's "player_key" value
+ * @method enum                getTeam()            Returns the current record's "team" value
+ * @method varchar             getIp()              Returns the current record's "ip" value
+ * @method varchar             getSteamid()         Returns the current record's "steamid" value
+ * @method enum                getFirstSide()       Returns the current record's "first_side" value
+ * @method enum                getCurrentSide()     Returns the current record's "current_side" value
+ * @method varchar             getPseudo()          Returns the current record's "pseudo" value
+ * @method integer             getNbKill()          Returns the current record's "nb_kill" value
+ * @method integer             getAssist()          Returns the current record's "assist" value
+ * @method integer             getDeath()           Returns the current record's "death" value
+ * @method integer             getPoint()           Returns the current record's "point" value
+ * @method integer             getHs()              Returns the current record's "hs" value
+ * @method integer             getDefuse()          Returns the current record's "defuse" value
+ * @method integer             getBombe()           Returns the current record's "bombe" value
+ * @method integer             getTk()              Returns the current record's "tk" value
+ * @method integer             getNb1()             Returns the current record's "nb1" value
+ * @method integer             getNb2()             Returns the current record's "nb2" value
+ * @method integer             getNb3()             Returns the current record's "nb3" value
+ * @method integer             getNb4()             Returns the current record's "nb4" value
+ * @method integer             getNb5()             Returns the current record's "nb5" value
+ * @method integer             getNb1kill()         Returns the current record's "nb1kill" value
+ * @method integer             getNb2kill()         Returns the current record's "nb2kill" value
+ * @method integer             getNb3kill()         Returns the current record's "nb3kill" value
+ * @method integer             getNb4kill()         Returns the current record's "nb4kill" value
+ * @method integer             getNb5kill()         Returns the current record's "nb5kill" value
+ * @method integer             getPluskill()        Returns the current record's "pluskill" value
+ * @method integer             getFirstkill()       Returns the current record's "firstkill" value
+ * @method Matchs              getMatch()           Returns the current record's "Match" value
+ * @method Maps                getMap()             Returns the current record's "Map" value
+ * @method Doctrine_Collection getPlayersSnapshot() Returns the current record's "PlayersSnapshot" collection
+ * @method Doctrine_Collection getRound()           Returns the current record's "Round" collection
+ * @method Doctrine_Collection getRoundSummary()    Returns the current record's "RoundSummary" collection
+ * @method Doctrine_Collection getPlayerKill()      Returns the current record's "PlayerKill" collection
+ * @method Doctrine_Collection getPlayersHeatmap()  Returns the current record's "PlayersHeatmap" collection
+ * @method Players             setId()              Sets the current record's "id" value
+ * @method Players             setMatchId()         Sets the current record's "match_id" value
+ * @method Players             setMapId()           Sets the current record's "map_id" value
+ * @method Players             setPlayerKey()       Sets the current record's "player_key" value
+ * @method Players             setTeam()            Sets the current record's "team" value
+ * @method Players             setIp()              Sets the current record's "ip" value
+ * @method Players             setSteamid()         Sets the current record's "steamid" value
+ * @method Players             setFirstSide()       Sets the current record's "first_side" value
+ * @method Players             setCurrentSide()     Sets the current record's "current_side" value
+ * @method Players             setPseudo()          Sets the current record's "pseudo" value
+ * @method Players             setNbKill()          Sets the current record's "nb_kill" value
+ * @method Players             setAssist()          Sets the current record's "assist" value
+ * @method Players             setDeath()           Sets the current record's "death" value
+ * @method Players             setPoint()           Sets the current record's "point" value
+ * @method Players             setHs()              Sets the current record's "hs" value
+ * @method Players             setDefuse()          Sets the current record's "defuse" value
+ * @method Players             setBombe()           Sets the current record's "bombe" value
+ * @method Players             setTk()              Sets the current record's "tk" value
+ * @method Players             setNb1()             Sets the current record's "nb1" value
+ * @method Players             setNb2()             Sets the current record's "nb2" value
+ * @method Players             setNb3()             Sets the current record's "nb3" value
+ * @method Players             setNb4()             Sets the current record's "nb4" value
+ * @method Players             setNb5()             Sets the current record's "nb5" value
+ * @method Players             setNb1kill()         Sets the current record's "nb1kill" value
+ * @method Players             setNb2kill()         Sets the current record's "nb2kill" value
+ * @method Players             setNb3kill()         Sets the current record's "nb3kill" value
+ * @method Players             setNb4kill()         Sets the current record's "nb4kill" value
+ * @method Players             setNb5kill()         Sets the current record's "nb5kill" value
+ * @method Players             setPluskill()        Sets the current record's "pluskill" value
+ * @method Players             setFirstkill()       Sets the current record's "firstkill" value
+ * @method Players             setMatch()           Sets the current record's "Match" value
+ * @method Players             setMap()             Sets the current record's "Map" value
+ * @method Players             setPlayersSnapshot() Sets the current record's "PlayersSnapshot" collection
+ * @method Players             setRound()           Sets the current record's "Round" collection
+ * @method Players             setRoundSummary()    Sets the current record's "RoundSummary" collection
+ * @method Players             setPlayerKill()      Sets the current record's "PlayerKill" collection
+ * @method Players             setPlayersHeatmap()  Sets the current record's "PlayersHeatmap" collection
  * 
  * @package    PhpProject1
  * @subpackage model
@@ -297,9 +303,17 @@ abstract class BasePlayers extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
+        $this->hasMany('PlayersSnapshot', array(
+             'local' => 'id',
+             'foreign' => 'player_id'));
+
         $this->hasMany('Round', array(
              'local' => 'id',
              'foreign' => 'killer_id'));
+
+        $this->hasMany('RoundSummary', array(
+             'local' => 'id',
+             'foreign' => 'best_killer'));
 
         $this->hasMany('PlayerKill', array(
              'local' => 'id',

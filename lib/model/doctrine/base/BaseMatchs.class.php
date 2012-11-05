@@ -9,7 +9,9 @@
  * @property varchar $ip
  * @property integer $server_id
  * @property varchar $team_a
+ * @property varchar $team_a_flag
  * @property varchar $team_b
+ * @property varchar $team_b_flag
  * @property integer $status
  * @property integer $score_a
  * @property integer $score_b
@@ -23,8 +25,10 @@
  * @property varchar $config_password
  * @property boolean $config_heatmap
  * @property boolean $enable
+ * @property boolean $ingame_enable
  * @property integer $current_map
  * @property boolean $force_zoom_match
+ * @property varchar $tv_record_file
  * @property Servers $Server
  * @property Maps $Map
  * @property Doctrine_Collection $Maps
@@ -38,7 +42,9 @@
  * @method varchar             getIp()                          Returns the current record's "ip" value
  * @method integer             getServerId()                    Returns the current record's "server_id" value
  * @method varchar             getTeamA()                       Returns the current record's "team_a" value
+ * @method varchar             getTeamAFlag()                   Returns the current record's "team_a_flag" value
  * @method varchar             getTeamB()                       Returns the current record's "team_b" value
+ * @method varchar             getTeamBFlag()                   Returns the current record's "team_b_flag" value
  * @method integer             getStatus()                      Returns the current record's "status" value
  * @method integer             getScoreA()                      Returns the current record's "score_a" value
  * @method integer             getScoreB()                      Returns the current record's "score_b" value
@@ -52,8 +58,10 @@
  * @method varchar             getConfigPassword()              Returns the current record's "config_password" value
  * @method boolean             getConfigHeatmap()               Returns the current record's "config_heatmap" value
  * @method boolean             getEnable()                      Returns the current record's "enable" value
+ * @method boolean             getIngameEnable()                Returns the current record's "ingame_enable" value
  * @method integer             getCurrentMap()                  Returns the current record's "current_map" value
  * @method boolean             getForceZoomMatch()              Returns the current record's "force_zoom_match" value
+ * @method varchar             getTvRecordFile()                Returns the current record's "tv_record_file" value
  * @method Servers             getServer()                      Returns the current record's "Server" value
  * @method Maps                getMap()                         Returns the current record's "Map" value
  * @method Doctrine_Collection getMaps()                        Returns the current record's "Maps" collection
@@ -66,7 +74,9 @@
  * @method Matchs              setIp()                          Sets the current record's "ip" value
  * @method Matchs              setServerId()                    Sets the current record's "server_id" value
  * @method Matchs              setTeamA()                       Sets the current record's "team_a" value
+ * @method Matchs              setTeamAFlag()                   Sets the current record's "team_a_flag" value
  * @method Matchs              setTeamB()                       Sets the current record's "team_b" value
+ * @method Matchs              setTeamBFlag()                   Sets the current record's "team_b_flag" value
  * @method Matchs              setStatus()                      Sets the current record's "status" value
  * @method Matchs              setScoreA()                      Sets the current record's "score_a" value
  * @method Matchs              setScoreB()                      Sets the current record's "score_b" value
@@ -80,8 +90,10 @@
  * @method Matchs              setConfigPassword()              Sets the current record's "config_password" value
  * @method Matchs              setConfigHeatmap()               Sets the current record's "config_heatmap" value
  * @method Matchs              setEnable()                      Sets the current record's "enable" value
+ * @method Matchs              setIngameEnable()                Sets the current record's "ingame_enable" value
  * @method Matchs              setCurrentMap()                  Sets the current record's "current_map" value
  * @method Matchs              setForceZoomMatch()              Sets the current record's "force_zoom_match" value
+ * @method Matchs              setTvRecordFile()                Sets the current record's "tv_record_file" value
  * @method Matchs              setServer()                      Sets the current record's "Server" value
  * @method Matchs              setMap()                         Sets the current record's "Map" value
  * @method Matchs              setMaps()                        Sets the current record's "Maps" collection
@@ -117,11 +129,21 @@ abstract class BaseMatchs extends sfDoctrineRecord
              ));
         $this->hasColumn('team_a', 'varchar', 255, array(
              'type' => 'varchar',
+             'notnull' => true,
              'length' => 255,
+             ));
+        $this->hasColumn('team_a_flag', 'varchar', 2, array(
+             'type' => 'varchar',
+             'length' => 2,
              ));
         $this->hasColumn('team_b', 'varchar', 255, array(
              'type' => 'varchar',
+             'notnull' => true,
              'length' => 255,
+             ));
+        $this->hasColumn('team_b_flag', 'varchar', 2, array(
+             'type' => 'varchar',
+             'length' => 2,
              ));
         $this->hasColumn('status', 'integer', 2, array(
              'type' => 'integer',
@@ -137,10 +159,12 @@ abstract class BaseMatchs extends sfDoctrineRecord
              ));
         $this->hasColumn('max_round', 'integer', 3, array(
              'type' => 'integer',
+             'notnull' => true,
              'length' => 3,
              ));
         $this->hasColumn('rules', 'varchar', 200, array(
              'type' => 'varchar',
+             'notnull' => true,
              'length' => 200,
              ));
         $this->hasColumn('config_full_score', 'boolean', null, array(
@@ -168,12 +192,19 @@ abstract class BaseMatchs extends sfDoctrineRecord
         $this->hasColumn('enable', 'boolean', null, array(
              'type' => 'boolean',
              ));
+        $this->hasColumn('ingame_enable', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
         $this->hasColumn('current_map', 'integer', 20, array(
              'type' => 'integer',
              'length' => 20,
              ));
         $this->hasColumn('force_zoom_match', 'boolean', null, array(
              'type' => 'boolean',
+             ));
+        $this->hasColumn('tv_record_file', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
              ));
     }
 

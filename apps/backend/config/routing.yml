@@ -83,7 +83,25 @@ matchs_stop:
   param: { module: matchs, action: stop }   
   requirements:
     id : \d+
-    sf_method: [get]      
+    sf_method: [get]   
+    
+matchs_reset:
+  url: /matchs/reset/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: reset }   
+  requirements:
+    id : \d+
+    sf_method: [get]        
+ 
+matchs_pause_unpause:
+  url: /matchs/pause/unpause/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: pauseUnpause }   
+  requirements:
+    id : \d+
+    sf_method: [get]   
  
 matchs_stop_back:
   url: /matchs/stop-back/:id

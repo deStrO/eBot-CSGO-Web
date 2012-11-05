@@ -13,8 +13,8 @@
             <li><a href="<?php echo url_for("stats/index"); ?>">Statistiques</a></li>
             <li><a href="<?php echo url_for("main/ingame"); ?>">Aide ingame</a></li>
             <li class="nav-header">Menu matchs</li>
-            <li><a href="<?php echo url_for("matchs_current"); ?>">Matchs en cours <span class="badge badge-info"><?php echo $nbMatchs; ?></span></a></li>
-            <li><a href="<?php echo url_for("matchs_archived"); ?>">Matchs archivés</a></li>
+            <li><a href="<?php echo url_for("@matchs_current_page?page=1"); ?>">Matchs en cours <span class="badge badge-info"><?php echo $nbMatchs; ?></span></a></li>
+            <li><a href="<?php echo url_for("@matchs_archived_page?page=1"); ?>">Matchs archivés</a></li>
             <li>
                 <div class="input-append">
                     <input class="span2" id="match_id_go" size="16" type="text">

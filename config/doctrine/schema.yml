@@ -5,13 +5,15 @@ Matchs:
     id: { primary: true, type: integer(20), autoincrement: true }
     ip: { type: varchar(50) }
     server_id: { type: integer(20) }
-    team_a: { type: varchar(255) }
-    team_b: { type: varchar(255) }
+    team_a: { type: varchar(255), notnull: true }
+    team_a_flag: { type: varchar(2) }
+    team_b: { type: varchar(255), notnull: true }
+    team_b_flag: { type: varchar(2) }
     status: { type: integer(2) }
     score_a: { type: integer(5) }
     score_b: { type: integer(5) }
-    max_round: { type: integer(3) }
-    rules: { type: varchar(200) }
+    max_round: { type: integer(3), notnull: true }
+    rules: { type: varchar(200), notnull: true }
     config_full_score: { type: boolean }
     config_ot: { type: boolean }
     config_knife_round: { type: boolean }
@@ -20,8 +22,10 @@ Matchs:
     config_password: { type: varchar(50) }
     config_heatmap: { type: boolean }
     enable: { type: boolean }
+    ingame_enable: { type: boolean } 
     current_map: { type: integer(20) }
     force_zoom_match: { type: boolean }
+    tv_record_file: { type: varchar(255) } 
   relations:
     Server: { class: Servers, onDelete: CASCADE, local: server_id, foreign: id }
     Map: { class: Maps, onDelete: CASCADE, local: current_map, foreign: id }
@@ -94,6 +98,39 @@ Players:
     Match: { class: Matchs, onDelete: CASCADE, local: match_id, foreign: id }
     Map: { class: Maps, onDelete: CASCADE, local: map_id, foreign: id }
 
+PlayersSnapshot:
+  actAs:
+    Timestampable: ~
+  columns:
+    id: { primary: true, type: integer(20), autoincrement: true }
+    player_id: { type: integer(20), notnull: true }
+    player_key: { type: varchar(255) }
+    first_side: { type: enum, values: [ ct, t, other ] }
+    current_side: { type: enum, values: [ ct, t, other ] }
+    nb_kill: { type: integer(5), default: 0 }
+    assist: { type: integer(5), default: 0 }
+    death: { type: integer(5), default: 0 }
+    point: { type: integer(5), default: 0 }
+    hs: { type: integer(5), default: 0 }
+    defuse: { type: integer(5), default: 0 }
+    bombe: { type: integer(5), default: 0 }
+    tk: { type: integer(5), default: 0 }
+    nb1: { type: integer(5), default: 0 }
+    nb2: { type: integer(5), default: 0 }
+    nb3: { type: integer(5), default: 0 }
+    nb4: { type: integer(5), default: 0 }
+    nb5: { type: integer(5), default: 0 }
+    nb1kill: { type: integer(5), default: 0 }
+    nb2kill: { type: integer(5), default: 0 }
+    nb3kill: { type: integer(5), default: 0 }
+    nb4kill: { type: integer(5), default: 0 }
+    nb5kill: { type: integer(5), default: 0 }
+    pluskill: { type: integer(5), default: 0 }
+    firstkill: { type: integer(5), default: 0 }
+    round_id: { type: integer(5)}
+  relations:
+    Player: { class: Players, onDelete: CASCADE, local: player_id, foreign: id }
+
 Round:
   actAs:
     Timestampable: ~
@@ -126,14 +163,19 @@ RoundSummary:
     team_win: { type: enum, values: [ a, b ]}
     ct_win: { type: boolean }
     t_win: { type: boolean }
-    best_killer: { type: integer(5) }
+    score_a: { type: integer(2)}
+    score_b: { type: integer(2)}
+    best_killer: { type: integer(20) }
+    best_killer_nb: { type: integer(5) }
     best_killer_fk: { type: boolean }
     best_action_type: { type: text }
     best_action_param: { type: text }
+    backup_file_name: { type: varchar(255) }
     round_id: { type: integer(5) }
   relations:
     Match: { class: Matchs, onDelete: CASCADE, local: match_id, foreign: id }
     Map: { class: Maps, onDelete: CASCADE, local: map_id, foreign: id }
+    BestKiller: { class: Players, onDelete: SET NULL, local: best_killer, foreign: id }
 
 PlayerKill:
   actAs:
@@ -144,8 +186,10 @@ PlayerKill:
     map_id: { type: integer(20), notnull: true }
     killer_name: { type: varchar(100) }
     killer_id: { type: integer(20) }
+    killer_team: { type: varchar(20) }
     killed_name: { type: varchar(100) }
     killed_id: { type: integer(20) }
+    killed_team: { type: varchar(20) }
     weapon: { type: varchar(100) }
     headshot: { type: boolean }
     round_id: { type: integer(5) } 

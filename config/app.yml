@@ -5,6 +5,7 @@
 all:
   .array:
     maps: [ de_dust2_se, de_nuke_se, de_nuke_ve, de_train_se, de_mirage_csgo, de_inferno_se ]
+    flag_team: [ FR, EN, ES, UK, RU, SE, IT, BE, NL, LU ] 
 
   log_match: ../../ebotv3/logs/log_match
   log_match_admin: ../../ebotv3/logs/log_match_admin

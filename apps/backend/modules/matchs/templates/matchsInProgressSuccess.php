@@ -68,9 +68,6 @@
         $("#match_start").submit();
     }
 </script>
-
-
-
 <?php $used = array(); ?>
 <div id="tableMatch">
     <table class="table table-striped">
@@ -132,7 +129,7 @@
                             <?php if ($button["route"] == "matchs_start"): ?>
                                 <button onclick="startMatch(<?php echo $match->getId(); ?>);" class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo $button["label"]; ?></button>
                             <?php else: ?>
-                                <a href="<?php echo url_for($button["route"], $match); ?>">
+                                <a href="<?php echo url_for($button["route"], $match); ?>" confirm="true">
                                     <button class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo $button["label"]; ?></button>
                                 </a>
                             <?php endif; ?>
@@ -172,7 +169,7 @@
                             <option value="0">Lancer sur un serveur aléatoirement</option>
                             <?php foreach ($servers as $server): ?>
                                 <?php if (in_array($server->getIp(), $used)) continue; ?>
-                                <option value="<?php echo $server->getId(); ?>"><?php echo $server->getIp(); ?></option>
+                                <option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?></option>
                             <?php endforeach; ?>
                         </select>
                         <input type="hidden" id="match_id" name="match_id" value="0"/>
@@ -191,3 +188,11 @@
         </thead>
     </table>
 </div>
+
+<script>
+    $(function() { 
+   
+        $("a[confirm=true]").click(function() { return confirm("Etes vous sur de vouloir faire cette action ?");});
+    }
+);
+</script>

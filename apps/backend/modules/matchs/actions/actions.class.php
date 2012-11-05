@@ -82,7 +82,7 @@ class matchsActions extends sfActions {
     public function executeDelete(sfWebRequest $request) {
         $match = $this->getRoute()->getObject();
         $this->forward404Unless($match);
-        $this->forward404Unless(!$match->getEnable() || $match->getStatus() == Matchs::STATUS_NOT_STARTED);
+        $this->forward404Unless(!$match->getEnable() || $match->getStatus() == Matchs::STATUS_NOT_STARTED || $match->getStatus() == Matchs::STATUS_END_MATCH);
 
         $match->delete();
 
@@ -147,6 +147,18 @@ class matchsActions extends sfActions {
         $match->stopBack();
 
         $this->getUser()->setFlash("notification_ok", "La commande a été envoyée au serveur, retour au warmup");
+        $this->redirect("matchs_current");
+    }
+
+    public function executePauseUnpause(sfWebRequest $request) {
+        $match = $this->getRoute()->getObject();
+        $this->forward404Unless($match);
+        $this->forward404Unless($match->getEnable());
+        $this->forward404Unless(in_array($match->getStatus(), array(Matchs::STATUS_FIRST_SIDE, Matchs::STATUS_SECOND_SIDE, Matchs::STATUS_OT_FIRST_SIDE, Matchs::STATUS_OT_SECOND_SIDE)));
+
+        $match->pauseUnpause();
+
+        $this->getUser()->setFlash("notification_ok", "La commande a été envoyée au serveur, pause");
         $this->redirect("matchs_current");
     }
 
@@ -230,6 +242,39 @@ class matchsActions extends sfActions {
         }
 
         $this->getUser()->setFlash("notification_ok", $matchs->count() . " a/ont été archivé(s)");
+        $this->redirect("matchs_current");
+    }
+
+    public function executeReset(sfWebRequest $request) {
+        $match = $this->getRoute()->getObject();
+        $this->forward404Unless($match);
+        $this->forward404Unless(!$match->getEnable());
+        if (($match->getStatus() >= Matchs::STATUS_WU_KNIFE) && ($match->getStatus() < Matchs::STATUS_END_MATCH)) {
+            $match->setScoreA(0);
+            $match->setScoreB(0);
+            $match->setStatus(0);
+            $match->setIp(null);
+            $match->setServer(null);
+            $match->save();
+            foreach ($match->getMaps() as $map) {
+                $map->score_1 = 0;
+                $map->score_2 = 0;
+                $map->setNbOt(0);
+                $map->setStatus(0);
+                $map->save();
+                foreach ($map->getMapsScore() as $score) {
+                    $score->delete();
+                }
+            }
+
+            foreach ($match->getRoundSummary() as $round) {
+                $round->delete();
+            }
+            $this->getUser()->setFlash("notification_ok", "Le match a été remis à zéro");
+        } else {
+            $this->getUser()->setFlash("notification_ok", "Impossible de remettre à zéro");
+        }
+
         $this->redirect("matchs_current");
     }
 
@@ -448,5 +493,5 @@ class matchsActions extends sfActions {
         $match = $this->getRoute()->getObject();
         return $this->renderText(file_get_contents(sfConfig::get("app_log_match_admin") . "/match-" . $match->getId() . ".html"));
     }
-    
+
 }
