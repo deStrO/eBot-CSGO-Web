@@ -1,13 +1,13 @@
-<h3>Listes des serveurs</h3>
+<h3><?php echo __("Listes des serveurs"); ?></h3>
 <hr/>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>#ID</th>
-            <th>Adresse IP</th>
-            <th>Nom</th>
-            <th>Utilisation</th>
-            <th>Action</th>
+            <th><?php echo __("#ID"); ?></th>
+            <th><?php echo __("Adresse IP"); ?></th>
+            <th><?php echo __("Nom"); ?></th>
+            <th><?php echo __("Utilisation"); ?></th>
+            <th><?php echo __("Action"); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -19,21 +19,21 @@
                 <td><?php echo $server->getHostname(); ?></td>
                 <td width="100">
                     <?php if ($used): ?>
-                        <?php echo image_tag("/images/icons/flag_green.png"); ?> En cours
+                        <?php echo image_tag("/images/icons/flag_green.png"); ?> <?php echo __("En cours"); ?>
                     <?php else: ?>
-                        <?php echo image_tag("/images/icons/flag_red.png"); ?> Non utilisé
+                        <?php echo image_tag("/images/icons/flag_red.png"); ?> <?php echo __("Non utilisé"); ?>
                     <?php endif; ?>
                 </td>
                 <td width="100">
                     <?php if (!$used): ?>
-                        <a href="<?php echo url_for("server_delete", $server); ?>"><button class="btn btn-danger">Supprimer</button></a>
+                        <a href="<?php echo url_for("server_delete", $server); ?>"><button class="btn btn-danger"><?php echo __("Supprimer"); ?></button></a>
                     <?php endif; ?>
                 </td>
             </tr>
         <?php endforeach; ?>
         <?php if ($servers->count() == 0): ?>
             <tr>
-                <td colspan="5">Pas de serveur enregistré</td>
+                <td colspan="5"><?php echo __("Pas de serveur enregistré"); ?></td>
             </tr>
         <?php endif; ?>
     </tbody>

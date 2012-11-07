@@ -1,4 +1,4 @@
-<h3>Edition du match <?php echo $match->getTeamA(); ?> vs <?php echo $match->getTeamB(); ?></h3>
+<h3><?php echo __("Edition du match"); ?> <?php echo $match->getTeamA(); ?> vs <?php echo $match->getTeamB(); ?></h3>
 <hr/>
 <style>
     label.valid {
@@ -51,12 +51,12 @@
 <table border="0" cellpadding="5" cellspacing="5" width="100%">
     <tr>
         <td width="50%">
-            <h5>Edition des scores du matchs</h5>
+            <h5><?php echo __("Edition des informations du matchs"); ?></h5>
             <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("matchs_edit", $match); ?>">
                 <?php echo $form->renderHiddenFields(); ?>
                 <div class="well">
                     <div class="control-group">
-                        <label class="control-label">Statut du match</label>
+                        <label class="control-label"><?php echo __("Statut du match"); ?></label>
                         <div class="controls">
                             <?php echo $match->getStatusText(); ?>
                         </div>
@@ -73,7 +73,7 @@
                     <?php endforeach; ?>
 
                     <div class="control-group">
-                        <label class="control-label">Maps</label>
+                        <label class="control-label"><?php echo __("Maps"); ?></label>
                         <div class="controls">
                             <select name="maps">
                                 <?php foreach ($maps as $map): ?>
@@ -85,20 +85,20 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            <input type="submit" class="btn btn-primary" value="Sauver le match"/>
+                            <input type="submit" class="btn btn-primary" value="<?php echo __("Sauver le match"); ?>"/>
                         </div>
                     </div>
                 </div>
             </form>
         </td>
         <td width="50%" valign="top">
-            <h5>Edition des scores du matchs</h5>
+            <h5><?php echo __("Edition des scores du matchs"); ?></h5>
             <?php foreach ($formScores as $form): ?>
                 <form class="form-horizontal" method="post" action="<?php echo url_for("matchs_score_edit", $form->getObject()); ?>">
                     <?php echo $form->renderHiddenFields(); ?>
                     <div class="well">
                         <div class="control-group">
-                            <label class="control-label">Type de score</label>
+                            <label class="control-label"><?php echo __("Type de score"); ?></label>
                             <div class="controls">
                                 <?php echo $form->getObject()->getTypeScore(); ?>
                             </div>
@@ -116,7 +116,7 @@
 
                         <div class="control-group">
                             <div class="controls">
-                                <input type="submit" class="btn btn-primary" value="Sauver les scores"/>
+                                <input type="submit" class="btn btn-primary" value="<?php echo __("Sauver les scores"); ?>"/>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
             <?php endforeach; ?>
 
             <div class="alert alert-danger">
-                <b>Attention</b> - En changeant les scores ici, tous les scores seront recalculés !
+                <?php echo __("<b>Attention</b> - En changeant les scores ici, tous les scores seront recalculés !"); ?>
             </div>
         </td>
     </tr>

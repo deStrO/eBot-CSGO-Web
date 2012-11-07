@@ -1,4 +1,4 @@
-<h3>Création d'un serveur</h3>
+<h3><?php echo __("Création d'un serveur"); ?></h3>
 <hr/>
 <style>
     label.valid {
@@ -59,17 +59,17 @@
 
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn btn-primary" value="Créer le serveur"/>
+                <input type="submit" class="btn btn-primary" value="<?php echo __("Créer le serveur"); ?>"/>
             </div>
         </div>
     </div>
     
     <div class="alert alert-info">
-        <p>Pour créer plusieurs serveurs en une fois, vous pouvez renseigner l'adresse du serveur dans plusieurs format:</p>
+        <p><?php echo __("Pour créer plusieurs serveurs en une fois, vous pouvez renseigner l'adresse du serveur dans plusieurs format:"); ?></p>
         <ul>
-            <li><b>172.16.100.101-103:27015</b> : générera 3 serveurs avec comme ip 172.16.100.101:27015, 172.16.100.102:27015, 172.16.100.103:27015</li>
-            <li><b>172.16.100.101:27015-27025-27035</b> : générera 4 serveurs avec comme ip 172.16.100.101:27015, 172.16.100.101:27025, 172.16.100.101:27035</li>
-            <li><b>172.16.100.101-103:27015-27025-27035</b> : générera 9 serveurs avec comme ip 172.16.100.101:27015 > 172.16.100.101:27035, etc ...</li>
+            <li><b>172.16.100.101-103:27015</b> : <?php echo __("générera 3 serveurs avec comme ip 172.16.100.101:27015, 172.16.100.102:27015, 172.16.100.103:27015"); ?></li>
+            <li><b>172.16.100.101:27015-27025-27035</b> : <?php echo __("générera 4 serveurs avec comme ip 172.16.100.101:27015, 172.16.100.101:27025, 172.16.100.101:27035"); ?></li>
+            <li><b>172.16.100.101-103:27015-27025-27035</b> : <?php echo __("générera 9 serveurs avec comme ip 172.16.100.101:27015 > 172.16.100.101:27035, etc ..."); ?></li>
         </ul>
     </div>
 </form>

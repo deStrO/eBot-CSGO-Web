@@ -1,11 +1,11 @@
 <div class="well">
     <h2>eBot-CSGO</h2>
-    <p>Bienvenue sur le panel de l'eBot V3. Vous pouvez accédez aux différents matchs via le menu. Enjoy !</p>
+    <p><?php echo __("Bienvenue sur le panel de l'eBot V3. Vous pouvez accédez aux différents matchs via le menu. Enjoy !"); ?></p>
 </div>
 
 <div class="row-fluid">
     <div class="span7">
-        <h5>Listes des matchs en cours</h5>
+        <h5><?php echo __("Listes des matchs en cours"); ?></h5>
 
         <table class="table table-striped table-condensed" style="font-size: 0.9em">
             <tbody>
@@ -64,36 +64,36 @@
                 <?php endforeach; ?>
                 <?php if ($matchs->count() == 0): ?>
                     <tr>
-                        <td colspan="8" align="center">Pas de résultats à afficher</td>
+                        <td colspan="8" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
                     </tr>
                 <?php endif; ?>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="9" style="text-align: center;">
-                        <a href="<?php echo url_for("matchs_current"); ?>">Voir tous les matchs</a>
+                        <a href="<?php echo url_for("matchs_current"); ?>"><?php echo __("Voir tous les matchs"); ?></a>
                     </td>
                 </tr>
             </tfoot>
             <thead>
                 <tr>
                     <th>#ID</th>
-                    <th colspan="3">Opposant - Score</th>
-                    <th>Maps en cours</th>
-                    <th>IP</th>
-                    <th>Enabled</th>
-                    <th>Status</th>
+                    <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
+                    <th><?php echo __("Maps en cours"); ?></th>
+                    <th><?php echo __("IP"); ?></th>
+                    <th><?php echo __("Enabled"); ?></th>
+                    <th><?php echo __("Status"); ?></th>
                     <th></th>
                 </tr>
             </thead>
         </table>
     </div>
     <div class="span5">
-        <h5>Information</h5>
+        <h5><?php echo __("Information"); ?></h5>
         <div class="well">
-            <p><i class="icon-arrow-right"></i> La nouvelle version de l'eBot vous permet d'avoir accès à plus de statistiques sur les matchs mais aussi une meilleur gestion des matchs.</p>
-            <p><i class="icon-arrow-right"></i> Si vous avez un problème avec l'eBot, nous vous invitons à lire l'aide.</p>
-            <p><i class="icon-arrow-right"></i> Rendez-vous sur <a href="http://www.esport-tools.net/">eSport-tools.net</a> pour plus d'information !</p>
+            <p><i class="icon-arrow-right"></i> <?php echo __("La nouvelle version de l'eBot vous permet d'avoir accès à plus de statistiques sur les matchs mais aussi une meilleur gestion des matchs."); ?></p>
+            <p><i class="icon-arrow-right"></i> <?php echo __("Si vous avez un problème avec l'eBot, nous vous invitons à lire l'aide."); ?></p>
+            <p><i class="icon-arrow-right"></i> <?php echo __("Rendez-vous sur"); ?> <a href="http://www.esport-tools.net/">eSport-tools.net</a> <?php echo __("pour plus d'information !"); ?></p>
         </div>
     </div>
 </div>

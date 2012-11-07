@@ -15,22 +15,21 @@
     reloadMatchs();
 </script>
 
-<h3>Listes des matchs en cours</h3>
+<h3><?php echo __("Listes des matchs en cours"); ?></h3>
 <hr/>
 
 <div class="navbar">
     <div class="navbar-inner">
         <p class="pull-right">
-
-            Rafraichissement du tableau dans <span id="seconds">10</span> secondes
+            <?php echo __("Rafraichissement du tableau dans <span id=\"seconds\">10</span> secondes"); ?>
         </p>
-        <a class="brand" href="#">Administration rapide</a>
+        <a class="brand" href="#"><?php echo __("Administration rapide"); ?></a>
         <ul class="nav">
-            <li><a href="<?php echo url_for("matchs/startAll"); ?>">Démarrer tous les matchs</a></li>
-            <li><a href="<?php echo url_for("matchs/archiveAll"); ?>">Archiver les matchs</a></li>
-            <li><a href="#myModal" role="button"  data-toggle="modal">Rechercher un match</a></li>
+            <li><a href="<?php echo url_for("matchs/startAll"); ?>"><?php echo __("Démarrer tous les matchs"); ?></a></li>
+            <li><a href="<?php echo url_for("matchs/archiveAll"); ?>"><?php echo __("Archiver les matchs"); ?></a></li>
+            <li><a href="#myModal" role="button"  data-toggle="modal"><?php echo __("Rechercher un match"); ?></a></li>
             <?php if (count($filterValues) > 0): ?>
-                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal">Remettre à zéro le filtre</a></li>
+                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Remettre à zéro le filtre"); ?></a></li>
             <?php endif; ?>
         </ul>
     </div>
@@ -41,7 +40,7 @@
         <?php echo $filter->renderHiddenFields(); ?>    
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Recherche d'un match</h3>
+            <h3 id="myModalLabel"><?php echo __("Recherche d'un match"); ?></h3>
         </div>
         <div class="modal-body">
             <?php foreach ($filter as $widget): ?>
@@ -55,9 +54,9 @@
             <?php endforeach; ?>
         </div>
         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
-            <button class="btn btn-inverse">Annuler le filtre</button>
-            <input type="submit" class="btn btn-primary" value="Recherche"/>
+            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __("Fermer"); ?></button>
+            <button class="btn btn-inverse"><?php echo __("Annuler le filtre"); ?></button>
+            <input type="submit" class="btn btn-primary" value="<?php echo __("Recherche"); ?>"/>
         </div>
     </form>
 </div>
@@ -136,13 +135,13 @@
 
                         <?php endforeach; ?>
 
-                        <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse">Voir</button></a>
+                        <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse"><?php echo __("Voir"); ?></button></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
             <?php if ($pager->getNbResults() == 0): ?>
                 <tr>
-                    <td colspan="8" align="center">Pas de résultats à afficher</td>
+                    <td colspan="8" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
                 </tr>
             <?php endif; ?>
         </tbody>
@@ -161,12 +160,12 @@
         <thead>
             <tr>
                 <td colspan="4">
-                    Serveur à utiliser pour le lancer du prochain match
+                    <?php echo __("Serveur à utiliser pour le lancer du prochain match"); ?>
                 </td>
                 <td colspan="5">
                     <form method="post" action="<?php echo url_for("matchs_start_with_server"); ?>" id="match_start" style="display: inline;">
                         <select name="server_id">
-                            <option value="0">Lancer sur un serveur aléatoirement</option>
+                            <option value="0"><?php echo __("Lancer sur un serveur aléatoirement"); ?></option>
                             <?php foreach ($servers as $server): ?>
                                 <?php if (in_array($server->getIp(), $used)) continue; ?>
                                 <option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?></option>
@@ -177,12 +176,12 @@
                 </td>
             </tr>
             <tr>
-                <th>#ID</th>
-                <th colspan="3">Opposant - Score</th>
-                <th>Maps en cours</th>
-                <th>IP</th>
-                <th>Enabled</th>
-                <th>Status</th>
+                <th><?php echo __("#ID"); ?></th>
+                <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
+                <th><?php echo __("Maps en cours"); ?></th>
+                <th><?php echo __("IP"); ?></th>
+                <th><?php echo __("Enabled"); ?></th>
+                <th><?php echo __("Status"); ?></th>
                 <th></th>
             </tr>
         </thead>
@@ -192,7 +191,7 @@
 <script>
     $(function() { 
    
-        $("a[confirm=true]").click(function() { return confirm("Etes vous sur de vouloir faire cette action ?");});
+        $("a[confirm=true]").click(function() { return confirm(<?php echo json_encode(__("Etes vous sur de vouloir faire cette action ?")); ?>);});
     }
 );
 </script>

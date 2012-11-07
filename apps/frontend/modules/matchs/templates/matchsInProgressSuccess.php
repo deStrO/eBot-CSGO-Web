@@ -15,19 +15,18 @@
     reloadMatchs();
 </script>
 
-<h3>Listes des matchs en cours</h3>
+<h3><?php echo __("Listes des matchs en cours"); ?></h3>
 <hr/>
 
 <div class="navbar">
     <div class="navbar-inner">
         <p class="pull-right">
-
-            Rafraichissement du tableau dans <span id="seconds">10</span> secondes
+            <?php echo __("Rafraichissement du tableau dans <span id=\"seconds\">10</span> secondes"); ?>
         </p>
         <ul class="nav">
-            <li><a href="#myModal" role="button"  data-toggle="modal">Rechercher un match</a></li>
+            <li><a href="#myModal" role="button"  data-toggle="modal"><?php echo __("Rechercher un match"); ?></a></li>
             <?php if (count($filterValues) > 0): ?>
-                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal">Remettre à zéro le filtre</a></li>
+                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Remettre à zéro le filtre"); ?></a></li>
             <?php endif; ?>
         </ul>
     </div>
@@ -38,7 +37,7 @@
         <?php echo $filter->renderHiddenFields(); ?>    
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Recherche d'un match</h3>
+            <h3 id="myModalLabel"><?php echo __("Recherche d'un match"); ?></h3>
         </div>
         <div class="modal-body">
             <?php foreach ($filter as $widget): ?>
@@ -52,9 +51,9 @@
             <?php endforeach; ?>
         </div>
         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
-            <button class="btn btn-inverse">Annuler le filtre</button>
-            <input type="submit" class="btn btn-primary" value="Recherche"/>
+            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __("Fermer"); ?></button>
+            <button class="btn btn-inverse"><?php echo __("Annuler le filtre"); ?></button>
+            <input type="submit" class="btn btn-primary" value="<?php echo __("Recherche"); ?>"/>
         </div>
     </form>
 </div>
@@ -116,7 +115,7 @@
             <?php endforeach; ?>
             <?php if ($pager->getNbResults() == 0): ?>
                 <tr>
-                    <td colspan="8" align="center">Pas de résultats à afficher</td>
+                    <td colspan="8" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
                 </tr>
             <?php endif; ?>
         </tbody>
@@ -134,12 +133,12 @@
         </tfoot>
         <thead>
             <tr>
-                <th>#ID</th>
-                <th colspan="3">Opposant - Score</th>
-                <th>Maps en cours</th>
-                <th>IP</th>
-                <th>Enabled</th>
-                <th>Status</th>
+                <th><?php echo __("#ID"); ?></th>
+                <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
+                <th><?php echo __("Maps en cours"); ?></th>
+                <th><?php echo __("IP"); ?></th>
+                <th><?php echo __("Enabled"); ?></th>
+                <th><?php echo __("Status"); ?></th>
                 <th></th>
             </tr>
         </thead>

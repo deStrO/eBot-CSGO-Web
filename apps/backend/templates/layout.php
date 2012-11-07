@@ -32,6 +32,10 @@
                     </a>
                     <a class="brand" href="<?php echo url_for("homepage"); ?>">eBot-CSGO</a>
                     <div class="nav-collapse collapse">
+                        <div style="line-height: 35px; float: right;  margin-right: 10px;">
+                            <form style="display:inline; margin-left: 5px; cursor: pointer" action="<?php echo url_for('@switch_lang?langage=fr') ?>" method="POST" id="langFr"><input type="hidden" name="referer" value="<?php echo $sf_request->getPathInfo() ?>" /><?php echo image_tag('/images/fr.png', array("onclick" => "javascript:submitForm('langFr')")); ?></form>
+                            <form style="display:inline; margin-left: 5px; cursor: pointer" action="<?php echo url_for('@switch_lang?langage=en') ?>" method="POST" id="langEn"><input type="hidden" name="referer" value="<?php echo $sf_request->getPathInfo() ?>" /><?php echo image_tag('/images/en.png', array("onclick" => "javascript:submitForm('langEn')")); ?></form>
+                        </div>
                         <?php if ($sf_user->isAuthenticated()): ?>
                             <p class="navbar-text pull-right">
                                 Logged in as <a href="#" class="navbar-link"><?php echo $sf_user->getGuarduser()->getUsername(); ?></a>

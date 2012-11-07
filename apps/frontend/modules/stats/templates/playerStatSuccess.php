@@ -1,5 +1,5 @@
 <?php $s = $stats->getLast(); ?>
-<h3>Statistique de <?php echo $s->getPseudo(); ?></h3>
+<h3><?php echo __("Statistique de"); ?> <?php echo $s->getPseudo(); ?></h3>
 <hr/>
 
 <div class="row-fluid">
@@ -58,25 +58,25 @@
             <?php echo $match->getTeamA(); ?> (<?php echo $score1; ?>) vs (<?php echo $score2; ?>) <?php echo $match->getTeamB(); ?>
             <table class="table table-striped table-condensed" style="margin-top: 10px;">
                 <tr>
-                    <td colspan="2">Nom ingame</td>
+                    <td colspan="2"><?php echo __("Nom ingame"); ?></td>
                     <td colspan="2"><?php echo $stat->getPseudo(); ?></td>
                 </tr>
                 <tr>
-                    <td width="50">Kill:</td>
+                    <td width="50"><?php echo __("Kill"); ?>:</td>
                     <td width="125"><?php echo $stat->getNbKill() ?></td>
-                    <td width="50">Death:</td>
+                    <td width="50"><?php echo __("Death"); ?>:</td>
                     <td width="125"><?php echo $stat->getDeath() ?></td>
                 </tr>
                 <tr>
-                    <td width="50">HS:</td>
+                    <td width="50"><?php echo __("HS"); ?>:</td>
                     <td><?php echo $stat->getHs() ?> (soit <?php echo $stat->getRatioHS() ?> %)</td>
-                    <td width="50">K/D:</td>
+                    <td width="50"><?php echo __("K/D"); ?>:</td>
                     <td><?php echo $stat->getRatio() ?></td>
                 </tr>
                 <tr>
-                    <td width="50">Bombe:</td>
+                    <td width="50"><?php echo __("Bombe"); ?>:</td>
                     <td><?php echo $stat->getBombe() ?></td>
-                    <td width="50">Defuse:</td>
+                    <td width="50"><?php echo __("Defuse"); ?>:</td>
                     <td><?php echo $stat->getDefuse() ?></td>
                 </tr>
                 <tr>

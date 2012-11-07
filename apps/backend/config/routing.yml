@@ -6,6 +6,13 @@ homepage:
   url:   /
   param: { module: main, action: index }
 
+switch_lang:
+  url:   /switch/lang/:langage
+  param: { module: language, action: switch }
+  allow_empty: false
+  requirements:
+    sf_method: [post]
+    langage: (?:fr|en)  
 
 matchs_current:
   url: /matchs/current

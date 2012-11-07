@@ -1,4 +1,4 @@
-<h3>Statistiques des joueurs</h3>
+<h3><?php echo __("Statistiques des joueurs"); ?></h3>
 <hr/>
 
 
@@ -64,19 +64,19 @@ uksort($scores, "cmp");
 <table id="tableScore" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-condensed">
     <thead>
         <tr>
-            <th height="25">Pseudo</th>
-            <th>K</th>
-            <th>D</th>
-            <th>Ratio K/D</th>
-            <th>HS</th>
-            <th>Ratio HS</th>
-            <th>TK</th>
-            <th>Bombe</th>
-            <th>Defuse</th>
-            <th>Point</th>
-            <th>Pt MVP</th>
-            <th>Pt Clutch</th>
-            <th>Nombre de Match</th>
+            <th height="25"><?php echo __("Pseudo"); ?></th>
+            <th><?php echo __("K"); ?></th>
+            <th><?php echo __("D"); ?></th>
+            <th><?php echo __("Ratio K/D"); ?></th>
+            <th><?php echo __("HS"); ?></th>
+            <th><?php echo __("Ratio HS"); ?></th>
+            <th><?php echo __("TK"); ?></th>
+            <th><?php echo __("Bombe"); ?></th>
+            <th><?php echo __("Defuse"); ?></th>
+            <th><?php echo __("Point"); ?></th>
+            <th><?php echo __("Pt MVP"); ?></th>
+            <th><?php echo __("Pt Clutch"); ?></th>
+            <th><?php echo __("Nombre de Match"); ?></th>
         </tr>
     </thead>
     <tbody>

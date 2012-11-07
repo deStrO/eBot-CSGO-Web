@@ -23,9 +23,9 @@
 </script>
 
 <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a href="#home">Information / Configuration du match</a></li>
-    <li><a href="#stats-match">Statistiques du match</a></li>
-    <li><a href="#stats-players">Statistiques des joueurs</a></li>
+    <li class="active"><a href="#home"><?php echo __("Information / Configuration du match"); ?></a></li>
+    <li><a href="#stats-match"><?php echo __("Statistiques du match"); ?></a></li>
+    <li><a href="#stats-players"><?php echo __("Statistiques des joueurs"); ?></a></li>
     <?php if (file_exists(sfConfig::get("app_log_match_admin") . "/match-" . $match->getId() . ".html")): ?>
         <li><a href="#logs">Logs</a></li>
     <?php endif; ?>
@@ -36,23 +36,23 @@
         <table border="0" cellpadding="5" cellspacing="5" width="100%">
             <tr>
                 <td width="50%">
-                    <h5><i class="icon-wrench"></i> Configuration du match</h5>
+                    <h5><i class="icon-wrench"></i> <?php echo __("Configuration du match"); ?></h5>
 
                     <table class="table">
                         <tr>
-                            <th width="200">Nom de la configuration</th>
+                            <th width="200"><?php echo __("Nom de la configuration"); ?></th>
                             <td><?php echo $match->getRules(); ?></td>
                         </tr>
                         <tr>
-                            <th width="200">MaxRound</th>
+                            <th width="200"><?php echo __("MaxRound"); ?></th>
                             <td><?php echo $match->getMaxRound(); ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Statut</th>
+                            <th width="200"><?php echo __("Statut"); ?></th>
                             <td><?php echo $match->getStatusText(); ?></td>
                         </tr>
                         <tr>
-                            <th>Actif ?</th>
+                            <th><?php echo __("Actif ?"); ?></th>
                             <td>
                                 <?php if ($match->getEnable()): ?>
                                     <?php if ($match->getStatus() == Matchs::STATUS_STARTING): ?>
@@ -67,19 +67,19 @@
                             </td>
                         </tr>
                         <tr>
-                            <th width="200">Jouer tous les rounds</th>
+                            <th width="200"><?php echo __("Jouer tous les rounds"); ?></th>
                             <td><?php echo image_tag("/images/icons/flag_" . ($match->getConfigFullScore() ? "green" : "red") . ".png"); ?></td>
                         </tr>
                         <tr>
-                            <th width="200">OverTime actif</th>
+                            <th width="200"><?php echo __("OverTime actif"); ?></th>
                             <td><?php echo image_tag("/images/icons/flag_" . ($match->getConfigOt() ? "green" : "red") . ".png"); ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Knife Round</th>
+                            <th width="200"><?php echo __("Knife Round"); ?></th>
                             <td><?php echo image_tag("/images/icons/flag_" . ($match->getConfigKnifeRound() ? "green" : "red") . ".png"); ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Knife Switch Auto</th>
+                            <th width="200"><?php echo __("Knife Switch Auto"); ?></th>
                             <td><?php echo image_tag("/images/icons/flag_" . ($match->getConfigSwitchAuto() ? "green" : "red") . ".png"); ?></td>
                         </tr>
                     </table>
@@ -97,23 +97,23 @@
                         \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                     }
                     ?>
-                    <h5><i class="icon-tasks"></i> Information du match</h5>
+                    <h5><i class="icon-tasks"></i> <?php echo __("Information du match"); ?></h5>
 
                     <table class="table">
                         <tr>
-                            <th width="200">Score</th>
+                            <th width="200"><?php echo __("Score"); ?></th>
                             <td><?php echo $team1; ?> (<?php echo $score1; ?>) - (<?php echo $score2; ?>) <?php echo $team2; ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Nombre de round joué</th>
+                            <th width="200"><?php echo __("Nombre de round joué"); ?></th>
                             <td><?php echo $match->getScoreA() + $match->getScoreB(); ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Serveur</th>
+                            <th width="200"><?php echo __("Serveur"); ?></th>
                             <td><?php echo $match->getIp(); ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Nombre de joueur</th>
+                            <th width="200"><?php echo __("Nombre de joueur"); ?></th>
                             <td>
                                 <?php
                                 $a = 0;
@@ -249,11 +249,11 @@
         <table border="0" cellpadding="5" cellspacing="5" width="100%">
             <tr>
                 <td width="50%" valign="top">
-                    <h5><i class="icon-hand-right"></i> Statistiques du match</h5>
+                    <h5><i class="icon-hand-right"></i> <?php echo __("Statistiques du match"); ?></h5>
 
                     <table class="table">
                         <tr>
-                            <th width="200">Enchainement des rounds</th>
+                            <th width="200"><?php echo __("Enchainement des rounds"); ?></th>
                             <td>
                                 <div class="progress progress-striped" style="width: 450px;">
                                     <?php foreach ($data as $d): ?> 
@@ -269,7 +269,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th width="200">Légende</th>
+                            <th width="200"><?php echo __("Légende"); ?></th>
                             <td>
                                 <div class="progress progress-striped" style="width: 25px; height: 25px; float: left; margin-right: 10px;">
                                     <div class="bar " style="width: 100%"></div>
@@ -293,37 +293,37 @@
                             <th><?php echo $match->getTeamB(); ?> <?php if ($match->getScoreB() > $match->getScoreA()): ?><i class="icon-star"></i><?php endif; ?></th>
                         </tr>
                         <tr>
-                            <th width="200">Victoire bombe posée</th>
+                            <th width="200"><?php echo __("Victoire bombe posée"); ?></th>
                             <td><?php echo $stats["team_a"]["bomb_planted_win"]; ?> <?php if ($stats["team_a"]["bomb_planted_win"] > $stats["team_b"]["bomb_planted_win"]): ?><i class="icon-star"></i><?php endif; ?></td>
                             <td><?php echo $stats["team_b"]["bomb_planted_win"]; ?> <?php if ($stats["team_b"]["bomb_planted_win"] > $stats["team_a"]["bomb_planted_win"]): ?><i class="icon-star"></i><?php endif; ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Défaite bombe posée</th>
+                            <th width="200"><?php echo __("Défaite bombe posée"); ?></th>
                             <td><?php echo $stats["team_a"]["bomb_planted_loose"]; ?> <?php if ($stats["team_a"]["bomb_planted_loose"] > $stats["team_a"]["bomb_planted_loose"]): ?><i class="icon-star"></i><?php endif; ?></td>
                             <td><?php echo $stats["team_b"]["bomb_planted_loose"]; ?> <?php if ($stats["team_b"]["bomb_planted_loose"] > $stats["team_a"]["bomb_planted_loose"]): ?><i class="icon-star"></i><?php endif; ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Victoire bombe diffusée</th>
+                            <th width="200"><?php echo __("Victoire bombe diffusée"); ?></th>
                             <td><?php echo $stats["team_a"]["bomb_defused"]; ?> <?php if ($stats["team_a"]["bomb_defused"] > $stats["team_b"]["bomb_defused"]): ?><i class="icon-star"></i><?php endif; ?></td>
                             <td><?php echo $stats["team_b"]["bomb_defused"]; ?> <?php if ($stats["team_b"]["bomb_defused"] > $stats["team_a"]["bomb_defused"]): ?><i class="icon-star"></i><?php endif; ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Victoire bombe explosée</th>
+                            <th width="200"><?php echo __("Victoire bombe explosée"); ?></th>
                             <td><?php echo $stats["team_a"]["bomb_explosed"]; ?> <?php if ($stats["team_a"]["bomb_explosed"] > $stats["team_b"]["bomb_explosed"]): ?><i class="icon-star"></i><?php endif; ?></td>
                             <td><?php echo $stats["team_b"]["bomb_explosed"]; ?> <?php if ($stats["team_b"]["bomb_explosed"] > $stats["team_a"]["bomb_explosed"]): ?><i class="icon-star"></i><?php endif; ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Elimination total</th>
+                            <th width="200"><?php echo __("Elimination total"); ?></th>
                             <td><?php echo $stats["team_a"]["kill"]; ?> <?php if ($stats["team_a"]["kill"] > $stats["team_b"]["kill"]): ?><i class="icon-star"></i><?php endif; ?></td>
                             <td><?php echo $stats["team_b"]["kill"]; ?> <?php if ($stats["team_b"]["kill"] > $stats["team_a"]["kill"]): ?><i class="icon-star"></i><?php endif; ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Victoire par le temps</th>
+                            <th width="200"><?php echo __("Victoire par le temps"); ?></th>
                             <td><?php echo $stats["team_a"]["time"]; ?> <?php if ($stats["team_a"]["time"] > $stats["team_b"]["time"]): ?><i class="icon-star"></i><?php endif; ?></td>
                             <td><?php echo $stats["team_b"]["time"]; ?> <?php if ($stats["team_b"]["time"] > $stats["team_a"]["time"]): ?><i class="icon-star"></i><?php endif; ?></td>
                         </tr>
                         <tr>
-                            <th width="200">Plus longue série de round</th>
+                            <th width="200"><?php echo __("Plus longue série de round"); ?></th>
                             <td>
                                 <?php echo $round_a; ?> <?php if ($round_a > $round_b): ?><i class="icon-star"></i><?php endif; ?>
                             </td>
@@ -339,7 +339,7 @@
         <hr/>
 
         <?php if ($rounds->count() > 0): ?>
-            <h5><i class="icon-leaf"></i> Détails des rounds</h5>
+            <h5><i class="icon-leaf"></i> <?php echo __("Détails des rounds"); ?></h5>
             <hr/>
 
             <script>
@@ -377,7 +377,7 @@
                                                 <h5>Round n°<?php echo $round->getRoundId(); ?></h5>
                                                 <table class="table">
                                                     <tr>
-                                                        <th width="200">Gagné par</th>
+                                                        <th width="200"><?php echo __("Gagné par"); ?></th>
                                                         <td>
                                                             <?php
                                                             if ($round->team_win == "a")
@@ -388,54 +388,54 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="200">Type de victoire</th>
+                                                        <th width="200"><?php echo __("Type de victoire"); ?></th>
                                                         <td>
                                                             <?php
                                                             switch ($round->win_type) {
                                                                 case "bombdefused":
-                                                                    echo "Bombe désamorcée";
+                                                                    echo __("Bombe désamorcée");
                                                                     break;
                                                                 case "bombeexploded":
-                                                                    echo "Bombe explosée";
+                                                                    echo __("Bombe explosée");
                                                                     break;
                                                                 case "normal":
-                                                                    echo "Elimation de l'équipe adverse";
+                                                                    echo __("Elimation de l'équipe adverse");
                                                                     break;
                                                                 case "saved":
-                                                                    echo "Gagné par le temps";
+                                                                    echo __("Gagné par le temps");
                                                                     break;
                                                             }
                                                             ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="200">Bombe posée</th>
+                                                        <th width="200"><?php echo __("Bombe posée"); ?></th>
                                                         <td>
                                                             <?php echo image_tag("/images/icons/flag_" . ($round->bomb_planted ? "green" : "red") . ".png"); ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="200">Bombe désamorcée</th>
+                                                        <th width="200"><?php echo __("Bombe désamorcée"); ?></th>
                                                         <td>
                                                             <?php echo image_tag("/images/icons/flag_" . ($round->bomb_defused ? "green" : "red") . ".png"); ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th width="200">Bombe explosée</th>
+                                                        <th width="200"><?php echo __("Bombe explosée"); ?></th>
                                                         <td>
                                                             <?php echo image_tag("/images/icons/flag_" . ($round->bomb_exploded ? "green" : "red") . ".png"); ?>
                                                         </td>
                                                     </tr>
                                                     <?php if ($round->best_action_type != ""): ?>
                                                         <tr>
-                                                            <th width="200">Action du round</th>
+                                                            <th width="200"><?php echo __("Action du round"); ?></th>
                                                             <td>
                                                                 <?php if (preg_match("!^1v(\d+)$!", $round->best_action_type, $m)): ?>
                                                                     <?php $d = unserialize($round->getRaw("best_action_param")); ?>
-                                                                    <?php echo $d["playerName"]; ?> a mis un <?php echo $round->best_action_type; ?>
+                                                                    <?php echo $d["playerName"]; ?> <?php echo __("a mis un"); ?> <?php echo $round->best_action_type; ?>
                                                                 <?php elseif (preg_match("!^(\d+)kill$!", $round->best_action_type, $m)): ?>
                                                                     <?php $d = unserialize($round->getRaw("best_action_param")); ?>
-                                                                    <?php echo $d["playerName"]; ?> a fait <?php echo $m[1]; ?> kill
+                                                                    <?php echo $d["playerName"]; ?> <?php echo __("a fait"); ?> <?php echo $m[1]; ?> kill
                                                                 <?php endif; ?>
                                                             </td>
                                                         </tr>
@@ -443,7 +443,7 @@
                                                 </table>
                                             </td>
                                             <td valign="top">
-                                                <h5>Détails des rounds</h5>
+                                                <h5><?php echo __("Détails des rounds"); ?></h5>
                                                 <table class="table table-striped table-condensed">
                                                     <?php foreach ($round->getPlayersKill() as $kill): ?>
                                                         <tr>
@@ -530,34 +530,34 @@
     </style>
 
     <div class="tab-pane" id="stats-players">
-        <h5><i class="icon-fire"></i> Statistiques des joueurs</h5>
+        <h5><i class="icon-fire"></i> <?php echo __("Statistiques des joueurs"); ?></h5>
 
         <table class="table table-striped table-condensed" id="tablePlayers">
             <thead>
                 <tr>
-                    <th>Equipe</th>
-                    <th>Nom du joueur</th>
-                    <th>Kill</th>
-                    <th>Death</th>
-                    <th>Ratio K/D</th>
-                    <th>Point</th>
-                    <th>HeadShot</th>
-                    <th>Ratio HS</th>
-                    <th>Defuse</th>
-                    <th>Bombe</th>
-                    <th>TK</th>
-                    <th>1v1</th>
-                    <th>1v2</th>
-                    <th>1v3</th>
-                    <th>1v4</th>
-                    <th>1v5</th>
-                    <th>1K</th>
-                    <th>2K</th>
-                    <th>3K</th>
-                    <th>4K</th>
-                    <th>5K</th>
-                    <th>FK</th>
-                    <th>Pt Clutch</th>
+                    <th><?php echo __("Equipe"); ?></th>
+                    <th><?php echo __("Nom du joueur"); ?></th>
+                    <th><?php echo __("Kill"); ?></th>
+                    <th><?php echo __("Death"); ?></th>
+                    <th><?php echo __("Ratio K/D"); ?></th>
+                    <th><?php echo __("Point"); ?></th>
+                    <th><?php echo __("HeadShot"); ?></th>
+                    <th><?php echo __("Ratio HS"); ?></th>
+                    <th><?php echo __("Defuse"); ?></th>
+                    <th><?php echo __("Bombe"); ?></th>
+                    <th><?php echo __("TK"); ?></th>
+                    <th><?php echo __("1v1"); ?></th>
+                    <th><?php echo __("1v2"); ?></th>
+                    <th><?php echo __("1v3"); ?></th>
+                    <th><?php echo __("1v4"); ?></th>
+                    <th><?php echo __("1v5"); ?></th>
+                    <th><?php echo __("1K"); ?></th>
+                    <th><?php echo __("2K"); ?></th>
+                    <th><?php echo __("3K"); ?></th>
+                    <th><?php echo __("4K"); ?></th>
+                    <th><?php echo __("5K"); ?></th>
+                    <th><?php echo __("FK"); ?></th>
+                    <th><?php echo __("Pt Clutch"); ?></th>
                 </tr>
             </thead>
             <?php

@@ -1,4 +1,4 @@
-<h3>Création d'un match</h3>
+<h3><?php echo __("Création d'un match"); ?></h3>
 <hr/>
 <style>
     label.valid {
@@ -61,7 +61,7 @@
         <?php endforeach; ?>
 
         <div class="control-group">
-            <label class="control-label">Maps</label>
+            <label class="control-label"><?php echo __("Maps"); ?></label>
             <div class="controls">
                 <select name="maps">
                     <?php foreach ($maps as $map): ?>
@@ -72,19 +72,19 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label">Premier side</label>
+            <label class="control-label"><?php echo __("Premier side"); ?></label>
             <div class="controls">
                 <select name="side">
-                    <option value="ct">Equipe A CT / Equipe B T</option>
-                    <option value="t">Equipe A T / Equipe B CT</option>
-                    <option value="random">Random</option>
+                    <option value="ct"><?php echo __("Equipe A CT / Equipe B T"); ?></option>
+                    <option value="t"><?php echo __("Equipe A T / Equipe B CT"); ?></option>
+                    <option value="random"><?php echo __("Random"); ?></option>
                 </select>
             </div>
         </div>
 
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn btn-primary" value="Créer le match"/>
+                <input type="submit" class="btn btn-primary" value="<?php echo __("Créer le match"); ?>"/>
             </div>
         </div>
     </div>
