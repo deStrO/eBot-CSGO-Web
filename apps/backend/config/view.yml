@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [bootstrap.min.css, tipsy.css]
 
-  javascripts:    [jquery-1.8.2.min.js, bootstrap.min.js, jquery.validate.min.js, jquery.tipsy.js, jquery.tablesorter.min.js ]
+  javascripts:    [jquery-1.8.2.min.js, bootstrap.min.js, jquery.validate.min.js, jquery.tipsy.js, jquery.tablesorter.min.js, heatmap.js ]
 
   has_layout:     true
   layout:         layout

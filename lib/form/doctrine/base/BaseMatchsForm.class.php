@@ -39,6 +39,7 @@ abstract class BaseMatchsForm extends BaseFormDoctrine
       'current_map'                 => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Map'), 'add_empty' => true)),
       'force_zoom_match'            => new sfWidgetFormInputCheckbox(),
       'tv_record_file'              => new sfWidgetFormInputText(),
+      'identifier_id'               => new sfWidgetFormInputText(),
       'created_at'                  => new sfWidgetFormDateTime(),
       'updated_at'                  => new sfWidgetFormDateTime(),
     ));
@@ -68,6 +69,7 @@ abstract class BaseMatchsForm extends BaseFormDoctrine
       'current_map'                 => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Map'), 'required' => false)),
       'force_zoom_match'            => new sfValidatorBoolean(array('required' => false)),
       'tv_record_file'              => new sfValidatorPass(array('required' => false)),
+      'identifier_id'               => new sfValidatorInteger(array('required' => false)),
       'created_at'                  => new sfValidatorDateTime(),
       'updated_at'                  => new sfValidatorDateTime(),
     ));

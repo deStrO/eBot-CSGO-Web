@@ -16,6 +16,9 @@
         $('#myTab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
+            if ($(this).attr("href") == "#stats-match") {
+                generateTimeLine(1);
+            }
         })
         
         $(".needTips").tipsy({live:true});
@@ -26,6 +29,9 @@
     <li class="active"><a href="#home"><?php echo __("Information / Configuration du match"); ?></a></li>
     <li><a href="#stats-match"><?php echo __("Statistiques du match"); ?></a></li>
     <li><a href="#stats-players"><?php echo __("Statistiques des joueurs"); ?></a></li>
+    <?php if ($heatmap): ?>
+        <li><a href="#heatmap"><?php echo __("Carte de chaleur"); ?></a></li>
+    <?php endif; ?>
     <?php if (file_exists(sfConfig::get("app_log_match_admin") . "/match-" . $match->getId() . ".html")): ?>
         <li><a href="#logs">Logs</a></li>
     <?php endif; ?>
@@ -131,6 +137,43 @@
                                 ?>
                             </td>
                         </tr>
+                    </table>
+
+                    <h5><i class="icon-globe"></i> <?php echo __("Détails des scores"); ?></h5>
+
+                    <table class="table">
+                        <tr>
+                            <td></td>
+                            <td><?php echo $match->getTeamA(); ?></td>
+                            <td><?php echo $match->getTeamB(); ?></td>
+                        </tr>
+                        <?php foreach ($match->getMap()->getMapsScore() as $score): ?>
+                            <?php
+                            $score1_side1 = $score->score1_side1;
+                            $score1_side2 = $score->score1_side2;
+                            $score2_side1 = $score->score2_side1;
+                            $score2_side2 = $score->score2_side2;
+                            ScoreColorUtils::colorForScore($score1_side1, $score2_side1);
+
+
+                            ScoreColorUtils::colorForScore($score1_side2, $score2_side2);
+                            ?>
+                            <?php if ($score->getTypeScore() != "normal"): ?>
+                                <tr>
+                                    <th colspan="3">OverTime</th>
+                                </tr>
+                            <?php endif; ?>
+                            <tr>
+                                <th width="200">Premier side</th>
+                                <td><?php echo $score1_side1; ?></td>
+                                <td><?php echo $score2_side1; ?></td>
+                            </tr>
+                            <tr>
+                                <th width="200">Second side</th>
+                                <td><?php echo $score1_side2; ?></td>
+                                <td><?php echo $score2_side2; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </table>
                 </td>
             </tr>
@@ -343,25 +386,71 @@
             <hr/>
 
             <script>
+                var round_max_time = 120;
+                var timer_event_default = 0;
+                var default_decal = 10;
+    											        				
+    																	
                 $(function() {
                     $('.carousel').carousel();
                     $("#myCarousel").bind("slid", function() { 
                         var nav = $("#paginatorRound");
                         var index = $(this).find('.item.active').index();
-                        console.log(index);
                         var item = nav.find('li').get(index);
-                        console.log(item);
-                                                                                                                                                                                                                                                        
+    																		                                                                                                                                                                                                                                                                
                         nav.find('li.active').removeClass('active');
                         $(item).addClass('active');
+    																				
+                        index++;
+    														                                
+                        generateTimeLine(index);
                     });
-                                                                                                                                                                                                                                        
+    																		                                                                                                                                                                                                                                                
                     $("#paginatorRound").find("li:first").addClass("active"); 
+    														
+                    //generateTimeLine(1);
                 });
-                                                                                                                                                                                                                                    
+    														
+                function generateTimeLine(index) {
+                    if (event[index]) {
+                        var paper = Raphael("canvas-"+index, $("#canvas-"+index).width(), 30);
+                        var rect = paper.rect(10,10,$("#canvas-"+index).width()-20,5,3);
+                        rect.attr("fill", "#000");
+                        rect.attr("stroke", "#fff");
+    														        							
+                        timer_event_default = ($("#canvas-"+index).width()-20)/round_max_time;		
+                        $(event[index]).each(function() { 
+                            var e = this;
+                            var default_pos = default_decal+(this.time)*timer_event_default;
+    														        								
+                            var circle = paper.circle(default_pos, 12, 8);
+                            circle.attr( {"fill" : this.color, "stroke" : "#fff", "stroke-width" : 2 });
+                            $(circle.node).attr("id", "circle-"+index+"-"+e.time);
+                            $(circle.node).hover(function() { 
+                                $("#tipsy-content-"+index).html(e.text);
+    														        									
+                                var top = $(this).offset().top + parseInt($(this).attr("cy")) + 5;
+                                var left = $(this).offset().left- ($("#tipsy-"+index).width()/2) +4;
+    														        									
+                                $("#tipsy-"+index).offset( { top: top,left: left });
+                                $("#tipsy-"+index).css("visibility", "visible");
+                            });	
+    														        								
+                            $(circle.node).mouseout(function() { 
+                                $("#tipsy-"+index).css("visibility", "hidden");
+                            });
+                        });	
+    														        							
+                        event[index] = false;
+                    }
+    															
+                }
+    																		                                                                                                                                                                                                                                            
                 function goToRound(id) {
                     $("#myCarousel").carousel(id-1);
                 }
+    																
+                var event = new Array();
             </script>
 
             <div>
@@ -371,6 +460,64 @@
                         <?php foreach ($rounds as $round): ?>
                             <div class="item <?php if ($first) echo "active"; $first = false; ?>" >
                                 <div style="width: 90%; height: 300px; margin:auto;">
+                                    <div id="canvas-<?php echo $round->getRoundId(); ?>" style="width: 100%; position: relative;">
+                                        <div id="tipsy-<?php echo $round->getRoundId(); ?>" class="tipsy tipsy-n" style="visibility: hidden; display: block; opacity: 0.8;">
+                                            <div class="tipsy-arrow"></div>
+                                            <div class="tipsy-inner" id="tipsy-content-<?php echo $round->getRoundId(); ?>"></div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    $eventArray = array();
+                                    $events = RoundTable::getInstance()->createQuery()->where("map_id = ?", $match->getMap()->getId())->andWhere("round_id = ?", $round->getRoundId())->orderBy("event_time ASC")->execute();
+                                    foreach ($events as $event) {
+                                        $color = "#000";
+
+                                        $text = $event->getEventName();
+                                        if ($event->getEventName() == "round_start") {
+                                            $text = "Debut du round";
+                                        } elseif ($event->getEventName() == "kill") {
+                                            $color = "#F00";
+                                            $kill = $event->getKill();
+                                            $text = $kill->getKillerName() . " a tue " . $kill->getKilledName() . " avec " . $kill->getWeapon();
+                                        } elseif ($event->getEventName() == "round_end") {
+                                            $text = "Fin du round";
+                                        } elseif ($event->getEventName() == "bomb_planting") {
+                                            $color = "#A00";
+                                            $text = "Plantage de la bombe";
+                                        } elseif ($event->getEventName() == "bomb_defusing") {
+                                            $color = "#A00";
+                                            $text = "Defuse de la bombe";
+                                        } elseif ($event->getEventName() == "1vx") {
+                                            $data = unserialize($event->event_text);
+                                            $color = "#00F";
+                                            $text = "Situation de 1v" . $data["situation"];
+                                        } elseif ($event->getEventName() == "bomb_defused") {
+                                            $text = "Bombe defusée";
+                                        } elseif ($event->getEventName() == "1vx_ok") {
+                                            $text = "Situation 1vx réussie";
+                                        } elseif ($event->getEventName() == "1v1") {
+                                            $text = "Situation 1v1";
+                                        } elseif ($event->getEventName() == "bomb_exploded") {
+                                            $text = "Bombe explosée";
+                                        }
+
+                                        if (count($eventArray) > 0) {
+                                            $e = array_pop($eventArray);
+                                            if ($e["time"] == $event->getEventTime()) {
+                                                $e["text"].= "<br/>$text";
+                                                $e["color"] = $color;
+                                                $eventArray[] = $e;
+                                                continue;
+                                            }
+                                            $eventArray[] = $e;
+                                        }
+                                        $eventArray[] = array("type" => $event->getEventName(), "time" => $event->getEventTime(), "color" => $color, "text" => "<b>" . $event->getEventTime() . "s</b> : " . $text);
+                                    }
+                                    ?>
+
+                                    <script>	
+                                        event[<?php echo $round->getRoundId(); ?>] = <?php echo json_encode($eventArray) ?>;
+                                    </script>
                                     <table border="0" cellpadding="5" cellspacing="5" width="100%">
                                         <tr>
                                             <td valign="top" width="50%">
@@ -411,19 +558,19 @@
                                                     <tr>
                                                         <th width="200"><?php echo __("Bombe posée"); ?></th>
                                                         <td>
-                                                            <?php echo image_tag("/images/icons/flag_" . ($round->bomb_planted ? "green" : "red") . ".png"); ?>
+                                                            <?php echo image_tag("/images/icons/flag_" . ($round->bomb_planted ? "green" : "red") . ".png", array("class" => "needTips", "title" => ($round->bomb_planted ? "oui" : "non"))); ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <th width="200"><?php echo __("Bombe désamorcée"); ?></th>
                                                         <td>
-                                                            <?php echo image_tag("/images/icons/flag_" . ($round->bomb_defused ? "green" : "red") . ".png"); ?>
+                                                            <?php echo image_tag("/images/icons/flag_" . ($round->bomb_defused ? "green" : "red") . ".png", array("class" => "needTips", "title" => ($round->bomb_defused ? "oui" : "non"))); ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <th width="200"><?php echo __("Bombe explosée"); ?></th>
                                                         <td>
-                                                            <?php echo image_tag("/images/icons/flag_" . ($round->bomb_exploded ? "green" : "red") . ".png"); ?>
+                                                            <?php echo image_tag("/images/icons/flag_" . ($round->bomb_exploded ? "green" : "red") . ".png", array("class" => "needTips", "title" => ($round->bomb_exploded ? "oui" : "non"))); ?>
                                                         </td>
                                                     </tr>
                                                     <?php if ($round->best_action_type != ""): ?>
@@ -538,6 +685,7 @@
                     <th><?php echo __("Equipe"); ?></th>
                     <th><?php echo __("Nom du joueur"); ?></th>
                     <th><?php echo __("Kill"); ?></th>
+                    <th><?php echo __("Assist"); ?></th>
                     <th><?php echo __("Death"); ?></th>
                     <th><?php echo __("Ratio K/D"); ?></th>
                     <th><?php echo __("Point"); ?></th>
@@ -564,7 +712,7 @@
             $total = array("kill" => 0, "death" => 0, "hs" => 0, "bombe" => 0,
                 "defuse" => 0, "tk" => 0, "point" => 0, "firstkill" => 0,
                 "1v1" => 0, "1v2" => 0, "1v3" => 0, "1v4" => 0, "1v5" => 0,
-                "1kill" => 0, "2kill" => 0, "3kill" => 0, "4kill" => 0, "5kill" => 0, "clutch" => 0
+                "1kill" => 0, "2kill" => 0, "3kill" => 0, "4kill" => 0, "5kill" => 0, "clutch" => 0, "assist" => 0
             );
             ?>
             <tbody>
@@ -572,6 +720,7 @@
                     <?php if ($player->getTeam() == "other") continue; ?>
                     <?php
                     $total['kill']+=$player->getNbKill();
+                    $total['assist']+=$player->getAssist();
                     $total['death']+=$player->getDeath();
                     $total['hs']+=$player->getHs();
                     $total['bombe']+=$player->getBombe();
@@ -607,6 +756,7 @@
                         </td>
                         <td><a href="<?php echo url_for("player_stats", array("id" => $player->getSteamid())); ?>"><?php echo $player->getPseudo(); ?></a></td>
                         <td><?php echo $player->getNbKill(); ?></td>
+                        <td><?php echo $player->getAssist(); ?></td>
                         <td><?php echo $player->getDeath(); ?></td>
                         <td><?php if ($player->getDeath() == 0) echo $player->getNbKill(); else echo round($player->getNbKill() / $player->getDeath(), 2); ?></td>
                         <td><?php echo $player->getPoint(); ?></td>
@@ -634,6 +784,7 @@
                 <tr>
                     <th colspan="2">Total</th>
                     <td><?php echo $total["kill"]; ?></td>
+                    <td><?php echo $total["assist"]; ?></td>
                     <td><?php echo $total["death"]; ?></td>
                     <td></td>
                     <td><?php echo $total["point"]; ?></td>
@@ -657,6 +808,15 @@
                 </tr>
             </tfoot>
         </table>
+
+        <h5><i class="icon-info-sign"></i> Aide</h5>
+        <div class="well">
+            <?php echo __("<p>Vous pouvez trier tous les champs du tableau pour obtenir des résultats personallisés.</p>
+			<p>Les colonnes <b>1K</b>, <b>2K</b>, ... représentent le nombre de kill par round effectué. Par exemple, si j'ai 2 dans la colonne 3K, cela veut dire que j'ai fais 2 rounds où j'ai fais 3 kills.
+			<p>La colonne <b>FK</b> signifie <b>First Kill</b>, utile pour voir les personnes qui font les premiers kills</p>
+			<p>Les points clutchs représentent si la personne a réalisé plusieurs \"clutch\", par exemple, gagné un 1v1. Ils sont calculés comme ceci: nombre de 1 v X gagné multiplé par X. Si j'ai fais trois 1v1 et un 1v2, j'aurai donc 5 points. (1v1 x 3 = 3, 1v2 x 1 = 2)</p>
+"); ?>		
+        </div>
     </div>
     <?php if (file_exists(sfConfig::get("app_log_match") . "/match-" . $match->getId() . ".html")): ?>
         <?php if ($match->getStatus() < Matchs::STATUS_END_MATCH): ?>
@@ -669,19 +829,16 @@
                                 $("#logmatch").html(data); 
                                 if (autoscroll) {
                                     var offset = $('#end').position().top;
-                                    console.log(offset);
                                     if (offset < 0 || offset > $("#logmatch").height()) {
-                                                            
                                         if (offset < 0)
                                             offset = $("#logmatch").scrollTop() + offset;
-                                        console.log(offset);
                                         $("#logmatch").animate({ scrollTop: offset }, 300);
                                     }
                                 }
                             }
                         } }, "html");
                 }
-                                            				
+        																																				                                                            				
                 setInterval("refreshLog()",2000);
             </script>
         <?php endif; ?>
@@ -694,6 +851,12 @@
                     <div id="end"></div>
                 </div>
             </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($heatmap): ?>
+        <div class="tab-pane" id="heatmap">
+            <?php include_partial("matchs/stats_heatmap", array("match" => $match, "class_heatmap" => $class_heatmap)); ?>
         </div>
     <?php endif; ?>
 </div>

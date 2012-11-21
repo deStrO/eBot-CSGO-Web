@@ -18,6 +18,7 @@
  * @property integer $score_a
  * @property integer $score_b
  * @property integer $best_killer
+ * @property integer $best_killer_nb
  * @property boolean $best_killer_fk
  * @property text $best_action_type
  * @property text $best_action_param
@@ -40,6 +41,7 @@
  * @method integer      getScoreA()            Returns the current record's "score_a" value
  * @method integer      getScoreB()            Returns the current record's "score_b" value
  * @method integer      getBestKiller()        Returns the current record's "best_killer" value
+ * @method integer      getBestKillerNb()      Returns the current record's "best_killer_nb" value
  * @method boolean      getBestKillerFk()      Returns the current record's "best_killer_fk" value
  * @method text         getBestActionType()    Returns the current record's "best_action_type" value
  * @method text         getBestActionParam()   Returns the current record's "best_action_param" value
@@ -61,6 +63,7 @@
  * @method RoundSummary setScoreA()            Sets the current record's "score_a" value
  * @method RoundSummary setScoreB()            Sets the current record's "score_b" value
  * @method RoundSummary setBestKiller()        Sets the current record's "best_killer" value
+ * @method RoundSummary setBestKillerNb()      Sets the current record's "best_killer_nb" value
  * @method RoundSummary setBestKillerFk()      Sets the current record's "best_killer_fk" value
  * @method RoundSummary setBestActionType()    Sets the current record's "best_action_type" value
  * @method RoundSummary setBestActionParam()   Sets the current record's "best_action_param" value
@@ -141,6 +144,10 @@ abstract class BaseRoundSummary extends sfDoctrineRecord
         $this->hasColumn('best_killer', 'integer', 20, array(
              'type' => 'integer',
              'length' => 20,
+             ));
+        $this->hasColumn('best_killer_nb', 'integer', 5, array(
+             'type' => 'integer',
+             'length' => 5,
              ));
         $this->hasColumn('best_killer_fk', 'boolean', null, array(
              'type' => 'boolean',

@@ -36,6 +36,7 @@ abstract class BaseMatchsFormFilter extends BaseFormFilterDoctrine
       'current_map'                 => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Map'), 'add_empty' => true)),
       'force_zoom_match'            => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'tv_record_file'              => new sfWidgetFormFilterInput(),
+      'identifier_id'               => new sfWidgetFormFilterInput(),
       'created_at'                  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'                  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
@@ -64,6 +65,7 @@ abstract class BaseMatchsFormFilter extends BaseFormFilterDoctrine
       'current_map'                 => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Map'), 'column' => 'id')),
       'force_zoom_match'            => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'tv_record_file'              => new sfValidatorPass(array('required' => false)),
+      'identifier_id'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'                  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'                  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -109,6 +111,7 @@ abstract class BaseMatchsFormFilter extends BaseFormFilterDoctrine
       'current_map'                 => 'ForeignKey',
       'force_zoom_match'            => 'Boolean',
       'tv_record_file'              => 'Text',
+      'identifier_id'               => 'Number',
       'created_at'                  => 'Date',
       'updated_at'                  => 'Date',
     );

@@ -94,6 +94,27 @@ matchs_logs:
   requirements:
     id : \d+
     sf_method: [put,post]  
+    
+matchs_heatmap_data:
+  url: /matchs/heatmap/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: heatmapData }   
+  requirements:
+    id : \d+
+    sf_method: [post]     
+    
+stats_index:
+  url: /stats
+  param: { module: stats, action: index }  
+  
+ingame:
+  url: /main/ingame
+  param: { module: main, action: ingame }  
+  
+global_stats:
+  url: /stats/global
+  param: { module: stats, action: global }  
 
 # generic rules
 # please, remove them by adding more specific rules

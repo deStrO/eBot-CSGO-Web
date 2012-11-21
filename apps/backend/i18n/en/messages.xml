@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2012-11-07T18:30:32Z" product-name="messages">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2012-11-21T18:23:44Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -782,6 +782,18 @@
       </trans-unit>
       <trans-unit id="195">
         <source>Nombre de serveur</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="196">
+        <source>Détails des scores</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="197">
+        <source>Légende</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>Assist</source>
         <target/>
       </trans-unit>
     </body>

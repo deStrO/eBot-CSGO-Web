@@ -491,6 +491,57 @@ class matchsActions extends sfActions {
 
 	public function executeView(sfWebRequest $request) {
 		$this->match = $this->getRoute()->getObject();
+		
+		$this->heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->count() > 0;
+		if ($this->heatmap) {
+			if (class_exists($this->match->getMap()->getMapName())) {
+				$map = $this->match->getMap()->getMapName();
+				$this->class_heatmap = new $map($this->match->getId());
+			} else {
+				$this->heatmap = false;
+			}
+		}
+	}
+	
+	public function executeHeatmapData(sfWebRequest $request) {
+		$this->match = $this->getRoute()->getObject();
+
+		$this->heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->count() > 0;
+		if ($this->heatmap) {
+			if (class_exists($this->match->getMap()->getMapName())) {
+				$map = $this->match->getMap()->getMapName();
+				$this->class_heatmap = new $map($this->match->getId());
+			} else {
+				$this->heatmap = false;
+			}
+		}
+
+		$map = $this->class_heatmap;
+		foreach ($this->match->getPlayersHeatmap() as $event) {
+			$map->addInformation($event->getId(), $event->getEventName(), $event->getEventX(), $event->getEventY(), $event->getPlayerId(), ($event->getPlayerTeam() == "CT") ? 1 : 2, $event->getRoundId(), $event->getRoundTime(), 0, 1, $event->getAttackerX(), $event->getAttackerY(), $event->getAttackerName(), $event->getAttackerTeam());
+		}
+
+		$type = $request->getPostParameter("type", "kill");
+
+		$points = array();
+
+		if ($type == "allstuff") {
+			$points = array_merge($map->buildHeatMap("hegrenade"), $map->buildHeatMap("flashbang"), $map->buildHeatMap("smokegrenade"), $map->buildHeatMap("decoy"), $map->buildHeatMap("molotov"));
+		} else {
+			$side = $request->getPostParameter("sides", -1);
+			if ($side == "all") {
+				$side = -1;
+			} elseif ($side == "ct") {
+				$side = 1;
+			} elseif ($side == "t") {
+				$side = 2;
+			} else {
+				$side = -1;
+			}
+			$points = $map->buildHeatMap($type, $request->getPostParameter("rounds", array()), $side, $request->getPostParameter("players", array()));
+		}
+
+		return $this->renderText(json_encode(array("type" => "heatmap", "points" => $points)));
 	}
 
 	public function executeLogs(sfWebRequest $request) {

@@ -9,39 +9,47 @@
  * @property integer $match_id
  * @property integer $map_id
  * @property varchar $event_name
- * @property integer $event_x
- * @property integer $event_y
- * @property integer $event_z
+ * @property double $event_x
+ * @property double $event_y
+ * @property double $event_z
+ * @property varchar $player_name
  * @property integer $player_id
  * @property varchar $player_team
- * @property integer $attacker_x
- * @property integer $attacker_y
- * @property integer $attacker_z
+ * @property double $attacker_x
+ * @property double $attacker_y
+ * @property double $attacker_z
+ * @property varchar $attacker_name
+ * @property integer $attacker_id
  * @property varchar $attacker_team
  * @property integer $round_id
  * @property integer $round_time
  * @property Matchs $Match
  * @property Maps $Map
  * @property Players $Player
+ * @property Players $Killer
  * 
  * @method integer        getId()            Returns the current record's "id" value
  * @method integer        getMatchId()       Returns the current record's "match_id" value
  * @method integer        getMapId()         Returns the current record's "map_id" value
  * @method varchar        getEventName()     Returns the current record's "event_name" value
- * @method integer        getEventX()        Returns the current record's "event_x" value
- * @method integer        getEventY()        Returns the current record's "event_y" value
- * @method integer        getEventZ()        Returns the current record's "event_z" value
+ * @method double         getEventX()        Returns the current record's "event_x" value
+ * @method double         getEventY()        Returns the current record's "event_y" value
+ * @method double         getEventZ()        Returns the current record's "event_z" value
+ * @method varchar        getPlayerName()    Returns the current record's "player_name" value
  * @method integer        getPlayerId()      Returns the current record's "player_id" value
  * @method varchar        getPlayerTeam()    Returns the current record's "player_team" value
- * @method integer        getAttackerX()     Returns the current record's "attacker_x" value
- * @method integer        getAttackerY()     Returns the current record's "attacker_y" value
- * @method integer        getAttackerZ()     Returns the current record's "attacker_z" value
+ * @method double         getAttackerX()     Returns the current record's "attacker_x" value
+ * @method double         getAttackerY()     Returns the current record's "attacker_y" value
+ * @method double         getAttackerZ()     Returns the current record's "attacker_z" value
+ * @method varchar        getAttackerName()  Returns the current record's "attacker_name" value
+ * @method integer        getAttackerId()    Returns the current record's "attacker_id" value
  * @method varchar        getAttackerTeam()  Returns the current record's "attacker_team" value
  * @method integer        getRoundId()       Returns the current record's "round_id" value
  * @method integer        getRoundTime()     Returns the current record's "round_time" value
  * @method Matchs         getMatch()         Returns the current record's "Match" value
  * @method Maps           getMap()           Returns the current record's "Map" value
  * @method Players        getPlayer()        Returns the current record's "Player" value
+ * @method Players        getKiller()        Returns the current record's "Killer" value
  * @method PlayersHeatmap setId()            Sets the current record's "id" value
  * @method PlayersHeatmap setMatchId()       Sets the current record's "match_id" value
  * @method PlayersHeatmap setMapId()         Sets the current record's "map_id" value
@@ -49,17 +57,21 @@
  * @method PlayersHeatmap setEventX()        Sets the current record's "event_x" value
  * @method PlayersHeatmap setEventY()        Sets the current record's "event_y" value
  * @method PlayersHeatmap setEventZ()        Sets the current record's "event_z" value
+ * @method PlayersHeatmap setPlayerName()    Sets the current record's "player_name" value
  * @method PlayersHeatmap setPlayerId()      Sets the current record's "player_id" value
  * @method PlayersHeatmap setPlayerTeam()    Sets the current record's "player_team" value
  * @method PlayersHeatmap setAttackerX()     Sets the current record's "attacker_x" value
  * @method PlayersHeatmap setAttackerY()     Sets the current record's "attacker_y" value
  * @method PlayersHeatmap setAttackerZ()     Sets the current record's "attacker_z" value
+ * @method PlayersHeatmap setAttackerName()  Sets the current record's "attacker_name" value
+ * @method PlayersHeatmap setAttackerId()    Sets the current record's "attacker_id" value
  * @method PlayersHeatmap setAttackerTeam()  Sets the current record's "attacker_team" value
  * @method PlayersHeatmap setRoundId()       Sets the current record's "round_id" value
  * @method PlayersHeatmap setRoundTime()     Sets the current record's "round_time" value
  * @method PlayersHeatmap setMatch()         Sets the current record's "Match" value
  * @method PlayersHeatmap setMap()           Sets the current record's "Map" value
  * @method PlayersHeatmap setPlayer()        Sets the current record's "Player" value
+ * @method PlayersHeatmap setKiller()        Sets the current record's "Killer" value
  * 
  * @package    PhpProject1
  * @subpackage model
@@ -91,17 +103,18 @@ abstract class BasePlayersHeatmap extends sfDoctrineRecord
              'type' => 'varchar',
              'length' => 50,
              ));
-        $this->hasColumn('event_x', 'integer', 5, array(
-             'type' => 'integer',
-             'length' => 5,
+        $this->hasColumn('event_x', 'double', null, array(
+             'type' => 'double',
              ));
-        $this->hasColumn('event_y', 'integer', 5, array(
-             'type' => 'integer',
-             'length' => 5,
+        $this->hasColumn('event_y', 'double', null, array(
+             'type' => 'double',
              ));
-        $this->hasColumn('event_z', 'integer', 5, array(
-             'type' => 'integer',
-             'length' => 5,
+        $this->hasColumn('event_z', 'double', null, array(
+             'type' => 'double',
+             ));
+        $this->hasColumn('player_name', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
              ));
         $this->hasColumn('player_id', 'integer', 20, array(
              'type' => 'integer',
@@ -111,17 +124,21 @@ abstract class BasePlayersHeatmap extends sfDoctrineRecord
              'type' => 'varchar',
              'length' => 20,
              ));
-        $this->hasColumn('attacker_x', 'integer', 5, array(
-             'type' => 'integer',
-             'length' => 5,
+        $this->hasColumn('attacker_x', 'double', null, array(
+             'type' => 'double',
              ));
-        $this->hasColumn('attacker_y', 'integer', 5, array(
-             'type' => 'integer',
-             'length' => 5,
+        $this->hasColumn('attacker_y', 'double', null, array(
+             'type' => 'double',
              ));
-        $this->hasColumn('attacker_z', 'integer', 5, array(
+        $this->hasColumn('attacker_z', 'double', null, array(
+             'type' => 'double',
+             ));
+        $this->hasColumn('attacker_name', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
+             ));
+        $this->hasColumn('attacker_id', 'integer', null, array(
              'type' => 'integer',
-             'length' => 5,
              ));
         $this->hasColumn('attacker_team', 'varchar', 20, array(
              'type' => 'varchar',
@@ -154,6 +171,11 @@ abstract class BasePlayersHeatmap extends sfDoctrineRecord
              'local' => 'player_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Players as Killer', array(
+             'local' => 'attacker_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

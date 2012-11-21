@@ -38,7 +38,6 @@
  * @property Matchs $Match
  * @property Maps $Map
  * @property Doctrine_Collection $PlayersSnapshot
- * @property Doctrine_Collection $Round
  * @property Doctrine_Collection $RoundSummary
  * @property Doctrine_Collection $PlayerKill
  * @property Doctrine_Collection $PlayersHeatmap
@@ -76,7 +75,6 @@
  * @method Matchs              getMatch()           Returns the current record's "Match" value
  * @method Maps                getMap()             Returns the current record's "Map" value
  * @method Doctrine_Collection getPlayersSnapshot() Returns the current record's "PlayersSnapshot" collection
- * @method Doctrine_Collection getRound()           Returns the current record's "Round" collection
  * @method Doctrine_Collection getRoundSummary()    Returns the current record's "RoundSummary" collection
  * @method Doctrine_Collection getPlayerKill()      Returns the current record's "PlayerKill" collection
  * @method Doctrine_Collection getPlayersHeatmap()  Returns the current record's "PlayersHeatmap" collection
@@ -113,7 +111,6 @@
  * @method Players             setMatch()           Sets the current record's "Match" value
  * @method Players             setMap()             Sets the current record's "Map" value
  * @method Players             setPlayersSnapshot() Sets the current record's "PlayersSnapshot" collection
- * @method Players             setRound()           Sets the current record's "Round" collection
  * @method Players             setRoundSummary()    Sets the current record's "RoundSummary" collection
  * @method Players             setPlayerKill()      Sets the current record's "PlayerKill" collection
  * @method Players             setPlayersHeatmap()  Sets the current record's "PlayersHeatmap" collection
@@ -306,10 +303,6 @@ abstract class BasePlayers extends sfDoctrineRecord
         $this->hasMany('PlayersSnapshot', array(
              'local' => 'id',
              'foreign' => 'player_id'));
-
-        $this->hasMany('Round', array(
-             'local' => 'id',
-             'foreign' => 'killer_id'));
 
         $this->hasMany('RoundSummary', array(
              'local' => 'id',

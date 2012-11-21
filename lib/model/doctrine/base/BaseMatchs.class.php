@@ -29,6 +29,7 @@
  * @property integer $current_map
  * @property boolean $force_zoom_match
  * @property varchar $tv_record_file
+ * @property integer $identifier_id
  * @property Servers $Server
  * @property Maps $Map
  * @property Doctrine_Collection $Maps
@@ -62,6 +63,7 @@
  * @method integer             getCurrentMap()                  Returns the current record's "current_map" value
  * @method boolean             getForceZoomMatch()              Returns the current record's "force_zoom_match" value
  * @method varchar             getTvRecordFile()                Returns the current record's "tv_record_file" value
+ * @method integer             getIdentifierId()                Returns the current record's "identifier_id" value
  * @method Servers             getServer()                      Returns the current record's "Server" value
  * @method Maps                getMap()                         Returns the current record's "Map" value
  * @method Doctrine_Collection getMaps()                        Returns the current record's "Maps" collection
@@ -94,6 +96,7 @@
  * @method Matchs              setCurrentMap()                  Sets the current record's "current_map" value
  * @method Matchs              setForceZoomMatch()              Sets the current record's "force_zoom_match" value
  * @method Matchs              setTvRecordFile()                Sets the current record's "tv_record_file" value
+ * @method Matchs              setIdentifierId()                Sets the current record's "identifier_id" value
  * @method Matchs              setServer()                      Sets the current record's "Server" value
  * @method Matchs              setMap()                         Sets the current record's "Map" value
  * @method Matchs              setMaps()                        Sets the current record's "Maps" collection
@@ -205,6 +208,10 @@ abstract class BaseMatchs extends sfDoctrineRecord
         $this->hasColumn('tv_record_file', 'varchar', 255, array(
              'type' => 'varchar',
              'length' => 255,
+             ));
+        $this->hasColumn('identifier_id', 'integer', 20, array(
+             'type' => 'integer',
+             'length' => 20,
              ));
     }
 

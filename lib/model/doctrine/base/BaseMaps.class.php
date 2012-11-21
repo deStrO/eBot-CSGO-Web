@@ -14,6 +14,7 @@
  * @property integer $status
  * @property enum $maps_for
  * @property integer $nb_ot
+ * @property integer $identifier_id
  * @property Matchs $Match
  * @property Doctrine_Collection $Matchs
  * @property Doctrine_Collection $MapsScore
@@ -32,6 +33,7 @@
  * @method integer             getStatus()         Returns the current record's "status" value
  * @method enum                getMapsFor()        Returns the current record's "maps_for" value
  * @method integer             getNbOt()           Returns the current record's "nb_ot" value
+ * @method integer             getIdentifierId()   Returns the current record's "identifier_id" value
  * @method Matchs              getMatch()          Returns the current record's "Match" value
  * @method Doctrine_Collection getMatchs()         Returns the current record's "Matchs" collection
  * @method Doctrine_Collection getMapsScore()      Returns the current record's "MapsScore" collection
@@ -49,6 +51,7 @@
  * @method Maps                setStatus()         Sets the current record's "status" value
  * @method Maps                setMapsFor()        Sets the current record's "maps_for" value
  * @method Maps                setNbOt()           Sets the current record's "nb_ot" value
+ * @method Maps                setIdentifierId()   Sets the current record's "identifier_id" value
  * @method Maps                setMatch()          Sets the current record's "Match" value
  * @method Maps                setMatchs()         Sets the current record's "Matchs" collection
  * @method Maps                setMapsScore()      Sets the current record's "MapsScore" collection
@@ -113,6 +116,10 @@ abstract class BaseMaps extends sfDoctrineRecord
              ),
              ));
         $this->hasColumn('nb_ot', 'integer', 20, array(
+             'type' => 'integer',
+             'length' => 20,
+             ));
+        $this->hasColumn('identifier_id', 'integer', 20, array(
              'type' => 'integer',
              'length' => 20,
              ));

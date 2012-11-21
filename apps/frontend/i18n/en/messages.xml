@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2012-11-07T18:30:27Z" product-name="messages">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2012-11-21T18:23:34Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -287,11 +287,11 @@ will receive a confirmation email containing a link allowing you to complete the
       </trans-unit>
       <trans-unit id="66">
         <source>Enabled</source>
-        <target/>
+        <target>Enabled</target>
       </trans-unit>
       <trans-unit id="67">
         <source>Status</source>
-        <target/>
+        <target>Status</target>
       </trans-unit>
       <trans-unit id="68">
         <source>Si vous avez un problème avec l'eBot, nous vous invitons à lire l'aide.</source>
@@ -803,7 +803,7 @@ will receive a confirmation email containing a link allowing you to complete the
       </trans-unit>
       <trans-unit id="195">
         <source>Aide</source>
-        <target/>
+        <target>Help</target>
       </trans-unit>
       <trans-unit id="196">
         <source>About</source>
@@ -811,19 +811,19 @@ will receive a confirmation email containing a link allowing you to complete the
       </trans-unit>
       <trans-unit id="197">
         <source>Erreur</source>
-        <target/>
+        <target>Error</target>
       </trans-unit>
       <trans-unit id="198">
         <source>Information</source>
-        <target/>
+        <target>Information</target>
       </trans-unit>
       <trans-unit id="199">
         <source>Rendez-vous sur</source>
-        <target/>
+        <target>Go on</target>
       </trans-unit>
       <trans-unit id="200">
         <source>pour plus d'information !</source>
-        <target/>
+        <target>for more information !</target>
       </trans-unit>
       <trans-unit id="201">
         <source>L'eBot possède tout une série de commande qui peuvent être appelée à différent moment dans le jeu via le tchat. Ces commandes permettent de demande par exemple ses stats, le score du match, démarrer le match, etc ...</source>
@@ -999,6 +999,50 @@ will receive a confirmation email containing a link allowing you to complete the
       </trans-unit>
       <trans-unit id="244">
         <source>K/D</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="245">
+        <source>Carte de chaleur</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="246">
+        <source>Détails des scores</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="247">
+        <source>Assist</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="248">
+        <source>&lt;p&gt;Vous pouvez trier tous les champs du tableau pour obtenir des résultats personallisés.&lt;/p&gt;&#13;
+			&lt;p&gt;Les colonnes &lt;b&gt;1K&lt;/b&gt;, &lt;b&gt;2K&lt;/b&gt;, ... représentent le nombre de kill par round effectué. Par exemple, si j'ai 2 dans la colonne 3K, cela veut dire que j'ai fais 2 rounds où j'ai fais 3 kills.&#13;
+			&lt;p&gt;La colonne &lt;b&gt;FK&lt;/b&gt; signifie &lt;b&gt;First Kill&lt;/b&gt;, utile pour voir les personnes qui font les premiers kills&lt;/p&gt;&#13;
+			&lt;p&gt;Les points clutchs représentent si la personne a réalisé plusieurs "clutch", par exemple, gagné un 1v1. Ils sont calculés comme ceci: nombre de 1 v X gagné multiplé par X. Si j'ai fais trois 1v1 et un 1v2, j'aurai donc 5 points. (1v1 x 3 = 3, 1v2 x 1 = 2)&lt;/p&gt;&#13;
+</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="249">
+        <source>Configuration</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="250">
+        <source>Type d'évènement</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="251">
+        <source>Tout le stuff</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="252">
+        <source>Tous les sides</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="253">
+        <source>Générer la carte de chaleur</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="254">
+        <source>A</source>
         <target/>
       </trans-unit>
     </body>

@@ -26,6 +26,7 @@ Matchs:
     current_map: { type: integer(20) }
     force_zoom_match: { type: boolean }
     tv_record_file: { type: varchar(255) } 
+    identifier_id: { type: integer(20) }
   relations:
     Server: { class: Servers, onDelete: CASCADE, local: server_id, foreign: id }
     Map: { class: Maps, onDelete: CASCADE, local: current_map, foreign: id }
@@ -43,6 +44,7 @@ Maps:
     status: { type: integer(3) }
     maps_for: { type: enum, values: [ default, team1, team2 ]}
     nb_ot: { type: integer(20) }
+    identifier_id: { type: integer(20) }
   relations:
     Match: { class: Matchs, onDelete: CASCADE, local: match_id, foreign: id }
     
@@ -127,7 +129,7 @@ PlayersSnapshot:
     nb5kill: { type: integer(5), default: 0 }
     pluskill: { type: integer(5), default: 0 }
     firstkill: { type: integer(5), default: 0 }
-    round_id: { type: integer(5)}
+    round_id: { type: integer(5) }
   relations:
     Player: { class: Players, onDelete: CASCADE, local: player_id, foreign: id }
 
@@ -139,15 +141,14 @@ Round:
     match_id: { type: integer(20), notnull: true }
     map_id: { type: integer(20), notnull: true }
     event_name: { type: varchar(255) }
+    event_text: { type: text }
     event_time: { type: integer(5) }
-    killer_id: { type: integer(20) }
-    killed_id: { type: integer(20) }
+    kill_id: { type: integer(20) }
     round_id: { type: integer(20) }
   relations:
     Match: { class: Matchs, onDelete: CASCADE, local: match_id, foreign: id }
     Map: { class: Maps, onDelete: CASCADE, local: map_id, foreign: id }
-    Killer: { class: Players, onDelete: SET NULL, local: killer_id, foreign: id }
-    Killed: { class: Players, onDelete: SET NULL, local: killed_id, foreign: id }
+    Kill: { class: PlayerKill, onDelete: SET NULL, local: kill_id, foreign: id }
 
 RoundSummary:
   actAs:
@@ -207,14 +208,17 @@ PlayersHeatmap:
     match_id: { type: integer(20), notnull: true }
     map_id: { type: integer(20), notnull: true }
     event_name: { type: varchar(50) }
-    event_x: { type: integer(5) }
-    event_y: { type: integer(5) }
-    event_z: { type: integer(5) }
+    event_x: { type: double }
+    event_y: { type: double }
+    event_z: { type: double }
+    player_name: { type: varchar(255) }
     player_id: { type: integer(20) }
     player_team: { type: varchar(20) }
-    attacker_x: { type: integer(5) }
-    attacker_y: { type: integer(5) }
-    attacker_z: { type: integer(5) }
+    attacker_x: { type: double }
+    attacker_y: { type: double }
+    attacker_z: { type: double }
+    attacker_name: { type: varchar(255) }
+    attacker_id: { type: integer }
     attacker_team: { type: varchar(20) }
     round_id: { type: integer(5) }
     round_time: { type: integer(20) }
@@ -222,6 +226,7 @@ PlayersHeatmap:
     Match: { class: Matchs, onDelete: CASCADE, local: match_id, foreign: id }
     Map: { class: Maps, onDelete: CASCADE, local: map_id, foreign: id }
     Player: { class: Players, onDelete: CASCADE, local: player_id, foreign: id }
+    Killer: { class: Players, onDelete: SET NULL, local: attacker_id, foreign: id }
     
 Servers:
   actAs:
