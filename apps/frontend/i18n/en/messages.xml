@@ -827,59 +827,59 @@ will receive a confirmation email containing a link allowing you to complete the
       </trans-unit>
       <trans-unit id="201">
         <source>L'eBot possède tout une série de commande qui peuvent être appelée à différent moment dans le jeu via le tchat. Ces commandes permettent de demande par exemple ses stats, le score du match, démarrer le match, etc ...</source>
-        <target/>
+        <target>eBot includes a whole series of commands that can be launched at any time during the match using the chat. These commands allow things such as getting stats, the match score, starting the match, etc ...<target/>
       </trans-unit>
       <trans-unit id="202">
-        <source>envoie les statistiques du matchs (nombre de kill, ratio K/D, ratio HS, ...)</source>
-        <target/>
+        <source>envoie les statistiques du match (nombre de kill, ratio K/D, ratio HS, ...)</source>
+        <target>sends the match statistics (number of kills, K/D ratio, HS ratio, ...)<target/>
       </trans-unit>
       <trans-unit id="203">
         <source>envoie les scores du matchs</source>
-        <target/>
+        <target>sends the matches scores<target/>
       </trans-unit>
       <trans-unit id="204">
         <source>signal que votre équipe veut un redémarrage du knife round. Le redémarrage du knife round n'est possible que si l'autre équipe est d'accord.</source>
-        <target/>
+        <target>tells your team wants the knife round to be restarted. The restart of the knife round is only possible if the other team agrees.<target/>
       </trans-unit>
       <trans-unit id="205">
         <source>signal que votre équipe veut un arrêt du match. L'arrêt du match n'est possible que si l'autre équipe est d'accord. Elle devra écrire à son tour !stop pour arrêter le round en cours.</source>
-        <target/>
+        <target>tells your team wants the match to be stopped. The match stop is only possible if the other team agrees. The team will also have to write stop for the match to be stopped.<target/>
       </trans-unit>
       <trans-unit id="206">
         <source>signal que votre équipe est prête pour reprendre le match (dans le cas d'un stop)</source>
-        <target/>
+        <target>tells your team is ready to restart the match (in case of a stop)<target/>
       </trans-unit>
       <trans-unit id="207">
         <source>signal que votre équipe veut une pause</source>
-        <target/>
+        <target>tells your team wants a pause<target/>
       </trans-unit>
       <trans-unit id="208">
         <source>signal que votre équipe veut retirer la pause</source>
-        <target/>
+        <target>tells your team wants to unpause<target/>
       </trans-unit>
       <trans-unit id="209">
         <source>Menu statistiques</source>
-        <target/>
+        <target>Statistics menu<target/>
       </trans-unit>
       <trans-unit id="210">
         <source>Knife Switch Auto</source>
-        <target/>
+        <target>Auto knife switch<target/>
       </trans-unit>
       <trans-unit id="211">
         <source>Gagné par</source>
-        <target/>
+        <target>Won by<target/>
       </trans-unit>
       <trans-unit id="212">
         <source>Action du round</source>
-        <target/>
+        <target>Action of the round<target/>
       </trans-unit>
       <trans-unit id="213">
         <source>a mis un</source>
-        <target/>
+        <target>did a<target/>
       </trans-unit>
       <trans-unit id="214">
         <source>a fait</source>
-        <target/>
+        <target>did<target/>
       </trans-unit>
       <trans-unit id="215">
         <source>1v1</source>
@@ -927,7 +927,7 @@ will receive a confirmation email containing a link allowing you to complete the
       </trans-unit>
       <trans-unit id="226">
         <source>Pseudo</source>
-        <target/>
+        <target>Nick<target/>
       </trans-unit>
       <trans-unit id="227">
         <source>K</source>
@@ -943,59 +943,59 @@ will receive a confirmation email containing a link allowing you to complete the
       </trans-unit>
       <trans-unit id="230">
         <source>Pt MVP</source>
-        <target/>
+        <target>Points MVP<target/>
       </trans-unit>
       <trans-unit id="231">
         <source>Nombre de Match</source>
-        <target/>
+        <target>Number of matches<target/>
       </trans-unit>
       <trans-unit id="232">
         <source>Vous retrouverez ici toutes les statistiques d'utilisation de l'eBot</source>
-        <target/>
+        <target>You will find here all the eBot utilisation statistics<target/>
       </trans-unit>
       <trans-unit id="233">
         <source>Stats joueurs</source>
-        <target/>
+        <target>Players stats<target/>
       </trans-unit>
       <trans-unit id="234">
         <source>Nombre de kill</source>
-        <target/>
+        <target>Number of kills<target/>
       </trans-unit>
       <trans-unit id="235">
         <source>Ratio de HeadShot</source>
-        <target/>
+        <target>HeadShot Ratio<target/>
       </trans-unit>
       <trans-unit id="236">
         <source>Stats matchs</source>
-        <target/>
+        <target>Matches stats<target/>
       </trans-unit>
       <trans-unit id="237">
         <source>Matchs en attente</source>
-        <target/>
+        <target>Pending matches<target/>
       </trans-unit>
       <trans-unit id="238">
         <source>Matchs terminé/archivé</source>
-        <target/>
+        <target>Finished/archived matches<target/>
       </trans-unit>
       <trans-unit id="239">
         <source>Total de match</source>
-        <target/>
+        <target>Total of matches<target/>
       </trans-unit>
       <trans-unit id="240">
         <source>Stats serveurs</source>
-        <target/>
+        <target>Servers stats<target/>
       </trans-unit>
       <trans-unit id="241">
         <source>Nombre de serveur</source>
-        <target/>
+        <target>Number of servers<target/>
       </trans-unit>
       <trans-unit id="242">
         <source>Statistique de</source>
-        <target/>
+        <target>Statistics of<target/>
       </trans-unit>
       <trans-unit id="243">
         <source>Nom ingame</source>
-        <target/>
+        <target>Ingame nick<target/>
       </trans-unit>
       <trans-unit id="244">
         <source>K/D</source>
@@ -1003,11 +1003,11 @@ will receive a confirmation email containing a link allowing you to complete the
       </trans-unit>
       <trans-unit id="245">
         <source>Carte de chaleur</source>
-        <target/>
+        <target>Heat map<target/>
       </trans-unit>
       <trans-unit id="246">
         <source>Détails des scores</source>
-        <target/>
+        <target>Scores details<target/>
       </trans-unit>
       <trans-unit id="247">
         <source>Assist</source>
@@ -1019,31 +1019,35 @@ will receive a confirmation email containing a link allowing you to complete the
 			&lt;p&gt;La colonne &lt;b&gt;FK&lt;/b&gt; signifie &lt;b&gt;First Kill&lt;/b&gt;, utile pour voir les personnes qui font les premiers kills&lt;/p&gt;&#13;
 			&lt;p&gt;Les points clutchs représentent si la personne a réalisé plusieurs "clutch", par exemple, gagné un 1v1. Ils sont calculés comme ceci: nombre de 1 v X gagné multiplé par X. Si j'ai fais trois 1v1 et un 1v2, j'aurai donc 5 points. (1v1 x 3 = 3, 1v2 x 1 = 2)&lt;/p&gt;&#13;
 </source>
-        <target/>
+        <target>&lt;p&gt;You can sort the table to have custom statistics.&lt;/p&gt;&#13;
+			&lt;p&gt;The columns &lt;b&gt;1K&lt;/b&gt;, &lt;b&gt;2K&lt;/b&gt;, ... represent the number of kills per round. i.e : if there is a 2 in the 3K column, in means I played 2 rounds during which I made 3 kills.&#13;
+			&lt;p&gt;The column &lt;b&gt;FK&lt;/b&gt; means &lt;b&gt;First Kill&lt;/b&gt;, useful to see who made a first kill&lt;/p&gt;&#13;
+			&lt;p&gt;The clutch points tell if a player made various clutches, such as winning a 1vs1. They are calculated this way : number of won 1 v X multiplied by X. If I made three 1vs1 and a 1vs2, I will therefore have 5 points. (1vs1 x 3 = 3, 1vs2 x 1 = 2)&lt;/p&gt;&#13;
+<target/>
       </trans-unit>
       <trans-unit id="249">
         <source>Configuration</source>
-        <target/>
+        <target>Settings<target/>
       </trans-unit>
       <trans-unit id="250">
         <source>Type d'évènement</source>
-        <target/>
+        <target>Type of event<target/>
       </trans-unit>
       <trans-unit id="251">
         <source>Tout le stuff</source>
-        <target/>
+        <target>All the stuff<target/>
       </trans-unit>
       <trans-unit id="252">
         <source>Tous les sides</source>
-        <target/>
+        <target>All sides<target/>
       </trans-unit>
       <trans-unit id="253">
         <source>Générer la carte de chaleur</source>
-        <target/>
+        <target>Generate the heat map<target/>
       </trans-unit>
       <trans-unit id="254">
         <source>A</source>
-        <target/>
+        <target>A<target/>
       </trans-unit>
     </body>
   </file>
