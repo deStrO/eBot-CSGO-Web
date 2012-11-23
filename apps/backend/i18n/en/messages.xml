@@ -6,11 +6,11 @@
     <body>
       <trans-unit id="1">
         <source>Page non trouvable !</source>
-        <target>Page not found !<target/>
+        <target>Page not found !</target>
       </trans-unit>
       <trans-unit id="2">
         <source>Vous n'avez pas les droits requis !</source>
-        <target>You don't have the needed authorizations !<target/>
+        <target>You don't have the required rights!</target>
       </trans-unit>
       <trans-unit id="3">
         <source>eBot-CSGO</source>
@@ -18,211 +18,211 @@
       </trans-unit>
       <trans-unit id="4">
         <source>Bienvenue sur le panel d'administration de l'eBot CSGO, vous pouvez y gérer les matchs, mais aussi accéder aux différentes statistiques.</source>
-        <target>Welcome on the CSGO eBot administration panel, you can manage your matches, and also consult various statistics.<target/>
+        <target>Welcome to CSGO eBot administration panel, you can manage your matches and also consult various statistics.</target>
       </trans-unit>
       <trans-unit id="5">
         <source>Vous pouvez commencer à utiliser le panel en accédant aux menus à gauche.</source>
-        <target>You can start using the panel via the menus on your left.<target/>
+        <target>You can start using the panel via the menus on your left.</target>
       </trans-unit>
       <trans-unit id="6">
         <source>Les autres outils d'eSport-Tools</source>
-        <target>Other eSport-Tools tools<target/>
+        <target>Other eSport-Tools tools</target>
       </trans-unit>
       <trans-unit id="7">
         <source>L'eBot est un bot de gestion de match complet pour CS:GO.</source>
-        <target>eBot is a match management bot for CS:GO.<target/>
+        <target>eBot is a CS:GO match management bot.</target>
       </trans-unit>
       <trans-unit id="8">
         <source>Il vous permet de gérer jusqu'a 64 matchs simultanément par instance et de récupérer des statistiques diverses tels que le nombre de HeadShot, le nombre de 1vX remportés par un joueur, etc ...</source>
-        <target>It allows you to manage up to 64 matches simultaneously per instance and to get various statistics such as number of HeadShots, number of 1vX a player won, etc ...<target/>
+        <target>It allows you to manage up to 64 matches simultaneously per instance and to get various statistics such as HeadShots number, 1vX won by a player, etc...</target>
       </trans-unit>
       <trans-unit id="9">
         <source>Avec la version 3.0, l'eBot possède une interface de plugins qui permet d'ajouter votre propre code et de gérer d'autre fonctionalité !</source>
-        <target>With the 3.0 version, eBot includes a plugins interface which allows you to add your own code and to create new features !<target/>
+        <target>With the 3.0 version, eBot includes a plugin interface which allows you to add your own code and to create new features !</target>
       </trans-unit>
       <trans-unit id="10">
         <source>Voir plus de détails</source>
-        <target>Display more details<target/>
+        <target>Show more details</target>
       </trans-unit>
       <trans-unit id="11">
         <source>Vous voulez vous déchargez de la plus grosse partie d'une lan, c'est à dire, son intranet ? C'est maintenant possible !</source>
-        <target>You want to get rid of the biggest part of a lan, which is its intranet ? It is now possible !<target/>
+        <target>You want to get rid of the biggest part of a lan, which is its intranet website? It is now possible !</target>
       </trans-unit>
       <trans-unit id="12">
         <source>Avec l'eLan, vous pouvez gérer des inscriptions joueurs, en passant par l'acceuil de ceux-ci, aux tournois.</source>
-        <target>With eLan, you will be able to manage player subscriptions, from their welcoming, until the tournament.<target/>
+        <target>With eLan, you will be able to manage player subscriptions, from their welcoming, until tournament.</target>
       </trans-unit>
       <trans-unit id="13">
         <source>L'eTools, est encore une partie en développement.</source>
-        <target>eTools is still under development.<target/>
+        <target>eTools is still under development.</target>
       </trans-unit>
       <trans-unit id="14">
         <source>Les outils disponibles pour le moment, sont le CSay et le eMasterServer</source>
-        <target>Available tools for now are CSay and eMasterServer<target/>
+        <target>Available tools for now are CSay and eMasterServer</target>
       </trans-unit>
       <trans-unit id="15">
         <source>Menu principal</source>
-        <target>Main menu<target/>
+        <target>Main menu</target>
       </trans-unit>
       <trans-unit id="16">
         <source>Accueil</source>
-        <target>Home<target/>
+        <target>Home</target>
       </trans-unit>
       <trans-unit id="17">
         <source>Statistiques</source>
-        <target>Statistics<target/>
+        <target>Statistics</target>
       </trans-unit>
       <trans-unit id="18">
         <source>Menu matchs</source>
-        <target>Matches menu<target/>
+        <target>Matches management</target>
       </trans-unit>
       <trans-unit id="19">
         <source>Création de match</source>
-        <target>Creating a match<target/>
+        <target>Create a match</target>
       </trans-unit>
       <trans-unit id="20">
         <source>Matchs en cours</source>
-        <target>Matches in progress<target/>
+        <target>Matches in progress</target>
       </trans-unit>
       <trans-unit id="21">
         <source>Matchs archivés</source>
-        <target>Archived matches<target/>
+        <target>Archived matches</target>
       </trans-unit>
       <trans-unit id="22">
         <source>Menu serveurs</source>
-        <target>Server menu<target/>
+        <target>Server management</target>
       </trans-unit>
       <trans-unit id="23">
         <source>Création d'un serveur</source>
-        <target>Creating a server<target/>
+        <target>Add gameserver</target>
       </trans-unit>
       <trans-unit id="24">
         <source>Gestion des serveurs</source>
-        <target>Servers management<target/>
+        <target>Servers management</target>
       </trans-unit>
       <trans-unit id="25">
         <source>Statistiques utilisations</source>
-        <target>Usage statistics<target/>
+        <target>Usage statistics</target>
       </trans-unit>
       <trans-unit id="26">
         <source>Gestion des utilisateurs</source>
-        <target>Users management<target/>
+        <target>Users management</target>
       </trans-unit>
       <trans-unit id="27">
         <source>Créer un utilisateur</source>
-        <target>Adding an user<target/>
+        <target>Add an user</target>
       </trans-unit>
       <trans-unit id="28">
         <source>Gestion des comptes</source>
-        <target>Accounts management<target/>
+        <target>Users management</target>
       </trans-unit>
       <trans-unit id="29">
         <source>Il n'y a pas de match a lancé</source>
-        <target>There is no launched match<target/>
+        <target>There is no started matches</target>
       </trans-unit>
       <trans-unit id="30">
         <source>Il n'y a plus de serveur disponible</source>
-        <target>No more servers are available<target/>
+        <target>No more gameservers are available</target>
       </trans-unit>
       <trans-unit id="31">
         <source>Le(s) match(s) a/ont été lancés</source>
-        <target>The match(es) have/has been launched<target/>
+        <target>Match(es) has/have been started</target>
       </trans-unit>
       <trans-unit id="32">
         <source>La commande a été envoyée au serveur, le match sera arrêté</source>
-        <target>The command was sent to the server, match will be stopped<target/>
+        <target>Command has been sent to gameserver, match will be stopped</target>
       </trans-unit>
       <trans-unit id="33">
         <source>Le match a été supprimé</source>
-        <target>The match has been deleted<target/>
+        <target>Match has been deleted</target>
       </trans-unit>
       <trans-unit id="34">
         <source>La commande a été envoyée au serveur, le knife sera skip</source>
-        <target>The command has been sent to the server, knife round will be skip<target/>
+        <target>Command has been sent to gameserver, kniferound will be skipped</target>
       </trans-unit>
       <trans-unit id="35">
         <source>La commande a été envoyée au serveur, le knife va être lancé</source>
-        <target>The command has been sent to the server, knife round will be launched<target/>
+        <target>Command has been sent to gameserver, kniferound will be started</target>
       </trans-unit>
       <trans-unit id="36">
         <source>La commande a été envoyée au serveur, passage au warmup</source>
-        <target>The command has been sent to the server, warmup launch<target/>
+        <target>Command has been sent to gameserver, warmup will be started</target>
       </trans-unit>
       <trans-unit id="37">
         <source>La commande a été envoyée au serveur, forcage du démarrage du match</source>
-        <target>The command has been sent, forcing knife round start<target/>
+        <target>Command has been sent to gameserver, forcing kniferound to start</target>
       </trans-unit>
       <trans-unit id="38">
         <source>La commande a été envoyée au serveur, retour au warmup</source>
-        <target>The command has been sent to the server, back to warmup<target/>
+        <target>Command has been sent to gameserver, forcing back to warmup mode</target>
       </trans-unit>
       <trans-unit id="39">
         <source>La commande a été envoyée au serveur, pause</source>
-        <target>The command has been sent to the server, pause<target/>
+        <target>Command has been sent to gameserver, game has been paused</target>
       </trans-unit>
       <trans-unit id="40">
         <source>Pas de serveurs disponibles</source>
-        <target>No available servers<target/>
+        <target>No gameserver available</target>
       </trans-unit>
       <trans-unit id="41">
         <source>Le match a été démarré sur </source>
-        <target>Match started on <target/>
+        <target>Match has been started on </target>
       </trans-unit>
       <trans-unit id="42">
         <source>Le match a été archivé</source>
-        <target>Match has been archived<target/>
+        <target>Match has been archived</target>
       </trans-unit>
       <trans-unit id="43">
         <source>Il n'y a pas de match à archiver</source>
-        <target>There is no match to archive<target/>
+        <target>There is no match to archive</target>
       </trans-unit>
       <trans-unit id="44">
         <source> matchs a/ont été archivé(s)</source>
-        <target> match(s) is/has been archived<target/>
+        <target> match(es) has/have been archived</target>
       </trans-unit>
       <trans-unit id="45">
         <source>Le match a été remis à zéro</source>
-        <target>Match has been reset<target/>
+        <target>Match has been reset</target>
       </trans-unit>
       <trans-unit id="46">
         <source>Impossible de remettre à zéro</source>
-        <target>Reset is not possible<target/>
+        <target>Reset is not possible</target>
       </trans-unit>
       <trans-unit id="47">
         <source>Le match a été relancé sur </source>
-        <target>Match has been restarted on <target/>
+        <target>Match has been restarted on </target>
       </trans-unit>
       <trans-unit id="48">
         <source>Un match est déjà en cours avec </source>
-        <target>A match is already in progress with <target/>
+        <target>A match is already in progress with </target>
       </trans-unit>
       <trans-unit id="49">
         <source>Le match a été détaché du serveur</source>
-        <target>The match has been detached from the server<target/>
+        <target>Match has been detached from gameserver</target>
       </trans-unit>
       <trans-unit id="50">
         <source>Le match a été créé avec succès et porte l'ID </source>
-        <target>The match has been created successfully and its ID is<target/>
+        <target>Match has been created successfully and its ID is</target>
       </trans-unit>
       <trans-unit id="51">
         <source>Vous ne pouvez pas editer un match qui est en cours</source>
-        <target>You can't edit an on-going match<target/>
+        <target>You can't edit a match already being in progress</target>
       </trans-unit>
       <trans-unit id="52">
         <source>Le match a été sauvé avec succès</source>
-        <target>The match has been successfully saved<target/>
+        <target>Match has been successfully saved</target>
       </trans-unit>
       <trans-unit id="53">
         <source>Les scores ont été mis à jours - Nouveau score: </source>
-        <target>Scores has been updated - New score: <target/>
+        <target>Scores has been updated - New score: </target>
       </trans-unit>
       <trans-unit id="54">
         <source>Erreur de donnée</source>
-        <target>Data error<target/>
+        <target>Data error</target>
       </trans-unit>
       <trans-unit id="55">
         <source>Création d'un match</source>
-        <target>Creating a match<target/>
+        <target>Create match</target>
       </trans-unit>
       <trans-unit id="56">
         <source>Maps</source>
@@ -230,15 +230,15 @@
       </trans-unit>
       <trans-unit id="57">
         <source>Premier side</source>
-        <target>First side<target/>
+        <target>First side</target>
       </trans-unit>
       <trans-unit id="58">
         <source>Equipe A CT / Equipe B T</source>
-        <target>Team A CT / Team B T<target/>
+        <target>Team A CT / Team B T</target>
       </trans-unit>
       <trans-unit id="59">
         <source>Equipe A T / Equipe B CT</source>
-        <target> Team A T / Team B CT<target/>
+        <target> Team A T / Team B CT</target>
       </trans-unit>
       <trans-unit id="60">
         <source>Random</source>
@@ -246,107 +246,107 @@
       </trans-unit>
       <trans-unit id="61">
         <source>Créer le match</source>
-        <target>Creating a match<target/>
+        <target>Create match</target>
       </trans-unit>
       <trans-unit id="62">
         <source>Edition du match</source>
-        <target>Edit match<target/>
+        <target>Edit match</target>
       </trans-unit>
       <trans-unit id="63">
         <source>Edition des informations du matchs</source>
-        <target>Edit match information<target/>
+        <target>Edit match informations</target>
       </trans-unit>
       <trans-unit id="64">
         <source>Statut du match</source>
-        <target>Match status<target/>
+        <target>Match status</target>
       </trans-unit>
       <trans-unit id="65">
         <source>Sauver le match</source>
-        <target>Save match<target/>
+        <target>Save match</target>
       </trans-unit>
       <trans-unit id="66">
         <source>Edition des scores du match</source>
-        <target>Edit match scores<target/>
+        <target>Edit match scores</target>
       </trans-unit>
       <trans-unit id="67">
         <source>Type de score</source>
-        <target>Score type<target/>
+        <target>Score type</target>
       </trans-unit>
       <trans-unit id="68">
         <source>Sauver les scores</source>
-        <target>Save scores<target/>
+        <target>Save scores</target>
       </trans-unit>
       <trans-unit id="69">
         <source>&lt;b&gt;Attention&lt;/b&gt; - En changeant les scores ici, tous les scores seront recalculés !</source>
-        <target>&lt;b&gt;Warning&lt;/b&gt; - When changing the scores here, all scores will be recalculated !<target/>
+        <target>&lt;b&gt;Warning&lt;/b&gt; - By changing the scores here, all scores will be recalculated !</target>
       </trans-unit>
       <trans-unit id="70">
         <source>Listes des matchs archivés</source>
-        <target>Archived matches list<target/>
+        <target>Archived matches list</target>
       </trans-unit>
       <trans-unit id="71">
         <source>Administration rapide</source>
-        <target>Quick administration<target/>
+        <target>Quick administration</target>
       </trans-unit>
       <trans-unit id="72">
         <source>Rafraichir la page</source>
-        <target>Refresh the page<target/>
+        <target>Refresh page</target>
       </trans-unit>
       <trans-unit id="73">
         <source>Rechercher un match</source>
-        <target>Match search<target/>
+        <target>Match search</target>
       </trans-unit>
       <trans-unit id="74">
         <source>Remettre à zéro le filtre</source>
-        <target>Reset filter<target/>
+        <target>Reset filter</target>
       </trans-unit>
       <trans-unit id="75">
         <source>Recherche d'un match</source>
-        <target>Match search<target/>
+        <target>Match search</target>
       </trans-unit>
       <trans-unit id="76">
         <source>Fermer</source>
-        <target>Close<target/>
+        <target>Close</target>
       </trans-unit>
       <trans-unit id="77">
         <source>Annuler le filtre</source>
-        <target>Cancel filter<target/>
+        <target>Cancel filter</target>
       </trans-unit>
       <trans-unit id="78">
         <source>Recherche</source>
-        <target>Search<target/>
+        <target>Search</target>
       </trans-unit>
       <trans-unit id="79">
         <source>Listes des matchs en cours</source>
-        <target>On-going matches list<target/>
+        <target>In progress matches list</target>
       </trans-unit>
       <trans-unit id="80">
         <source>Rafraichissement du tableau dans &lt;span id="seconds"&gt;10&lt;/span&gt; secondes</source>
-        <target>Table refresh in &lt;span id="seconds"&gt;10&lt;/span&gt; seconds <target/>
+        <target>Table refresh in &lt;span id="seconds"&gt;10&lt;/span&gt; seconds </target>
       </trans-unit>
       <trans-unit id="81">
         <source>Démarrer tous les matchs</source>
-        <target>Start all matches<target/>
+        <target>Start all matches</target>
       </trans-unit>
       <trans-unit id="82">
         <source>Archiver les matchs</source>
-        <target>Archiving matches<target/>
+        <target>Archive matches</target>
       </trans-unit>
       <trans-unit id="83">
         <source>Voir</source>
-        <target>Display<target/>
+        <target>Show</target>
       </trans-unit>
       <trans-unit id="84">
         <source>Pas de résultats à afficher</source>
-        <target>No results to display<target/>
+        <target>No results to show</target>
       </trans-unit>
       <trans-unit id="85">
         <source>Serveur à utiliser pour le lancer du prochain match</source>
-        <target>This server should be used to launch the next match<target/>
+        <target>Server to use in order to start next match</target>
       </trans-unit>
       <trans-unit id="86">
         <source>Lancer sur un serveur aléatoirement</source>
-        <target>Starting on a random server<target/>
+        <target>Start on random server</target>
       </trans-unit>
       <trans-unit id="87">
         <source>#ID</source>
@@ -354,11 +354,11 @@
       </trans-unit>
       <trans-unit id="88">
         <source>Opposant - Score</source>
-        <target>Opponent - Score<target/>
+        <target>Opponent - Score</target>
       </trans-unit>
       <trans-unit id="89">
         <source>Maps en cours</source>
-        <target>Maps being played<target/>
+        <target>Map being played</target>
       </trans-unit>
       <trans-unit id="90">
         <source>IP</source>
@@ -374,19 +374,19 @@
       </trans-unit>
       <trans-unit id="93">
         <source>Etes vous sur de vouloir faire cette action ?</source>
-        <target>Are you sure you want to do this ?<target/>
+        <target>Are you sure you want to do this?</target>
       </trans-unit>
       <trans-unit id="94">
         <source>Information / Configuration du match</source>
-        <target>Information / match configuration<target/>
+        <target>Details / Match settings</target>
       </trans-unit>
       <trans-unit id="95">
         <source>Statistiques du match</source>
-        <target>Match statistics<target/>
+        <target>Match statistics</target>
       </trans-unit>
       <trans-unit id="96">
         <source>Statistiques des joueurs</source>
-        <target>Players statistics<target/>
+        <target>Players statistics</target>
       </trans-unit>
       <trans-unit id="97">
         <source>Logs</source>
@@ -394,11 +394,11 @@
       </trans-unit>
       <trans-unit id="98">
         <source>Configuration du match</source>
-        <target>Match configuration<target/>
+        <target>Match settings</target>
       </trans-unit>
       <trans-unit id="99">
         <source>Nom de la configuration</source>
-        <target>Name of the configuration<target/>
+        <target>Settings name</target>
       </trans-unit>
       <trans-unit id="100">
         <source>MaxRound</source>
@@ -406,19 +406,19 @@
       </trans-unit>
       <trans-unit id="101">
         <source>Statut</source>
-        <target>Status<target/>
+        <target>Status</target>
       </trans-unit>
       <trans-unit id="102">
         <source>Actif ?</source>
-        <target>Active ?<target/>
+        <target>Active ?</target>
       </trans-unit>
       <trans-unit id="103">
         <source>Jouer tous les rounds</source>
-        <target>Play on<target/>
+        <target>Play on</target>
       </trans-unit>
       <trans-unit id="104">
         <source>OverTime actif</source>
-        <target>OverTime enabled<target/>
+        <target>OverTime enabled</target>
       </trans-unit>
       <trans-unit id="105">
         <source>Knife Round</source>
@@ -426,11 +426,11 @@
       </trans-unit>
       <trans-unit id="106">
         <source>Knife Switch Auto</source>
-        <target>Automatic knife switch<target/>
+        <target>Automatic knife switch</target>
       </trans-unit>
       <trans-unit id="107">
         <source>Information du match</source>
-        <target>Match information<target/>
+        <target>Match details</target>
       </trans-unit>
       <trans-unit id="108">
         <source>Score</source>
@@ -438,103 +438,103 @@
       </trans-unit>
       <trans-unit id="109">
         <source>Nombre de round joué</source>
-        <target>Number of rounds played<target/>
+        <target>Number of played rounds</target>
       </trans-unit>
       <trans-unit id="110">
         <source>Serveur</source>
-        <target>Server<target/>
+        <target>Gameserver</target>
       </trans-unit>
       <trans-unit id="111">
         <source>Nombre de joueur</source>
-        <target>Number of players<target/>
+        <target>Players number</target>
       </trans-unit>
       <trans-unit id="112">
         <source>Enchainement des rounds</source>
-        <target>Rounds succession<target/>
+        <target>Rounds series</target>
       </trans-unit>
       <trans-unit id="113">
         <source>Changement de side</source>
-        <target>Side change<target/>
+        <target>Team swap</target>
       </trans-unit>
       <trans-unit id="114">
         <source>Victoire bombe posée</source>
-        <target>Victory bomb exploded<target/>
+        <target>Victory bomb exploded</target>
       </trans-unit>
       <trans-unit id="115">
         <source>Défaite bombe posée</source>
-        <target>Defeat bomb planted<target/>
+        <target>Defeat bomb planted</target>
       </trans-unit>
       <trans-unit id="116">
         <source>Victoire bombe diffusée</source>
-        <target>Victory bomb defused<target/>
+        <target>Victory bomb defused</target>
       </trans-unit>
       <trans-unit id="117">
         <source>Victoire bombe explosée</source>
-        <target>Victory bomb exploded<target/>
+        <target>Victory bomb exploded</target>
       </trans-unit>
       <trans-unit id="118">
         <source>Elimination total</source>
-        <target>Total elimination<target/>
+        <target>Total elimination</target>
       </trans-unit>
       <trans-unit id="119">
         <source>Victoire par le temps</source>
-        <target>Victory by time<target/>
+        <target>Victory by time</target>
       </trans-unit>
       <trans-unit id="120">
         <source>Plus longue série de round</source>
-        <target>Longest rounds streak<target/>
+        <target>Longest rounds streak</target>
       </trans-unit>
       <trans-unit id="121">
         <source>Détails des rounds</source>
-        <target>Rounds details<target/>
+        <target>Rounds details</target>
       </trans-unit>
       <trans-unit id="122">
         <source>Gagné par</source>
-        <target>Won by<target/>
+        <target>Won by</target>
       </trans-unit>
       <trans-unit id="123">
         <source>Type de victoire</source>
-        <target>Type of victory<target/>
+        <target>Type of victory</target>
       </trans-unit>
       <trans-unit id="124">
         <source>Bombe désamorcée</source>
-        <target>Bomb defused<target/>
+        <target>Bomb defused</target>
       </trans-unit>
       <trans-unit id="125">
         <source>Bombe explosée</source>
-        <target>Bomb exploded<target/>
+        <target>Bomb exploded</target>
       </trans-unit>
       <trans-unit id="126">
         <source>Elimation de l'équipe adverse</source>
-        <target>Elimination of the opposing team<target/>
+        <target>Elimination of the opposing team</target>
       </trans-unit>
       <trans-unit id="127">
         <source>Gagné par le temps</source>
-        <target>Victory by time<target/>
+        <target>Victory by time</target>
       </trans-unit>
       <trans-unit id="128">
         <source>Bombe posée</source>
-        <target>Bomb exploded<target/>
+        <target>Bomb exploded</target>
       </trans-unit>
       <trans-unit id="129">
         <source>Action du round</source>
-        <target>Action of the round<target/>
+        <target>Action of the round</target>
       </trans-unit>
       <trans-unit id="130">
         <source>a mis un</source>
-        <target>did a<target/>
+        <target>did a</target>
       </trans-unit>
       <trans-unit id="131">
         <source>a fait</source>
-        <target>did<target/>
+        <target>did</target>
       </trans-unit>
       <trans-unit id="132">
         <source>Equipe</source>
-        <target>Team<target/>
+        <target>Team</target>
       </trans-unit>
       <trans-unit id="133">
         <source>Nom du joueur</source>
-        <target>Player nickname<target/>
+        <target>Player nickname</target>
       </trans-unit>
       <trans-unit id="134">
         <source>Kill</source>
@@ -546,7 +546,7 @@
       </trans-unit>
       <trans-unit id="136">
         <source>Ratio K/D</source>
-        <target>K/D Ratio<target/>
+        <target>K/D Ratio</target>
       </trans-unit>
       <trans-unit id="137">
         <source>Point</source>
@@ -558,7 +558,7 @@
       </trans-unit>
       <trans-unit id="139">
         <source>Ratio HS</source>
-        <target>HS Ratio<target/>
+        <target>HS Ratio</target>
       </trans-unit>
       <trans-unit id="140">
         <source>Defuse</source>
@@ -566,7 +566,7 @@
       </trans-unit>
       <trans-unit id="141">
         <source>Bombe</source>
-        <target>Bomb<target/>
+        <target>Bomb</target>
       </trans-unit>
       <trans-unit id="142">
         <source>TK</source>
@@ -618,59 +618,59 @@
       </trans-unit>
       <trans-unit id="154">
         <source>Pt Clutch</source>
-        <target>Clutch pts<target/>
+        <target>Clutch pts</target>
       </trans-unit>
       <trans-unit id="155">
         <source>Le serveur est en cours d'utilisation !</source>
-        <target>Server is currently in use !<target/>
+        <target>Gameserver is currently being used!</target>
       </trans-unit>
       <trans-unit id="156">
         <source>Le serveur a été supprimé</source>
-        <target>The server has been deleted<target/>
+        <target>Gameserver has been deleted</target>
       </trans-unit>
       <trans-unit id="157">
         <source>Format non reconnu</source>
-        <target>Unknown format<target/>
+        <target>Unknown format</target>
       </trans-unit>
       <trans-unit id="158">
         <source> serveurs ont été ajoutés (</source>
-        <target> servers has been added<target/>
+        <target> gameservers have been added</target>
       </trans-unit>
       <trans-unit id="159">
         <source>1 serveur a été ajouté (</source>
-        <target>1 server has been added<target/>
+        <target>1 gameserver has been added</target>
       </trans-unit>
       <trans-unit id="160">
         <source>Créer le serveur</source>
-        <target>Create server<target/>
+        <target>Create gameserver</target>
       </trans-unit>
       <trans-unit id="161">
         <source>Pour créer plusieurs serveurs en une fois, vous pouvez renseigner l'adresse du serveur dans plusieurs format:</source>
-        <target>To create several servers at once, you can type the server address in various formats:<target/>
+        <target>To create several gameservers at once, you can type the server address in various formats:</target>
       </trans-unit>
       <trans-unit id="162">
         <source>générera 3 serveurs avec comme ip 172.16.100.101:27015, 172.16.100.102:27015, 172.16.100.103:27015</source>
-        <target>will generate 3 servers with ips like 172.16.100.101:27015, 172.16.100.102:27015, 172.16.100.103:27015<target/>
+        <target>will generate 3 gameservers with ips like 172.16.100.101:27015, 172.16.100.102:27015, 172.16.100.103:27015</target>
       </trans-unit>
       <trans-unit id="163">
         <source>générera 4 serveurs avec comme ip 172.16.100.101:27015, 172.16.100.101:27025, 172.16.100.101:27035</source>
-        <target>will generate 4 servers with ips like 172.16.100.101:27015, 172.16.100.101:27025, 172.16.100.101:27035<target/>
+        <target>will generate 4 gameservers with ips like 172.16.100.101:27015, 172.16.100.101:27025, 172.16.100.101:27035</target>
       </trans-unit>
       <trans-unit id="164">
         <source>générera 9 serveurs avec comme ip 172.16.100.101:27015 &gt; 172.16.100.101:27035, etc ...</source>
-        <target>will generate 9 servers with ips like 172.16.100.101:27015&gt; 172.16.100.101:27035, etc ...<target/>
+        <target>will generate 9 gameservers with ips like 172.16.100.101:27015&gt; 172.16.100.101:27035, etc ...</target>
       </trans-unit>
       <trans-unit id="165">
         <source>Listes des serveurs</source>
-        <target>Servers list<target/>
+        <target>Gameservers list</target>
       </trans-unit>
       <trans-unit id="166">
         <source>Adresse IP</source>
-        <target>IP Address<target/>
+        <target>IP Address</target>
       </trans-unit>
       <trans-unit id="167">
         <source>Nom</source>
-        <target>Name<target/>
+        <target>Hostname</target>
       </trans-unit>
       <trans-unit id="168">
         <source>Utilisation</source>
@@ -682,39 +682,39 @@
       </trans-unit>
       <trans-unit id="170">
         <source>En cours</source>
-        <target>On progress<target/>
+        <target>In progress</target>
       </trans-unit>
       <trans-unit id="171">
         <source>Non utilisé</source>
-        <target>Not in use<target/>
+        <target>Not being used</target>
       </trans-unit>
       <trans-unit id="172">
         <source>Supprimer</source>
-        <target>Delete<target/>
+        <target>Delete</target>
       </trans-unit>
       <trans-unit id="173">
         <source>Pas de serveur enregistré</source>
-        <target>No registered server<target/>
+        <target>No registered gameserver</target>
       </trans-unit>
       <trans-unit id="174">
         <source>Les statistiques sont générées au chargement de la page, d'ou la lenteur probable de celle-ci !</source>
-        <target>Statistics are generated on page loading, which can explain why it loads slowly !<target/>
+        <target>Statistics are generated on page loading, which can explain why it loads slowly !</target>
       </trans-unit>
       <trans-unit id="175">
         <source>Nombre de matchs</source>
-        <target>Number of matches<target/>
+        <target>Number of matches</target>
       </trans-unit>
       <trans-unit id="176">
         <source>Nombre de Kill</source>
-        <target>Number of kills<target/>
+        <target>Number of kills</target>
       </trans-unit>
       <trans-unit id="177">
         <source>Nombre de HeadShot</source>
-        <target>Number of headshots<target/>
+        <target>Number of headshots</target>
       </trans-unit>
       <trans-unit id="178">
         <source>Ratio HeadShot</source>
-        <target>HeadShot Ratio<target/>
+        <target>HeadShot Ratio</target>
       </trans-unit>
       <trans-unit id="179">
         <source>Oops! The page you asked for is secure and you do not have proper credentials.</source>
@@ -726,11 +726,11 @@
       </trans-unit>
       <trans-unit id="181">
         <source>Connexion</source>
-        <target>Log in<target/>
+        <target>Log in</target>
       </trans-unit>
       <trans-unit id="182">
         <source>Vous devez être connecté pour avoir accès à cette zone !</source>
-        <target>You have to be logged in to access this area !<target/>
+        <target>You have to be logged in to access this area !</target>
       </trans-unit>
       <trans-unit id="183">
         <source>Signin</source>
@@ -746,51 +746,51 @@
       </trans-unit>
       <trans-unit id="186">
         <source>Vous retrouverez ici toutes les statistiques d'utilisation de l'eBot</source>
-        <target>You will find here<target/>
+        <target>You will find here all eBot usage statistics</target>
       </trans-unit>
       <trans-unit id="187">
         <source>Stats joueurs</source>
-        <target>Player stats<target/>
+        <target>Players stats</target>
       </trans-unit>
       <trans-unit id="188">
         <source>Nombre de kill</source>
-        <target>Number of kills<target/>
+        <target>Number of kills</target>
       </trans-unit>
       <trans-unit id="189">
         <source>&gt;Ratio de HeadShot</source>
-        <target>&gt;HeadShot ratio<target/>
+        <target>&gt;HeadShot ratio</target>
       </trans-unit>
       <trans-unit id="190">
         <source>Stats matchs</source>
-        <target>Matches stats<target/>
+        <target>Matches stats</target>
       </trans-unit>
       <trans-unit id="191">
         <source>Matchs en attente</source>
-        <target>Pending matches<target/>
+        <target>Pending matches</target>
       </trans-unit>
       <trans-unit id="192">
         <source>Matchs terminé/archivé</source>
-        <target>Finished/Archived matches<target/>
+        <target>Finished/Archived matches</target>
       </trans-unit>
       <trans-unit id="193">
         <source>Total de match</source>
-        <target>Total of matches<target/>
+        <target>Total of matches</target>
       </trans-unit>
       <trans-unit id="194">
         <source>Stats serveurs</source>
-        <target>Servers stats<target/>
+        <target>Gameservers stats</target>
       </trans-unit>
       <trans-unit id="195">
         <source>Nombre de serveur</source>
-        <target>Number of servers<target/>
+        <target>Number of gameservers</target>
       </trans-unit>
       <trans-unit id="196">
         <source>Détails des scores</source>
-        <target>Scores details<target/>
+        <target>Scores details</target>
       </trans-unit>
       <trans-unit id="197">
         <source>Légende</source>
-        <target>Caption<target/>
+        <target>Caption</target>
       </trans-unit>
       <trans-unit id="198">
         <source>Assist</source>

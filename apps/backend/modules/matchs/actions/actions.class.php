@@ -394,7 +394,7 @@ class matchsActions extends sfActions {
 				$maps->setStatus(0);
 				$maps->score_1 = 0;
 				$maps->score_2 = 0;
-				$maps->current_side = "ct";
+				$maps->current_side = $side;
 				$maps->setMapName($request->getPostParameter("maps"));
 				$maps->save();
 
