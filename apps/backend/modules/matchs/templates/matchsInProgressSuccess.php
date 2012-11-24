@@ -126,10 +126,10 @@
                         <?php $buttons = $match->getActionAdmin(); ?>
                         <?php foreach ($buttons as $button): ?>
                             <?php if ($button["route"] == "matchs_start"): ?>
-                                <button onclick="startMatch(<?php echo $match->getId(); ?>);" class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo $button["label"]; ?></button>
+                                <button onclick="startMatch(<?php echo $match->getId(); ?>);" class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo __($button["label"]); ?></button>
                             <?php else: ?>
                                 <a href="<?php echo url_for($button["route"], $match); ?>" confirm="true">
-                                    <button class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo $button["label"]; ?></button>
+                                    <button class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo __($button["label"]); ?></button>
                                 </a>
                             <?php endif; ?>
 

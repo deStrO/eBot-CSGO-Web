@@ -796,6 +796,54 @@
         <source>Assist</source>
         <target/>
       </trans-unit>
+      <trans-unit id="199">
+        <source>Démarrer</source>
+        <target>Start</target>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>Editer</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>Supprimer</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>Archiver</source>
+        <target>Archive</target>
+      </trans-unit>
+      <trans-unit id="202">
+        <source>Relancer</source>
+        <target>Restart</target>
+      </trans-unit>
+      <trans-unit id="203">
+        <source>Relancer sur un autre serveur</source>
+        <target>Restart on another server</target>
+      </trans-unit>
+      <trans-unit id="204">
+        <source>Stopper</source>
+        <target>Stop</target>
+      </trans-unit>
+      <trans-unit id="205">
+        <source>Stopper avec RS</source>
+        <target>Stop with RS</target>
+      </trans-unit>
+      <trans-unit id="206">
+        <source>Passer le knife</source>
+        <target>Pass knife</target>
+      </trans-unit>
+      <trans-unit id="207">
+        <source>Forcer le knife</source>
+        <target>Force start knife</target>
+      </trans-unit>
+      <trans-unit id="208">
+        <source>Forcer le passage</source>
+        <target>Force warmup</target>
+      </trans-unit>
+      <trans-unit id="209">
+        <source>Forcer le démarrage</source>
+        <target>Force start</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
