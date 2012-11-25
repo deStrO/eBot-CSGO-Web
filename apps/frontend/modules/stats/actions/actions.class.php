@@ -34,13 +34,17 @@ class statsActions extends sfActions {
     public function executeGlobal(sfWebRequest $request) {
         
     }
-    
+
     public function executePlayerStat(sfWebRequest $request) {
         $this->id = $request->getParameter("id");
         $this->forward404Unless($this->id);
-        
+
         $this->stats = PlayersTable::getInstance()->createQuery()->where("steamid = ?", $this->id)->orderBy("id ASC")->execute();
         $this->forward404Unless($this->stats->count() > 0);
+    }
+
+    public function executeMapsStats(sfWebRequest $request) {
+        $this->matchs = MatchsTable::getInstance()->createQuery()->where("status >= ?", array(Matchs::STATUS_END_MATCH))->execute();
     }
 
 }

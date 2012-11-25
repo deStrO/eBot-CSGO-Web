@@ -108,6 +108,10 @@ stats_index:
   url: /stats
   param: { module: stats, action: index }  
   
+stats_maps:
+  url: /stats/maps
+  param: { module: stats, action: mapsStats }    
+  
 ingame:
   url: /main/ingame
   param: { module: main, action: ingame }  

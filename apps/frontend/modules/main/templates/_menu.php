@@ -11,7 +11,7 @@
         <ul class="nav nav-list">
             <li class="nav-header"><?php echo __("Menu principal"); ?></li>
             <li <?php if ($current_route == "homepage") echo 'class="active"'; ?>><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Accueil"); ?></a></li>
-            <li <?php if (preg_match('!^stats!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("stats/index"); ?>"><?php echo __("Statistiques"); ?></a></li>
+            <li <?php if (preg_match('!^stats_index$!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("stats/index"); ?>"><?php echo __("Statistiques"); ?></a></li>
             <li <?php if (preg_match('!^ingame!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("main/ingame"); ?>"><?php echo __("Aide ingame"); ?></a></li>
             <li class="nav-header"><?php echo __("Menu matchs"); ?></li>
             <li <?php if (preg_match('!^matchs_current!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("@matchs_current_page?page=1"); ?>"><?php echo __("Matchs en cours"); ?> <span class="badge badge-info"><?php echo $nbMatchs; ?></span></a></li>
@@ -24,6 +24,8 @@
             </li>
             <li class="nav-header"><?php echo __("Menu statistiques"); ?></li>
             <li <?php if (preg_match('!^global!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("stats/global"); ?>"><?php echo __("Statistique globale"); ?></a></li>
+            <li <?php if (preg_match('!^stats_maps!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("stats_maps"); ?>"><?php echo __("Statistique par maps"); ?></a></li>
+
         </ul>
     </div>
 </div>

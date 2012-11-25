@@ -19,5 +19,5 @@ class Players extends BasePlayers {
     public function getRatio() {
         return ($this->getDeath() > 1) ? round(($this->getNbKill() / $this->getDeath()), 2) : $this->getNbKill();
     }
-
+    
 }
