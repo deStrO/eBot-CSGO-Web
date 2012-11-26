@@ -47,4 +47,20 @@ class statsActions extends sfActions {
         $this->matchs = MatchsTable::getInstance()->createQuery()->where("status >= ?", array(Matchs::STATUS_END_MATCH))->execute();
     }
 
+    public function executeWeaponStats(sfWebRequest $request) {
+        $query = "SELECT `weapon`, count(*) as nb FROM player_kill WHERE headshot = 0 GROUP BY `weapon`";
+        $rs = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($query);
+        foreach ($rs as $v) {
+            $weapons[$v["weapon"]]["normal"] = $v["nb"];
+        }
+
+        $query = "SELECT `weapon`, count(*) as nb FROM player_kill WHERE headshot = 1 GROUP BY `weapon`";
+        $rs = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($query);
+        foreach ($rs as $v) {
+            $weapons[$v["weapon"]]["hs"] = $v["nb"];
+        }
+
+        $this->weapons = $weapons;
+    }
+
 }

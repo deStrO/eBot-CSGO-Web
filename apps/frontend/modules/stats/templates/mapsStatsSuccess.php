@@ -54,7 +54,7 @@
                     type: 'column'
                 },
                 title: {
-                    text: 'Maps round average'
+                    text: <?php echo __("Maps round average"); ?>
                 },
                 xAxis: {
                     categories: 
@@ -72,7 +72,7 @@ echo json_encode($mapData);
                     min: 0,
                     //                    max: 100,
                     title: {
-                        text: 'Nombre de round gagné par side'
+                        text: <?php echo __("Nombre de round gagné par side"); ?>
                     }
                 },
                 
@@ -119,26 +119,26 @@ echo json_encode($mapData);
             
 </script>
 
-<h3>Détails des statistiques</h3>
+<h3><?php echo __("Détails des statistiques"); ?></h3>
 
 <table class="table table-striped" style="width: auto;">
     <thead>
         <tr>
-            <th rowspan="2">Nom de la map</th>
-            <th rowspan="2">Nombre de match</th>
+            <th rowspan="2"><?php echo __("Nom de la map"); ?></th>
+            <th rowspan="2"><?php echo __("Nombre de match"); ?></th>
             <th style="text-align: center;border-left: 1px solid #DDDDDD;" colspan="4">CT</th>
             <th style="text-align: center;border-left: 1px solid #DDDDDD;" colspan="4">T</th>
-            <th style="text-align: center;border-left: 1px solid #DDDDDD;" colspan="2">Probabilité de gagner en commencant</th>
+            <th style="text-align: center;border-left: 1px solid #DDDDDD;" colspan="2"><?php echo __("Probabilité de gagner en commencant"); ?></th>
         </tr>
         <tr>
             <td style="border-left: 1px solid #DDDDDD;" width="50">#</td>
             <td style="border-left: 1px solid #EEEEEE;" width="75">%</td>
-            <td style="border-left: 1px solid #EEEEEE;" width="50">GR</td>
-            <td style="border-left: 1px solid #EEEEEE;" width="75">% GR</td>
+            <td style="border-left: 1px solid #EEEEEE;" width="50"><?php echo __("GR"); ?></td>
+            <td style="border-left: 1px solid #EEEEEE;" width="75">% <?php echo __("GR"); ?></td>
             <td style="border-left: 1px solid #DDDDDD;" width="50">#</td>
             <td style="border-left: 1px solid #EEEEEE;" width="75">%</td>
-            <td style="border-left: 1px solid #EEEEEE;" width="50">GR</td>
-            <td style="border-left: 1px solid #EEEEEE;" width="75">% GR</td>
+            <td style="border-left: 1px solid #EEEEEE;" width="50"><?php echo __("GR"); ?></td>
+            <td style="border-left: 1px solid #EEEEEE;" width="75">% <?php echo __("GR"); ?></td>
             <td style="border-left: 1px solid #DDDDDD;" width="75">CT</td>
             <td style="border-left: 1px solid #EEEEEE;" width="75">T</td>
         </tr>

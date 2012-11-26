@@ -25,7 +25,7 @@
             <li class="nav-header"><?php echo __("Menu statistiques"); ?></li>
             <li <?php if (preg_match('!^global!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("stats/global"); ?>"><?php echo __("Statistique globale"); ?></a></li>
             <li <?php if (preg_match('!^stats_maps!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("stats_maps"); ?>"><?php echo __("Statistique par maps"); ?></a></li>
-
+            <li <?php if (preg_match('!^stats_weapons!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("stats_weapons"); ?>"><?php echo __("Statistique par armes"); ?></a></li>
         </ul>
     </div>
 </div>

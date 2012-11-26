@@ -112,6 +112,10 @@ stats_maps:
   url: /stats/maps
   param: { module: stats, action: mapsStats }    
   
+stats_weapons:
+  url: /stats/weapons
+  param: { module: stats, action: weaponStats }    
+  
 ingame:
   url: /main/ingame
   param: { module: main, action: ingame }  

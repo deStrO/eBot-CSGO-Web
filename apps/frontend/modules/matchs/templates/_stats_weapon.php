@@ -38,13 +38,22 @@ $weapons = array("glock", "hkp2000", "deagle", "p250", "tec9", "awp", "m4a1", "a
                     <td style="text-align: center;" <?php if (@$players[$player->getId()][$weapon]["d"] * 1 == 0) echo 'class="muted"'; ?>>
                         <?php echo @$players[$player->getId()][$weapon]["d"] * 1; ?>
                     </td>
+                    <?php $weaponsStats[$weapon] += $players[$player->getId()][$weapon]["k"] * 1; ?>
                 <?php endforeach; ?>
             </tr>
         <?php endforeach; ?>
     </tbody>
+    <tfoot>
+        <tr>
+            <td>Total</td>
+            <?php foreach ($weapons as $weapon): ?>
+                <td <?php if ($weaponsStats[$weapon] * 1 == 0) echo 'class="muted" '; ?> style="border-left: 2px solid #DDDDDD; text-align: center;" colspan="2"><?php echo $weaponsStats[$weapon] * 1; ?></td>
+            <?php endforeach; ?>
+        </tr>
+    </tfoot>
 </table>
 
-<h5><i class="icon-info-sign"></i> Aide</h5>
+<h5><i class="icon-info-sign"></i> <?php echo __("Aide"); ?></h5>
 <div class="well">
-    <?php echo __("<p>La colonne <b>K</b> représente les kills effectués avec l'arme, la colonne <b>D</b> représente le nombre de fois que le joueur a été tué par l'arme</p>"); ?>		
+<?php echo __("<p>La colonne <b>K</b> représente les kills effectués avec l'arme, la colonne <b>D</b> représente le nombre de fois que le joueur a été tué par l'arme</p>"); ?>		
 </div>

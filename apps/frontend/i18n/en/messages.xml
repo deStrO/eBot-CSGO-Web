@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2012-11-21T18:23:34Z" product-name="messages">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2012-11-26T19:23:26Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -1048,6 +1048,70 @@ will receive a confirmation email containing a link allowing you to complete the
       <trans-unit id="254">
         <source>A</source>
         <target>A</target>
+      </trans-unit>
+      <trans-unit id="255">
+        <source>envoie les statistiques du matchs (nombre de kill, ratio K/D, ratio HS, ...)</source>
+        <target>send stats of the match (kill, ratio K/D, ratio HS)</target>
+      </trans-unit>
+      <trans-unit id="256">
+        <source>Statistique par maps</source>
+        <target>Statistics by maps</target>
+      </trans-unit>
+      <trans-unit id="257">
+        <source>Statistique par armes</source>
+        <target>Statistics by weapons</target>
+      </trans-unit>
+      <trans-unit id="258">
+        <source>Statistiques des armes</source>
+        <target>Weapons statistics</target>
+      </trans-unit>
+      <trans-unit id="259">
+        <source>Tueur / tué</source>
+        <target>Killer / killed</target>
+      </trans-unit>
+      <trans-unit id="260">
+        <source>Statistiques des armes par joueurs</source>
+        <target>Weapons statistics by players </target>
+      </trans-unit>
+      <trans-unit id="261">
+        <source>&lt;p&gt;La colonne &lt;b&gt;K&lt;/b&gt; représente les kills effectués avec l'arme, la colonne &lt;b&gt;D&lt;/b&gt; représente le nombre de fois que le joueur a été tué par l'arme&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="262">
+        <source>Statistiques par maps</source>
+        <target>Statistics maps</target>
+      </trans-unit>
+      <trans-unit id="263">
+        <source>Maps round average</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="264">
+        <source>Nombre de round gagné par side</source>
+        <target>Number of rounds won by side</target>
+      </trans-unit>
+      <trans-unit id="265">
+        <source>Détails des statistiques</source>
+        <target>Statistics details</target>
+      </trans-unit>
+      <trans-unit id="266">
+        <source>Nom de la map</source>
+        <target>Map name</target>
+      </trans-unit>
+      <trans-unit id="267">
+        <source>Nombre de match</source>
+        <target>Number of matches</target>
+      </trans-unit>
+      <trans-unit id="268">
+        <source>Probabilité de gagner en commencant</source>
+        <target>Probability of winning in starting</target>
+      </trans-unit>
+      <trans-unit id="269">
+        <source>GR</source>
+        <target>Pistol Round</target>
+      </trans-unit>
+      <trans-unit id="270">
+        <source>Arme</source>
+        <target>Weapon</target>
       </trans-unit>
     </body>
   </file>

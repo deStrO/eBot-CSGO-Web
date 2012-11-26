@@ -126,7 +126,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="2">Total</th>
+            <th colspan="2"><?php echo __("Total"); ?></th>
             <td><?php echo $total["kill"]; ?></td>
             <td><?php echo $total["assist"]; ?></td>
             <td><?php echo $total["death"]; ?></td>
@@ -153,7 +153,7 @@
     </tfoot>
 </table>
 
-<h5><i class="icon-info-sign"></i> Aide</h5>
+<h5><i class="icon-info-sign"></i> <?php echo __("Aide"); ?></h5>
 <div class="well">
     <?php echo __("<p>Vous pouvez trier tous les champs du tableau pour obtenir des résultats personallisés.</p>
 			<p>Les colonnes <b>1K</b>, <b>2K</b>, ... représentent le nombre de kill par round effectué. Par exemple, si j'ai 2 dans la colonne 3K, cela veut dire que j'ai fais 2 rounds où j'ai fais 3 kills.
