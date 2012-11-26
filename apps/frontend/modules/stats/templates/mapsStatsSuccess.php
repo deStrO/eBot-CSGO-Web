@@ -54,7 +54,7 @@
                     type: 'column'
                 },
                 title: {
-                    text: <?php echo __("Maps round average"); ?>
+                    text: <?php echo json_encode(__("Maps round average")); ?>
                 },
                 xAxis: {
                     categories: 
@@ -72,7 +72,7 @@ echo json_encode($mapData);
                     min: 0,
                     //                    max: 100,
                     title: {
-                        text: <?php echo __("Nombre de round gagné par side"); ?>
+                        text: <?php echo json_encode(__("Nombre de round gagné par side")); ?>
                     }
                 },
                 
