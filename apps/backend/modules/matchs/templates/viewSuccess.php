@@ -744,7 +744,7 @@
 								<?php echo $match->getTeamB(); ?>
 							<?php endif; ?>
 						</td>
-						<td><a href="<?php echo url_for("player_stats", array("id" => $player->getSteamid())); ?>"><?php echo $player->getPseudo(); ?></a></td>
+						<td><?php echo $player->getPseudo(); ?></td>
 						<td><?php echo $player->getNbKill(); ?></td>
 						<td><?php echo $player->getAssist(); ?></td>
 						<td><?php echo $player->getDeath(); ?></td>
