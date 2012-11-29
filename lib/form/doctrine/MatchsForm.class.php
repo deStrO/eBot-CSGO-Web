@@ -18,8 +18,9 @@ class MatchsForm extends BaseMatchsForm {
         $this->widgetSchema["config_knife_round"]->setLabel("Knife Round");
         $this->widgetSchema["config_password"]->setLabel("Mot de passe");
         
-        $flags = sfConfig::get("app_flag_team");
+        $flags = sfConfig::get("app_flag_team".((sfContext::getInstance()->getUser()->getCulture() != "fr") ? "_en" : ""));
         $aFlags = array();
+        $aFlags[""] = "";
         foreach ($flags as $k => $flag) {
             $aFlags[$k] = $flag;
         }

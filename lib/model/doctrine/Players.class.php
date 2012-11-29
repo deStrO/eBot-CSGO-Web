@@ -12,12 +12,29 @@
  */
 class Players extends BasePlayers {
 
-    public function getRatioHs() {
-        return ($this->getHs() > 1) ? round(($this->getHs() / $this->getNbKill()) * 100, 2) : 0;
-    }
+	public function getRatioHs() {
+		return ($this->getHs() > 1) ? round(($this->getHs() / $this->getNbKill()) * 100, 2) : 0;
+	}
 
-    public function getRatio() {
-        return ($this->getDeath() > 1) ? round(($this->getNbKill() / $this->getDeath()), 2) : $this->getNbKill();
-    }
-    
+	public function getRatio() {
+		return ($this->getDeath() > 1) ? round(($this->getNbKill() / $this->getDeath()), 2) : $this->getNbKill();
+	}
+
+	public function getWeaponsStats() {
+		$weapons = array();
+		$query = "SELECT `weapon`, count(*) as nb FROM player_kill WHERE headshot = 0 AND killer_id = '".$this->getId()."' GROUP BY `weapon`";
+		$rs = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($query);
+		foreach ($rs as $v) {
+			$weapons[$v["weapon"]]["normal"] = $v["nb"];
+		}
+
+		$query = "SELECT `weapon`, count(*) as nb FROM player_kill WHERE headshot = 1 AND killer_id = '".$this->getId()."' GROUP BY `weapon`";
+		$rs = Doctrine_Manager::getInstance()->getCurrentConnection()->fetchAssoc($query);
+		foreach ($rs as $v) {
+			$weapons[$v["weapon"]]["hs"] = $v["nb"];
+		}
+
+		return $weapons;
+	}
+
 }

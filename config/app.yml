@@ -6,17 +6,134 @@ all:
   .array:
     maps: [ de_dust2_se, de_nuke_se, de_nuke_ve, de_train_se, de_mirage_csgo, de_inferno_se ]
     flag_team:
-      BE: BELGIUM
-      BR: BRAZILIA
-      DE: GERMANY
-      ES: SPAIN
-      IT: ITALY
-      FR: FRANCE
-      LU: LUXEMBOURG
-      NL: NEDERLANDS
-      PL: POLAND
-      UK: UNITED KINGDOM
-      SE: SWEDISH
+      ZA:	AFRIQUE DU SUD
+      DZ:	ALGERIE
+      DE:	ALLEMAGNE
+      SA:	ARABIE SAOUDITE
+      AR:	ARGENTINE
+      AU:	AUSTRALIE
+      AT:	AUTRICHE
+      BY:	BELARUS
+      BE:	BELGIQUE
+      BR:	BRÉSIL
+      BG:	BULGARIE
+      CA:	CANADA
+      CL:	CHILIE
+      CN:	CHINE
+      KR:	CORÉE DU SUD
+      HR:	CROATIE
+      DK:	DANEMARK
+      AE:	ÉMIRATS ARABES UNIS
+      ES:	ESPAGNE
+      EE:	ESTONIA
+      US:	ÉTATS-UNIS
+      FI:	FINLAND
+      FR:	FRANCE
+      GR:	GRÈCE
+      HU:	HONGRIE
+      IN:	INDE
+      ID:	INDONÉSIE
+      IR:	IRAN
+      IE:	IRELANDE
+      IS:	ISLANDE
+      IL:	ISRAEL
+      IT:	ITALIE
+      JP:	JAPON
+      KZ:	KAZAKHSTAN
+      LV:	LETTONIE
+      LY:	LIBYE
+      LT:	LITUANIE
+      LU:	LUXEMBOURG
+      MY:	MALAISIE
+      MX:	MEXIQUE
+      NO:	NORVÈGE
+      NZ:	NOUVELLE-ZÉLANDE
+      PK:	PAKISTAN
+      NL:	PAYS-BAS
+      PE:	PÉROU
+      PH:	PHILIPPINES
+      PL:	POLOGNE
+      PT:	PORTUGAL
+      CZ:	RÉPUBLIQUE TCHÈQUE
+      RO:	ROUMANIE
+      GB:	ROYAUME-UNI
+      RU:	RUSSIE
+      RS:	SERBIE
+      SG:	SINGAPOUR
+      SK:	SLOVAQUIE
+      SI:	SLOVÉNIE
+      SE:	SUÈDE
+      CH:	SUISSE
+      TW:	TAÏWAN
+      TH:	THAÏLANDE
+      TR:	TURQUIE
+      UA:	UKRAINE
+      VE:	VENEZUELA
+      
+    flag_team_en:
+      DZ:	ALGERIA
+      AR:	ARGENTINA
+      AU:	AUSTRALIA
+      AT:	AUSTRIA
+      BY:	BELARUS
+      BE:	BELGIUM
+      BR:	BRAZIL
+      BG:	BULGARIA
+      CA:	CANADA
+      CL:	CHILE
+      CN:	CHINA
+      HR:	CROATIA
+      CZ:	CZECH REPUBLIC
+      DK:	DENMARK
+      EE:	ESTONIA
+      FI:	FINLAND
+      FR:	FRANCE
+      DE:	GERMANY
+      GR:	GREECE
+      HU:	HUNGARY
+      IS:	ICELAND
+      IN:	INDIA
+      ID:	INDONESIA
+      IR:	IRAN
+      IE:	IRELAND
+      IL:	ISRAEL
+      IT:	ITALY
+      JP:	JAPAN
+      KZ:	KAZAKHSTAN
+      KR:	KOREA
+      LV:	LATVIA
+      LY:	LIBYA
+      LT:	LITHUANIA
+      LU:	LUXEMBOURG
+      MY:	MALAYSIA
+      MX:	MEXICO
+      NL:	NETHERLANDS
+      NZ:	NEW ZEALAND
+      NO:	NORWAY
+      PK:	PAKISTAN
+      PE:	PERU
+      PH:	PHILIPPINES
+      PL:	POLAND
+      PT:	PORTUGAL
+      RO:	ROMANIA
+      RU:	RUSSIAN FEDERATION
+      SA:	SAUDI ARABIA
+      RS:	SERBIA
+      SG:	SINGAPORE
+      SK:	SLOVAKIA
+      SI:	SLOVENIA
+      ZA:	SOUTH AFRICA
+      ES:	SPAIN
+      SE:	SWEDEN
+      CH:	SWITZERLAND
+      TW:	TAIWAN
+      TH:	THAILAND
+      TR:	TURKEY
+      UA:	UKRAINE
+      AE:	UNITED ARAB EMIRATES
+      GB:	UNITED KINGDOM
+      US:	UNITED STATES
+      VE:	VENEZUELA
 
   log_match: ../../ebotv3/logs/log_match
   log_match_admin: ../../ebotv3/logs/log_match_admin
