@@ -45,7 +45,7 @@
                     <h3><?php echo __("Carte de chaleur"); ?></h3>
                 </div>
                 <div class="modal-body" style="max-height: 0%; text-align: center;">
-                    <div id="heatmapArea" style="border: 5px solid black; border-radius: 10px; position:relative; background-image: url(<?php echo url_for($class_heatmap->getMapImage()); ?>); width: <?php echo $class_heatmap->getResX(); ?>px;  height: <?php echo $class_heatmap->getResY(); ?>px;">
+                    <div id="heatmapArea" style="border: 5px solid black; border-radius: 10px; position:relative; background-image: url(<?php echo image_path($class_heatmap->getMapImage(), true); ?>); width: <?php echo $class_heatmap->getResX(); ?>px;  height: <?php echo $class_heatmap->getResY(); ?>px;">
 
                     </div>
                 </div>

@@ -58,8 +58,11 @@
                     </div>
                 </td>
 
-                <td width="50" style="padding-left: 3px;" align="center">
+                <td width="200" style="padding-left: 3px;" align="center">
                     <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse"><?php echo __("Voir"); ?></button></a>
+                    <?php if ($match->getStatus() == Matchs::STATUS_ARCHIVE): ?>
+                        <a href="<?php echo url_for("matchs_delete", $match); ?>"><button class="btn btn-danger"><?php echo __("Supprimer"); ?></button></a>
+                    <?php endif; ?>
                 </td>
 
             </tr>

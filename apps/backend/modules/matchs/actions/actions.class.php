@@ -91,7 +91,7 @@ class matchsActions extends sfActions {
 		$match->delete();
 
 		$this->getUser()->setFlash("notification_ok", $this->__("Le match a été supprimé"));
-		$this->redirect("matchs_current");
+		$this->redirect($request->getReferer());
 	}
 
 	public function executePassKnife(sfWebRequest $request) {
