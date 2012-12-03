@@ -15,24 +15,24 @@ all:
       AT:	AUTRICHE
       BY:	BELARUS
       BE:	BELGIQUE
-      BR:	BRÉSIL
+      BR:	BRESIL
       BG:	BULGARIE
       CA:	CANADA
       CL:	CHILIE
       CN:	CHINE
-      KR:	CORÉE DU SUD
+      KR:	COREE DU SUD
       HR:	CROATIE
       DK:	DANEMARK
-      AE:	ÉMIRATS ARABES UNIS
+      AE:	EMIRATS ARABES UNIS
       ES:	ESPAGNE
       EE:	ESTONIA
-      US:	ÉTATS-UNIS
+      US:	ETATS-UNIS
       FI:	FINLAND
       FR:	FRANCE
-      GR:	GRÈCE
+      GR:	GRECE
       HU:	HONGRIE
       IN:	INDE
-      ID:	INDONÉSIE
+      ID:	INDONESIE
       IR:	IRAN
       IE:	IRELANDE
       IS:	ISLANDE
@@ -46,26 +46,26 @@ all:
       LU:	LUXEMBOURG
       MY:	MALAISIE
       MX:	MEXIQUE
-      NO:	NORVÈGE
-      NZ:	NOUVELLE-ZÉLANDE
+      NO:	NORVEGE
+      NZ:	NOUVELLE-ZELANDE
       PK:	PAKISTAN
       NL:	PAYS-BAS
-      PE:	PÉROU
+      PE:	PEROU
       PH:	PHILIPPINES
       PL:	POLOGNE
       PT:	PORTUGAL
-      CZ:	RÉPUBLIQUE TCHÈQUE
+      CZ:	REPUBLIQUE TCHEQUE
       RO:	ROUMANIE
       GB:	ROYAUME-UNI
       RU:	RUSSIE
       RS:	SERBIE
       SG:	SINGAPOUR
       SK:	SLOVAQUIE
-      SI:	SLOVÉNIE
-      SE:	SUÈDE
+      SI:	SLOVENIE
+      SE:	SUEDE
       CH:	SUISSE
-      TW:	TAÏWAN
-      TH:	THAÏLANDE
+      TW:	TAIWAN
+      TH:	THAILANDE
       TR:	TURQUIE
       UA:	UKRAINE
       VE:	VENEZUELA
