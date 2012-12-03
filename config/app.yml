@@ -3,6 +3,8 @@
 
 # default values
 all:
+  <?php require_once(sfConfig::get('sf_root_dir')."/config/app_perso.yml") ?>
+
   .array:
     maps: [ de_dust2_se, de_nuke_se, de_nuke_ve, de_train_se, de_mirage_csgo, de_inferno_se ]
     flag_team:
@@ -69,7 +71,7 @@ all:
       TR:	TURQUIE
       UA:	UKRAINE
       VE:	VENEZUELA
-      
+
     flag_team_en:
       DZ:	ALGERIA
       AR:	ARGENTINA
@@ -134,11 +136,3 @@ all:
       GB:	UNITED KINGDOM
       US:	UNITED STATES
       VE:	VENEZUELA
-
-  log_match: ../../ebotv3/logs/log_match
-  log_match_admin: ../../ebotv3/logs/log_match_admin
-  
-  cryptkey: rkI0aVS2QM14f53bozB4oEqm
-  
-  ebot_ip: 192.168.1.1
-  ebot_port: 12360

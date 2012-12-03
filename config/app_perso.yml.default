@@ -1,0 +1,8 @@
+all:
+  log_match: ../../ebotv3/logs/log_match
+  log_match_admin: ../../ebotv3/logs/log_match_admin
+  
+  cryptkey: rkI0aVS2QM14f53bozB4oEqm
+  
+  ebot_ip: 192.168.1.1
+  ebot_port: 12360

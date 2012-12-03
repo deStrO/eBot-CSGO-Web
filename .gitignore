@@ -1,0 +1,4 @@
+config/app_perso.yml
+config/databases.yml
+cache
+logs
