@@ -32,7 +32,40 @@ class statsActions extends sfActions {
     }
 
     public function executeGlobal(sfWebRequest $request) {
-        
+        $matchs = $this->getUser()->getAttribute("global.stats.matchs", array());
+        if (count($matchs) > 0) {
+            $this->matchs = MatchsTable::getInstance()->createQuery()->where("id IN ?", array($matchs))->execute();
+        } else {
+            $this->matchs = MatchsTable::getInstance()->findAll();
+        }
+
+        if ($request->getMethod() == sfWebRequest::POST) {
+            if (is_array($request->getPostParameter("ids"))) {
+                $matchTab = array();
+                foreach ($request->getPostParameter("ids") as $id) {
+                    if (!is_numeric($id))
+                        continue;
+                    if (in_array($id, $matchTab))
+                        continue;
+                    if (!MatchsTable::getInstance()->find($id))
+                        continue;
+                    $matchTab[] = $id;
+                }
+
+                if (count($matchTab) == 0) {
+                    $this->getUser()->setFlash("notification.error", "Pas de match à filtrer");
+                    $this->getUser()->setAttribute("global.stats.matchs", null);
+                } else {
+                    $this->getUser()->setFlash("notification.ok", "Le filtre a été appliqué");
+                    $this->getUser()->setAttribute("global.stats.matchs", $matchTab);
+                }
+            } else {
+                $this->getUser()->setFlash("notification.ok", "Le filtre a été remis à zéro");
+                $this->getUser()->setAttribute("global.stats.matchs", null);
+            }
+
+            $this->redirect("global_stats");
+        }
     }
 
     public function executePlayerStat(sfWebRequest $request) {

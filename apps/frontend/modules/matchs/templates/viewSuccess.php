@@ -121,9 +121,15 @@
                             <th width="200"><?php echo __("Nombre de round joué"); ?></th>
                             <td><?php echo $match->getScoreA() + $match->getScoreB(); ?></td>
                         </tr>
+                        <?php if (sfConfig::get("app_mode") == "lan"): ?>
+                            <tr>
+                                <th width="200"><?php echo __("Serveur"); ?></th>
+                                <td><?php echo $match->getIp(); ?></td>
+                            </tr>
+                        <?php endif; ?>
                         <tr>
-                            <th width="200"><?php echo __("Serveur"); ?></th>
-                            <td><?php echo $match->getIp(); ?></td>
+                            <th width="200"><?php echo __("GO TV"); ?></th>
+                            <td><?php echo $match->getServer()->getTvIp(); ?></td>
                         </tr>
                         <tr>
                             <th width="200"><?php echo __("Nombre de joueur"); ?></th>
@@ -218,7 +224,7 @@
                             }
                         } }, "html");
                 }
-                                                                        																																				                                                            				
+                                                                                        																																				                                                            				
                 setInterval("refreshLog()",2000);
             </script>
         <?php endif; ?>

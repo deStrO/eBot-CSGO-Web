@@ -49,10 +49,13 @@ class serversActions extends sfActions {
 				if (!preg_match("!^\d+.\d+.\d+.\d+:\d+$!", $this->form->getValue("ip"))) {
 					$datas = $request->getPostParameter($this->form->getName());
 					$added = array();
+                    $counter = 1;
+                    $name = $this->form->getValue("hostname");
 					if (preg_match("!^(\d+).(\d+).(\d+).(?<start>\d+)\-(?<end>\d+):(\d+)$!", $this->form->getValue("ip"), $match)) {
 						for ($i = $match["start"]; $i <= $match["end"]; $i++) {
 							$ip = $match[1] . "." . $match[2] . "." . $match[3] . "." . $i . ":" . $match[6];
 							$datas["ip"] = $ip;
+                            $datas["hostname"] = $name . " #".$counter++;
 							$this->form = new ServersForm();
 							$this->form->bind($datas);
 							$this->form->save();
@@ -64,6 +67,7 @@ class serversActions extends sfActions {
 							foreach ($ports as $port) {
 								$ip = $match[1] . "." . $match[2] . "." . $match[3] . "." . $i . ":" . $port;
 								$datas["ip"] = $ip;
+                                $datas["hostname"] = $name . " #".$counter++;
 								$this->form = new ServersForm();
 								$this->form->bind($datas);
 								$this->form->save();
@@ -75,6 +79,7 @@ class serversActions extends sfActions {
 						foreach ($ports as $port) {
 							$ip = $match[1] . "." . $match[2] . "." . $match[3] . "." . $match[4] . ":" . $port;
 							$datas["ip"] = $ip;
+                            $datas["hostname"] = $name . " #".$counter++;
 							$this->form = new ServersForm();
 							$this->form->bind($datas);
 							$this->form->save();
