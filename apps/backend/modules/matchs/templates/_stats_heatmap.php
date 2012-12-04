@@ -42,7 +42,7 @@
         <div class="span8">
             <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto;max-width:100%;">
                 <div class="modal-header">
-                    <h3>Carte de chaleur</h3>
+                    <h3><?php echo __("Carte de chaleur"); ?></h3>
                 </div>
                 <div class="modal-body" style="max-height: 0%; text-align: center;">
                     <div id="heatmapArea" style="border: 5px solid black; border-radius: 10px; position:relative; background-image: url(<?php echo image_path($class_heatmap->getMapImage(), true); ?>); width: <?php echo $class_heatmap->getResX(); ?>px;  height: <?php echo $class_heatmap->getResY(); ?>px;">
@@ -54,13 +54,13 @@
         <div class="span4">
             <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto;max-width:100%;">
                 <div class="modal-header">
-                    <h3>Configuration</h3>
+                    <h3><?php echo __("Configuration"); ?></h3>
                 </div>
                 <div class="modal-body" style="max-height: 0%;">
 
                     <div class="form-horizontal">
                         <div class="control-group">
-                            <label class="control-label">Type d'évènement</label>
+                            <label class="control-label"><?php echo __("Type d'évènement"); ?></label>
                             <div class="controls">
                                 <select id="eventType">
                                     <option value="kill" selected>Kill</option>
@@ -69,7 +69,7 @@
                                     <option value="smokegrenade">Smoke</option>
                                     <option value="molotv">Molotov</option>
                                     <option value="decoy">Decoy</option>
-                                    <option value="allstuff">Tout le stuff</option>
+                                    <option value="allstuff"><?php echo __("Tout le stuff"); ?></option>
                                 </select>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                             <label class="control-label">Side</label>
                             <div class="controls">
                                 <select id="eventSide">
-                                    <option value="all">Tous les sides</option>
+                                    <option value="all"><?php echo __("Tous les sides"); ?></option>
                                     <option value="ct">Side CT</option>
                                     <option value="t">Side T</option>
                                 </select>
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" onclick="generateHeatmap();" id="generateButton">Générer la carte de chaleur</button>
+                    <button class="btn btn-primary" onclick="generateHeatmap();" id="generateButton"><?php echo __("Générer la carte de chaleur"); ?></button>
                 </div>
             </div>
         </div>

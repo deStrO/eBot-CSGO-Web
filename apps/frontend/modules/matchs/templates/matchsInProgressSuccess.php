@@ -7,7 +7,7 @@
         $("#seconds").text(count);
         count--;
         if (count == 0) {
-            $("#tableMatch").load("<?php echo url_for("@matchs_current_page?page=".$page); ?> #tableMatch");
+            $("#tableMatch").load("<?php echo url_for("@matchs_current_page?page=" . $page); ?> #tableMatch");
             count = 10;
         }
     }
@@ -15,7 +15,7 @@
     reloadMatchs();
 </script>
 
-<h3><?php echo __("Listes des matchs en cours"); ?></h3>
+<h3><?php echo ucfirst(__("Listes des matchs en cours")); ?></h3>
 <hr/>
 
 <div class="navbar">
@@ -89,7 +89,11 @@
                         <?php endif; ?>
                     </td>
                     <td width="120">
-                        <?php echo $match->getIp(); ?>
+                        <?php if (sfConfig::get("app_mode") == "net"): ?>
+                            <?php echo $match->getServer()->getTvIp(); ?>
+                        <?php else: ?>
+                            <?php echo $match->getIp(); ?>
+                        <?php endif; ?>
                     </td>
                     <td width="50" align="center">
                         <?php if ($match->getEnable()): ?>
@@ -135,7 +139,7 @@
             <tr>
                 <th><?php echo __("#ID"); ?></th>
                 <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
-                <th><?php echo __("Maps en cours"); ?></th>
+                <th><?php echo ucfirst(__("Maps en cours")); ?></th>
                 <th><?php echo __("IP"); ?></th>
                 <th><?php echo __("Enabled"); ?></th>
                 <th><?php echo __("Status"); ?></th>

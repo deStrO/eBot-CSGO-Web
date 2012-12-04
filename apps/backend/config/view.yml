@@ -6,7 +6,7 @@ default:
     content-type: text/html
 
   metas:
-    title:        eBot Administration
+    title:        "eBot :: Your match manager for CS:GO"
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en

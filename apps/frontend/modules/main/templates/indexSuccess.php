@@ -1,11 +1,10 @@
 <div class="well">
-    <h2>eBot-CSGO</h2>
-    <p><?php echo __("Bienvenue sur le panel de l'eBot V3. Vous pouvez accédez aux différents matchs via le menu. Enjoy !"); ?></p>
+    <center><?php echo image_tag("/images/ebot.png"); ?></center>
 </div>
 
 <div class="row-fluid">
     <div class="span7">
-        <h5><?php echo __("Listes des matchs en cours"); ?></h5>
+        <h5><?php echo ucfirst(__("Listes des matchs en cours")); ?></h5>
 
         <table class="table table-striped table-condensed" style="font-size: 0.9em">
             <tbody>
@@ -37,7 +36,11 @@
                             <?php endif; ?>
                         </td>
                         <td width="120">
-                            <?php echo $match->getIp(); ?>
+                            <?php if (sfConfig::get("app_mode") == "net"): ?>
+                                <?php echo $match->getServer()->getTvIp(); ?>
+                            <?php else: ?>
+                                <?php echo $match->getIp(); ?>
+                            <?php endif; ?>
                         </td>
                         <td width="50" align="center">
                             <?php if ($match->getEnable()): ?>
@@ -79,7 +82,7 @@
                 <tr>
                     <th>#ID</th>
                     <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
-                    <th><?php echo __("Maps en cours"); ?></th>
+                    <th><?php echo ucfirst(__("Maps en cours")); ?></th>
                     <th><?php echo __("IP"); ?></th>
                     <th><?php echo __("Enabled"); ?></th>
                     <th><?php echo __("Status"); ?></th>

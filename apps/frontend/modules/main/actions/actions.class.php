@@ -16,27 +16,13 @@ class mainActions extends sfActions {
      * @param sfRequest $request A request object
      */
     public function executeIndex(sfWebRequest $request) {
-        $this->matchs = MatchsTable::getInstance()->getMatchsInProgressQuery()->limit(10)->execute();
-        /*$this->match = MatchsTable::getInstance()->getZoomMatch();
-        if (!$this->match) {
-            $this->match = MatchsTable::getInstance()->getRandomMatchStarted();
+        $query =  MatchsTable::getInstance()->getMatchsInProgressQuery();
+        if (sfConfig::get("app_mode") == "net") {
+            $query->andWhere("status > 0");
         }
-        
-        $this->stats = MatchsTable::getInstance()->getRandomMatchStarted();*/
+        $this->matchs = $query->limit(10)->execute();
     }
-    
-    public function executeZoomReload (sfWebRequest $request) {
-        $match = $this->getRoute()->getObject();
         
-        return $this->renderPartial("zoom", array("match" => $match));
-    }
-    
-    public function executeMatchsReload(sfWebRequest $request) {
-        $this->matchs = MatchsTable::getInstance()->getMatchsInProgressQuery()->execute();
-        
-        return $this->renderPartial("matchsInProgress", array("matchs" => $this->matchs));
-    }
-    
     public function executeIngame(sfWebRequest $request) { }
 
 }

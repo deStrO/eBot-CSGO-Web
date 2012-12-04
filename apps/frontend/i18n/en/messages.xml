@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2012-11-26T19:23:26Z" product-name="messages">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2012-12-02T12:44:08Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -1112,6 +1112,58 @@ will receive a confirmation email containing a link allowing you to complete the
       <trans-unit id="270">
         <source>Arme</source>
         <target>Weapon</target>
+      </trans-unit>
+      <trans-unit id="271">
+        <source>Information / stats globales</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="272">
+        <source>vs </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="273">
+        <source>1 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="274">
+        <source>2 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="275">
+        <source>3 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="276">
+        <source>4 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="277">
+        <source>5 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="278">
+        <source>First Kill</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="279">
+        <source>Arme utilisée</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="280">
+        <source>Normal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="281">
+        <source>Point Clutch</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="282">
+        <source>Stats des armes</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="283">
+        <source>Ratio H/S</source>
+        <target/>
       </trans-unit>
     </body>
   </file>

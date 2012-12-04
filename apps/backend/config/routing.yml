@@ -241,6 +241,14 @@ matchs_heatmap_data:
     id : \d+
     sf_method: [post]          
 
+users_edit:
+  url: /users/edit/:id
+  class: sfDoctrineRoute
+  options: { model: sfGuardUser, type: object}
+  param: { module: users, action: edit }   
+  requirements:
+    id : \d+
+    sf_method: [get, put,post]  
 
 # generic rules
 # please, remove them by adding more specific rules

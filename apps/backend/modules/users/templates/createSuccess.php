@@ -1,5 +1,3 @@
-<h3>Création d'un serveur</h3>
-<hr/>
 <style>
     label.valid {
         width: 24px;
@@ -16,51 +14,27 @@
     }
 </style>
 
-<script>
-    $(function() { 
-        /*$('#form-match').validate(
-        {
-            rules: {
-                "servers[ip]": {
-                    minlength: 5,
-                    required: true
-                }, "servers[rcon]": {
-                    minlength: 1,
-                    required: true
-                }, "servers[hostname]": {
-                    minlength: 1,
-                    required: true
-                }
-            },
-            highlight: function(label) {
-                $(label).closest('.control-group').addClass('error');
-            },
-            success: function(label) {
-                label
-                .text('OK!').addClass('valid')
-                .closest('.control-group').addClass('success');
-            }
-        });*/
-    });
-        
-</script>
+
 <form class="form-horizontal" id="form-users" method="post" action="<?php echo url_for("users/create"); ?>">
     <?php echo $form->renderHiddenFields(); ?>
-    <div class="well">
-        <?php foreach ($form as $widget): ?>
-            <?php if ($widget->isHidden()) continue; ?>
-            <div class="control-group">
-                <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
-                <div class="controls">
-                    <?php echo $widget->render(); ?>
-                </div>
-            </div>
-        <?php endforeach; ?>
 
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" class="btn btn-primary" value="Créer l'utilisateur"/>
-            </div>
+    <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto;max-width:100%;">
+        <div class="modal-header">
+            <h3><?php echo __("Création d'un utilisateur"); ?></h3>
         </div>
-    </div>
+        <div class="modal-body" style="max-height: 0%;">
+            <?php foreach ($form as $widget): ?>
+                <?php if ($widget->isHidden()) continue; ?>
+                <div class="control-group">
+                    <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
+                    <div class="controls">
+                        <?php echo $widget->render(); ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" class="btn btn-primary" value="<?php echo __("Créer l'utilisateur"); ?>"/>
+        </div>
+    </div>	
 </form>

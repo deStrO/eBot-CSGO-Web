@@ -16,7 +16,7 @@ class usersActions extends sfActions {
      * @param sfRequest $request A request object
      */
     public function executeIndex(sfWebRequest $request) {
-        
+        $this->users = sfGuardUserTable::getInstance()->findAll();
     }
 
     public function executeCreate(sfWebRequest $request) {
@@ -25,8 +25,23 @@ class usersActions extends sfActions {
         if ($request->getMethod() == sfWebRequest::POST) {
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if ($this->form->isValid()) {
+                $this->form->save();
                 $this->getUser()->setFlash("notification_ok", "L'utilisateur a été créé");
                 $this->redirect("users/create");
+            }
+        }
+    }
+    
+    public function executeEdit(sfWebRequest $request) {
+        $this->user = $this->getRoute()->getObject();
+        $this->form = new sfGuardUserAdminForm($this->user);
+
+        if ($request->getMethod() == sfWebRequest::POST) {
+            $this->form->bind($request->getPostParameter($this->form->getName()));
+            if ($this->form->isValid()) {
+                $this->form->save();
+                $this->getUser()->setFlash("notification_ok", "L'utilisateur a été édité");
+                $this->redirect("users/index");
             }
         }
     }

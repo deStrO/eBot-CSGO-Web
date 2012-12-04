@@ -29,7 +29,7 @@
             <li><a href="<?php echo url_for("servers/stats"); ?>"><?php echo __("Statistiques utilisations"); ?></a></li>
             <li class="nav-header"><?php echo __("Gestion des utilisateurs"); ?></li>
             <li><a href="<?php echo url_for("users/create"); ?>"><?php echo __("Créer un utilisateur"); ?></a></li>
-            <li><a href="<?php echo url_for("sfGuardUser/index"); ?>"><?php echo __("Gestion des comptes"); ?></a></li>
+            <li><a href="<?php echo url_for("users/index"); ?>"><?php echo __("Gestion des comptes"); ?></a></li>
         </ul>
     </div>
 </div>

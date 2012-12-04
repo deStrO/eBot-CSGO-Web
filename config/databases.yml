@@ -6,5 +6,5 @@ all:
     class: sfDoctrineDatabase
     param:
       dsn:      mysql:host=localhost;dbname=ebotv3
-      username: ebotv3
-      password: ebotv3
+      username: root
+      password: vinise

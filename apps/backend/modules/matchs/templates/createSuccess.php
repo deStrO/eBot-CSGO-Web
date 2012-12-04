@@ -61,7 +61,7 @@
                     <div class="controls">
                         <?php echo $widget->render(); ?>
                         <?php if ($name == "rules"): ?>
-                            <span class="help-inline">Rentrer le nom de la cfg que vous utilisez sans son extension (si esl5on5.cfg devient esl5on5)</span>
+                            <span class="help-inline"><?php echo __("Rentrer le nom de la cfg que vous utilisez sans son extension (si esl5on5.cfg devient esl5on5)"); ?></span>
                         <?php endif; ?>
                     </div>
                 </div>

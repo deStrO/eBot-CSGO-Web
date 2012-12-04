@@ -1,6 +1,6 @@
 <?php use_javascript("highcharts.js"); ?>
 
-<h3>Stats des armes</h3>
+<h3><?php echo __("Stats des armes"); ?></h3>
 
 
 <style>
@@ -68,15 +68,20 @@
                         data: 
 <?php
 $weaponsJSON = array();
-foreach ($weapons as $k => $v)
-    $weaponsJSON[] = array($k, $v["normal"] + $v["hs"]); echo json_encode($weaponsJSON);
+$total = 0;
+foreach ($weapons as $k => $v) {
+    $weaponsJSON[] = array($k, @$v["normal"] + @$v["hs"]);
+    $total += @$v["normal"] + @$v["hs"];
+}
+    echo json_encode($weaponsJSON);
+
 ?>
                             
-                        }]
-                });
+                    }]
             });
-    
         });
+    
+    });
 </script>
 
 <div class="container-fluid">
@@ -88,18 +93,20 @@ foreach ($weapons as $k => $v)
                         <th width="100"><?php echo __("Arme"); ?></th>
                         <th><?php echo __("Total"); ?></th>
                         <th><?php echo __("HeadShot"); ?></th>
-                        <th>Ratio H/S</th>
+                        <th><?php echo __("Ratio H/S"); ?></th>
+                        <th><?php echo __("Ratio"); ?></th>
                     </tr>
                 </thead>
                 <tbody>
-<?php foreach ($weapons as $k => $v): ?>
+                    <?php foreach ($weapons as $k => $v): ?>
                         <tr>
-                            <td><?php echo image_tag("/images/kills/csgo/" . $k . ".png", array("class" => "needTips_S", "title" => $k)); ?></td>
-                            <td><?php echo $v["normal"] + $v["hs"] * 1; ?></td>
-                            <td><?php echo $v["hs"] * 1; ?></td>
-                            <td><?php echo round(($v["hs"] / ($v["normal"] + $v["hs"])) * 100, 2); ?>%</td>
+                            <td style="font-size:0px"><?php echo $k; ?><?php echo image_tag("/images/kills/csgo/" . $k . ".png", array("class" => "needTips_S", "title" => $k)); ?></td>
+                            <td><?php echo @$v["normal"] + @$v["hs"] * 1; ?></td>
+                            <td><?php echo @$v["hs"] * 1; ?></td>
+                            <td><?php echo round((@$v["hs"] / (@$v["normal"] + @$v["hs"])) * 100, 2); ?>%</td>
+                            <td><?php echo round(((@$v["hs"] + @$v["normal"]) / $total) * 100, 2); ?>%</td>
                         </tr>
-<?php endforeach; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
