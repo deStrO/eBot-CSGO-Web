@@ -846,43 +846,43 @@
       </trans-unit>
       <trans-unit id="210">
         <source>Rentrer le nom de la cfg que vous utilisez sans son extension (si esl5on5.cfg devient esl5on5)</source>
-        <target/>
+        <target>Put the name of your config file without the extension (if it's esl5on5.cfg, write esl5on5)</target>
       </trans-unit>
       <trans-unit id="211">
         <source>Edition des scores du matchs</source>
-        <target/>
+        <target>Edit the score for the match</target>
       </trans-unit>
       <trans-unit id="212">
         <source>Statistiques des armes</source>
-        <target/>
+        <target>Weapons statistics</target>
       </trans-unit>
       <trans-unit id="213">
         <source>Tueur / tué</source>
-        <target/>
+        <target>Killer / Killed</target>
       </trans-unit>
       <trans-unit id="214">
         <source>Carte de chaleur</source>
-        <target/>
+        <target>Heat Map</target>
       </trans-unit>
       <trans-unit id="215">
         <source>Configuration</source>
-        <target/>
+        <target>Configuration</target>
       </trans-unit>
       <trans-unit id="216">
         <source>Type d'évènement</source>
-        <target/>
+        <target>Type of event</target>
       </trans-unit>
       <trans-unit id="217">
         <source>Tout le stuff</source>
-        <target/>
+        <target>All the stuff</target>
       </trans-unit>
       <trans-unit id="218">
         <source>Tous les sides</source>
-        <target/>
+        <target>All sides</target>
       </trans-unit>
       <trans-unit id="219">
         <source>Générer la carte de chaleur</source>
-        <target/>
+        <target>Generate the heatmap</target>
       </trans-unit>
       <trans-unit id="220">
         <source>Total</source>
@@ -890,7 +890,7 @@
       </trans-unit>
       <trans-unit id="221">
         <source>Aide</source>
-        <target/>
+        <target>Help</target>
       </trans-unit>
       <trans-unit id="222">
         <source>&lt;p&gt;Vous pouvez trier tous les champs du tableau pour obtenir des résultats personallisés.&lt;/p&gt;&#13;
@@ -902,55 +902,55 @@
       </trans-unit>
       <trans-unit id="223">
         <source>Statistiques des armes par joueurs</source>
-        <target/>
+        <target>Weapons statistics by players</target>
       </trans-unit>
       <trans-unit id="224">
         <source>&lt;p&gt;La colonne &lt;b&gt;K&lt;/b&gt; représente les kills effectués avec l'arme, la colonne &lt;b&gt;D&lt;/b&gt; représente le nombre de fois que le joueur a été tué par l'arme&lt;/p&gt;</source>
-        <target/>
+        <target>&lt;p&gt;The column &lt;b&gt;K&lt;/b&gt; represents the number of kill with this weapons, the column &lt;b&gt;D&lt;/b&gt; represents the number of times the player has been killed by the weapon&lt;/p&gt;</target>
       </trans-unit>
       <trans-unit id="225">
         <source>Vous devez être connecter pour avoir accès à cette zone !</source>
-        <target/>
+        <target>You must login to access this area!</target>
       </trans-unit>
       <trans-unit id="226">
         <source>otal de match</source>
-        <target/>
+        <target>Total de match</target>
       </trans-unit>
       <trans-unit id="227">
         <source>Création d'un utilisateur</source>
-        <target/>
+        <target>Create an user</target>
       </trans-unit>
       <trans-unit id="228">
         <source>Créer l'utilisateur</source>
-        <target/>
+        <target>Create the user</target>
       </trans-unit>
       <trans-unit id="229">
         <source>Edition d'un utilisateur</source>
-        <target/>
+        <target>Edit an user</target>
       </trans-unit>
       <trans-unit id="230">
         <source>Editer l'utilisateur</source>
-        <target/>
+        <target>Edit the user</target>
       </trans-unit>
       <trans-unit id="231">
         <source>Listes des utilisateurs</source>
-        <target/>
+        <target>Users lists</target>
       </trans-unit>
       <trans-unit id="232">
         <source>Nom d'utilisateur</source>
-        <target/>
+        <target>Username</target>
       </trans-unit>
       <trans-unit id="233">
         <source>Date de création</source>
-        <target/>
+        <target>Creation date</target>
       </trans-unit>
       <trans-unit id="234">
         <source>Date de mise à jours</source>
-        <target/>
+        <target>Updated date</target>
       </trans-unit>
       <trans-unit id="235">
         <source>Dernier login</source>
-        <target/>
+        <target>Last login</target>
       </trans-unit>
     </body>
   </file>
