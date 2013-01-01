@@ -1,3 +1,5 @@
+<?php use_helper('Date') ?>
+
 <script>
     setInterval("reloadMatchs();", 1000);
         
@@ -92,6 +94,9 @@
                     <td width="20"  style="padding-left: 10px;">
                         <span style="float:left">#<?php echo $match->getId(); ?></span>
                     </td>
+                    <td width="20"  style="padding-left: 10px;">
+                        <span style="float:left"><?php echo format_date($match->getCreatedAt(), 'd') ?></span>
+                    </td>
                     <td width="100"  style="padding-left: 10px;">
                         <span style="float:left"><?php echo $team1; ?></span>
                     </td>
@@ -141,13 +146,13 @@
             <?php endforeach; ?>
             <?php if ($pager->getNbResults() == 0): ?>
                 <tr>
-                    <td colspan="8" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
+                    <td colspan="9" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
                 </tr>
             <?php endif; ?>
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="9">
+                <td colspan="10">
                     <div class="pagination pagination-centered">
                         <?php
                         use_helper("TablePagination");
@@ -177,6 +182,7 @@
             </tr>
             <tr>
                 <th><?php echo __("#ID"); ?></th>
+                <th><?php echo __("Date"); ?></th>
                 <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
                 <th><?php echo __("Maps en cours"); ?></th>
                 <th><?php echo __("IP"); ?></th>
