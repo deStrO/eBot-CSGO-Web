@@ -223,4 +223,18 @@ class Matchs extends BaseMatchs {
         return $actions;
     }
 
+    public function getCopiedOne()
+    {
+        $newMatch = $this->copy();
+
+        $newMatch
+            ->setTeamA(null)
+            ->setTeamAFlag(null)
+            ->setTeamB(null)
+            ->setTeamBFlag(null)
+        ;
+
+        return $newMatch;
+    }
+
 }

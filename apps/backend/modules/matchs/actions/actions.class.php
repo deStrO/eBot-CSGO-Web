@@ -374,7 +374,9 @@ class matchsActions extends sfActions {
 	}
 
 	public function executeCreate(sfWebRequest $request) {
-		$this->form = new MatchsForm();
+		$lastMatch = Doctrine::getTable('Matchs')->getLastMatch();
+
+		$this->form = new MatchsForm($lastMatch->getCopiedOne());
 		$this->maps = sfConfig::get("app_maps");
 
 		if ($request->getMethod() == sfWebRequest::POST) {
@@ -406,7 +408,7 @@ class matchsActions extends sfActions {
 
 				$this->getUser()->setFlash("notification_ok", $this->__("Le match a été créé avec succès et porte l'ID ") . $match->getId());
 
-				$this->redirect("matchs_create");
+				$this->redirect("matchs_current");
 			}
 		}
 	}
