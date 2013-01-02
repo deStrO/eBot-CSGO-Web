@@ -1,3 +1,5 @@
+<?php use_helper('Date') ?>
+
 <h4>Match #<?php echo $match->getId(); ?> - <?php echo $match->getTeamA(); ?> vs <?php echo $match->getTeamB(); ?></h4>
 <hr/>
 
@@ -113,6 +115,10 @@
                     <h5><i class="icon-tasks"></i> <?php echo __("Information du match"); ?></h5>
 
                     <table class="table">
+                        <tr>
+                            <th width="200"><?php echo __("Date"); ?></th>
+                            <td><?php echo format_date($match->getCreatedAt(), 'D') ?></td>
+                        </tr>
                         <tr>
                             <th width="200"><?php echo __("Score"); ?></th>
                             <td><?php echo $team1; ?> (<?php echo $score1; ?>) - (<?php echo $score2; ?>) <?php echo $team2; ?></td>
