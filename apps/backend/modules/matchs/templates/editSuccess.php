@@ -17,7 +17,7 @@
 </style>
 
 <script>
-    $(function() { 
+    $(function() {
         $('#form-match').validate(
         {
             rules: {
@@ -45,7 +45,7 @@
             }
         }).form();
     });
-        
+
 </script>
 
 <table border="0" cellpadding="5" cellspacing="5" width="100%">
@@ -72,6 +72,20 @@
                         </div>
                     <?php endforeach; ?>
 
+					<div class="control-group">
+		                <label class="control-label"><?php echo __("Server"); ?></label>
+		                <div class="controls">
+							<select name="server_id">
+								<option value="0"><?php echo __("Lancer sur un serveur aléatoirement"); ?></option>
+								<?php foreach ($servers as $server): ?>
+									<?php if (in_array($server->getIp(), $used)) continue; ?>
+									<option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?></option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+		            </div>
+
+
                     <div class="control-group">
                         <label class="control-label"><?php echo __("Maps"); ?></label>
                         <div class="controls">
@@ -82,7 +96,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="control-group">
                         <div class="controls">
                             <input type="submit" class="btn btn-primary" value="<?php echo __("Sauver le match"); ?>"/>
