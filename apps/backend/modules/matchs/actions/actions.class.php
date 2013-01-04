@@ -176,7 +176,11 @@ class matchsActions extends sfActions {
 		$this->forward404Unless(!$match->getEnable());
 
 		$server = null;
-		$server_id = $request->getPostParameter("server_id");
+		$server_id = null;
+
+		$server_id = $match->getServerId();
+		if (!isset($server_id))
+			$server_id = $request->getPostParameter("server_id");
 		if (is_numeric($server_id) && $server_id != 0) {
 			$server = ServersTable::getInstance()->find($server_id);
 			$this->forward404Unless($server && $server->exists());
@@ -207,6 +211,7 @@ class matchsActions extends sfActions {
 
 		$match->setIp($server->getIp());
 		$match->setServer($server);
+
 		$match->setEnable(1);
 		if ($match->getStatus() == Matchs::STATUS_NOT_STARTED)
 			$match->setStatus(Matchs::STATUS_STARTING);
@@ -376,6 +381,7 @@ class matchsActions extends sfActions {
 	public function executeCreate(sfWebRequest $request) {
 		$this->form = new MatchsForm();
 		$this->maps = sfConfig::get("app_maps");
+		$this->servers = ServersTable::getInstance()->findAll();
 
 		if ($request->getMethod() == sfWebRequest::POST) {
 			$this->form->bind($request->getPostParameter($this->form->getName()));
@@ -386,6 +392,39 @@ class matchsActions extends sfActions {
 				if (!in_array($side, array("ct", "t"))) {
 					$side = rand(100) > 50 ? "ct" : "t";
 				}
+
+				$server = null;
+				$server_id = $request->getPostParameter("server_id");
+				if (is_numeric($server_id) && $server_id != 0) {
+					$server = ServersTable::getInstance()->find($server_id);
+					$this->forward404Unless($server && $server->exists());
+				}
+
+				if (is_null($server)) {
+					$matchs = MatchsTable::getInstance()->getMatchsInProgressQuery()->andWhere("enable = ?", 1)->andWhere("status < ? ", Matchs::STATUS_END_MATCH)->andWhere("status > ? ", Matchs::STATUS_NOT_STARTED)->execute();
+					$servers = ServersTable::getInstance()->createQuery()->orderBy("RAND()")->execute();
+					$used = array();
+					foreach ($matchs as $m) {
+						$used[] = $m->getServer()->getIp();
+					}
+
+					foreach ($servers as $s) {
+						if (in_array($s->getIp(), $used)) {
+							continue;
+						}
+
+						$server = $s;
+						break;
+					}
+				}
+
+				if (is_null($server)) {
+					$this->getUser()->setFlash("notification_error", $this->__("Pas de serveurs disponibles"));
+					$this->redirect("matchs_current");
+				}
+
+				$match->setIp($server->getIp());
+				$match->setServer($server);
 
 				$maps = new Maps();
 				$maps->setMatch($match);
@@ -415,6 +454,7 @@ class matchsActions extends sfActions {
 		$this->match = $this->getRoute()->getObject();
 		$this->forward404Unless($this->match);
 		$this->maps = sfConfig::get("app_maps");
+		$this->servers = ServersTable::getInstance()->findAll();
 
 		if ($this->match->getEnable()) {
 			$this->getUser()->setFlash("notification_error", $this->__("Vous ne pouvez pas editer un match qui est en cours"));
@@ -432,14 +472,48 @@ class matchsActions extends sfActions {
 		if ($request->getMethod() == sfWebRequest::POST) {
 			$this->form->bind($request->getPostParameter($this->form->getName()));
 			if ($this->form->isValid() && in_array($_POST["maps"], $this->maps)) {
+
+				$server = null;
+				$server_id = $request->getPostParameter("server_id");
+				if (is_numeric($server_id) && $server_id != 0) {
+					$server = ServersTable::getInstance()->find($server_id);
+					$this->forward404Unless($server && $server->exists());
+				}
+
+				if (is_null($server)) {
+					$matchs = MatchsTable::getInstance()->getMatchsInProgressQuery()->andWhere("enable = ?", 1)->andWhere("status < ? ", Matchs::STATUS_END_MATCH)->andWhere("status > ? ", Matchs::STATUS_NOT_STARTED)->execute();
+					$servers = ServersTable::getInstance()->createQuery()->orderBy("RAND()")->execute();
+					$used = array();
+					foreach ($matchs as $m) {
+						$used[] = $m->getServer()->getIp();
+					}
+
+					foreach ($servers as $s) {
+						if (in_array($s->getIp(), $used)) {
+							continue;
+						}
+
+						$server = $s;
+						break;
+					}
+				}
+
+				if (is_null($server)) {
+					$this->getUser()->setFlash("notification_error", $this->__("Pas de serveurs disponibles"));
+					$this->redirect("matchs_current");
+				}
+
 				$match = $this->form->save();
+				$match->setIp($server->getIp());
+				$match->setServer($server);
+				$match->save();
 
 				$map = $match->getMap();
 				$map->setMapName($_POST["maps"]);
 				$map->save();
 
 				$this->getUser()->setFlash("notification_ok", $this->__("Le match a été sauvé avec succès"));
-				$this->redirect($this->generateUrl("matchs_edit", $this->match));
+				$this->redirect("matchs_current");
 			}
 		}
 	}
@@ -491,7 +565,7 @@ class matchsActions extends sfActions {
 
 	public function executeView(sfWebRequest $request) {
 		$this->match = $this->getRoute()->getObject();
-		
+
 		$this->heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->count() > 0;
 		if ($this->heatmap) {
 			if (class_exists($this->match->getMap()->getMapName())) {
@@ -502,7 +576,7 @@ class matchsActions extends sfActions {
 			}
 		}
 	}
-	
+
 	public function executeHeatmapData(sfWebRequest $request) {
 		$this->match = $this->getRoute()->getObject();
 
