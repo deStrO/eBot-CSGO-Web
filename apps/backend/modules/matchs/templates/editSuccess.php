@@ -79,7 +79,10 @@
 								<option value="0"><?php echo __("Lancer sur un serveur aléatoirement"); ?></option>
 								<?php foreach ($servers as $server): ?>
 									<?php if (in_array($server->getIp(), $used)) continue; ?>
-									<option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?></option>
+									<?php if ($server->getId() == $match->getServerId())
+										echo '<option selected value="'.$server->getId().'">'.$server->getHostname().' - '.$server->getIp().'</option>';
+									else
+										echo '<option value="'.$server->getId().'">'.$server->getHostname().' - '.$server->getIp().'</option>'; ?>
 								<?php endforeach; ?>
 							</select>
 						</div>
