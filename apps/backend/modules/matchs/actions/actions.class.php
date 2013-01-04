@@ -176,7 +176,11 @@ class matchsActions extends sfActions {
 		$this->forward404Unless(!$match->getEnable());
 
 		$server = null;
-		$server_id = $request->getPostParameter("server_id");
+		$server_id = null;
+
+		$server_id = $match->getServerId();
+		if (!isset($server_id))
+			$server_id = $request->getPostParameter("server_id");
 		if (is_numeric($server_id) && $server_id != 0) {
 			$server = ServersTable::getInstance()->find($server_id);
 			$this->forward404Unless($server && $server->exists());
@@ -207,6 +211,7 @@ class matchsActions extends sfActions {
 
 		$match->setIp($server->getIp());
 		$match->setServer($server);
+
 		$match->setEnable(1);
 		if ($match->getStatus() == Matchs::STATUS_NOT_STARTED)
 			$match->setStatus(Matchs::STATUS_STARTING);
