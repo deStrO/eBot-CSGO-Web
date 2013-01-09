@@ -137,4 +137,4 @@ all:
       US:	UNITED STATES
       VE:	VENEZUELA
       
-  version: 3.0 RC FINAL
+  version: "3.0.2"
