@@ -83,6 +83,27 @@
                         </div>
                     </div>
 
+                    <?php if ($match->getStatus() == 0): ?>
+                        <div class="control-group">
+                            <label class="control-label"><?php echo __("Server"); ?></label>
+                            <div class="controls">
+                                <select name="server_id">
+                                    <option value="0"><?php echo __("Assigner plus tard"); ?></option>
+                                    <?php foreach ($servers as $server): ?>
+                                        <?php
+                                        if ($server->getId() == $match->getServerId())
+                                            echo '<option selected value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . '</option>';
+                                        else
+                                            echo '<option value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . '</option>';
+                                        ?>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+
+
                     <div class="control-group">
                         <div class="controls">
                             <input type="submit" class="btn btn-primary" value="<?php echo __("Sauver le match"); ?>"/>

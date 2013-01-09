@@ -7,30 +7,35 @@ function tablePagination($pager, $url, $name = "page", $add = "") {
         $char = '?';
     }
 
+    echo "<ul>";
     if ($pager->haveToPaginate()) {
-        echo '<ul>';
-        echo "<li><a href=\"" . url_for($url . $char . "$name=" . $pager->getPreviousPage()) . "$add\">";
-        echo "Prev";
-        echo "</a></li>";
-
+        echo "<li>";
+        echo "<a href=\"" . url_for($url . $char . "$name=" . $pager->getPreviousPage()) . "$add\">";
+        echo "\t&lt; Prev";
+        echo "</a>";
+        echo "</li>";
 
         foreach ($pager->getLinks(10) as $page) {
-            if ($pager->getPage() == $page) {
-                echo "<li><a href=\"" . url_for($url . $char . "$name=" . $page) . "$add\">";
-                echo $page;
-                echo "</a></li>";
+
+            if ($page == $pager->getPage()) {
+                echo "<li class=\"active\">";
+                echo "<a href=\"#\">" . $page . "</a>";
             } else {
-                echo "<li class=\"active\"><a href=\"" . url_for($url . $char . "$name=" . $page) . "$add\">";
+                echo "<li>";
+                echo "<a href=\"" . url_for($url . $char . "$name=" . $page) . "$add\">";
                 echo $page;
-                echo "</a></li>";
+                echo "</a>";
             }
+            echo "</li>";
         }
 
-        echo "<li><a href=\"" . url_for($url . $char . "$name=" . $pager->getNextPage()) . "$add\">";
-        echo "Next";
-        echo "</a></li>";
-        echo '</ul>';
+        echo "<li>";
+        echo "<a href=\"" . url_for($url . $char . "$name=" . $pager->getNextPage()) . "$add\">";
+        echo "\tNext &gt;";
+        echo "</a>";
+        echo "</li>";
     }
+    echo "</ul>";
 }
 ?>
 

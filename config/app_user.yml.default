@@ -13,3 +13,9 @@
   # lan or net, it's to display the server IP or the GO TV IP
   # net mode display only started match on home page
   mode: lan
+  
+  # set to 0 if you don't want a refresh
+  refresh_time: 30
+  
+  # option to display or not the date
+  display_date_table: false

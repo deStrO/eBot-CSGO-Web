@@ -3,18 +3,24 @@
 <script>
     setInterval("reloadMatchs();", 1000);
         
-    var count = 10;    
+    var countBase = <?php echo (sfConfig::get("app_refresh_time")) ? sfConfig::get("app_refresh_time") : 10; ?>    
+    var count = countBase;    
         
     function reloadMatchs () {
+        if (count < 0) return;
         $("#seconds").text(count);
         count--;
         if (count == 0) {
-            $("#tableMatch").load("<?php echo url_for("matchs_current"); ?> #tableMatch");
-            count = 10;
+            $("#tableMatch").load("<?php echo url_for("matchs_current"); ?> #tableMatch", function() {
+                count = countBase;
+            });
         }
     }
     
     reloadMatchs();
+    
+    $(function() { $("#seconds").html(countBase); });
+    
 </script>
 
 <h3><?php echo __("Listes des matchs en cours"); ?></h3>
@@ -23,7 +29,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <p class="pull-right">
-            <?php echo __("Rafraichissement du tableau dans <span id=\"seconds\">10</span> secondes"); ?>
+            <?php echo __("Rafraichissement du tableau dans <span id=\"seconds\">..</span> secondes"); ?>
         </p>
         <a class="brand" href="#"><?php echo __("Administration rapide"); ?></a>
         <ul class="nav">
@@ -94,9 +100,11 @@
                     <td width="20"  style="padding-left: 10px;">
                         <span style="float:left">#<?php echo $match->getId(); ?></span>
                     </td>
-                    <td width="20"  style="padding-left: 10px;">
-                        <span style="float:left"><?php echo format_date($match->getCreatedAt(), 'd') ?></span>
-                    </td>
+                    <?php if (sfConfig::get("app_display_date_table")): ?>
+                        <td width="20"  style="padding-left: 10px;">
+                            <span style="float:left"><?php echo format_date($match->getCreatedAt(), 'd') ?></span>
+                        </td>
+                    <?php endif; ?>
                     <td width="100"  style="padding-left: 10px;">
                         <span style="float:left"><?php echo $team1; ?></span>
                     </td>
@@ -146,13 +154,13 @@
             <?php endforeach; ?>
             <?php if ($pager->getNbResults() == 0): ?>
                 <tr>
-                    <td colspan="9" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
+                    <td colspan="<?php echo sfConfig::get("app_display_date_table") ? 10 : 9; ?>" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
                 </tr>
             <?php endif; ?>
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="10">
+                <td colspan="<?php echo sfConfig::get("app_display_date_table") ? 10 : 9; ?>">
                     <div class="pagination pagination-centered">
                         <?php
                         use_helper("TablePagination");
@@ -167,7 +175,7 @@
                 <td colspan="4">
                     <?php echo __("Serveur à utiliser pour le lancer du prochain match"); ?>
                 </td>
-                <td colspan="5">
+                <td colspan="<?php echo sfConfig::get("app_display_date_table") ? 6 : 5; ?>">
                     <form method="post" action="<?php echo url_for("matchs_start_with_server"); ?>" id="match_start" style="display: inline;">
                         <select name="server_id">
                             <option value="0"><?php echo __("Lancer sur un serveur aléatoirement"); ?></option>
@@ -182,7 +190,9 @@
             </tr>
             <tr>
                 <th><?php echo __("#ID"); ?></th>
-                <th><?php echo __("Date"); ?></th>
+                <?php if (sfConfig::get("app_display_date_table")): ?>
+                    <th><?php echo __("Date"); ?></th>
+                <?php endif; ?>
                 <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
                 <th><?php echo __("Maps en cours"); ?></th>
                 <th><?php echo __("IP"); ?></th>
