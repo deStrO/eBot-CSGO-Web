@@ -1,2 +1,7 @@
 config/app_user.yml
 config/databases.yml
+log/
+cache/
+lib/*/doctrine/base/Base*
+lib/*/doctrine/*Plugin/base/Base*
+lib/*/doctrine/*Plugin
