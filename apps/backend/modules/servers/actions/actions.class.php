@@ -103,4 +103,82 @@ class serversActions extends sfActions {
 		}
 	}
 
+	/**
+	 * Manage.
+	 *
+	 * @author Cédric Dugat <cedric@dugat.me>
+	 * 
+	 * @param sfWebRequest $request Request
+	 */
+	public function executeManage(sfWebRequest $request)
+	{
+		$this->server        = $this->getRoute()->getObject();
+		$this->serverManager = $this->getServerManager($this->server);
+	}
+
+	/**
+	 * Server action.
+	 *
+	 * @author Cédric Dugat <cedric@dugat.me>
+	 * 
+	 * @param sfWebRequest $request Request
+	 */
+	public function executeDoAction(sfWebRequest $request)
+	{
+		$server = $this->getRoute()->getObject();
+		$sm     = $this->getServerManager($server);
+		$action = $request->getParameter('do');
+
+		$this->forward404Unless(in_array($action, array('changeMap', 'restart', 'runConfig')));
+
+		$form = new ServerManagerActionForm(null, array('action' => $action));
+
+		if ($request->isMethod('POST'))
+		{
+			$form->bind($request->getParameter($form->getName()));
+
+			if ($form->isValid())
+			{
+				if ((bool) $sm->execFromData($request, $form))
+				{
+					$this->getUser()->setFlash('notification_ok', $this->__('Action effectuée.'));
+				}
+				else
+				{
+					$this->getUser()->setFlash('notification_error', $this->__('Une erreur est survenue.'));
+				}
+			}
+			else
+			{
+				$this->getUser()->setFlash('notification_error', $this->__('Tous les informations nécessaires n\'ont pas été fournies.'));
+			}
+		}
+		else
+		{
+			$this->getUser()->setFlash('notification_error', $this->__('Erreur.'));
+		}
+
+		$this->redirect('servers_manage', $server);
+	}
+
+	/**
+	 * Get server manager.
+	 *
+	 * @author Cédric Dugat <cedric@dugat.me>
+	 * 
+	 * @param Servers
+	 * 
+	 * @return ServerManager
+	 */
+	protected function getServerManager($server)
+	{
+		$sm = new ServerManager($server);
+
+		if (false === $sm || false === $sm->getServerConnection())
+		{
+			$this->getUser()->setFlash('notification_error', $this->__('Impossible de communiquer avec le serveur.'));
+		}
+
+		return $sm;
+	}
 }

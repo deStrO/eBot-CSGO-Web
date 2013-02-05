@@ -19,3 +19,6 @@
   
   # option to display or not the date
   display_date_table: false
+
+  # option to allow servers management from admin
+  servers_management: true

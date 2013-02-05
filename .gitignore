@@ -5,3 +5,4 @@ cache/
 lib/*/doctrine/base/Base*
 lib/*/doctrine/*Plugin/base/Base*
 lib/*/doctrine/*Plugin
+vendor/
