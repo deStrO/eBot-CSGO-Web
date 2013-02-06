@@ -114,7 +114,7 @@ class ServerManager
                 break;
         }
 
-        return $this->getServerConnection()->rconExec($command);
+        return $this->exec($command);
     }
 
     /**
