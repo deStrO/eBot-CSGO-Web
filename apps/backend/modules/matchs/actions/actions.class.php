@@ -321,7 +321,7 @@ class matchsActions extends sfActions {
         $this->pager = null;
         $this->pager = new sfDoctrinePager(
                         'Matchs',
-                        12
+                        25
         );
         $this->pager->setQuery($query->andWhere("status >= ? AND status <= ?", array(Matchs::STATUS_NOT_STARTED, Matchs::STATUS_END_MATCH))->orderBy("status ASC"));
         $this->pager->setPage($request->getParameter('page', 1));
@@ -341,7 +341,7 @@ class matchsActions extends sfActions {
         $this->pager = null;
         $this->pager = new sfDoctrinePager(
                         'Matchs',
-                        12
+                        25
         );
         $this->pager->setQuery($query->andWhere("status = ?", Matchs::STATUS_ARCHIVE)->orderBy("id DESC"));
         $this->pager->setPage($request->getParameter('page', 1));
@@ -374,9 +374,7 @@ class matchsActions extends sfActions {
     }
 
     public function executeCreate(sfWebRequest $request) {
-        $lastMatch = Doctrine::getTable('Matchs')->getLastMatch();
-
-        $this->form = new MatchsForm($lastMatch->getCopiedOne());
+        $this->form = new MatchsForm();
         $this->servers = ServersTable::getInstance()->findAll();
         $this->maps = sfConfig::get("app_maps");
 
