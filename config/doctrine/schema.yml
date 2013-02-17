@@ -5,10 +5,12 @@ Matchs:
     id: { primary: true, type: integer(20), autoincrement: true }
     ip: { type: varchar(50) }
     server_id: { type: integer(20) }
-    team_a: { type: varchar(255), notnull: true }
+    team_a: { type: integer(20) }
     team_a_flag: { type: varchar(2) }
-    team_b: { type: varchar(255), notnull: true }
+    team_a_name: { type: varchar(25) }
+    team_b: { type: integer(20) }
     team_b_flag: { type: varchar(2) }
+    team_b_name: { type: varchar(25) }
     status: { type: integer(2) }
     score_a: { type: integer(5) }
     score_b: { type: integer(5) }
@@ -22,13 +24,15 @@ Matchs:
     config_password: { type: varchar(50) }
     config_heatmap: { type: boolean }
     enable: { type: boolean }
-    ingame_enable: { type: boolean } 
+    ingame_enable: { type: boolean }
     current_map: { type: integer(20) }
     force_zoom_match: { type: boolean }
-    tv_record_file: { type: varchar(255) } 
+    tv_record_file: { type: varchar(255) }
     identifier_id: { type: integer(20) }
   relations:
     Server: { class: Servers, onDelete: CASCADE, local: server_id, foreign: id }
+    TeamA: { class: Teams, local: team_a, foreign: id, onDelete: SET NULL }
+    TeamB: { class: Teams, local: team_b, foreign: id, onDelete: SET NULL }
     Map: { class: Maps, onDelete: CASCADE, local: current_map, foreign: id }
 
 Maps:
@@ -47,7 +51,7 @@ Maps:
     identifier_id: { type: integer(20) }
   relations:
     Match: { class: Matchs, onDelete: CASCADE, local: match_id, foreign: id }
-    
+
 MapsScore:
   actAs:
     Timestampable: ~
@@ -61,7 +65,7 @@ MapsScore:
     score2_side2: { type: integer(5) }
   relations:
     Map: { class: Maps, onDelete: CASCADE, local: map_id, foreign: id }
-    
+
 Players:
   actAs:
     Timestampable: ~
@@ -193,13 +197,13 @@ PlayerKill:
     killed_team: { type: varchar(20) }
     weapon: { type: varchar(100) }
     headshot: { type: boolean }
-    round_id: { type: integer(5) } 
+    round_id: { type: integer(5) }
   relations:
     Match: { class: Matchs, onDelete: CASCADE, local: match_id, foreign: id }
     Map: { class: Maps, onDelete: CASCADE, local: map_id, foreign: id }
     Killer: { class: Players, onDelete: CASCADE, local: killer_id, foreign: id }
     Killed: { class: Players, onDelete: CASCADE, local: killed_id, foreign: id }
-    
+
 PlayersHeatmap:
   actAs:
     Timestampable: ~
@@ -227,7 +231,7 @@ PlayersHeatmap:
     Map: { class: Maps, onDelete: CASCADE, local: map_id, foreign: id }
     Player: { class: Players, onDelete: CASCADE, local: player_id, foreign: id }
     Killer: { class: Players, onDelete: SET NULL, local: attacker_id, foreign: id }
-    
+
 Servers:
   actAs:
     Timestampable: ~
@@ -236,4 +240,14 @@ Servers:
     ip: { type: varchar(50), notnull: true }
     rcon: { type: varchar(50), notnull: true }
     hostname: { type: varchar(100), notnull: true }
-    tv_ip: { type: varchar(100) }    
+    tv_ip: { type: varchar(100) }
+
+Teams:
+  actAs:
+    Timestampable: ~
+  columns:
+    id: { primary: true, type: integer(20), autoincrement: true }
+    name: { type: varchar(50), notnull: true }
+    shorthandle: { type: varchar(50), notnull: true }
+    flag: { type: varchar(2), notnull: true }
+    link: { type: varchar(100) }

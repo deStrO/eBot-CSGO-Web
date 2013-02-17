@@ -8,10 +8,12 @@
  * @property integer $id
  * @property varchar $ip
  * @property integer $server_id
- * @property varchar $team_a
+ * @property integer $team_a
  * @property varchar $team_a_flag
- * @property varchar $team_b
+ * @property varchar $team_a_name
+ * @property integer $team_b
  * @property varchar $team_b_flag
+ * @property varchar $team_b_name
  * @property integer $status
  * @property integer $score_a
  * @property integer $score_b
@@ -31,6 +33,8 @@
  * @property varchar $tv_record_file
  * @property integer $identifier_id
  * @property Servers $Server
+ * @property Teams $TeamA
+ * @property Teams $TeamB
  * @property Maps $Map
  * @property Doctrine_Collection $Maps
  * @property Doctrine_Collection $Players
@@ -42,10 +46,12 @@
  * @method integer             getId()                          Returns the current record's "id" value
  * @method varchar             getIp()                          Returns the current record's "ip" value
  * @method integer             getServerId()                    Returns the current record's "server_id" value
- * @method varchar             getTeamA()                       Returns the current record's "team_a" value
+ * @method integer             getTeamA()                       Returns the current record's "team_a" value
  * @method varchar             getTeamAFlag()                   Returns the current record's "team_a_flag" value
- * @method varchar             getTeamB()                       Returns the current record's "team_b" value
+ * @method varchar             getTeamAName()                   Returns the current record's "team_a_name" value
+ * @method integer             getTeamB()                       Returns the current record's "team_b" value
  * @method varchar             getTeamBFlag()                   Returns the current record's "team_b_flag" value
+ * @method varchar             getTeamBName()                   Returns the current record's "team_b_name" value
  * @method integer             getStatus()                      Returns the current record's "status" value
  * @method integer             getScoreA()                      Returns the current record's "score_a" value
  * @method integer             getScoreB()                      Returns the current record's "score_b" value
@@ -65,6 +71,8 @@
  * @method varchar             getTvRecordFile()                Returns the current record's "tv_record_file" value
  * @method integer             getIdentifierId()                Returns the current record's "identifier_id" value
  * @method Servers             getServer()                      Returns the current record's "Server" value
+ * @method Teams               getTeamA()                       Returns the current record's "TeamA" value
+ * @method Teams               getTeamB()                       Returns the current record's "TeamB" value
  * @method Maps                getMap()                         Returns the current record's "Map" value
  * @method Doctrine_Collection getMaps()                        Returns the current record's "Maps" collection
  * @method Doctrine_Collection getPlayers()                     Returns the current record's "Players" collection
@@ -77,8 +85,10 @@
  * @method Matchs              setServerId()                    Sets the current record's "server_id" value
  * @method Matchs              setTeamA()                       Sets the current record's "team_a" value
  * @method Matchs              setTeamAFlag()                   Sets the current record's "team_a_flag" value
+ * @method Matchs              setTeamAName()                   Sets the current record's "team_a_name" value
  * @method Matchs              setTeamB()                       Sets the current record's "team_b" value
  * @method Matchs              setTeamBFlag()                   Sets the current record's "team_b_flag" value
+ * @method Matchs              setTeamBName()                   Sets the current record's "team_b_name" value
  * @method Matchs              setStatus()                      Sets the current record's "status" value
  * @method Matchs              setScoreA()                      Sets the current record's "score_a" value
  * @method Matchs              setScoreB()                      Sets the current record's "score_b" value
@@ -98,6 +108,8 @@
  * @method Matchs              setTvRecordFile()                Sets the current record's "tv_record_file" value
  * @method Matchs              setIdentifierId()                Sets the current record's "identifier_id" value
  * @method Matchs              setServer()                      Sets the current record's "Server" value
+ * @method Matchs              setTeamA()                       Sets the current record's "TeamA" value
+ * @method Matchs              setTeamB()                       Sets the current record's "TeamB" value
  * @method Matchs              setMap()                         Sets the current record's "Map" value
  * @method Matchs              setMaps()                        Sets the current record's "Maps" collection
  * @method Matchs              setPlayers()                     Sets the current record's "Players" collection
@@ -130,23 +142,29 @@ abstract class BaseMatchs extends sfDoctrineRecord
              'type' => 'integer',
              'length' => 20,
              ));
-        $this->hasColumn('team_a', 'varchar', 255, array(
-             'type' => 'varchar',
-             'notnull' => true,
-             'length' => 255,
+        $this->hasColumn('team_a', 'integer', 20, array(
+             'type' => 'integer',
+             'length' => 20,
              ));
         $this->hasColumn('team_a_flag', 'varchar', 2, array(
              'type' => 'varchar',
              'length' => 2,
              ));
-        $this->hasColumn('team_b', 'varchar', 255, array(
+        $this->hasColumn('team_a_name', 'varchar', 50, array(
              'type' => 'varchar',
-             'notnull' => true,
-             'length' => 255,
+             'length' => 50,
+             ));
+        $this->hasColumn('team_b', 'integer', 20, array(
+             'type' => 'integer',
+             'length' => 20,
              ));
         $this->hasColumn('team_b_flag', 'varchar', 2, array(
              'type' => 'varchar',
              'length' => 2,
+             ));
+        $this->hasColumn('team_b_name', 'varchar', 50, array(
+             'type' => 'varchar',
+             'length' => 50,
              ));
         $this->hasColumn('status', 'integer', 2, array(
              'type' => 'integer',
@@ -222,6 +240,14 @@ abstract class BaseMatchs extends sfDoctrineRecord
              'local' => 'server_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('Teams as TeamA', array(
+             'local' => 'team_a',
+             'foreign' => 'id'));
+
+        $this->hasOne('Teams as TeamB', array(
+             'local' => 'team_b',
+             'foreign' => 'id'));
 
         $this->hasOne('Maps as Map', array(
              'local' => 'current_map',

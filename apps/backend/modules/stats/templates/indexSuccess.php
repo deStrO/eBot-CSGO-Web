@@ -17,7 +17,7 @@
     </tr>
     <tr>
         <th width="200"<?php echo __(">Ratio de HeadShot"); ?></th>
-        <td><?php echo round($nbHs / $nbKill, 4) * 100; ?>%</td>
+        <td><?php if ($nbKill > 0) echo round($nbHs / $nbKill, 4) * 100; else echo "NaN"; ?>%</td>
     </tr>
 </table>
 

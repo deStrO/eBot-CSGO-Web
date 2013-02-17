@@ -14,7 +14,7 @@ $(function() {
         $("#player-"+id).removeClass("highlight");
     })
     
-     $("#tableKilledKiller").tablesorter({sortList: [[2,1] ]});
+     //$("#tableKilledKiller").tablesorter({sortList: [[2,1] ]});
 
 });
 </script>

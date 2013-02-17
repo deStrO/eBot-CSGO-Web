@@ -29,9 +29,12 @@ class usersActions extends sfActions {
                 $this->getUser()->setFlash("notification_ok", "L'utilisateur a été créé");
                 $this->redirect("users/create");
             }
+            else {
+                $this->getUser()->setFlash("notification_error", "Benutzer konnte nicht angelegt werden.");
+            }
         }
     }
-    
+
     public function executeEdit(sfWebRequest $request) {
         $this->user = $this->getRoute()->getObject();
         $this->form = new sfGuardUserAdminForm($this->user);
@@ -40,10 +43,18 @@ class usersActions extends sfActions {
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if ($this->form->isValid()) {
                 $this->form->save();
-                $this->getUser()->setFlash("notification_ok", "L'utilisateur a été édité");
+                $this->getUser()->setFlash("notification_ok", "Der Benutzer wurde erstellt.");
                 $this->redirect("users/index");
             }
         }
+    }
+
+    public function executeDelete($request) {
+        $user = $this->getRoute()->getObject();
+		$this->forward404Unless($user);
+        $user->delete();
+        $this->getUser()->setFlash("notification_ok", $this->__("Der Benutzer wurde gelöscht."));
+		$this->redirect("users/index");
     }
 
 }

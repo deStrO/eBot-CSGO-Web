@@ -82,7 +82,7 @@
                     tablePagination($pager, $url);
                     ?>
                 </div>
-            </td> 
+            </td>
         </tr>
     </tfoot>
 </table>

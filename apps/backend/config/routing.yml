@@ -164,6 +164,15 @@ matchs_force_start:
     id : \d+
     sf_method: [get]
 
+matchs_rcon:
+  url: /matchs/rcon/open/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: openRcon }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
 matchs_start_with_server:
   url: /matchs/start/server
   class: sfRequestRoute
@@ -249,6 +258,40 @@ users_edit:
   requirements:
     id : \d+
     sf_method: [get, put,post]
+
+teams_create:
+  url: /teams/create
+  class: sfRequestRoute
+  param: { module: teams, action: create }
+  requirements:
+    sf_method: [get,put,post]
+
+teams_edit:
+  url: /teams/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Teams, type: object}
+  param: { module: teams, action: edit }
+  requirements:
+    id : \d+
+    sf_method: [get, put,post]
+
+teams_delete:
+  url: /teams/delete/:id
+  class: sfDoctrineRoute
+  options: { model: Teams, type: object}
+  param: { module: teams, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+users_delete:
+  url: /users/delete/:id
+  class: sfDoctrineRoute
+  options: { model: sfGuardUser, type: object}
+  param: { module: users, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
 
 # generic rules
 # please, remove them by adding more specific rules

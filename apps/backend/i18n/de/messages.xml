@@ -347,7 +347,7 @@
       </trans-unit>
       <trans-unit id="86">
         <source>Lancer sur un serveur aléatoirement</source>
-        <target>Match auf Zufallsserver starten</target>
+        <target>Zufallsserver</target>
       </trans-unit>
       <trans-unit id="87">
         <source>#ID</source>
@@ -475,11 +475,11 @@
       </trans-unit>
       <trans-unit id="118">
         <source>Elimination total</source>
-        <target>Total elimination</target>
+        <target>Alle Spieler eliminiert</target>
       </trans-unit>
       <trans-unit id="119">
         <source>Victoire par le temps</source>
-        <target>Victory by time</target>
+        <target>Sieg (Zeitlimit abgelaufen)</target>
       </trans-unit>
       <trans-unit id="120">
         <source>Plus longue série de round</source>
@@ -491,7 +491,7 @@
       </trans-unit>
       <trans-unit id="122">
         <source>Gagné par</source>
-        <target>Gewonnen by</target>
+        <target>Gewonnen durch</target>
       </trans-unit>
       <trans-unit id="123">
         <source>Type de victoire</source>
@@ -511,7 +511,7 @@
       </trans-unit>
       <trans-unit id="127">
         <source>Gagné par le temps</source>
-        <target>Sieg durch Zeit</target>
+        <target>Sieg durch Zeitlimit</target>
       </trans-unit>
       <trans-unit id="128">
         <source>Bombe posée</source>
@@ -519,15 +519,15 @@
       </trans-unit>
       <trans-unit id="129">
         <source>Action du round</source>
-        <target>Action of the round</target>
+        <target>Aktionen der Runde</target>
       </trans-unit>
       <trans-unit id="130">
         <source>a mis un</source>
-        <target>did a</target>
+        <target>machte ein</target>
       </trans-unit>
       <trans-unit id="131">
         <source>a fait</source>
-        <target>did</target>
+        <target>machte</target>
       </trans-unit>
       <trans-unit id="132">
         <source>Equipe</source>
@@ -700,7 +700,6 @@
       </trans-unit>
       <trans-unit id="174">
         <source>Les statistiques sont générées au chargement de la page, d'ou la lenteur probable de celle-ci !</source>
-        <target>Statistics are generated on page loading, which can explain why it loads slowly !</target>
         <target>Statistiken werden beim laden der Seite autogeneriert, dies erklärt das langsame Laden!</target>
       </trans-unit>
       <trans-unit id="175">
@@ -829,11 +828,11 @@
       </trans-unit>
       <trans-unit id="205">
         <source>Stopper avec RS</source>
-        <target>Stopp mit Neustart</target>
+        <target>Stopp (RS)</target>
       </trans-unit>
       <trans-unit id="206">
         <source>Passer le knife</source>
-        <target>Knife überspringen</target>
+        <target>Skip Knife</target>
       </trans-unit>
       <trans-unit id="207">
         <source>Forcer le knife</source>

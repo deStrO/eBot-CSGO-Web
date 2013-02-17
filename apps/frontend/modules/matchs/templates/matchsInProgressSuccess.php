@@ -75,8 +75,8 @@
 
                 \ScoreColorUtils::colorForScore($score1, $score2);
 
-                $team1 = $match->getTeamA();
-                $team2 = $match->getTeamB();
+                $team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
+                $team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
                 if ($match->getMap() && $match->getMap()->exists()) {
                     \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                 }

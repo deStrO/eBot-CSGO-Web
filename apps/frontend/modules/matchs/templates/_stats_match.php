@@ -135,13 +135,13 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                         <div class="progress progress-striped" style="width: 25px; height: 25px; float: left; margin-right: 10px;">
                             <div class="bar " style="width: 100%"></div>
                         </div>
-                        <b><?php echo $match->getTeamA(); ?></b>
+                        <b><?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName(); ?></b>
                         <div style="clear:both; margin-top: 10px;"></div>
 
                         <div class="progress progress-striped" style="width: 25px; height: 25px; float: left; margin-right: 10px;">
                             <div class="bar bar-danger" style="width: 100%"></div>
                         </div>
-                        <b><?php echo $match->getTeamB(); ?></b>
+                        <b><?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?></b>
                     </td>
                 </tr>
             </table>
@@ -150,8 +150,8 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
             <table class="table table-striped table-condensed">
                 <tr>
                     <th width="200"></th>
-                    <th><?php echo $match->getTeamA(); ?> <?php if ($match->getScoreA() > $match->getScoreB()): ?><i class="icon-star"></i><?php endif; ?></th>
-                    <th><?php echo $match->getTeamB(); ?> <?php if ($match->getScoreB() > $match->getScoreA()): ?><i class="icon-star"></i><?php endif; ?></th>
+                    <th><?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName(); ?> <?php if ($match->getScoreA() > $match->getScoreB()): ?><i class="icon-star"></i><?php endif; ?></th>
+                    <th><?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?> <?php if ($match->getScoreB() > $match->getScoreA()): ?><i class="icon-star"></i><?php endif; ?></th>
                 </tr>
                 <tr>
                     <th width="200"><?php echo __("Victoire bombe posée"); ?></th>
@@ -348,9 +348,9 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                                                 <td>
                                                     <?php
                                                     if ($round->team_win == "a")
-                                                        echo $match->getTeamA();
+                                                        echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
                                                     else
-                                                        echo $match->getTeamB();
+                                                        echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
                                                     ?>
                                                 </td>
                                             </tr>

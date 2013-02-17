@@ -1,6 +1,6 @@
 <?php use_helper('Date') ?>
 
-<h4>Match #<?php echo $match->getId(); ?> - <?php echo $match->getTeamA(); ?> vs <?php echo $match->getTeamB(); ?></h4>
+<h4>Match #<?php echo $match->getId(); ?> - <?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName(); ?> vs <?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?></h4>
 <hr/>
 
 <style>
@@ -106,8 +106,8 @@
 
                     \ScoreColorUtils::colorForScore($score1, $score2);
 
-                    $team1 = $match->getTeamA();
-                    $team2 = $match->getTeamB();
+                    $team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
+                    $team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
                     if ($match->getMap() && $match->getMap()->exists()) {
                         \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                     }
@@ -163,8 +163,8 @@
                     <table class="table">
                         <tr>
                             <td></td>
-                            <td><?php echo $match->getTeamA(); ?></td>
-                            <td><?php echo $match->getTeamB(); ?></td>
+                            <td><?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName(); ?></td>
+                            <td><?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?></td>
                         </tr>
                         <?php foreach ($match->getMap()->getMapsScore() as $score): ?>
                             <?php

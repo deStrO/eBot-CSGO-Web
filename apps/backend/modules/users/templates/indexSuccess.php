@@ -19,6 +19,7 @@
                 <td><?php echo $user->getLastLogin(); ?></td>
                 <td>
                     <a href="<?php echo url_for("users_edit", $user); ?>" class="btn btn-primary"><?php echo __("Editer"); ?></a>
+                    <a href="<?php echo url_for("users_delete", $user); ?>"><button class="btn btn-danger"><?php echo __("Supprimer"); ?></button></a>
                 </td>
             </tr>
         <?php endforeach; ?>

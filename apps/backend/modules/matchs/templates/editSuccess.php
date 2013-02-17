@@ -17,17 +17,77 @@
 </style>
 
 <script>
-    $(function() { 
+    $(function() {
+        jQuery.validator.addMethod("team_a", function(value, element) { 
+            var valid = false;
+            if ($(element).attr("name") == "matchs[team_a]") {
+                valid = true;
+            }
+            
+            if ($(element).attr("name") == "matchs[team_a_name]") {
+                if ($("#matchs_team_a").val() == 0) {
+                    if (value != "") {
+                        valid = true;
+                    }
+                } else {
+                    valid = true;
+                }
+            }
+            
+            if ($(element).attr("name") == "matchs[team_a]") {
+                if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
+                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val()) {
+                        valid = false;
+                    }
+                }
+            }
+            
+            return valid; 
+        }, "");
+        
+        jQuery.validator.addMethod("team_b", function(value, element) { 
+            var valid = false;
+            if ($(element).attr("name") == "matchs[team_b]") {
+                valid = true;
+            }
+            
+            if ($(element).attr("name") == "matchs[team_b_name]") {
+                if ($("#matchs_team_b").val() == 0) {
+                    if (value != "") {
+                        valid = true;
+                    }
+                } else {
+                    valid = true;
+                }
+            }
+            
+            if ($(element).attr("name") == "matchs[team_b]") {
+                if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
+                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val()) {
+                        valid = false;
+                    }
+                }
+            }
+            
+            return valid; 
+        }, "");
+        
         $('#form-match').validate(
         {
             rules: {
                 "matchs[team_a]": {
-                    minlength: 1,
-                    required: true
-                },"matchs[team_b]": {
-                    minlength: 1,
-                    required: true
-                }, "matchs[max_round]": {
+                    team_a: true                   
+                },
+                "matchs[team_a_name]": {
+                    team_a: true
+                },
+                "matchs[team_b]": {
+                    team_b: true
+                },
+                "matchs[team_b_name]": {
+                    team_b: true
+                },
+                "matchs[max_round]": {
                     number: true,
                     required: true
                 },"matchs[rules]": {
@@ -36,16 +96,38 @@
                 }
             },
             highlight: function(label) {
-                $(label).closest('.control-group').addClass('error');
+                $(label).closest('.validate-field').addClass('error').removeClass("success");
             },
             success: function(label) {
                 label
                 .text('OK!').addClass('valid')
-                .closest('.control-group').addClass('success');
+                .closest('.validate-field').addClass('success').removeClass("error");
             }
         }).form();
-    });
         
+        
+        
+        $("#matchs_team_a").change(
+        function() { 
+            if ($(this).val() == 0) { 
+                $("#team_a").show();
+            } else {
+                $("#team_a").hide();
+            }
+        }
+    );
+            
+        $("#matchs_team_b").change(
+        function() { 
+            if ($(this).val() == 0) { 
+                $("#team_b").show();
+            } else {
+                $("#team_b").hide();
+            }
+        }
+    );
+    });
+
 </script>
 
 <table border="0" cellpadding="5" cellspacing="5" width="100%">
@@ -62,15 +144,59 @@
                         </div>
                     </div>
 
-                    <?php foreach ($form as $widget): ?>
+                    <?php foreach ($form as $name => $widget): ?>
+                        <?php if (in_array($name, array("team_a_flag", "team_b_flag", "team_a_name", "team_b_name"))) continue; ?>
                         <?php if ($widget->isHidden()) continue; ?>
-                        <div class="control-group">
+                        <div class="control-group validate-field">
                             <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
                             <div class="controls">
                                 <?php echo $widget->render(); ?>
+                                <?php if ($name == "team_a"): ?>
+                                    <span id="team_a">
+                                        <span class="validate-field">
+                                            <?php echo $form["team_a_name"]->render(array("placeholder" => "Team name")); ?>
+                                        </span>
+                                        <span class="validate-field">
+                                            <?php echo $form["team_a_flag"]->render(); ?>
+                                        </span>
+                                    </span>
+                                <?php endif; ?>
+                                <?php if ($name == "team_b"): ?>
+                                    <span id="team_b">
+                                        <span class="validate-field">
+                                            <?php echo $form["team_b_name"]->render(array("placeholder" => "Team name")); ?>
+                                        </span>
+                                        <span class="validate-field">
+                                            <?php echo $form["team_b_flag"]->render(); ?>
+                                        </span>
+                                    </span>
+                                <?php endif; ?>
+
+                                <?php if ($name == "rules"): ?>
+                                    <span class="help-inline"><?php echo __("Rentrer le nom de la cfg que vous utilisez sans son extension (si esl5on5.cfg devient esl5on5)"); ?></span>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
+
+                    <div class="control-group">
+                        <label class="control-label"><?php echo __("Server"); ?></label>
+                        <div class="controls">
+                            <select name="server_id">
+                                <option value="0"><?php echo __("Lancer sur un serveur aléatoirement"); ?></option>
+                                <?php foreach ($servers as $server): ?>
+                                    <?php if (in_array($server->getIp(), $used)) continue; ?>
+                                    <?php
+                                    if ($server->getId() == $match->getServerId())
+                                        echo '<option selected value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . '</option>';
+                                    else
+                                        echo '<option value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . '</option>';
+                                    ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
 
                     <div class="control-group">
                         <label class="control-label"><?php echo __("Maps"); ?></label>
@@ -82,28 +208,6 @@
                             </select>
                         </div>
                     </div>
-
-                    <?php if ($match->getStatus() == 0): ?>
-                        <div class="control-group">
-                            <label class="control-label"><?php echo __("Server"); ?></label>
-                            <div class="controls">
-                                <select name="server_id">
-                                    <option value="0"><?php echo __("Assigner plus tard"); ?></option>
-                                    <?php foreach ($servers as $server): ?>
-                                        <?php
-                                        if ($server->getId() == $match->getServerId())
-                                            echo '<option selected value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . '</option>';
-                                        else
-                                            echo '<option value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . '</option>';
-                                        ?>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-
-
                     <div class="control-group">
                         <div class="controls">
                             <input type="submit" class="btn btn-primary" value="<?php echo __("Sauver le match"); ?>"/>

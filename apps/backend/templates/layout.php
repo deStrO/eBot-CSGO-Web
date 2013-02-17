@@ -48,6 +48,7 @@
                             </p>
                             <ul class="nav">
                                 <li class="active"><a href="<?php echo url_for("homepage"); ?>">Administration</a></li>
+                                <li><a href="/index.php">Retour au site</a></li>
                                 <li><a href="http://www.esport-tools.net/ebot">Aide</a></li>
                                 <li><a href="http://www.esport-tools.net/about">About</a></li>
                             </ul>
@@ -61,34 +62,39 @@
             <div class="row-fluid">
                 <?php if ($sf_user->isAuthenticated()): ?>
                     <?php include_component("main", "menu"); ?>
-                <?php else: ?>
-                    <div class="span2"></div>
-                <?php endif; ?>
-                <div class="span10">
-                    <?php if ($sf_user->hasFlash("notification_error")): ?>
-                        <div class="alert alert-error">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <h4>Erreur !</h4>
-                            <?php echo $sf_user->getFlash("notification_error"); ?>
-                        </div>
-                    <?php endif; ?>
+                    <div class="span10">
+                        <?php if ($sf_user->hasFlash("notification_error")): ?>
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <h4>Erreur !</h4>
+                                <?php echo $sf_user->getFlash("notification_error"); ?>
+                            </div>
+                        <?php endif; ?>
 
-                    <?php if ($sf_user->hasFlash("notification_ok")): ?>
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <h4>Information</h4>
-                            <?php echo $sf_user->getFlash("notification_ok"); ?>
-                        </div>
-                    <?php endif; ?>
+                        <?php if ($sf_user->hasFlash("notification_ok")): ?>
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <h4>Information</h4>
+                                <?php echo $sf_user->getFlash("notification_ok"); ?>
+                            </div>
+                        <?php endif; ?>
 
-                    <?php echo $sf_content ?>
+                        <?php echo $sf_content ?>
+                    <?php else: ?>
+                        <div class="span12">
+                            <?php echo $sf_content ?>
+                        </div>
+
+                    <?php endif; ?>
                 </div>
             </div>
 
-            <!-- Please, don't remove the brand -->
-            <footer class="footer">
-                <p>&copy; <a target="_blank" href="http://www.esport-tools.net/ebot">eSport-tools</a> 2012 - <?php echo (sfConfig::get("app_version") != "") ? sfConfig::get("app_version") : "3.0 RC6"; ?> - By deStrO - Follow me on <a target="_blank" href="https://twitter.com/deStrO_BE">Twitter</a> - Propulsed by <a target="_blank" href="http://twitter.github.com/bootstrap">Bootstrap</a> & <a target="_blank" href="http://www.symfony-project.com">Symfony</a> - Follow me <a target="_blank" href="https://github.com/deStrO/eBot-CSGO">GitHub</a></p>
-            </footer>
+            <?php if ($sf_user->isAuthenticated()): ?>
+                <!-- Please, don't remove the brand -->
+                <footer class="footer">
+                    <p>&copy; <a target="_blank" href="http://www.esport-tools.net/ebot">eSport-tools</a> 2012 - <?php echo sfConfig::get("app_version"); ?> - By deStrO - Follow me on <a target="_blank" href="https://twitter.com/deStrO_BE">Twitter</a> - Propulsed by <a target="_blank" href="http://twitter.github.com/bootstrap">Bootstrap</a> & <a target="_blank" href="http://www.symfony-project.com">Symfony</a> - Follow me <a target="_blank" href="https://github.com/deStrO/eBot-CSGO">GitHub</a></p>
+                </footer>
+            <?php endif; ?>
         </div>
 
     </body>

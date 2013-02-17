@@ -1,6 +1,6 @@
 <script>
     $(function() {
-        $("#tablePlayers").tablesorter({sortList: [[2,1] ]});
+        //$("#tablePlayers").tablesorter({sortList: [[2,1] ]});
     });
 </script>
 <style>
@@ -93,9 +93,9 @@
             <tr>
                 <td>
                     <?php if ($player->getTeam() == "a"): ?>
-                        <?php echo $match->getTeamA(); ?>
+                        <?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName(); ?>
                     <?php elseif ($player->getTeam() == "b"): ?>
-                        <?php echo $match->getTeamB(); ?>
+                        <?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?>
                     <?php endif; ?>
                 </td>
                 <td><?php echo $player->getPseudo(); ?></td>
