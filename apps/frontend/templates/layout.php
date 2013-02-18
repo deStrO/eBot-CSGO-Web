@@ -49,6 +49,7 @@
 							</p>
 							<ul class="nav">
 								<li class="active"><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Home"); ?></a></li>
+								<li class="active"><a href="/admin.php"><?php echo __("Admin"); ?></a></li>
 								<li><a href="http://www.esport-tools.net/ebot"><?php echo __("Aide"); ?></a></li>
 								<li><a href="http://www.esport-tools.net/about"><?php echo __("About"); ?></a></li>
 							</ul>
