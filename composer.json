@@ -1,0 +1,6 @@
+{
+    "name": "destro/ebot-csgo-web",
+    "require": {
+        "koraktor/steam-condenser": "1.3.*"
+    }
+}

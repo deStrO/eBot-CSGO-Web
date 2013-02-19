@@ -35,4 +35,28 @@ class Servers extends BaseServers {
         return $data;
     }
 
+    /**
+     * Get IP address only (without port).
+     * 
+     * @return string
+     */
+    public function getIpOnly()
+    {
+        $elements = explode(':', $this->getIp());
+
+        return $elements[0];
+    }
+
+    /**
+     * Get IP address only (without port).
+     * 
+     * @return string
+     */
+    public function getPort()
+    {
+        $elements = explode(':', $this->getIp());
+        $ports    = explode('-', $elements[1]);
+
+        return $ports[0];
+    }
 }

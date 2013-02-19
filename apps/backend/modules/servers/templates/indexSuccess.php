@@ -16,7 +16,7 @@
             <tr>
                 <td width="30"><?php echo $server->getId(); ?></td>
                 <td width="200"><?php echo $server->getIp(); ?></td>
-                <td><?php echo $server->getHostname(); ?></td>
+                <td><?php echo $server->getHostname() ?></td>
                 <td width="100">
                     <?php if ($used): ?>
                         <?php echo image_tag("/images/icons/flag_green.png"); ?> <?php echo __("En cours"); ?>
@@ -24,7 +24,13 @@
                         <?php echo image_tag("/images/icons/flag_red.png"); ?> <?php echo __("Non utilisé"); ?>
                     <?php endif; ?>
                 </td>
-                <td width="100">
+                <td width="200">
+                    <?php if (sfConfig::get('app_servers_management')): ?>
+                        <a href="<?php echo url_for('servers_manage', $server) ?>" class="btn">
+                            <?php echo __('Administrer') ?>
+                        </a>
+                    <?php endif ?>
+
                     <?php if (!$used): ?>
                         <a href="<?php echo url_for("server_delete", $server); ?>"><button class="btn btn-danger"><?php echo __("Supprimer"); ?></button></a>
                     <?php endif; ?>

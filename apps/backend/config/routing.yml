@@ -207,6 +207,21 @@ matchs_score_edit:
     id : \d+
     sf_method: [put,post]
 
+servers_action:
+  url: /servers/manage/:id/do/:do
+  class: sfDoctrineRoute
+  options: { model: Servers, type: object }
+  param: { module: servers, action: doAction }
+  requirements:
+    do: \w+
+    sf_method: [get,post]
+
+servers_manage:
+  url: /servers/manage/:id
+  class: sfDoctrineRoute
+  options: { model: Servers, type: object }
+  param: { module: servers, action: manage }
+
 servers_create:
   url: /servers/create
   class: sfRequestRoute
