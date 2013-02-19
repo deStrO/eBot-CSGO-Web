@@ -6,28 +6,33 @@
                 if (id > 0)
                     document.location.href = "<?php echo url_for("@matchs_view?id="); ?>"+id;
             };
-/*            $(document).ready(function() {
+            $(document).ready(function() {
                 if ("WebSocket" in window) {
-                    status = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/rcon");
-                    status.onopen = function () {
-                        $('div#websocket').show();
-                        $('div#websocket').html('<font color="green">WebSocket online</font>');
-                        status.send("test");
+                    var alive = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/alive");
+                    alive.onopen = function () {
+                        $('div#websocketAlive').show();
+                        $('div#websocketAlive').html('<font color="green"><b>WebSocket online</b></font>');
                     };
-
-                    status.onclose = function (err) {
-                        $('div#websocket').show();
-                        $('div#websocket').html('<font color="red">WebSocket offline</font>');
+                    alive.onmessage = function (msg) {
+                        console.log(msg);
+                        if (msg.data == "__isAlive__") {
+                            $('div#ebotAlive').show();
+                            $('div#ebotAlive').html('<font color="green"><b>eBot online</b></font>');
+                        }
+                    };
+                    alive.onclose = function (err) {
+                        $('div#websocketAlive').show();
+                        $('div#websocketAlive').html('<font color="red">WebSocket offline</font>');
                     };
                 }
             });
-*/
         </script>
         <ul class="nav nav-list">
             <li class="nav-header"><?php echo __("Menu principal"); ?></li>
             <li><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Accueil"); ?></a></li>
             <li><a href="<?php echo url_for("stats/index"); ?>"><?php echo __("Statistiques"); ?></a></li>
-            <li><div id="websocket" style="display:none;"></div></li>
+            <li><div id="websocketAlive" style="display:none;"></div></li>
+            <li><div id="ebotAlive" style="display:none;"></div></li>
             <?php /*<li><a href="<?php echo url_for("ebot/index"); ?>">Gestion du bot</a></li>
             <li><a href="<?php echo url_for("ebot/information"); ?>">Information du bot</a></li> */ ?>
             <li class="nav-header"><?php echo __("Menu matchs"); ?></li>
