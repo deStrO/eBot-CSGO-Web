@@ -2,10 +2,10 @@
 
 <script>
     setInterval("reloadMatchs();", 1000);
-        
-    var countBase = <?php echo (sfConfig::get("app_refresh_time")) ? sfConfig::get("app_refresh_time") : 10; ?>    
-    var count = countBase;    
-        
+
+    var countBase = <?php echo (sfConfig::get("app_refresh_time")) ? sfConfig::get("app_refresh_time") : 10; ?>
+    var count = countBase;
+
     function reloadMatchs () {
         if (count < 0) return;
         $("#seconds").text(count);
@@ -16,9 +16,9 @@
             });
         }
     }
-    
+
     reloadMatchs();
-    
+
     $(function() { $("#seconds").html(countBase); });
 </script>
 
@@ -41,7 +41,7 @@
 
 <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel" aria-hidden="true">
     <form class="form-horizontal" method="post" action="<?php echo url_for("matchs_filters"); ?>">
-        <?php echo $filter->renderHiddenFields(); ?>    
+        <?php echo $filter->renderHiddenFields(); ?>
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myModalLabel"><?php echo __("Recherche d'un match"); ?></h3>
@@ -144,7 +144,7 @@
                         tablePagination($pager, $url);
                         ?>
                     </div>
-                </td> 
+                </td>
             </tr>
         </tfoot>
         <thead>
