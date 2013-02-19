@@ -64,7 +64,9 @@ function getButtons($status) {
                     $('#loading_'+data[2]).hide();
                 }
                 else if (data[0] == 'status') {
-                    if (data[2] != 'Starting') {
+                    if (data[1] == 'Finished') {
+                        location.reload();
+                    } else if (data[1] != 'Starting') {
                         $("#flag-"+data[2]).attr('src',"/images/icons/flag_green.png");
                         $('#loading_'+data[2]).hide();
                     }
