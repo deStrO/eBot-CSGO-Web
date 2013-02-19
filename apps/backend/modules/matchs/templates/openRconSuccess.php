@@ -9,7 +9,7 @@
             $(this).tab('show');
         })
     });
-    
+
     $(document).ready(function() {
         $('form').submit(function(event) {
             var message = "<?php echo $match->getId(); ?> executeCommand <?php echo $match->getIp(); ?> "+$('#data').val();
@@ -22,15 +22,18 @@
 
         if ("WebSocket" in window) {
             rcon = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/rcon");
+            rcon.onopen = function () {
+                rcon.send('registerMatch_<?php echo $match->getId(); ?>');
+            }
             rcon.onmessage = function (msg) {
-                var message = msg.data;
-                var match = message.match(/_(\d+)__/);
-                message = message.slice(0, message.length-match[0].length );
-                if (match[0] == "_<?php echo $match->getId(); ?>__") {
-                    $("#rcon").append(nl2br("<b>Answer</b>: "+message)+"<hr style='margin: 5px 0px;'>")
-                    var height = $('#log')[0].scrollHeight;
-                    $('#rcon').scrollTop(height);
+                var message = jQuery.parseJSON(msg.data);
+                $("#rcon").append(nl2br("<b>Answer</b>: "+message[1])+"<hr style='margin: 5px 0px;'>")
+                var height = $('#rcon')[0].scrollHeight;
+                $('#rcon').scrollTop(height);
+                /*
+                if (message[0] == "<?php echo $match->getId(); ?>") {
                 }
+                */
             };
             rcon.onclose = function (err) {
                 $("#rcon").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');
@@ -38,17 +41,14 @@
             };
 
             logger = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/logger");
+            logger.onopen = function () {
+                logger.send('registerMatch_<?php echo $match->getId(); ?>');
+            }
             logger.onmessage = function (msg) {
-                var message = msg.data;
-                var match = message.match(/_(\d+)__/);
-                message = message.slice(0, message.length-match[0].length );
-                if (match[0] == "_<?php echo $match->getId(); ?>__") {
-                    $("#logger").append($("<span/>").text(message));
-                    //$("#logger").append("<br/>");
-                    
-                    var height = $('#logger')[0].scrollHeight;
-                    $('#logger').scrollTop(height);
-                }
+                var message = jQuery.parseJSON(msg.data);
+                $("#logger").append($("<span/>").text(message[1]));
+                var height = $('#logger')[0].scrollHeight;
+                $('#logger').scrollTop(height);
             };
             logger.onclose = function (err) {
                 $("#logger").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');

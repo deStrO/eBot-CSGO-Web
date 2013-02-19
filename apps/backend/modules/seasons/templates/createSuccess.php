@@ -1,6 +1,6 @@
-<h3>Création d'une équipe</h3>
+<h3><?php echo __("Season erstellen"); ?></h3>
 <hr/>
-<form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("teams_create"); ?>">
+<form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("seasons_create"); ?>">
     <?php echo $form->renderHiddenFields(); ?>
     <div class="well">
         <?php foreach ($form as $widget): ?>
@@ -15,7 +15,7 @@
 
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn btn-primary" value="Créer l'équipe"/>
+                <input type="submit" class="btn btn-primary" value="<?php echo __("Season erstellen"); ?>"/>
             </div>
         </div>
     </div>

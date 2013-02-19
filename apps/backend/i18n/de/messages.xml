@@ -955,6 +955,22 @@
         <source>Dernier login</source>
         <target>Letzer Login</target>
       </trans-unit>
+      <trans-unit id="236">
+        <source>Menu équipe</source>
+        <target>Team Verwaltung</target>
+      </trans-unit>
+      <trans-unit id="237">
+        <source>Créer une équipe</source>
+        <target>Team erstellen</target>
+      </trans-unit>
+      <trans-unit id="238">
+        <source>Gestion des équipe</source>
+        <target>Teams verwalten</target>
+      </trans-unit>
+      <trans-unit id="239">
+        <source>Actualiser</source>
+        <target>Aktualisieren</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
