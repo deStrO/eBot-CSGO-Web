@@ -78,7 +78,7 @@
         red.src = '/images/maps/csgo/livemap/_red.png';
 
         if ("WebSocket" in window) {
-            livemap = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port+10); ?>/livemap");
+            livemap = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/livemap");
             livemap.onopen = function () {
                 var map = new Image();
                 data = mapdata["<?php echo $match->getMap()->getMapName(); ?>"];

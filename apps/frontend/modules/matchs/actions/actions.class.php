@@ -74,6 +74,8 @@ class matchsActions extends sfActions {
 
 	public function executeView(sfWebRequest $request) {
 		$this->match = $this->getRoute()->getObject();
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
 
 		$this->heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->count() > 0;
 		if ($this->heatmap) {

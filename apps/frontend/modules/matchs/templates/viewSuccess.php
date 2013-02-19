@@ -1,6 +1,4 @@
-<?php use_helper('Date') ?>
-
-<h4>Match #<?php echo $match->getId(); ?> - <?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName(); ?> vs <?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?></h4>
+<h4>Match #<?php echo $match->getId(); ?> - <?php echo $match->getTeamA(); ?> vs <?php echo $match->getTeamB(); ?></h4>
 <hr/>
 
 <style>
@@ -22,7 +20,7 @@
                 generateTimeLine(1);
             }
         })
-        
+
         $(".needTips").tipsy({live:true});
         $(".needTips_S").tipsy({live:true, gravity: "s"});
     });
@@ -37,6 +35,7 @@
     <?php if ($heatmap): ?>
         <li><a href="#heatmap"><?php echo __("Carte de chaleur"); ?></a></li>
     <?php endif; ?>
+    <li><a href="#livemap"><?php echo __("Livemap"); ?></a></li>
     <?php if (file_exists(sfConfig::get("app_log_match_admin") . "/match-" . $match->getId() . ".html")): ?>
         <li><a href="#logs">Logs</a></li>
     <?php endif; ?>
@@ -106,8 +105,8 @@
 
                     \ScoreColorUtils::colorForScore($score1, $score2);
 
-                    $team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
-                    $team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
+                    $team1 = $match->getTeamA();
+                    $team2 = $match->getTeamB();
                     if ($match->getMap() && $match->getMap()->exists()) {
                         \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                     }
@@ -115,10 +114,6 @@
                     <h5><i class="icon-tasks"></i> <?php echo __("Information du match"); ?></h5>
 
                     <table class="table">
-                        <tr>
-                            <th width="200"><?php echo __("Date"); ?></th>
-                            <td><?php echo format_date($match->getCreatedAt(), 'D') ?></td>
-                        </tr>
                         <tr>
                             <th width="200"><?php echo __("Score"); ?></th>
                             <td><?php echo $team1; ?> (<?php echo $score1; ?>) - (<?php echo $score2; ?>) <?php echo $team2; ?></td>
@@ -163,8 +158,8 @@
                     <table class="table">
                         <tr>
                             <td></td>
-                            <td><?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName(); ?></td>
-                            <td><?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?></td>
+                            <td><?php echo $match->getTeamA(); ?></td>
+                            <td><?php echo $match->getTeamB(); ?></td>
                         </tr>
                         <?php foreach ($match->getMap()->getMapsScore() as $score): ?>
                             <?php
@@ -207,6 +202,9 @@
     <div class="tab-pane" id="stats-weapon">
         <?php include_partial("matchs/stats_weapon", array("match" => $match)); ?>
     </div>
+    <div class="tab-pane" id="livemap">
+        <?php include_partial("matchs/livemap", array("match" => $match)); ?>
+    </div>
     <div class="tab-pane" id="stats-killer-killed">
         <?php include_partial("matchs/stats_killer_killed", array("match" => $match)); ?>
     </div>
@@ -215,10 +213,10 @@
             <script>
                 var autoscroll = true;
                 function refreshLog () {
-                    $.post("<?php echo url_for("matchs_logs", $match); ?>", {} , function (data) { 
-                        if (data != "0") { 
+                    $.post("<?php echo url_for("matchs_logs", $match); ?>", {} , function (data) {
+                        if (data != "0") {
                             if ($("#logmatch").html() != data) {
-                                $("#logmatch").html(data); 
+                                $("#logmatch").html(data);
                                 if (autoscroll) {
                                     var offset = $('#end').position().top;
                                     if (offset < 0 || offset > $("#logmatch").height()) {
@@ -230,7 +228,7 @@
                             }
                         } }, "html");
                 }
-                                                                                        																																				                                                            				
+
                 setInterval("refreshLog()",2000);
             </script>
         <?php endif; ?>
@@ -251,5 +249,6 @@
             <?php include_partial("matchs/stats_heatmap", array("match" => $match, "class_heatmap" => $class_heatmap)); ?>
         </div>
     <?php endif; ?>
+
 </div>
 
