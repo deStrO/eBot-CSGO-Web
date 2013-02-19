@@ -35,22 +35,20 @@ function getButtons($status) {
             return "endmatch";
     }
     $(document).ready(function(){
-
-
         if ("WebSocket" in window) {
             ws = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/match");
             var buttons = new Array("warmupknife", "endknife", "skipwarmup", "endmatch");
             ws.onopen = function () {
-<?php
-for ($i = 0; $i < count($id); $i++) {
-    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
-    echo '$(".running_' . $id[$i] . '").show(); ';
-}
-?>
+                <?php
+                for ($i = 0; $i < count($id); $i++) {
+                    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
+                    echo '$(".running_' . $id[$i] . '").show(); ';
+                }
+                ?>
                 $('.websocket_offline').hide();
             }
             ws.onmessage = function (msg) {
-                var data = msg.data.split("_");
+                var data = jQuery.parseJSON(msg.data);
                 if (data[1] == 'stop')
                     location.reload();
                 else if (data[0] == 'button') {
@@ -66,7 +64,9 @@ for ($i = 0; $i < count($id); $i++) {
                     $('#loading_'+data[2]).hide();
                 }
                 else if (data[0] == 'status') {
-                    if (data[2] != 'Starting') {
+                    if (data[1] == 'Finished') {
+                        location.reload();
+                    } else if (data[1] != 'Starting') {
                         $("#flag-"+data[2]).attr('src',"/images/icons/flag_green.png");
                         $('#loading_'+data[2]).hide();
                     }
@@ -149,26 +149,28 @@ for ($i = 0; $i < count($id); $i++) {
         $("#match_start").submit();
         $('#loading_'+id).show();
     }
-    
+
     var currentMatchAdmin = 0;
-    
-    $(function() { 
-        $(".match-selectable").click(function() { 
+    $(document).ready(function() {
+
+    });
+
+    $(function() {
+        $(".match-selectable").click(function() {
             if (currentMatchAdmin == $(this).attr("data-id")) {
                 $("tr[data-id="+currentMatchAdmin+"]:first").removeClass("warning");
                 $("#button-container").find(".buttons-container").hide().appendTo($("#container-matchs-"+currentMatchAdmin));
                 currentMatchAdmin = 0;
                 return;
             }
-            
+
             if (currentMatchAdmin != 0) {
                 $("tr[data-id="+currentMatchAdmin+"]:first").removeClass("warning");
                 $("#button-container").find(".buttons-container").hide().appendTo($("#container-matchs-"+currentMatchAdmin));
             }
-            
+
             $(this).addClass("warning");
             $(this).find("div.buttons-container:first").show().appendTo($("#button-container"));
-            
             currentMatchAdmin = $(this).attr("data-id");
         });
     });
@@ -229,7 +231,10 @@ for ($i = 0; $i < count($id); $i++) {
                             <td>
                                 <?php echo '<a href="steam://connect/' . $match->getServer()->getIp() . '/' . $match->getConfigPassword() . '">' . $match->getServer()->getHostname() . '</a>'; ?>
                             </td>
-                            <td width="150">
+                            <td>
+                                <?php echo $match->getConfigPassword(); ?>
+                            </td>
+                            <td>
                                 <?php if ($match->getEnable()): ?>
                                     <?php if ($match->getStatus() == Matchs::STATUS_STARTING): ?>
                                         <?php echo image_tag("/images/icons/flag_blue.png", "id='flag-" . $match->getId() . "'"); ?>
@@ -240,10 +245,10 @@ for ($i = 0; $i < count($id); $i++) {
                                 <?php else: ?>
                                     <?php echo image_tag("/images/icons/flag_red.png"); ?>
                                 <?php endif; ?>
-                                <div style="display: inline-block; "class="status status-<?php echo $match->getId(); ?>">
+                                <div style="display: inline-block;" class="status status-<?php echo $match->getId(); ?>">
                                     <?php echo $match->getStatusText(); ?>
-                                    <?php echo image_tag("/images/loading.gif", "style='display:none; float:left;' name='loading_" . $match->getId() . "' id='loading_" . $match->getId() . "'"); ?>
                                 </div>
+                                <?php echo image_tag("/images/loading.gif", "style='display:none; padding-left:5px;' name='loading_" . $match->getId() . "' id='loading_" . $match->getId() . "'"); ?>
                             </td>
                             <td style="padding-left: 3px;text-align:right;">
                                 <div id="container-matchs-<?php echo $match->getId(); ?>">
@@ -251,7 +256,11 @@ for ($i = 0; $i < count($id); $i++) {
                                         <?php $buttons = $match->getActionAdmin($match->getEnable()); ?>
                                         <?php foreach ($buttons as $button): ?>
                                             <?php if ($button["route"] == "matchs_start"): ?>
-                                                <button onclick="startMatch(<?php echo $match->getId(); ?>);" class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo __($button["label"]); ?></button>
+                                                <div>
+                                                    <button
+                                                        onclick="startMatch(<?php echo $match->getId(); ?>);"
+                                                        style="margin-bottom: 10px; width: 100%;" class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo __($button["label"]); ?></button>
+                                                </div>
                                             <?php elseif ($button["type"] == "routing"): ?>
                                                 <div>
                                                     <a href="<?php echo url_for($button["route"], $match); ?>">
@@ -315,6 +324,7 @@ for ($i = 0; $i < count($id); $i++) {
                         <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
                         <th><?php echo __("Maps en cours"); ?></th>
                         <th width="200"><?php echo __("Hostname"); ?></th>
+                        <th width="100"><?php echo __("Password"); ?></th>
                         <th><?php echo __("Status"); ?></th>
                         <th></th>
                     </tr>

@@ -37,7 +37,7 @@
 <script>
 
     mapdata = new Array();
-    mapdata["de_dust2_se"] = [ -2216, -1176, 1792, 3244, 500, 530, "V", "de_dust2_se_radar"];
+    mapdata["de_dust2_se"] = [ -2216, -1176, 179, 3244, 500, 530, "V", "de_dust2_se_radar"];
     mapdata["de_inferno_se"] = [ -2000, -808, 2720, 3616, 500, 417, "V", "de_inferno_se_radar"];
     mapdata["de_mirage_csgo"] = [ -2672, -2536, 1472, 888, 500, 413, "V", "de_mirage_go_radar"];
     mapdata["de_nuke_se"] = [ -3008, -2496, 3523, 960, 750, 398, "V", "de_nuke_ve_radar"];
@@ -67,40 +67,37 @@
         y = posY;
         return x+"_"+y;
     }
-    
-    var livemapSocket;
 
-    $(function() {
-
+    $(document).ready(function() {
         var canvas = document.getElementById('livemap_canvas');
         var context = canvas.getContext('2d');
 
         var blue = new Image();
-        blue.src = '<?php echo url_for("/images/maps/csgo"); ?>/livemap/_blue.png';
+        blue.src = '/images/maps/csgo/livemap/_blue.png';
         var red = new Image();
-        red.src = '<?php echo url_for("/images/maps/csgo"); ?>/livemap/_red.png';
+        red.src = '/images/maps/csgo/livemap/_red.png';
 
         if ("WebSocket" in window) {
-            livemapSocket = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/livemap");
-            livemapSocket.onopen = function () {
+            livemap = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/livemap");
+            livemap.onopen = function () {
                 var map = new Image();
                 data = mapdata["<?php echo $match->getMap()->getMapName(); ?>"];
-                map.src = '<?php echo url_for("/images/maps/csgo/overview"); ?>/'+data[7]+'.png';
+                map.src = '/images/maps/csgo/overview/'+data[7]+'.png';
                 map.onload = function() {
                     context.drawImage(map, 0, 0, data[4], data[5]);
                 };
             };
-            livemapSocket.onmessage = function (msg) {
+            livemap.onmessage = function (msg) {
                 if (msg.data.match(/\d+_newRound_\d+/)) {
                     var get = msg.data.split("_");
                     if (get[0] == "<?php echo $match->getId(); ?>") {
                         context.clearRect(0, 0, canvas.width, canvas.height);
                         var map = new Image();
                         data = mapdata["<?php echo $match->getMap()->getMapName(); ?>"];
-                        map.src = '<?php echo url_for("/images/maps/csgo/overview"); ?>/'+data[7]+'.png';
+                        map.src = '/images/maps/csgo/overview/'+data[7]+'.png';
                         map.onload = function() {
                             context.drawImage(map, 0, 0, data[4], data[5]);
-                            $("#log").prepend("<b>Round "+get[2]+"</b><br />");
+                            $("#log").prepend("<b>Runde "+get[2]+"</b><br />");
                             var height = $('#log')[0].scrollHeight;
                             $('#log').scrollTop(height);
                         };
@@ -108,7 +105,6 @@
                 }
                 else {
                     data = jQuery.parseJSON(msg.data);
-                    console.log(data);
                     if (data[0] == "<?php echo $match->getId(); ?>") {
                         var killer = data[1];
                         var killed = data[4];
@@ -123,19 +119,19 @@
                         context.drawImage(red, (coords_killed[0]-8), (coords_killed[1]-8), 16, 16);
                         // Bring it to log
                         if (headshot == '1')
-                            headshot = "<img src='<?php echo url_for("/images/kills/csgo"); ?>/headshot.png'>";
+                            headshot = "<img src='/images/kills/csgo/headshot.png'>";
                         else
                             headshot = "";
-                        $("#log").prepend(killer+" <img src='<?php echo url_for("/images/kills/csgo"); ?>/"+weapon+".png'> "+killed+" "+headshot+"<br />");
+                        $("#log").prepend(killer+" <img src='/images/kills/csgo/"+weapon+".png'> "+killed+" "+headshot+"<br />");
                         var height = $('#log')[0].scrollHeight;
                         $('#log').scrollTop(height);
                     }
                 }
             };
-            livemapSocket.onclose = function (err) {
+            livemap.onclose = function (err) {
                 console.log(err);
             };
-            livemapSocket.onerror = function (err) {
+            livemap.onerror = function (err) {
                 console.log(err);
             };
         }

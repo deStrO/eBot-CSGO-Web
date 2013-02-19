@@ -1,5 +1,5 @@
 <div class="well">
-    <center><?php echo image_tag("/images/ebot.png"); ?></center>
+    <center><?php echo image_tag("/images/ebot.png").image_tag("/images/eps_logo.png"); ?></center>
 </div>
 
 <div class="row-fluid">
