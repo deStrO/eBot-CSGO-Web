@@ -5,6 +5,7 @@ Matchs:
     id: { primary: true, type: integer(20), autoincrement: true }
     ip: { type: varchar(50) }
     server_id: { type: integer(20) }
+    season_id: { type: integer(20) }
     team_a: { type: integer(20) }
     team_a_flag: { type: varchar(2) }
     team_a_name: { type: varchar(25) }
@@ -18,6 +19,7 @@ Matchs:
     rules: { type: varchar(200), notnull: true }
     config_full_score: { type: boolean }
     config_ot: { type: boolean }
+    config_streamer: { type: boolean }
     config_knife_round: { type: boolean }
     config_switch_auto: { type: boolean }
     config_auto_change_password: { type: boolean }
@@ -30,10 +32,11 @@ Matchs:
     tv_record_file: { type: varchar(255) }
     identifier_id: { type: integer(20) }
   relations:
-    Server: { class: Servers, onDelete: CASCADE, local: server_id, foreign: id }
+    Server: { class: Servers, onDelete: SET NULL, local: server_id, foreign: id }
     TeamA: { class: Teams, local: team_a, foreign: id, onDelete: SET NULL }
     TeamB: { class: Teams, local: team_b, foreign: id, onDelete: SET NULL }
-    Map: { class: Maps, onDelete: CASCADE, local: current_map, foreign: id }
+    Map: { class: Maps, onDelete: SET NULL, local: current_map, foreign: id }
+    Season: { class: Seasons, onDelete: SET NULL, local: season_id, foreign: id }
 
 Maps:
   actAs:
@@ -251,3 +254,6 @@ Teams:
     shorthandle: { type: varchar(50), notnull: true }
     flag: { type: varchar(2), notnull: true }
     link: { type: varchar(100) }
+    season_id: { type: integer(20) }
+  relations:
+    Season: { class: Seasons, onDelete: SET NULL, local: season_id, foreign: id }

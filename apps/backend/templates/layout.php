@@ -47,10 +47,10 @@
                                 Logged in as <a href="#" class="navbar-link"><?php echo $sf_user->getGuarduser()->getUsername(); ?></a>
                             </p>
                             <ul class="nav">
-                                <li class="active"><a href="<?php echo url_for("homepage"); ?>">Administration</a></li>
-                                <li><a href="/index.php">Retour au site</a></li>
-                                <li><a href="http://www.esport-tools.net/ebot">Aide</a></li>
-                                <li><a href="http://www.esport-tools.net/about">About</a></li>
+                                <li class="active"><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Administration"); ?></a></li>
+                                <li><a href="/index.php"><?php echo __("Back to site"); ?></a></li>
+                                <li><a href="http://www.esport-tools.net/ebot"><?php echo __("Help"); ?></a></li>
+                                <li><a href="http://www.esport-tools.net/about"><?php echo __("About"); ?></a></li>
                             </ul>
                         <?php endif; ?>
                     </div>

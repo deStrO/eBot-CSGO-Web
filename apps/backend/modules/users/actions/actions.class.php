@@ -26,11 +26,11 @@ class usersActions extends sfActions {
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if ($this->form->isValid()) {
                 $this->form->save();
-                $this->getUser()->setFlash("notification_ok", "L'utilisateur a été créé");
+                $this->getUser()->setFlash("notification_ok", "User created successfully");
                 $this->redirect("users/create");
             }
             else {
-                $this->getUser()->setFlash("notification_error", "Benutzer konnte nicht angelegt werden.");
+                $this->getUser()->setFlash("notification_error", "User could not be added");
             }
         }
     }
@@ -43,7 +43,7 @@ class usersActions extends sfActions {
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if ($this->form->isValid()) {
                 $this->form->save();
-                $this->getUser()->setFlash("notification_ok", "Der Benutzer wurde erstellt.");
+                $this->getUser()->setFlash("notification_ok", "User edited successfully");
                 $this->redirect("users/index");
             }
         }
@@ -53,7 +53,7 @@ class usersActions extends sfActions {
         $user = $this->getRoute()->getObject();
 		$this->forward404Unless($user);
         $user->delete();
-        $this->getUser()->setFlash("notification_ok", $this->__("Der Benutzer wurde gelöscht."));
+        $this->getUser()->setFlash("notification_ok", $this->__("User deleted successfully"));
 		$this->redirect("users/index");
     }
 

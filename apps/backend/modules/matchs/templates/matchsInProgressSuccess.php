@@ -49,45 +49,42 @@ function getButtons($status) {
             }
             ws.onmessage = function (msg) {
                 var data = jQuery.parseJSON(msg.data);
-                if (data[1] == 'stop')
+                if (data['content'] == 'stop')
                     location.reload();
-                else if (data[0] == 'button') {
-                    var button_command = getButtons(data[1]);
+                else if (data['message'] == 'button') {
+                    var button_command = getButtons(data['content']);
                     for (var i=0, j=buttons.length; i<j; i++) {
                         if (buttons[i] == button_command) {
-                            $('.'+buttons[i]+'_'+data[2]).show();
+                            $('.'+buttons[i]+'_'+data['id']).show();
                         }
                         else {
-                            $('.'+buttons[i]+'_'+data[2]).hide();
+                            $('.'+buttons[i]+'_'+data['id']).hide();
                         }
                     }
-                    $('#loading_'+data[2]).hide();
+                    $('#loading_'+data['id']).hide();
                 }
-                else if (data[0] == 'status') {
-                    if (data[1] == 'Finished') {
+                else if (data['message'] == 'status') {
+                    if (data['content'] == 'Finished') {
                         location.reload();
-                    } else if (data[1] != 'Starting') {
-                        $("#flag-"+data[2]).attr('src',"/images/icons/flag_green.png");
-                        $('#loading_'+data[2]).hide();
+                    } else if (data['content'] != 'Starting') {
+                        $("#flag-"+data['id']).attr('src',"/images/icons/flag_green.png");
+                        $('#loading_'+data['id']).hide();
                     }
-                    $("div.status-"+data[2]).html(data[1]);
+                    $("div.status-"+data['id']).html(data['content']);
                 }
-                else if (data[0] == 'score') {
-                    if (data[1] < 10)
-                        data[1] = "0"+data[1];
-                    if (data[2] < 10)
-                        data[2] = "0"+data[2];
+                else if (data['message'] == 'score') {
+                    if (data['scoreA'] < 10)
+                        data['scoreA'] = "0"+data['scoreA'];
+                    if (data['scoreB'] < 10)
+                        data['scoreB'] = "0"+data['scoreB'];
 
-                    if (data[1] == data[2])
-                        $("#score-"+data[3]).html("<font color=\"blue\">"+data[1]+"</font> - <font color=\"blue\">"+data[2]+"</font>");
-                    else if (data[1] > data[2])
-                        $("#score-"+data[3]).html("<font color=\"green\">"+data[1]+"</font> - <font color=\"red\">"+data[2]+"</font>");
-                    else if (data[1] < data[2])
-                        $("#score-"+data[3]).html("<font color=\"red\">"+data[1]+"</font> - <font color=\"green\">"+data[2]+"</font>");
+                    if (data['scoreA'] == data['scoreB'])
+                        $("#score-"+data['id']).html("<font color=\"blue\">"+data['scoreA']+"</font> - <font color=\"blue\">"+data['scoreB']+"</font>");
+                    else if (data['scoreA'] > data['scoreB'])
+                        $("#score-"+data['id']).html("<font color=\"green\">"+data['scoreA']+"</font> - <font color=\"red\">"+data['scoreB']+"</font>");
+                    else if (data['scoreA'] < data['scoreB'])
+                        $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
                 }
-            };
-            ws.onclose = function (err) {
-                $('.websocket_offline').show();
             };
         } else {
             alert("WebSocket not supported");
@@ -95,23 +92,21 @@ function getButtons($status) {
     });
 </script>
 
-<span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Listes des matchs en cours"); ?></span>
-<span class="websocket_offline" style="float:right; font-size:20px; font-weight:bold; display:none;"><font color="red"><?php echo __("Websocket not available"); ?></font></span></br>
+<span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Matches in Progress"); ?></span>
 <hr/>
 
 <div class="navbar">
     <div class="navbar-inner">
         <p class="pull-right">
-            <!--<?php echo __("Rafraichissement du tableau dans <span id=\"seconds\">10</span> secondes"); ?>-->
-            <a href=""><button class="btn btn-inverse"><?php echo __("Actualiser"); ?></button></a>
+            <a href=""><button class="btn btn-inverse"><?php echo __("Refresh"); ?></button></a>
         </p>
-        <a class="brand" href="#"><?php echo __("Administration rapide"); ?></a>
+        <a class="brand" href="#"><?php echo __("Quick Administration"); ?></a>
         <ul class="nav">
-            <li><a href="<?php echo url_for("matchs/startAll"); ?>"><?php echo __("Démarrer tous les matchs"); ?></a></li>
-            <li><a href="<?php echo url_for("matchs/archiveAll"); ?>"><?php echo __("Archiver les matchs"); ?></a></li>
-            <li><a href="#myModal" role="button"  data-toggle="modal"><?php echo __("Rechercher un match"); ?></a></li>
+            <li><a href="<?php echo url_for("matchs/startAll"); ?>"><?php echo __("Start all Matches"); ?></a></li>
+            <li><a href="<?php echo url_for("matchs/archiveAll"); ?>"><?php echo __("Archive all Matches"); ?></a></li>
+            <li><a href="#myModal" role="button"  data-toggle="modal"><?php echo __("Search Match"); ?></a></li>
             <?php if (count($filterValues) > 0): ?>
-                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Remettre à zéro le filtre"); ?></a></li>
+                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Reset Filter"); ?></a></li>
             <?php endif; ?>
         </ul>
     </div>
@@ -122,7 +117,7 @@ function getButtons($status) {
         <?php echo $filter->renderHiddenFields(); ?>
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel"><?php echo __("Recherche d'un match"); ?></h3>
+            <h3 id="myModalLabel"><?php echo __("Search Match"); ?></h3>
         </div>
         <div class="modal-body">
             <?php foreach ($filter as $widget): ?>
@@ -136,9 +131,9 @@ function getButtons($status) {
             <?php endforeach; ?>
         </div>
         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __("Fermer"); ?></button>
-            <button class="btn btn-inverse"><?php echo __("Annuler le filtre"); ?></button>
-            <input type="submit" class="btn btn-primary" value="<?php echo __("Recherche"); ?>"/>
+            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __("Close"); ?></button>
+            <button class="btn btn-inverse"><?php echo __("Cancel"); ?></button>
+            <input type="submit" class="btn btn-primary" value="<?php echo __("Search"); ?>"/>
         </div>
     </form>
 </div>
@@ -149,12 +144,7 @@ function getButtons($status) {
         $("#match_start").submit();
         $('#loading_'+id).show();
     }
-
     var currentMatchAdmin = 0;
-    $(document).ready(function() {
-
-    });
-
     $(function() {
         $(".match-selectable").click(function() {
             if (currentMatchAdmin == $(this).attr("data-id")) {
@@ -279,13 +269,13 @@ function getButtons($status) {
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
-                                <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse btn-mini"><?php echo __("Voir"); ?></button></a>
+                                <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse btn-mini"><?php echo __("Show"); ?></button></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                     <?php if ($pager->getNbResults() == 0): ?>
                         <tr>
-                            <td colspan="8" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
+                            <td colspan="8" align="center"><?php echo __("No results for this filter."); ?></td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -304,12 +294,12 @@ function getButtons($status) {
                 <thead>
                     <tr>
                         <td colspan="4">
-                            <?php echo __("Serveur à utiliser pour le lancer du prochain match"); ?>
+                            <?php echo __("Server to use in order to start next match"); ?>
                         </td>
                         <td colspan="5">
                             <form method="post" action="<?php echo url_for("matchs_start_with_server"); ?>" id="match_start" style="display: inline;">
                                 <select name="server_id">
-                                    <option value="0"><?php echo __("Lancer sur un serveur aléatoirement"); ?></option>
+                                    <option value="0"><?php echo __("Random Server"); ?></option>
                                     <?php foreach ($servers as $server): ?>
                                         <?php if (in_array($server->getIp(), $used)) continue; ?>
                                         <option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?></option>
@@ -321,8 +311,8 @@ function getButtons($status) {
                     </tr>
                     <tr>
                         <th><?php echo __("#ID"); ?></th>
-                        <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
-                        <th><?php echo __("Maps en cours"); ?></th>
+                        <th colspan="3"><?php echo __("Opponent - Score"); ?></th>
+                        <th><?php echo __("Map"); ?></th>
                         <th width="200"><?php echo __("Hostname"); ?></th>
                         <th width="100"><?php echo __("Password"); ?></th>
                         <th><?php echo __("Status"); ?></th>
@@ -333,10 +323,9 @@ function getButtons($status) {
         </div>
     </div>
     <div class="span2">
-        <h4>Match admin</h4>
+        <h4><?php echo __("Match Admin"); ?></h4>
         <div style="min-width: 167px;" class="well">
             <div id="button-container">
-
             </div>
         </div>
     </div>
@@ -344,7 +333,7 @@ function getButtons($status) {
 
 <script>
     $(function() {
-        $("a[confirm=true]").click(function() { return confirm(<?php echo json_encode(__("Etes vous sur de vouloir faire cette action ?")); ?>);});
+        $("a[confirm=true]").click(function() { return confirm(<?php echo json_encode(__("Are you sure, you want to do this?")); ?>);});
     }
 );
 </script>

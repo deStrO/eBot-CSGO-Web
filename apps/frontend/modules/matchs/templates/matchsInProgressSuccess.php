@@ -94,7 +94,7 @@
                         <span style="float:left"><?php echo $team1; ?></span>
                     </td>
                     <td width="50" style="text-align: center;"><?php echo $score1; ?> - <?php echo $score2; ?></td>
-                    <td width="100"><span style="float:right"><?php echo $team2; ?></span></td>
+                    <td width="100"><span style="float:right; text-align:right;"><?php echo $team2; ?></span></td>
                     <td width="150" align="center">
                         <?php if ($match->getMap() && $match->getMap()->exists()): ?>
                             <?php echo $match->getMap()->getMapName(); ?>

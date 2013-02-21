@@ -1,4 +1,4 @@
-<h3><?php echo __("Season bearbeiten:"); ?> <?php echo $season->getName(); ?></h3>
+<h3><?php echo __("Edit Season"); ?>: <?php echo $season->getName(); ?></h3>
 <hr/>
 <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("seasons_edit", $team); ?>">
     <?php echo $form->renderHiddenFields(); ?>
@@ -15,7 +15,7 @@
 
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn btn-primary" value="<?php echo __("Season editieren"); ?>"/>
+                <input type="submit" class="btn btn-primary" value="<?php echo __("Edit Season"); ?>"/>
             </div>
         </div>
     </div>

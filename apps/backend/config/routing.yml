@@ -292,6 +292,31 @@ users_delete:
   requirements:
     id : \d+
     sf_method: [get]
+    
+seasons_create:
+  url: /seasons/create
+  class: sfRequestRoute
+  param: { module: seasons, action: create }
+  requirements:
+    sf_method: [get,put,post]
+
+seasons_edit:
+  url: /seasons/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Seasons, type: object}
+  param: { module: seasons, action: edit }
+  requirements:
+    id : \d+
+    sf_method: [get, put,post]
+
+seasons_delete:
+  url: /seasons/delete/:id
+  class: sfDoctrineRoute
+  options: { model: Seasons, type: object}
+  param: { module: seasons, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
 
 # generic rules
 # please, remove them by adding more specific rules

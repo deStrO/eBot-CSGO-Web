@@ -15,12 +15,12 @@
 
 <script>
     $(function() {
-        jQuery.validator.addMethod("team_a", function(value, element) { 
+        jQuery.validator.addMethod("team_a", function(value, element) {
             var valid = false;
             if ($(element).attr("name") == "matchs[team_a]") {
                 valid = true;
             }
-            
+
             if ($(element).attr("name") == "matchs[team_a_name]") {
                 if ($("#matchs_team_a").val() == 0) {
                     if (value != "") {
@@ -30,7 +30,7 @@
                     valid = true;
                 }
             }
-            
+
             if ($(element).attr("name") == "matchs[team_a]") {
                 if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
                     if ($("#matchs_team_a").val() == $("#matchs_team_b").val()) {
@@ -38,16 +38,16 @@
                     }
                 }
             }
-            
-            return valid; 
+
+            return valid;
         }, "");
-        
-        jQuery.validator.addMethod("team_b", function(value, element) { 
+
+        jQuery.validator.addMethod("team_b", function(value, element) {
             var valid = false;
             if ($(element).attr("name") == "matchs[team_b]") {
                 valid = true;
             }
-            
+
             if ($(element).attr("name") == "matchs[team_b_name]") {
                 if ($("#matchs_team_b").val() == 0) {
                     if (value != "") {
@@ -57,7 +57,7 @@
                     valid = true;
                 }
             }
-            
+
             if ($(element).attr("name") == "matchs[team_b]") {
                 if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
                     if ($("#matchs_team_a").val() == $("#matchs_team_b").val()) {
@@ -65,15 +65,15 @@
                     }
                 }
             }
-            
-            return valid; 
+
+            return valid;
         }, "");
-        
+
         $('#form-match').validate(
         {
             rules: {
                 "matchs[team_a]": {
-                    team_a: true                   
+                    team_a: true
                 },
                 "matchs[team_a_name]": {
                     team_a: true
@@ -101,22 +101,22 @@
                 .closest('.validate-field').addClass('success').removeClass("error");
             }
         });
-        
-        
-        
+
+
+
         $("#matchs_team_a").change(
-        function() { 
-            if ($(this).val() == 0) { 
+        function() {
+            if ($(this).val() == 0) {
                 $("#team_a").show();
             } else {
                 $("#team_a").hide();
             }
         }
     );
-            
+
         $("#matchs_team_b").change(
-        function() { 
-            if ($(this).val() == 0) { 
+        function() {
+            if ($(this).val() == 0) {
                 $("#team_b").show();
             } else {
                 $("#team_b").hide();
@@ -132,7 +132,7 @@
 
     <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto; max-width:100%;">
         <div class="modal-header">
-            <h3><?php echo __("Création d'un match"); ?></h3>
+            <h3><?php echo __("Create new Match"); ?></h3>
         </div>
         <div class="modal-body" style="max-height: 0%;">
 
@@ -146,7 +146,7 @@
                         <?php if ($name == "team_a"): ?>
                             <span id="team_a">
                                 <span class="validate-field">
-                                    <?php echo $form["team_a_name"]->render(array("placeholder" => "Team name")); ?>
+                                    <?php echo $form["team_a_name"]->render(array("placeholder" => "Team Name")); ?>
                                 </span>
                                 <span class="validate-field">
                                     <?php echo $form["team_a_flag"]->render(); ?>
@@ -156,7 +156,7 @@
                         <?php if ($name == "team_b"): ?>
                             <span id="team_b">
                                 <span class="validate-field">
-                                    <?php echo $form["team_b_name"]->render(array("placeholder" => "Team name")); ?>
+                                    <?php echo $form["team_b_name"]->render(array("placeholder" => "Team Name")); ?>
                                 </span>
                                 <span class="validate-field">
                                     <?php echo $form["team_b_flag"]->render(); ?>
@@ -165,14 +165,14 @@
                         <?php endif; ?>
 
                         <?php if ($name == "rules"): ?>
-                            <span class="help-inline"><?php echo __("Rentrer le nom de la cfg que vous utilisez sans son extension (si esl5on5.cfg devient esl5on5)"); ?></span>
+                            <span class="help-inline"><?php echo __("Enter the name of the .cfg File without the extension (esl5on5.cfg => esl5on5)"); ?></span>
                         <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; ?>
 
             <div class="control-group">
-                <label class="control-label"><?php echo __("Maps"); ?></label>
+                <label class="control-label"><?php echo __("Map"); ?></label>
                 <div class="controls">
                     <select name="maps">
                         <?php foreach ($maps as $map): ?>
@@ -185,7 +185,7 @@
                 <label class="control-label"><?php echo __("Server"); ?></label>
                 <div class="controls">
                     <select name="server_id">
-                        <option value="0"><?php echo __("Lancer sur un serveur aléatoirement"); ?></option>
+                        <option value="0"><?php echo __("Choose Random Server"); ?></option>
                         <?php foreach ($servers as $server): ?>
                             <?php if (in_array($server->getIp(), $used)) continue; ?>
                             <option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?></option>
@@ -195,18 +195,18 @@
             </div>
 
             <div class="control-group">
-                <label class="control-label"><?php echo __("Premier side"); ?></label>
+                <label class="control-label"><?php echo __("First Side"); ?></label>
                 <div class="controls">
                     <select name="side">
-                        <option value="ct"><?php echo __("Equipe A CT / Equipe B T"); ?></option>
-                        <option value="t"><?php echo __("Equipe A T / Equipe B CT"); ?></option>
+                        <option value="ct"><?php echo __("Team A CT / Team B T"); ?></option>
+                        <option value="t"><?php echo __("Team A T / Team B CT"); ?></option>
                         <option value="random"><?php echo __("Random"); ?></option>
                     </select>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <input type="submit" class="btn btn-primary" value="<?php echo __("Créer le match"); ?>"/>
+            <input type="submit" class="btn btn-primary" value="<?php echo __("Create Match"); ?>"/>
         </div>
     </div>
 

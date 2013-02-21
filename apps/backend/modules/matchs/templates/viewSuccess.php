@@ -1,11 +1,10 @@
-<h4>Match #<?php echo $match->getId(); ?> - <?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName() ; ?> vs <?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?></h4>
+<h4><?php echo __("Match");?> #<?php echo $match->getId(); ?> - <?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName() ; ?> vs <?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?></h4>
 <hr/>
 
 <style>
     .bar_ct {
         background-image: url(/images/zoom/blue.png);
     }
-
     .bar_t {
         background-image: url(/images/zoom/red.png);
     }
@@ -20,23 +19,22 @@
                 generateTimeLine(1);
             }
         })
-
         $(".needTips").tipsy({live:true});
         $(".needTips_S").tipsy({live:true, gravity: "s"});
     });
 </script>
 
 <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a href="#home"><?php echo __("Information / Configuration du match"); ?></a></li>
-    <li><a href="#stats-match"><?php echo __("Statistiques du match"); ?></a></li>
-    <li><a href="#stats-players"><?php echo __("Statistiques des joueurs"); ?></a></li>
-    <li><a href="#stats-weapon"><?php echo __("Statistiques des armes"); ?></a></li>
-    <li><a href="#stats-killer-killed"><?php echo __("Tueur / tué"); ?></a></li>
+    <li class="active"><a href="#home"><?php echo __("Details / Matchsettings"); ?></a></li>
+    <li><a href="#stats-match"><?php echo __("Match Statistics"); ?></a></li>
+    <li><a href="#stats-players"><?php echo __("Player Statistics"); ?></a></li>
+    <li><a href="#stats-weapon"><?php echo __("Weapon Statistics"); ?></a></li>
+    <li><a href="#stats-killer-killed"><?php echo __("Killer / Killed"); ?></a></li>
     <?php if ($match->getEnable()): ?>
-        <li><a href="#livemap"><?php echo __("Live Map"); ?></a></li>
+        <li><a href="#livemap"><?php echo __("Livemap"); ?></a></li>
     <?php endif; ?>
     <?php if ($heatmap): ?>
-        <li><a href="#heatmap"><?php echo __("Carte de chaleur"); ?></a></li>
+        <li><a href="#heatmap"><?php echo __("Heatmap"); ?></a></li>
     <?php endif; ?>
     <?php if (file_exists(sfConfig::get("app_log_match_admin") . "/match-" . $match->getId() . ".html")): ?>
         <li><a href="#logs">Logs</a></li>
@@ -48,11 +46,11 @@
         <table border="0" cellpadding="5" cellspacing="5" width="100%">
             <tr>
                 <td width="50%">
-                    <h5><i class="icon-wrench"></i> <?php echo __("Configuration du match"); ?></h5>
+                    <h5><i class="icon-wrench"></i> <?php echo __("Match Settings"); ?></h5>
 
                     <table class="table">
                         <tr>
-                            <th width="200"><?php echo __("Nom de la configuration"); ?></th>
+                            <th width="200"><?php echo __("Configuration File"); ?></th>
                             <td><?php echo $match->getRules(); ?></td>
                         </tr>
                         <tr>
@@ -64,42 +62,46 @@
                             <td><?php echo $match->getConfigPassword(); ?></td>
                         </tr>
                         <tr>
-                            <th width="200"><?php echo __("Statut"); ?></th>
+                            <th width="200"><?php echo __("Status"); ?></th>
                             <td><?php echo $match->getStatusText(); ?></td>
                         </tr>
                         <tr>
-                            <th width="200"><?php echo __("Maps"); ?></th>
+                            <th width="200"><?php echo __("Map"); ?></th>
                             <td><?php echo $match->getMap()->getMapName(); ?></td>
                         </tr>
                         <tr>
-                            <th><?php echo __("Actif ?"); ?></th>
+                            <th><?php echo __("Active"); ?></th>
                             <td>
                                 <?php if ($match->getEnable()): ?>
                                     <?php if ($match->getStatus() == Matchs::STATUS_STARTING): ?>
-                                        <?php echo image_tag("/images/icons/flag_blue.png"); ?> démarrage
+                                        <?php echo image_tag("/images/icons/flag_blue.png"); ?>
                                     <?php else: ?>
-                                        <?php echo image_tag("/images/icons/flag_green.png"); ?> oui
+                                        <?php echo image_tag("/images/icons/flag_green.png"); ?>
                                     <?php endif; ?>
                                 <?php else:
                                     ?>
-                                    <?php echo image_tag("/images/icons/flag_red.png"); ?> non
+                                    <?php echo image_tag("/images/icons/flag_red.png"); ?>
                                 <?php endif; ?>
                             </td>
                         </tr>
                         <tr>
-                            <th width="200"><?php echo __("Jouer tous les rounds"); ?></th>
+                            <th width="200"><?php echo __("Config: Full Score"); ?></th>
                             <td><?php echo image_tag("/images/icons/flag_" . ($match->getConfigFullScore() ? "green" : "red") . ".png"); ?></td>
                         </tr>
                         <tr>
-                            <th width="200"><?php echo __("OverTime actif"); ?></th>
+                            <th width="250"><?php echo __("Config: Streamer"); ?></th>
+                            <td><?php echo image_tag("/images/icons/flag_" . ($match->getConfigStreamer() ? "green" : "red") . ".png"); ?></td>
+                        </tr>
+                        <tr>
+                            <th width="200"><?php echo __("Config: Overtime"); ?></th>
                             <td><?php echo image_tag("/images/icons/flag_" . ($match->getConfigOt() ? "green" : "red") . ".png"); ?></td>
                         </tr>
                         <tr>
-                            <th width="200"><?php echo __("Knife Round"); ?></th>
+                            <th width="200"><?php echo __("Config: Knife Round"); ?></th>
                             <td><?php echo image_tag("/images/icons/flag_" . ($match->getConfigKnifeRound() ? "green" : "red") . ".png"); ?></td>
                         </tr>
                         <tr>
-                            <th width="200"><?php echo __("Knife Switch Auto"); ?></th>
+                            <th width="200"><?php echo __("Config: Switch Auto"); ?></th>
                             <td><?php echo image_tag("/images/icons/flag_" . ($match->getConfigSwitchAuto() ? "green" : "red") . ".png"); ?></td>
                         </tr>
                     </table>
@@ -124,7 +126,7 @@
                         \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                     }
                     ?>
-                    <h5><i class="icon-tasks"></i> <?php echo __("Information du match"); ?></h5>
+                    <h5><i class="icon-tasks"></i> <?php echo __("Match Details"); ?></h5>
 
                     <table class="table">
                         <tr>
@@ -132,15 +134,15 @@
                             <td><?php echo $team1; ?> (<?php echo $score1; ?>) - (<?php echo $score2; ?>) <?php echo $team2; ?></td>
                         </tr>
                         <tr>
-                            <th width="200"><?php echo __("Nombre de round joué"); ?></th>
+                            <th width="200"><?php echo __("Played Rounds"); ?></th>
                             <td><?php echo $match->getScoreA() + $match->getScoreB(); ?></td>
                         </tr>
                         <tr>
-                            <th width="200"><?php echo __("Serveur"); ?></th>
+                            <th width="200"><?php echo __("Gameserver"); ?></th>
                             <td><?php echo $match->getIp(); ?></td>
                         </tr>
                         <tr>
-                            <th width="200"><?php echo __("Nombre de joueur"); ?></th>
+                            <th width="200"><?php echo __("Player Numbers"); ?></th>
                             <td>
                                 <?php
                                 $a = 0;
@@ -154,13 +156,13 @@
                                     if ($player->getTeam() == "b")
                                         $b++;
                                 }
-                                echo $match->getPlayers()->count() . " - " . $team1 . " : " . $a . " - " . $team2 . " : " . $b . " - Spec: " . $spec;
+                                echo $match->getPlayers()->count() . " - " . $team1 . " : " . $a . " - " . $team2 . " : " . $b . " - ".__("Spectator")." : " . $spec;
                                 ?>
                             </td>
                         </tr>
                     </table>
 
-                    <h5><i class="icon-globe"></i> <?php echo __("Détails des scores"); ?></h5>
+                    <h5><i class="icon-globe"></i> <?php echo __("Score Details"); ?></h5>
 
                     <table class="table">
                         <tr>
@@ -181,16 +183,16 @@
                             ?>
                             <?php if ($score->getTypeScore() != "normal"): ?>
                                 <tr>
-                                    <th colspan="3">OverTime</th>
+                                    <th colspan="3"><?php echo __("Overtime"); ?></th>
                                 </tr>
                             <?php endif; ?>
                             <tr>
-                                <th width="200">Premier side</th>
+                                <th width="200"><?php echo __("First Side"); ?></th>
                                 <td><?php echo $score1_side1; ?></td>
                                 <td><?php echo $score2_side1; ?></td>
                             </tr>
                             <tr>
-                                <th width="200">Second side</th>
+                                <th width="200"><?php echo __("Second Side"); ?></th>
                                 <td><?php echo $score1_side2; ?></td>
                                 <td><?php echo $score2_side2; ?></td>
                             </tr>

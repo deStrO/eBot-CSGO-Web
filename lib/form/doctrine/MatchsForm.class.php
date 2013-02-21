@@ -20,6 +20,7 @@ class MatchsForm extends BaseMatchsForm {
         $password = $password[rand(0, count($password)-1)];
 
         $this->widgetSchema["config_ot"]->setLabel("OverTime");
+        $this->widgetSchema["config_streamer"]->setLabel("Streamer");
         $this->widgetSchema["config_knife_round"]->setLabel("KnifeRound");
         $this->widgetSchema["config_knife_round"]->setDefault(true);
         $this->widgetSchema["config_full_score"]->setLabel("Joueur tous les rounds");
@@ -29,7 +30,7 @@ class MatchsForm extends BaseMatchsForm {
 
         $this->widgetSchema['team_a']->setOption('method', 'getNameFlag');
         $this->widgetSchema['team_b']->setOption('method', 'getNameFlag');
-        
+
         $flags = sfConfig::get("app_flag_team".((sfContext::getInstance()->getUser()->getCulture() != "fr") ? "_en" : ""));
         $aFlags = array();
         $aFlags[""] = "";

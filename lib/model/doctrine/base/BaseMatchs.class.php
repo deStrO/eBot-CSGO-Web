@@ -8,6 +8,7 @@
  * @property integer $id
  * @property varchar $ip
  * @property integer $server_id
+ * @property integer $season_id
  * @property integer $team_a
  * @property varchar $team_a_flag
  * @property varchar $team_a_name
@@ -21,6 +22,7 @@
  * @property varchar $rules
  * @property boolean $config_full_score
  * @property boolean $config_ot
+ * @property boolean $config_streamer
  * @property boolean $config_knife_round
  * @property boolean $config_switch_auto
  * @property boolean $config_auto_change_password
@@ -46,6 +48,7 @@
  * @method integer             getId()                          Returns the current record's "id" value
  * @method varchar             getIp()                          Returns the current record's "ip" value
  * @method integer             getServerId()                    Returns the current record's "server_id" value
+ * @method integer             getSeasonId()                    Returns the current record's "season_id" value
  * @method integer             getTeamA()                       Returns the current record's "team_a" value
  * @method varchar             getTeamAFlag()                   Returns the current record's "team_a_flag" value
  * @method varchar             getTeamAName()                   Returns the current record's "team_a_name" value
@@ -59,6 +62,7 @@
  * @method varchar             getRules()                       Returns the current record's "rules" value
  * @method boolean             getConfigFullScore()             Returns the current record's "config_full_score" value
  * @method boolean             getConfigOt()                    Returns the current record's "config_ot" value
+ * @method boolean             getConfigStreamer()              Returns the current record's "config_streamer" value
  * @method boolean             getConfigKnifeRound()            Returns the current record's "config_knife_round" value
  * @method boolean             getConfigSwitchAuto()            Returns the current record's "config_switch_auto" value
  * @method boolean             getConfigAutoChangePassword()    Returns the current record's "config_auto_change_password" value
@@ -83,6 +87,7 @@
  * @method Matchs              setId()                          Sets the current record's "id" value
  * @method Matchs              setIp()                          Sets the current record's "ip" value
  * @method Matchs              setServerId()                    Sets the current record's "server_id" value
+ * @method Matchs              setSeasonId()                    Sets the current record's "season_id" value
  * @method Matchs              setTeamA()                       Sets the current record's "team_a" value
  * @method Matchs              setTeamAFlag()                   Sets the current record's "team_a_flag" value
  * @method Matchs              setTeamAName()                   Sets the current record's "team_a_name" value
@@ -96,6 +101,7 @@
  * @method Matchs              setRules()                       Sets the current record's "rules" value
  * @method Matchs              setConfigFullScore()             Sets the current record's "config_full_score" value
  * @method Matchs              setConfigOt()                    Sets the current record's "config_ot" value
+ * @method Matchs              setConfigStreamer()              Sets the current record's "config_streamer" value
  * @method Matchs              setConfigKnifeRound()            Sets the current record's "config_knife_round" value
  * @method Matchs              setConfigSwitchAuto()            Sets the current record's "config_switch_auto" value
  * @method Matchs              setConfigAutoChangePassword()    Sets the current record's "config_auto_change_password" value
@@ -142,6 +148,10 @@ abstract class BaseMatchs extends sfDoctrineRecord
              'type' => 'integer',
              'length' => 20,
              ));
+        $this->hasColumn('season_id', 'integer', 20, array(
+             'type' => 'integer',
+             'length' => 20,
+             ));
         $this->hasColumn('team_a', 'integer', 20, array(
              'type' => 'integer',
              'length' => 20,
@@ -150,9 +160,9 @@ abstract class BaseMatchs extends sfDoctrineRecord
              'type' => 'varchar',
              'length' => 2,
              ));
-        $this->hasColumn('team_a_name', 'varchar', 50, array(
+        $this->hasColumn('team_a_name', 'varchar', 25, array(
              'type' => 'varchar',
-             'length' => 50,
+             'length' => 25,
              ));
         $this->hasColumn('team_b', 'integer', 20, array(
              'type' => 'integer',
@@ -162,9 +172,9 @@ abstract class BaseMatchs extends sfDoctrineRecord
              'type' => 'varchar',
              'length' => 2,
              ));
-        $this->hasColumn('team_b_name', 'varchar', 50, array(
+        $this->hasColumn('team_b_name', 'varchar', 25, array(
              'type' => 'varchar',
-             'length' => 50,
+             'length' => 25,
              ));
         $this->hasColumn('status', 'integer', 2, array(
              'type' => 'integer',
@@ -192,6 +202,9 @@ abstract class BaseMatchs extends sfDoctrineRecord
              'type' => 'boolean',
              ));
         $this->hasColumn('config_ot', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('config_streamer', 'boolean', null, array(
              'type' => 'boolean',
              ));
         $this->hasColumn('config_knife_round', 'boolean', null, array(
@@ -239,20 +252,22 @@ abstract class BaseMatchs extends sfDoctrineRecord
         $this->hasOne('Servers as Server', array(
              'local' => 'server_id',
              'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+             'onDelete' => 'SET NULL'));
 
         $this->hasOne('Teams as TeamA', array(
              'local' => 'team_a',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
 
         $this->hasOne('Teams as TeamB', array(
              'local' => 'team_b',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
 
         $this->hasOne('Maps as Map', array(
              'local' => 'current_map',
              'foreign' => 'id',
-             'onDelete' => 'CASCADE'));
+             'onDelete' => 'SET NULL'));
 
         $this->hasMany('Maps', array(
              'local' => 'id',

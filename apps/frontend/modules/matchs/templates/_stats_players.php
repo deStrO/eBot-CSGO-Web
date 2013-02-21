@@ -1,6 +1,6 @@
 <script>
     $(function() {
-       if ($("#transactionsTable").find("tbody").find("tr").size() > 0)
+       if ($("#tablePlayers").find("tbody").find("tr").size() > 0)
             $("#tablePlayers").tablesorter({sortList: [[2,1] ]});
     });
 </script>

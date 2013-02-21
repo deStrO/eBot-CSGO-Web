@@ -5,7 +5,7 @@
                 <div class="modal-header">
                     <h3><?php echo __("Livemap"); ?></h3>
                 </div>
-                <div class="modal-body" style="text-align:center; max-height: 100%; min-height: 420px;">
+                <div class="modal-body" style="text-align:center; max-height: 100%; min-height: 420px;" id="offline">
                     <canvas id="livemap_canvas" width="760" height="530" ></canvas>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <div class="span2">
             <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto; max-width:100%; ">
                 <div class="modal-header">
-                    <h3><?php echo __("Legende"); ?></h3>
+                    <h3><?php echo __("Caption"); ?></h3>
                 </div>
                 <div class="modal-body" style="max-height: 100%; min-height: 420px;">
                     <img src="/images/maps/csgo/livemap/_blue.png" style="width: 16px; height: 16px;"> Attacker<br>
@@ -37,7 +37,7 @@
 <script>
 
     mapdata = new Array();
-    mapdata["de_dust2_se"] = [ -2216, -1176, 179, 3244, 500, 530, "V", "de_dust2_se_radar"];
+    mapdata["de_dust2_se"] = [ -2216, -1176, 1792, 3244, 500, 530, "V", "de_dust2_se_radar"];
     mapdata["de_inferno_se"] = [ -2000, -808, 2720, 3616, 500, 417, "V", "de_inferno_se_radar"];
     mapdata["de_mirage_csgo"] = [ -2672, -2536, 1472, 888, 500, 413, "V", "de_mirage_go_radar"];
     mapdata["de_nuke_se"] = [ -3008, -2496, 3523, 960, 750, 398, "V", "de_nuke_ve_radar"];
@@ -78,7 +78,7 @@
         red.src = '/images/maps/csgo/livemap/_red.png';
 
         if ("WebSocket" in window) {
-            livemap = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/livemap");
+            livemap = new WebSocket("ws://<?php echo sfConfig::get("app_ebot_ip") . ':' . sfConfig::get("app_ebot_port"); ?>/livemap");
             livemap.onopen = function () {
                 var map = new Image();
                 data = mapdata["<?php echo $match->getMap()->getMapName(); ?>"];
@@ -86,53 +86,42 @@
                 map.onload = function() {
                     context.drawImage(map, 0, 0, data[4], data[5]);
                 };
+                livemap.send("registerMatch_<?php echo $match->getId(); ?>");
             };
             livemap.onmessage = function (msg) {
-                if (msg.data.match(/\d+_newRound_\d+/)) {
-                    var get = msg.data.split("_");
-                    if (get[0] == "<?php echo $match->getId(); ?>") {
-                        context.clearRect(0, 0, canvas.width, canvas.height);
-                        var map = new Image();
-                        data = mapdata["<?php echo $match->getMap()->getMapName(); ?>"];
-                        map.src = '/images/maps/csgo/overview/'+data[7]+'.png';
-                        map.onload = function() {
-                            context.drawImage(map, 0, 0, data[4], data[5]);
-                            $("#log").prepend("<b>Runde "+get[2]+"</b><br />");
-                            var height = $('#log')[0].scrollHeight;
-                            $('#log').scrollTop(height);
-                        };
-                    }
-                }
-                else {
-                    data = jQuery.parseJSON(msg.data);
-                    if (data[0] == "<?php echo $match->getId(); ?>") {
-                        var killer = data[1];
-                        var killed = data[4];
-                        var weapon = data[3];
-                        var headshot = data[6];
-                        var coords_killer = calcCoords(data[2]);
-                        var coords_killed = calcCoords(data[5]);
-                        coords_killer = coords_killer.split("_");
-                        coords_killed = coords_killed.split("_");
-                        // Draw on Canvas
-                        context.drawImage(blue, (coords_killer[0]-8), (coords_killer[1]-8), 16, 16);
-                        context.drawImage(red, (coords_killed[0]-8), (coords_killed[1]-8), 16, 16);
-                        // Bring it to log
-                        if (headshot == '1')
-                            headshot = "<img src='/images/kills/csgo/headshot.png'>";
-                        else
-                            headshot = "";
-                        $("#log").prepend(killer+" <img src='/images/kills/csgo/"+weapon+".png'> "+killed+" "+headshot+"<br />");
+                console.log(msg);
+                var data = jQuery.parseJSON(msg.data);
+                if (data['type'] == 'newRound') {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    var map = new Image();
+                    mapdata = mapdata["<?php echo $match->getMap()->getMapName(); ?>"];
+                    map.src = '/images/maps/csgo/overview/'+mapdata[7]+'.png';
+                    map.onload = function() {
+                        context.drawImage(map, 0, 0, mapdata[4], mapdata[5]);
+                        $("#log").prepend("<b>"+data['status']+"<br />");
                         var height = $('#log')[0].scrollHeight;
                         $('#log').scrollTop(height);
-                    }
+                    };
+                } else if (data['type'] == 'kill') {
+                    var coords_killer = calcCoords(data['killerPosX']+"_"+data['killerPosY']);
+                    var coords_killed = calcCoords(data['killedPosX']+"_"+data['killedPosY']);
+                    coords_killer = coords_killer.split("_");
+                    coords_killed = coords_killed.split("_");
+                    // Draw on Canvas
+                    context.drawImage(blue, (coords_killer[0]-8), (coords_killer[1]-8), 16, 16);
+                    context.drawImage(red, (coords_killed[0]-8), (coords_killed[1]-8), 16, 16);
+                    // Bring it to log
+                    if (data['headshot'] == '1')
+                        headshot = "<img src='/images/kills/csgo/headshot.png'>";
+                    else
+                        headshot = "";
+                    $("#log").prepend(data['killer']+" <img src='/images/kills/csgo/"+data['weapon']+".png'> "+data['killed']+" "+headshot+"<br />");
+                    var height = $('#log')[0].scrollHeight;
+                        $('#log').scrollTop(height);
                 }
             };
             livemap.onclose = function (err) {
-                console.log(err);
-            };
-            livemap.onerror = function (err) {
-                console.log(err);
+                $("div#offline").append('<span style="margin: 50px; color:red;"><b>Websocket offline</b></span>');
             };
         }
     });

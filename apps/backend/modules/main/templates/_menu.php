@@ -28,36 +28,34 @@
             });
         </script>
         <ul class="nav nav-list">
-            <li class="nav-header"><?php echo __("Menu principal"); ?></li>
-            <li><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Accueil"); ?></a></li>
-            <li><a href="<?php echo url_for("stats/index"); ?>"><?php echo __("Statistiques"); ?></a></li>
+            <li class="nav-header"><?php echo __("Main Menu"); ?></li>
+            <li><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Home"); ?></a></li>
+            <li><a href="<?php echo url_for("stats/index"); ?>"><?php echo __("Statistics"); ?></a></li>
             <li><div id="websocketAlive" style="display:none;"></div></li>
             <li><div id="ebotAlive" style="display:none;"></div></li>
-            <?php /*<li><a href="<?php echo url_for("ebot/index"); ?>">Gestion du bot</a></li>
-            <li><a href="<?php echo url_for("ebot/information"); ?>">Information du bot</a></li> */ ?>
-            <li class="nav-header"><?php echo __("Menu matchs"); ?></li>
-            <li><a href="<?php echo url_for("matchs_create"); ?>"><?php echo __("Création de match"); ?></a></li>
-            <li><a href="<?php echo url_for("matchs_current"); ?>"><?php echo __("Matchs en cours"); ?> <span class="badge badge-info"><?php echo $nbMatchs; ?></span></a></li>
-            <li><a href="<?php echo url_for("matchs_archived"); ?>"><?php echo __("Matchs archivés"); ?></a></li>
+            <li class="nav-header"><?php echo __("Match Menu"); ?></li>
+            <li><a href="<?php echo url_for("matchs_create"); ?>"><?php echo __("Create New Match"); ?></a></li>
+            <li><a href="<?php echo url_for("matchs_current"); ?>"><?php echo __("Matches in Progress"); ?> <span class="badge badge-info"><?php echo $nbMatchs; ?></span></a></li>
+            <li><a href="<?php echo url_for("matchs_archived"); ?>"><?php echo __("Archived Matches"); ?></a></li>
             <li>
                 <div class="input-append">
                     <input class="span2" id="match_id_go" size="16" type="text">
-                    <button class="btn" type="button" onclick="goToMatch();">Go!</button>
+                    <button class="btn" type="button" onclick="goToMatch();"><?php echo __("Go"); ?></button>
                 </div>
             </li>
-            <li class="nav-header"><?php echo __("Menu serveurs"); ?></li>
-            <li><a href="<?php echo url_for("servers_create"); ?>"><?php echo __("Création d'un serveur"); ?></a></li>
-            <li><a href="<?php echo url_for("servers/index"); ?>"><?php echo __("Gestion des serveurs"); ?></a></li>
-            <li><a href="<?php echo url_for("servers/stats"); ?>"><?php echo __("Statistiques utilisations"); ?></a></li>
-            <li class="nav-header"><?php echo __("Team-Verwaltung"); ?></li>
-            <li><a href="<?php echo url_for("teams/create"); ?>"><?php echo __("Team erstellen"); ?></a></li>
-            <li><a href="<?php echo url_for("teams/index"); ?>"><?php echo __("Teams verwalten"); ?></a></li>
-            <li class="nav-header"><?php echo __("Season-Verwaltung"); ?></li>
-            <li><a href="<?php echo url_for("seasons/create"); ?>"><?php echo __("Season erstellen"); ?></a></li>
-            <li><a href="<?php echo url_for("seasons/index"); ?>"><?php echo __("Seasons verwalten"); ?></a></li>
-            <li class="nav-header"><?php echo __("Gestion des utilisateurs"); ?></li>
-            <li><a href="<?php echo url_for("users/create"); ?>"><?php echo __("Créer un utilisateur"); ?></a></li>
-            <li><a href="<?php echo url_for("users/index"); ?>"><?php echo __("Gestion des comptes"); ?></a></li>
+            <li class="nav-header"><?php echo __("Server Management"); ?></li>
+            <li><a href="<?php echo url_for("servers_create"); ?>"><?php echo __("Add Gameserver"); ?></a></li>
+            <li><a href="<?php echo url_for("servers/index"); ?>"><?php echo __("Server Management"); ?></a></li>
+            <li><a href="<?php echo url_for("servers/stats"); ?>"><?php echo __("Usage Statistics"); ?></a></li>
+            <li class="nav-header"><?php echo __("Team Management"); ?></li>
+            <li><a href="<?php echo url_for("teams/create"); ?>"><?php echo __("Create Team"); ?></a></li>
+            <li><a href="<?php echo url_for("teams/index"); ?>"><?php echo __("Team Management"); ?></a></li>
+            <li class="nav-header"><?php echo __("Season Management"); ?></li>
+            <li><a href="<?php echo url_for("seasons/create"); ?>"><?php echo __("Create Season"); ?></a></li>
+            <li><a href="<?php echo url_for("seasons/index"); ?>"><?php echo __("Seasons Managment"); ?></a></li>
+            <li class="nav-header"><?php echo __("User Management"); ?></li>
+            <li><a href="<?php echo url_for("users/create"); ?>"><?php echo __("Add new User"); ?></a></li>
+            <li><a href="<?php echo url_for("users/index"); ?>"><?php echo __("User Management"); ?></a></li>
         </ul>
     </div>
 </div>

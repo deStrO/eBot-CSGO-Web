@@ -1,18 +1,18 @@
-<h3><?php echo __("Listes des serveurs"); ?></h3>
+<h3><?php echo __("Server list"); ?></h3>
 <hr/>
 <div class="well well-small">
-    <?php echo __("Les statistiques sont générées au chargement de la page, d'ou la lenteur probable de celle-ci !"); ?>
+    <?php echo __("Statistics are generated on page loading, which can explain why it loads slowly!"); ?>
 </div>
 
 <table class="table table-striped">
     <thead>
         <tr>
             <th><?php echo __("#ID"); ?></th>
-            <th><?php echo __("Adresse IP"); ?></th>
-            <th><?php echo __("Nombre de matchs"); ?></th>
-            <th><?php echo __("Nombre de Kill"); ?></th>
-            <th><?php echo __("Nombre de HeadShot"); ?></th>
-            <th><?php echo __("Ratio HeadShot"); ?></th>
+            <th><?php echo __("IP Adress"); ?></th>
+            <th><?php echo __("Matches"); ?></th>
+            <th><?php echo __("Kills"); ?></th>
+            <th><?php echo __("Headshots"); ?></th>
+            <th><?php echo __("Headshot Rate"); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
             <?php
             $stats = $server->getStats();
             ?>
-        
+
             <tr>
                 <td width="30"><?php echo $server->getId(); ?></td>
                 <td width="200"><?php echo $server->getIp(); ?></td>
@@ -32,7 +32,7 @@
         <?php endforeach; ?>
         <?php if ($servers->count() == 0): ?>
             <tr>
-                <td colspan="7"><?php echo __("Pas de serveur enregistré"); ?></td>
+                <td colspan="7"><?php echo __("No Servers registered."); ?></td>
             </tr>
         <?php endif; ?>
     </tbody>

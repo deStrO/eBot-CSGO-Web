@@ -1,12 +1,12 @@
-<h3><?php echo __("Listes des utilisateurs"); ?></h3>
+<h3><?php echo __("User Management"); ?></h3>
 <hr/>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th><?php echo __("Nom d'utilisateur"); ?></th>
-            <th><?php echo __("Date de création"); ?></th>
-            <th><?php echo __("Date de mise à jours"); ?></th>
-            <th><?php echo __("Dernier login"); ?></th>
+            <th><?php echo __("Username"); ?></th>
+            <th><?php echo __("Created"); ?></th>
+            <th><?php echo __("Updated"); ?></th>
+            <th><?php echo __("Last Loging"); ?></th>
             <th><?php echo __("Action"); ?></th>
         </tr>
     </thead>
@@ -18,8 +18,8 @@
                 <td><?php echo $user->getUpdatedAt(); ?></td>
                 <td><?php echo $user->getLastLogin(); ?></td>
                 <td>
-                    <a href="<?php echo url_for("users_edit", $user); ?>" class="btn btn-primary"><?php echo __("Editer"); ?></a>
-                    <a href="<?php echo url_for("users_delete", $user); ?>"><button class="btn btn-danger"><?php echo __("Supprimer"); ?></button></a>
+                    <a href="<?php echo url_for("users_edit", $user); ?>" class="btn btn-primary"><?php echo __("Edit"); ?></a>
+                    <a href="<?php echo url_for("users_delete", $user); ?>"><button class="btn btn-danger"><?php echo __("Delete"); ?></button></a>
                 </td>
             </tr>
         <?php endforeach; ?>

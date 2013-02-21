@@ -94,60 +94,56 @@ class Matchs extends BaseMatchs {
         if (!$enable) {
             if ($this->getStatus() == self::STATUS_NOT_STARTED) {
                 return array(
-                    array("label" => "Démarrer", "route" => "matchs_start", "add_class" => "btn-success", "type" => "routing"),
-                    array("label" => "Editer", "route" => "matchs_edit", "add_class" => "btn-primary", "type" => "routing"),
-                    array("label" => "Supprimer", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing")
+                    array("label" => "Start", "route" => "matchs_start", "add_class" => "btn-success", "type" => "routing"),
+                    array("label" => "Edit", "route" => "matchs_edit", "add_class" => "btn-primary", "type" => "routing"),
+                    array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing")
                 );
             }
 
             if ($this->getStatus() == self::STATUS_END_MATCH) {
                 return array(
-                    array("label" => "Archiver", "route" => "match_put_archive", "add_class" => "btn-info", "type" => "routing"),
-                    array("label" => "Supprimer", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing")
+                    array("label" => "Archive", "route" => "match_put_archive", "add_class" => "btn-info", "type" => "routing"),
+                    array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing")
                 );
             }
 
             if ($this->getEnable() == 0) {
                 $tab = array();
                 if ($this->getServer()->exists()) {
-                    $tab[] = array("label" => "Relancer", "route" => "matchs_start_retry", "add_class" => "btn-success", "type" => "routing");
+                    $tab[] = array("label" => "Restart", "route" => "matchs_start_retry", "add_class" => "btn-success", "type" => "routing");
                 } else {
-                    $tab[] = array("label" => "Relancer sur un autre serveur", "route" => "matchs_start", "add_class" => "btn-success", "type" => "routing");
+                    $tab[] = array("label" => "Restart on another Server", "route" => "matchs_start", "add_class" => "btn-success", "type" => "routing");
                 }
 
                 $tab[] = array("label" => "Reset", "route" => "matchs_reset", "add_class" => "btn-warning", "type" => "routing");
-                $tab[] = array("label" => "Editer", "route" => "matchs_edit", "add_class" => "btn-primary", "type" => "routing");
-                $tab[] = array("label" => "Supprimer", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing");
+                $tab[] = array("label" => "Edit", "route" => "matchs_edit", "add_class" => "btn-primary", "type" => "routing");
+                $tab[] = array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing");
 
                 return $tab;
             }
         } else {
             if ($this->getStatus() == self::STATUS_END_MATCH) {
                 return array(
-                    array("label" => "Archiver", "route" => "match_put_archive", "add_class" => "btn-info", "type" => "routing"),
-                    array("label" => "Supprimer", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing")
+                    array("label" => "Archive", "route" => "match_put_archive", "add_class" => "btn-info", "type" => "routing"),
+                    array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing")
                 );
             }
-            
+
             //if (($this->getStatus() >= Matchs::STATUS_WU_KNIFE) && ($this->getStatus() <= Matchs::STATUS_WU_OT_2_SIDE)) {
-            $actions[] = array("label" => "Stopper", "add_class" => "btn-danger", "action" => "stopNoRs", "type" => "running", "style" => "display:inline;");
-            $actions[] = array("label" => "Stopper avec RS", "add_class" => "btn-danger", "action" => "stop", "type" => "running", "style" => "display:inline;");
-            $actions[] = array("label" => "Fix Sides", "action" => "fixsides", "type" => "running", "style" => "display:inline;");
-            //}
+            $actions[] = array("label" => "Stop", "add_class" => "btn-danger", "action" => "stopNoRs", "type" => "running", "style" => "display:inline;");
+            $actions[] = array("label" => "Stop with Restart", "add_class" => "btn-danger", "action" => "stop", "type" => "running", "style" => "display:inline;");
+            $actions[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary", "type" => "running", "style" => "display:inline;");
+            $actions[] = array("label" => "Fix Sides", "action" => "fixsides", "type" => "running", "add_class" => "btn-primary", "style" => "display:inline;");
             //if ($this->getStatus() == Matchs::STATUS_WU_KNIFE) {
-            $actions[] = array("label" => "Passer le knife", "action" => "passknife", "type" => "warmupknife", "style" => "display:none;");
-            $actions[] = array("label" => "Forcer le knife", "action" => "forceknife", "type" => "warmupknife", "style" => "display:none;");
-            //}
+            $actions[] = array("label" => "Skip Knife", "action" => "passknife", "type" => "warmupknife", "style" => "display:none;");
+            $actions[] = array("label" => "Force Knife", "action" => "forceknife", "type" => "warmupknife", "style" => "display:none;");
             //if ($this->getStatus() == Matchs::STATUS_END_KNIFE) {
-            $actions[] = array("label" => "Forcer le passage", "action" => "forceknifeend", "type" => "endknife", "style" => "display:none;");
-            //}
+            $actions[] = array("label" => "End Knife", "action" => "forceknifeend", "type" => "endknife", "style" => "display:none;");
             //if (in_array($this->getStatus(), array(Matchs::STATUS_WU_1_SIDE, Matchs::STATUS_WU_2_SIDE, Matchs::STATUS_WU_OT_1_SIDE, Matchs::STATUS_WU_OT_2_SIDE))) {
-            $actions[] = array("label" => "Forcer le démarrage", "action" => "forcestart", "type" => "skipwarmup", "style" => "display:none;");
-            //}
+            $actions[] = array("label" => "Skip Warmup", "action" => "forcestart", "type" => "skipwarmup", "style" => "display:none;");
             //if (in_array($this->getStatus(), array(Matchs::STATUS_KNIFE, Matchs::STATUS_FIRST_SIDE, Matchs::STATUS_SECOND_SIDE, Matchs::STATUS_OT_FIRST_SIDE, Matchs::STATUS_OT_SECOND_SIDE))) {
             $actions[] = array("label" => "Stop to warmup", "action" => "stopback", "type" => "endmatch", "style" => "display:none;");
             $actions[] = array("label" => "Un/Pause", "action" => "pauseunpause", "type" => "endmatch", "style" => "display:none;");
-            //}
         }
         $actions[] = array("label" => "RCON", "route" => "matchs_rcon", "type" => "routing");
         return $actions;

@@ -110,19 +110,19 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
 <table border="0" cellpadding="5" cellspacing="5" width="100%">
     <tr>
         <td width="50%" valign="top">
-            <h5><i class="icon-hand-right"></i> <?php echo __("Statistiques du match"); ?></h5>
+            <h5><i class="icon-hand-right"></i> <?php echo __("Match Statistics"); ?></h5>
 
             <table class="table">
                 <tr>
-                    <th width="200"><?php echo __("Enchainement des rounds"); ?></th>
+                    <th width="200"><?php echo __("Round Series"); ?></th>
                     <td>
                         <div class="progress progress-striped" style="width: 450px;">
-                            <?php foreach ($data as $d): ?> 
+                            <?php foreach ($data as $d): ?>
                                 <?php if ($d["type"] == "seperator"): ?>
-                                    <div class="bar bar-warning needTips" title="Changement de side" style="width: <?php echo $size * 1; ?>px;" >
+                                    <div class="bar bar-warning needTips" title="<?php echo __("Halftime"); ?>" style="width: <?php echo $size * 1; ?>px;" >
                                     </div>
                                 <?php else: ?>
-                                    <div <?php if ($d["value"] > 1) : $class = "needTips"; ?>title="<?php echo $d["value"]; ?> rounds"<?php endif; ?> class="bar <?php echo ($d["type"] == "ct") ? "" : "bar-danger"; ?> <?php echo $class; ?>" style="width: <?php echo $size * $d["value"]; ?>px;"></div>
+                                    <div <?php if ($d["value"] > 1) : $class = "needTips"; ?>title="<?php echo $d["value"]; ?> <?php echo __("rounds"); ?>"<?php endif; ?> class="bar <?php echo ($d["type"] == "ct") ? "" : "bar-danger"; ?> <?php echo $class; ?>" style="width: <?php echo $size * $d["value"]; ?>px;"></div>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </div>
@@ -130,7 +130,7 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                     </td>
                 </tr>
                 <tr>
-                    <th width="200"><?php echo __("Légende"); ?></th>
+                    <th width="200"><?php echo __("Caption"); ?></th>
                     <td>
                         <div class="progress progress-striped" style="width: 25px; height: 25px; float: left; margin-right: 10px;">
                             <div class="bar " style="width: 100%"></div>
@@ -154,37 +154,37 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                     <th><?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?> <?php if ($match->getScoreB() > $match->getScoreA()): ?><i class="icon-star"></i><?php endif; ?></th>
                 </tr>
                 <tr>
-                    <th width="200"><?php echo __("Victoire bombe posée"); ?></th>
+                    <th width="200"><?php echo __("Victory: Bomb Exploded"); ?></th>
                     <td><?php echo $stats["team_a"]["bomb_planted_win"]; ?> <?php if ($stats["team_a"]["bomb_planted_win"] > $stats["team_b"]["bomb_planted_win"]): ?><i class="icon-star"></i><?php endif; ?></td>
                     <td><?php echo $stats["team_b"]["bomb_planted_win"]; ?> <?php if ($stats["team_b"]["bomb_planted_win"] > $stats["team_a"]["bomb_planted_win"]): ?><i class="icon-star"></i><?php endif; ?></td>
                 </tr>
                 <tr>
-                    <th width="200"><?php echo __("Défaite bombe posée"); ?></th>
-                    <td><?php echo $stats["team_a"]["bomb_planted_loose"]; ?> <?php if ($stats["team_a"]["bomb_planted_loose"] > $stats["team_a"]["bomb_planted_loose"]): ?><i class="icon-star"></i><?php endif; ?></td>
+                    <th width="200"><?php echo __("Defeat: Bomb Defused"); ?></th>
+                    <td><?php echo $stats["team_a"]["bomb_planted_loose"]; ?> <?php if ($stats["team_a"]["bomb_planted_loose"] > $stats["team_b"]["bomb_planted_loose"]): ?><i class="icon-star"></i><?php endif; ?></td>
                     <td><?php echo $stats["team_b"]["bomb_planted_loose"]; ?> <?php if ($stats["team_b"]["bomb_planted_loose"] > $stats["team_a"]["bomb_planted_loose"]): ?><i class="icon-star"></i><?php endif; ?></td>
                 </tr>
                 <tr>
-                    <th width="200"><?php echo __("Victoire bombe diffusée"); ?></th>
+                    <th width="200"><?php echo __("Victory: Bomb Defused"); ?></th>
                     <td><?php echo $stats["team_a"]["bomb_defused"]; ?> <?php if ($stats["team_a"]["bomb_defused"] > $stats["team_b"]["bomb_defused"]): ?><i class="icon-star"></i><?php endif; ?></td>
                     <td><?php echo $stats["team_b"]["bomb_defused"]; ?> <?php if ($stats["team_b"]["bomb_defused"] > $stats["team_a"]["bomb_defused"]): ?><i class="icon-star"></i><?php endif; ?></td>
                 </tr>
                 <tr>
-                    <th width="200"><?php echo __("Victoire bombe explosée"); ?></th>
+                    <th width="200"><?php echo __("Victory"); ?></th>
                     <td><?php echo $stats["team_a"]["bomb_explosed"]; ?> <?php if ($stats["team_a"]["bomb_explosed"] > $stats["team_b"]["bomb_explosed"]): ?><i class="icon-star"></i><?php endif; ?></td>
                     <td><?php echo $stats["team_b"]["bomb_explosed"]; ?> <?php if ($stats["team_b"]["bomb_explosed"] > $stats["team_a"]["bomb_explosed"]): ?><i class="icon-star"></i><?php endif; ?></td>
                 </tr>
                 <tr>
-                    <th width="200"><?php echo __("Elimination total"); ?></th>
+                    <th width="200"><?php echo __("Total Elimination"); ?></th>
                     <td><?php echo $stats["team_a"]["kill"]; ?> <?php if ($stats["team_a"]["kill"] > $stats["team_b"]["kill"]): ?><i class="icon-star"></i><?php endif; ?></td>
                     <td><?php echo $stats["team_b"]["kill"]; ?> <?php if ($stats["team_b"]["kill"] > $stats["team_a"]["kill"]): ?><i class="icon-star"></i><?php endif; ?></td>
                 </tr>
                 <tr>
-                    <th width="200"><?php echo __("Victoire par le temps"); ?></th>
+                    <th width="200"><?php echo __("Victory: Out of Time"); ?></th>
                     <td><?php echo $stats["team_a"]["time"]; ?> <?php if ($stats["team_a"]["time"] > $stats["team_b"]["time"]): ?><i class="icon-star"></i><?php endif; ?></td>
                     <td><?php echo $stats["team_b"]["time"]; ?> <?php if ($stats["team_b"]["time"] > $stats["team_a"]["time"]): ?><i class="icon-star"></i><?php endif; ?></td>
                 </tr>
                 <tr>
-                    <th width="200"><?php echo __("Plus longue série de round"); ?></th>
+                    <th width="200"><?php echo __("Longest Round Streak"); ?></th>
                     <td>
                         <?php echo $round_a; ?> <?php if ($round_a > $round_b): ?><i class="icon-star"></i><?php endif; ?>
                     </td>
@@ -200,75 +200,74 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
 <hr/>
 
 <?php if ($rounds->count() > 0): ?>
-    <h5><i class="icon-leaf"></i> <?php echo __("Détails des rounds"); ?></h5>
+    <h5><i class="icon-leaf"></i> <?php echo __("Round Details"); ?></h5>
     <hr/>
 
     <script>
         var round_max_time = 120;
         var timer_event_default = 0;
         var default_decal = 10;
-                                            											        				
-                                            																	
+
+
         $(function() {
             $('.carousel').carousel();
-            $("#myCarousel").bind("slid", function() { 
+            $("#myCarousel").bind("slid", function() {
                 var nav = $("#paginatorRound");
                 var index = $(this).find('.item.active').index();
                 var item = nav.find('li').get(index);
-                                            																		                                                                                                                                                                                                                                                                
+
                 nav.find('li.active').removeClass('active');
                 $(item).addClass('active');
-                                            																				
+
                 index++;
-                                            														                                
+
                 generateTimeLine(index);
             });
-                                            																		                                                                                                                                                                                                                                                
-            $("#paginatorRound").find("li:first").addClass("active"); 
-                                            														
+
+            $("#paginatorRound").find("li:first").addClass("active");
             //generateTimeLine(1);
         });
-                                            														
+
         function generateTimeLine(index) {
             if (event[index]) {
                 var paper = Raphael("canvas-"+index, $("#canvas-"+index).width(), 30);
                 var rect = paper.rect(10,10,$("#canvas-"+index).width()-20,5,3);
                 rect.attr("fill", "#000");
                 rect.attr("stroke", "#fff");
-                                            														        							
-                timer_event_default = ($("#canvas-"+index).width()-20)/round_max_time;		
-                $(event[index]).each(function() { 
+
+                timer_event_default = ($("#canvas-"+index).width()-20)/round_max_time;
+                $(event[index]).each(function() {
                     var e = this;
                     var default_pos = default_decal+(this.time)*timer_event_default;
-                                            														        								
+
                     var circle = paper.circle(default_pos, 12, 8);
                     circle.attr( {"fill" : this.color, "stroke" : "#fff", "stroke-width" : 2 });
                     $(circle.node).attr("id", "circle-"+index+"-"+e.time);
-                    $(circle.node).hover(function() { 
+                    $(circle.node).hover(function() {
                         $("#tipsy-content-"+index).html(e.text);
-                                            														        									
+
                         var top = $(this).offset().top + parseInt($(this).attr("cy")) + 5;
                         var left = $(this).offset().left- ($("#tipsy-"+index).width()/2) +4;
-                                            														        									
+
                         $("#tipsy-"+index).offset( { top: top,left: left });
                         $("#tipsy-"+index).css("visibility", "visible");
-                    });	
-                                            														        								
-                    $(circle.node).mouseout(function() { 
+                    });
+
+                    $(circle.node).mouseout(function() {
                         $("#tipsy-"+index).css("visibility", "hidden");
                     });
-                });	
-                                            														        							
+                });
+
                 event[index] = false;
             }
-                                            															
+
         }
-                                            																		                                                                                                                                                                                                                                            
+
         function goToRound(id) {
             $("#myCarousel").carousel("pause");
             $("#myCarousel").carousel(id-1);
         }
-                                            																
+
         var event = new Array();
     </script>
     <div>
@@ -335,16 +334,16 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                             }
                             ?>
 
-                            <script>	
+                            <script>
                                 event[<?php echo $round->getRoundId(); ?>] = <?php echo json_encode($eventArray) ?>;
                             </script>
                             <table border="0" cellpadding="5" cellspacing="5" width="100%">
                                 <tr>
                                     <td valign="top" width="50%">
-                                        <h5>Round n°<?php echo $round->getRoundId(); ?></h5>
+                                        <h5><?php echo __("Round #").$round->getRoundId(); ?></h5>
                                         <table class="table">
                                             <tr>
-                                                <th width="200"><?php echo __("Gagné par"); ?></th>
+                                                <th width="200"><?php echo __("Winner"); ?></th>
                                                 <td>
                                                     <?php
                                                     if ($round->team_win == "a")
@@ -355,54 +354,54 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th width="200"><?php echo __("Type de victoire"); ?></th>
+                                                <th width="200"><?php echo __("Victory by"); ?></th>
                                                 <td>
                                                     <?php
                                                     switch ($round->win_type) {
                                                         case "bombdefused":
-                                                            echo __("Bombe désamorcée");
+                                                            echo __("Bomb defused");
                                                             break;
                                                         case "bombeexploded":
-                                                            echo __("Bombe explosée");
+                                                            echo __("Bomb exploded");
                                                             break;
                                                         case "normal":
-                                                            echo __("Elimation de l'équipe adverse");
+                                                            echo __("Total Elimination");
                                                             break;
                                                         case "saved":
-                                                            echo __("Gagné par le temps");
+                                                            echo __("Out of Time");
                                                             break;
                                                     }
                                                     ?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th width="200"><?php echo __("Bombe posée"); ?></th>
+                                                <th width="200"><?php echo __("Bomb planted"); ?></th>
                                                 <td>
                                                     <?php echo image_tag("/images/icons/flag_" . ($round->bomb_planted ? "green" : "red") . ".png", array("class" => "needTips", "title" => ($round->bomb_planted ? "oui" : "non"))); ?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th width="200"><?php echo __("Bombe désamorcée"); ?></th>
+                                                <th width="200"><?php echo __("Bombe defused"); ?></th>
                                                 <td>
                                                     <?php echo image_tag("/images/icons/flag_" . ($round->bomb_defused ? "green" : "red") . ".png", array("class" => "needTips", "title" => ($round->bomb_defused ? "oui" : "non"))); ?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th width="200"><?php echo __("Bombe explosée"); ?></th>
+                                                <th width="200"><?php echo __("Bombe exploded"); ?></th>
                                                 <td>
                                                     <?php echo image_tag("/images/icons/flag_" . ($round->bomb_exploded ? "green" : "red") . ".png", array("class" => "needTips", "title" => ($round->bomb_exploded ? "oui" : "non"))); ?>
                                                 </td>
                                             </tr>
                                             <?php if ($round->best_action_type != ""): ?>
                                                 <tr>
-                                                    <th width="200"><?php echo __("Action du round"); ?></th>
+                                                    <th width="200"><?php echo __("Action of the Round"); ?></th>
                                                     <td>
                                                         <?php if (preg_match("!^1v(\d+)$!", $round->best_action_type, $m)): ?>
                                                             <?php $d = unserialize($round->getRaw("best_action_param")); ?>
                                                             <?php echo $d["playerName"]; ?> <?php echo __("a mis un"); ?> <?php echo $round->best_action_type; ?>
                                                         <?php elseif (preg_match("!^(\d+)kill$!", $round->best_action_type, $m)): ?>
                                                             <?php $d = unserialize($round->getRaw("best_action_param")); ?>
-                                                            <?php echo $d["playerName"]; ?> <?php echo __("a fait"); ?> <?php echo $m[1]; ?> kill
+                                                            <?php echo $d["playerName"]; ?> <?php echo __("did"); ?> <?php echo $m[1]; ?> <?php echo __("Kills"); ?>
                                                         <?php endif; ?>
                                                     </td>
                                                 </tr>
@@ -410,7 +409,7 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                                         </table>
                                     </td>
                                     <td valign="top">
-                                        <h5><?php echo __("Détails des rounds"); ?></h5>
+                                        <h5><?php echo __("Round Details"); ?></h5>
                                         <table class="table table-striped table-condensed">
                                             <?php foreach ($round->getPlayersKill() as $kill): ?>
                                                 <tr>
@@ -470,9 +469,9 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                     $("#buttonPauseResume").removeClass().addClass("icon-play");
                     $("#myCarousel").carousel("pause");
                 }
-                                                        
+
                 paused = !paused;
-                                                        
+
                 return false;
             }
         </script>

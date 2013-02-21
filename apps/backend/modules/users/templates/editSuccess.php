@@ -20,7 +20,7 @@
 
     <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto;max-width:100%;">
         <div class="modal-header">
-            <h3><?php echo __("Edition d'un utilisateur"); ?></h3>
+            <h3><?php echo __("Edit User"); ?></h3>
         </div>
         <div class="modal-body" style="max-height: 0%;">
             <?php foreach ($form as $widget): ?>
@@ -34,7 +34,7 @@
             <?php endforeach; ?>
         </div>
         <div class="modal-footer">
-            <input type="submit" class="btn btn-primary" value="<?php echo __("Editer l'utilisateur"); ?>"/>
+            <input type="submit" class="btn btn-primary" value="<?php echo __("Edit User"); ?>"/>
         </div>
-    </div>	
+    </div>
 </form>

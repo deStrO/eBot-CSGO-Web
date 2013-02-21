@@ -1,7 +1,7 @@
 <div class="well">
     <h1><?php echo __("eBot-CSGO"); ?></h1>
-    <p><?php echo __("Bienvenue sur le panel d'administration de l'eBot CSGO, vous pouvez y gérer les matchs, mais aussi accéder aux différentes statistiques."); ?></p>
-    <p><?php echo __("Vous pouvez commencer à utiliser le panel en accédant aux menus à gauche."); ?></p>
+    <p><?php echo __("Welcome to CSGO eBot administration panel, you can manage your matches and also consult various statistics."); ?></p>
+    <p><?php echo __("You can start using the panel via the menus on your left."); ?></p>
 </div>
 <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto; max-width:100%;">
     <div class="modal-header">

@@ -17,7 +17,7 @@ class matchsActions extends sfActions {
 	public function executeStartAll(sfWebRequest $request) {
 		$matchs = MatchsTable::getInstance()->createQuery()->where("status = ?", Matchs::STATUS_NOT_STARTED)->execute();
 		if ($matchs->count() == 0) {
-			$this->getUser()->setFlash("notification_error", $this->__("Il n'y a pas de match a lancé"));
+			$this->getUser()->setFlash("notification_error", $this->__("No match started"));
 			$this->redirect("matchs_current");
 		}
 
@@ -42,7 +42,7 @@ class matchsActions extends sfActions {
 			}
 
 			if (is_null($server)) {
-				$this->getUser()->setFlash("notification_error", $this->__("Il n'y a plus de serveur disponible"));
+				$this->getUser()->setFlash("notification_error", $this->__("No Server available"));
 				$this->redirect("matchs_current");
 			}
 
@@ -55,7 +55,7 @@ class matchsActions extends sfActions {
 			$match->save();
 		}
 
-		$this->getUser()->setFlash("notification_ok", $this->__("Le(s) match(s) a/ont été lancés"));
+		$this->getUser()->setFlash("notification_ok", $this->__("The matches were started successfully"));
 		$this->redirect("matchs_current");
 	}
 
@@ -67,7 +67,7 @@ class matchsActions extends sfActions {
 
 		$match->stop();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("La commande a été envoyée au serveur, le match sera arrêté"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Command send to the server, match will be stopped."));
 		$this->redirect("matchs_current");
 	}
 
@@ -79,7 +79,7 @@ class matchsActions extends sfActions {
 
 		$match->stop(true);
 
-		$this->getUser()->setFlash("notification_ok", $this->__("La commande a été envoyée au serveur, le match sera arrêté"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Command send to the server, match will be stopped."));
 		$this->redirect("matchs_current");
 	}
 
@@ -90,7 +90,7 @@ class matchsActions extends sfActions {
 
 		$match->delete();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("Le match a été supprimé"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Match deleted"));
 		$this->redirect($request->getReferer());
 	}
 
@@ -102,7 +102,7 @@ class matchsActions extends sfActions {
 
 		$match->passKnife();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("La commande a été envoyée au serveur, le knife sera skip"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Command send to the server, knife will be skipped."));
 		$this->redirect("matchs_current");
 	}
 
@@ -114,7 +114,7 @@ class matchsActions extends sfActions {
 
 		$match->forceKnife();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("La commande a été envoyée au serveur, le knife va être lancé"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Command send to the server, knife will be forced."));
 		$this->redirect("matchs_current");
 	}
 
@@ -126,7 +126,7 @@ class matchsActions extends sfActions {
 
 		$match->forceKnifeEnd();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("La commande a été envoyée au serveur, passage au warmup"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Command send to the server, match will skipped to warmup."));
 		$this->redirect("matchs_current");
 	}
 
@@ -138,7 +138,7 @@ class matchsActions extends sfActions {
 
 		$match->forceStart();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("La commande a été envoyée au serveur, forcage du démarrage du match"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Command send to the server, match will be started."));
 		$this->redirect("matchs_current");
 	}
 
@@ -150,7 +150,7 @@ class matchsActions extends sfActions {
 
 		$match->stopBack();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("La commande a été envoyée au serveur, retour au warmup"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Command send to the server, match will be stopped to warmup."));
 		$this->redirect("matchs_current");
 	}
 
@@ -162,7 +162,7 @@ class matchsActions extends sfActions {
 
 		$match->pauseUnpause();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("La commande a été envoyée au serveur, pause"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Command send to the server, match will be paused/unpaused."));
 		$this->redirect("matchs_current");
 	}
 
@@ -205,7 +205,7 @@ class matchsActions extends sfActions {
 		}
 
 		if (is_null($server)) {
-			$this->getUser()->setFlash("notification_error", $this->__("Pas de serveurs disponibles"));
+			$this->getUser()->setFlash("notification_error", $this->__("No server available"));
 			$this->redirect("matchs_current");
 		}
 
@@ -219,7 +219,7 @@ class matchsActions extends sfActions {
 		$match->setScoreB(0);
 		$match->save();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("Le match a été démarré sur ") . $server->getIp());
+		$this->getUser()->setFlash("notification_ok", $this->__("Match will be started on") . " " . $server->getIp());
 		$this->redirect("matchs_current");
 	}
 
@@ -232,7 +232,7 @@ class matchsActions extends sfActions {
 		$match->setStatus(Matchs::STATUS_ARCHIVE);
 		$match->save();
 
-		$this->getUser()->setFlash("notification_ok", $this->__("Le match a été archivé"));
+		$this->getUser()->setFlash("notification_ok", $this->__("Match archived"));
 		$this->redirect("matchs_current");
 	}
 
@@ -240,7 +240,7 @@ class matchsActions extends sfActions {
 		$matchs = MatchsTable::getInstance()->createQuery()->where("status = ?", Matchs::STATUS_END_MATCH)->execute();
 
 		if ($matchs->count() == 0) {
-			$this->getUser()->setFlash("notification_error", $this->__("Il n'y a pas de match à archiver"));
+			$this->getUser()->setFlash("notification_error", $this->__("No Match archived"));
 			$this->redirect("matchs_current");
 		}
 
@@ -250,7 +250,7 @@ class matchsActions extends sfActions {
 			$match->save();
 		}
 
-		$this->getUser()->setFlash("notification_ok", $matchs->count() . $this->__(" matchs a/ont été archivé(s)"));
+		$this->getUser()->setFlash("notification_ok", $matchs->count() . $this->__(" match(es) archived"));
 		$this->redirect("matchs_current");
 	}
 
@@ -262,6 +262,7 @@ class matchsActions extends sfActions {
 			$match->setScoreA(0);
 			$match->setScoreB(0);
 			$match->setStatus(0);
+            $match->setIngameEnable(NULL);
 //			$match->setIp(null);
 //			$match->setServer(null);
 			$match->save();
@@ -279,9 +280,9 @@ class matchsActions extends sfActions {
 			foreach ($match->getRoundSummary() as $round) {
 				$round->delete();
 			}
-			$this->getUser()->setFlash("notification_ok", $this->__("Le match a été remis à zéro"));
+			$this->getUser()->setFlash("notification_ok", $this->__("Match is resetted"));
 		} else {
-			$this->getUser()->setFlash("notification_ok", $this->__("Impossible de remettre à zéro"));
+			$this->getUser()->setFlash("notification_error", $this->__("Match can't be resetted"));
 		}
 
 		$this->redirect("matchs_current");
@@ -303,15 +304,15 @@ class matchsActions extends sfActions {
 			$match->setEnable(1);
 			$match->save();
 
-			$this->getUser()->setFlash("notification_ok", $this->__("Le match a été relancé sur ") . $match->getServer()->getIp());
+			$this->getUser()->setFlash("notification_ok", $this->__("Match is restarted on") . " " . $match->getServer()->getIp());
 		} else {
-			$this->getUser()->setFlash("notification_error", $this->__("Un match est déjà en cours avec ") . $match->getServer()->getIp());
+			$this->getUser()->setFlash("notification_error", $this->__("A match is currently played on") . $match->getServer()->getIp());
 			$match->setIp(null);
 			$match->setServer(null);
 			$match->setEnable(0);
 			$match->save();
 
-			$this->getUser()->setFlash("notification_ok", $this->__("Le match a été détaché du serveur"));
+			$this->getUser()->setFlash("notification_ok", $this->__("Server resetted from match"));
 		}
 
 		$this->redirect("matchs_current");
@@ -390,12 +391,12 @@ class matchsActions extends sfActions {
 			$this->form->bind($request->getPostParameter($this->form->getName()));
 			if ($this->form->isValid() && in_array($_POST["maps"], $this->maps)) {
 				$match = $this->form->save();
-                
+
                 if ($match->getTeamA()->exists()) {
                     $match->setTeamAName($match->getTeamA()->getName());
                     $match->setTeamAFlag($match->getTeamA()->getFlag());
                 }
-                
+
                 if ($match->getTeamB()->exists()) {
                     $match->setTeamBName($match->getTeamB()->getName());
                     $match->setTeamBFlag($match->getTeamB()->getFlag());
@@ -415,7 +416,7 @@ class matchsActions extends sfActions {
                         $match->setServer($server);
                     }
 				}
-			
+
 				$maps = new Maps();
 				$maps->setMatch($match);
 				$maps->setMapsFor("default");
@@ -433,7 +434,7 @@ class matchsActions extends sfActions {
 				$match->setStatus(Matchs::STATUS_NOT_STARTED);
 				$match->save();
 
-				$this->getUser()->setFlash("notification_ok", $this->__("Le match a été créé avec succès et porte l'ID ") . $match->getId());
+				$this->getUser()->setFlash("notification_ok", $this->__("Match created with ID") . " " . $match->getId());
 
 				$this->redirect("matchs_create");
 			}
@@ -447,7 +448,7 @@ class matchsActions extends sfActions {
 		$this->servers = ServersTable::getInstance()->findAll();
 
 		if ($this->match->getEnable()) {
-			$this->getUser()->setFlash("notification_error", $this->__("Vous ne pouvez pas editer un match qui est en cours"));
+			$this->getUser()->setFlash("notification_error", $this->__("Match is currently in progress, can't be edited."));
 			$this->redirect("matchs_current");
 		}
 
@@ -489,7 +490,7 @@ class matchsActions extends sfActions {
 				}
 
 				if (is_null($server)) {
-					$this->getUser()->setFlash("notification_error", $this->__("Pas de serveurs disponibles"));
+					$this->getUser()->setFlash("notification_error", $this->__("No Server available"));
 					$this->redirect("matchs_current");
 				}
 
@@ -502,7 +503,7 @@ class matchsActions extends sfActions {
 				$map->setMapName($_POST["maps"]);
 				$map->save();
 
-				$this->getUser()->setFlash("notification_ok", $this->__("Le match a été sauvé avec succès"));
+				$this->getUser()->setFlash("notification_ok", $this->__("Match edited successfully"));
 				$this->redirect("matchs_current");
 			}
 		}
@@ -514,7 +515,7 @@ class matchsActions extends sfActions {
 		$this->forward404Unless($this->match);
 
 		if ($this->match->getEnable()) {
-			$this->getUser()->setFlash("notification_error", $this->__("Vous ne pouvez pas editer un match qui est en cours"));
+			$this->getUser()->setFlash("notification_error", $this->__("Match is currently in progress."));
 			$this->redirect("matchs_current");
 		}
 
@@ -541,21 +542,21 @@ class matchsActions extends sfActions {
 				$this->match->setScoreB($score_b);
 				$this->match->save();
 
-				$this->getUser()->setFlash("notification_ok", $this->__("Les scores ont été mis à jours - Nouveau score: ") . $score_a . " - " . $score_b);
+				$this->getUser()->setFlash("notification_ok", $this->__("Score updated successfully - New Score") . ": " . $score_a . " - " . $score_b);
 				$this->redirect($this->generateUrl("matchs_edit", $this->match));
 			} else {
-				$this->getUser()->setFlash("notification_error", $this->__("Erreur de donnée"));
+				$this->getUser()->setFlash("notification_error", $this->__("Error, invalid data."));
 				$this->redirect($this->generateUrl("matchs_edit", $this->match));
 			}
 		} else {
-			$this->getUser()->setFlash("notification_error", $this->__("Erreur de donnée"));
+			$this->getUser()->setFlash("notification_error", $this->__("Error, invalid data."));
 			$this->redirect($this->generateUrl("matchs_edit", $this->match));
 		}
 	}
 
 	public function executeView(sfWebRequest $request) {
 		$this->match = $this->getRoute()->getObject();
-        
+
         $this->crypt_key = sfConfig::get("app_cryptkey");
         $this->ebot_ip = sfConfig::get("app_ebot_ip");
         $this->ebot_port = sfConfig::get("app_ebot_port");

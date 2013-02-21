@@ -32,10 +32,10 @@ class teamsActions extends sfActions {
                 $this->form->bind($datas);
                 $this->form->save();
 
-                $this->getUser()->setFlash("notification_ok", $this->__("L'équipe a été crée"));
+                $this->getUser()->setFlash("notification_ok", $this->__("Team created successfully."));
                 $this->redirect("teams_create");
             } else {
-                $this->getUser()->setFlash("notification_error", $this->__("Form invalid"));
+                $this->getUser()->setFlash("notification_error", $this->__("Error, invalid form"));
             }
         }
     }
@@ -48,10 +48,10 @@ class teamsActions extends sfActions {
             if ($this->form->isValid()) {
                 $this->form->save();
 
-                $this->getUser()->setFlash("notification_ok", $this->__("L'équipe a été éditée"));
+                $this->getUser()->setFlash("notification_ok", $this->__("Team edited successfully."));
                 $this->redirect("teams/index");
             } else {
-                $this->getUser()->setFlash("notification_error", $this->__("Form invalid"));
+                $this->getUser()->setFlash("notification_error", $this->__("Error, invalid form"));
             }
         }
     }
@@ -60,7 +60,7 @@ class teamsActions extends sfActions {
         $team = $this->getRoute()->getObject();
         $this->forward404Unless($team);
         $team->delete();
-        $this->getUser()->setFlash("notification_ok", $this->__("L'équipe a été supprimée"));
+        $this->getUser()->setFlash("notification_ok", $this->__("Team deleted successfully."));
         $this->redirect("teams/index");
     }
 

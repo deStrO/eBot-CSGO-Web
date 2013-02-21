@@ -415,19 +415,19 @@
       </trans-unit>
       <trans-unit id="103">
         <source>Jouer tous les rounds</source>
-        <target>Spielen auf</target>
+        <target>Alle Runden</target>
       </trans-unit>
       <trans-unit id="104">
         <source>OverTime actif</source>
-        <target>OverTime aktiv</target>
+        <target>OverTime</target>
       </trans-unit>
       <trans-unit id="105">
         <source>Knife Round</source>
-        <target/>
+        <target>Knife</target>
       </trans-unit>
       <trans-unit id="106">
         <source>Knife Switch Auto</source>
-        <target>automatischer Knife-Switch</target>
+        <target>Knife-Switch</target>
       </trans-unit>
       <trans-unit id="107">
         <source>Information du match</source>

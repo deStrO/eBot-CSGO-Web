@@ -1,4 +1,4 @@
-<h3><?php echo __("Seasons verwalten"); ?></h3>
+<h3><?php echo __("Seasons Management"); ?></h3>
 <hr/>
 <table class="table table-striped">
     <thead>
@@ -6,7 +6,7 @@
             <th><?php echo __("#ID"); ?></th>
             <th><?php echo __("Name"); ?></th>
             <th><?php echo __("Start"); ?></th>
-            <th><?php echo __("Ende"); ?></th>
+            <th><?php echo __("End"); ?></th>
             <th><?php echo __("Link"); ?></th>
         </tr>
     </thead>
@@ -23,12 +23,12 @@
                     <td></td>
                 <?php endif; ?>
                 <td width="170">
-                    <a href="<?php echo url_for("seasons_edit", $season); ?>"><button class="btn btn-inverse"><?php echo __("Editieren"); ?></button></a>
-                    <a href="<?php echo url_for("seasons_delete", $season); ?>"><button class="btn btn-danger"><?php echo __("Löschen"); ?></button></a></td>
+                    <a href="<?php echo url_for("seasons_edit", $season); ?>"><button class="btn btn-inverse"><?php echo __("Edit"); ?></button></a>
+                    <a href="<?php echo url_for("seasons_delete", $season); ?>"><button class="btn btn-danger"><?php echo __("Delete"); ?></button></a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
 <div class="modal-footer" style="text-align:left;">
-    <a href="<?php echo url_for("seasons_create"); ?>"><button class="btn btn-primary" style="text-align:left;"><?php echo __("Season erstellen"); ?></button></a>
+    <a href="<?php echo url_for("seasons_create"); ?>"><button class="btn btn-primary" style="text-align:left;"><?php echo __("Create Season"); ?></button></a>
 </div>

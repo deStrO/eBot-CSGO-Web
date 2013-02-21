@@ -1,4 +1,4 @@
-<h3>Création d'une équipe</h3>
+<h3><?php __("Create new Team"); ?></h3>
 <hr/>
 <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("teams_create"); ?>">
     <?php echo $form->renderHiddenFields(); ?>
@@ -15,7 +15,7 @@
 
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn btn-primary" value="Créer l'équipe"/>
+                <input type="submit" class="btn btn-primary" value="<?php echo __("Create Team"); ?>"/>
             </div>
         </div>
     </div>

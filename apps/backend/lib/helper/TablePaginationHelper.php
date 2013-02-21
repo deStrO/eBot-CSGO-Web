@@ -11,7 +11,7 @@ function tablePagination($pager, $url, $name = "page", $add = "") {
 	if ($pager->haveToPaginate()) {
 		echo "<li>";
 		echo "<a href=\"" . url_for($url . $char . "$name=" . $pager->getPreviousPage()) . "$add\">";
-		echo "\t&lt; Prev";
+		echo "\t&lt; ".__("Prev");
 		echo "</a>";
 		echo "</li>";
 
@@ -32,7 +32,7 @@ function tablePagination($pager, $url, $name = "page", $add = "") {
 
 		echo "<li>";
 		echo "<a href=\"" . url_for($url . $char . "$name=" . $pager->getNextPage()) . "$add\">";
-		echo "\tNext &gt;";
+		echo "\t".__("Next")."&gt;";
 		echo "</a>";
 		echo "</li>";
 	}

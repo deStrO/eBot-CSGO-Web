@@ -2,8 +2,8 @@
     <thead>
         <tr>
             <th><?php echo __("#ID"); ?></th>
-            <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
-            <th><?php echo __("Maps en cours"); ?></th>
+            <th colspan="3"><?php echo __("Opponent - Score"); ?></th>
+            <th><?php echo __("Map"); ?></th>
             <th><?php echo __("IP"); ?></th>
             <th><?php echo __("Enabled"); ?></th>
             <th><?php echo __("Status"); ?></th>
@@ -59,9 +59,9 @@
                 </td>
 
                 <td width="200" style="padding-left: 3px;" align="center">
-                    <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse"><?php echo __("Voir"); ?></button></a>
+                    <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse"><?php echo __("Show"); ?></button></a>
                     <?php if ($match->getStatus() == Matchs::STATUS_ARCHIVE): ?>
-                        <a href="<?php echo url_for("matchs_delete", $match); ?>"><button class="btn btn-danger"><?php echo __("Supprimer"); ?></button></a>
+                        <a href="<?php echo url_for("matchs_delete", $match); ?>"><button class="btn btn-danger"><?php echo __("Delete"); ?></button></a>
                     <?php endif; ?>
                 </td>
 
@@ -69,7 +69,7 @@
         <?php endforeach; ?>
         <?php if ($pager->getNbResults() == 0): ?>
             <tr>
-                <td colspan="8" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
+                <td colspan="8" align="center"><?php echo __("No results available."); ?></td>
             </tr>
         <?php endif; ?>
     </tbody>

@@ -1,4 +1,4 @@
-<h3>Team bearbeiten: <?php echo $team->getName(); ?></h3>
+<h3><?php echo __("Edit Team"); ?>: <?php echo $team->getName(); ?></h3>
 <hr/>
 <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("teams_edit", $team); ?>">
     <?php echo $form->renderHiddenFields(); ?>
@@ -15,7 +15,7 @@
 
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn btn-primary" value="Team editieren"/>
+                <input type="submit" class="btn btn-primary" value="<?php echo __("Edit Team"); ?>"/>
             </div>
         </div>
     </div>

@@ -25,12 +25,12 @@ class statsActions extends sfActions {
                 ->fetchOne();
         $this->nbHs = $data["total_hs"];
 
-        $this->nbNotStarted = MatchsTable::getInstance()->createQuery()->where("status IN ?", array(array(Matchs::STATUS_NOT_STARTED)))->orWhere("enable = ?", 0)->count();
+        $this->nbNotStarted = MatchsTable::getInstance()->createQuery()->where("status IN ?", array(array(Matchs::STATUS_NOT_STARTED)))->count();
         $this->nbClosed = MatchsTable::getInstance()->createQuery()->where("status >= ?", array(Matchs::STATUS_END_MATCH))->count();
         $this->nbInProgress = MatchsTable::getInstance()->createQuery()->where("status >= ? AND status <= ?", array(Matchs::STATUS_STARTING, Matchs::STATUS_OT_SECOND_SIDE))->andWhere("enable = ?", 1)->count();
-   
+
         $this->nbServers = ServersTable::getInstance()->createQuery()->count();
-        
+
    }
 
 }

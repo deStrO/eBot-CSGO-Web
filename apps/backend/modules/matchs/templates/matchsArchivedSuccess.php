@@ -1,13 +1,13 @@
-<h3><?php echo __("Listes des matchs archivés"); ?></h3>
+<h3><?php echo __("Archived Matches"); ?></h3>
 <hr/>
 <div class="navbar">
     <div class="navbar-inner">
-        <a class="brand" href="#"><?php echo __("Administration rapide"); ?></a>
+        <a class="brand" href="#"><?php echo __("Quick Administration"); ?></a>
         <ul class="nav">
-            <li><a href="<?php echo $sf_request->getRelativeUrlRoot(); ?>"><?php echo __("Rafraichir la page"); ?></a></li>
-            <li><a href="#myModal" role="button"  data-toggle="modal"><?php echo __("Rechercher un match"); ?></a></li>
+            <li><a href="<?php echo $sf_request->getRelativeUrlRoot(); ?>"><?php echo __("Refresh"); ?></a></li>
+            <li><a href="#myModal" role="button"  data-toggle="modal"><?php echo __("Search Match"); ?></a></li>
             <?php if (count($filterValues) > 0): ?>
-                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Remettre à zéro le filtre"); ?></a></li>
+                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Reset Filter"); ?></a></li>
             <?php endif; ?>
         </ul>
     </div>
@@ -15,10 +15,10 @@
 
 <div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel" aria-hidden="true">
     <form class="form-horizontal" method="post" action="<?php echo url_for("matchs_filters"); ?>">
-        <?php echo $filter->renderHiddenFields(); ?>    
+        <?php echo $filter->renderHiddenFields(); ?>
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel"><?php echo __("Recherche d'un match"); ?></h3>
+            <h3 id="myModalLabel"><?php echo __("Search Match"); ?></h3>
         </div>
         <div class="modal-body">
             <?php foreach ($filter as $widget): ?>
@@ -32,9 +32,9 @@
             <?php endforeach; ?>
         </div>
         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __("Fermer"); ?></button>
-            <button class="btn btn-inverse"><?php echo __("Annuler le filtre"); ?></button>
-            <input type="submit" class="btn btn-primary" value="<?php echo __("Recherche"); ?>"/>
+            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __("Close"); ?></button>
+            <button class="btn btn-inverse"><?php echo __("Cancel"); ?></button>
+            <input type="submit" class="btn btn-primary" value="<?php echo __("Search"); ?>"/>
         </div>
     </form>
 </div>
@@ -43,8 +43,8 @@
     <thead>
         <tr>
             <th><?php echo __("#ID"); ?></th>
-            <th colspan="3"><?php echo __("Opposant - Score"); ?></th>
-            <th><?php echo __("Maps en cours"); ?></th>
+            <th colspan="3"><?php echo __("Opponent - Score"); ?></th>
+            <th><?php echo __("Map"); ?></th>
             <th><?php echo __("IP"); ?></th>
             <th><?php echo __("Enabled"); ?></th>
             <th><?php echo __("Status"); ?></th>
@@ -100,9 +100,9 @@
                 </td>
 
                 <td width="200" style="padding-left: 3px;" align="center">
-                    <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse"><?php echo __("Voir"); ?></button></a>
+                    <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse"><?php echo __("Show"); ?></button></a>
                     <?php if ($match->getStatus() == Matchs::STATUS_ARCHIVE): ?>
-                        <a href="<?php echo url_for("matchs_delete", $match); ?>"><button class="btn btn-danger"><?php echo __("Supprimer"); ?></button></a>
+                        <a href="<?php echo url_for("matchs_delete", $match); ?>"><button class="btn btn-danger"><?php echo __("Delete"); ?></button></a>
                     <?php endif; ?>
                 </td>
 
@@ -110,7 +110,7 @@
         <?php endforeach; ?>
         <?php if ($pager->getNbResults() == 0): ?>
             <tr>
-                <td colspan="8" align="center"><?php echo __("Pas de résultats à afficher"); ?></td>
+                <td colspan="8" align="center"><?php echo __("No results for this filter."); ?></td>
             </tr>
         <?php endif; ?>
     </tbody>
@@ -123,7 +123,7 @@
                     tablePagination($pager, $url);
                     ?>
                 </div>
-            </td> 
+            </td>
         </tr>
     </tfoot>
 </table>

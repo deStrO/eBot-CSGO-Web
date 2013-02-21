@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="fr" datatype="plaintext" original="messages" date="2012-11-26T21:03:07Z" product-name="messages">
+  <file source-language="EN" target-language="fr" datatype="plaintext" original="messages" date="2013-02-19T23:22:47Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -678,6 +678,114 @@
       </trans-unit>
       <trans-unit id="168">
         <source>Arme</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="169">
+        <source>Admin</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="170">
+        <source>Informationen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="171">
+        <source>Alle Infos zur aktuellen ESL Pro Series Spring Season 2013 by RaidCall.com findet ihr hier: &lt;a href='http://www.esl.eu/de/pro-series/spring_2013/csgo/'&gt;EPS Spring 2013 CSGO&lt;/a&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="172">
+        <source>&lt;a href='http://www.esl.eu/de/pro-series/spring_2013/csgo/5on5/rankings'&gt;Die aktuelle Tabelle&lt;/a&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="173">
+        <source>&lt;a href='http://www.esl.eu/de/pro-series/spring_2013/csgo/5on5/results/'&gt;Alle Spieltage&lt;/a&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="174">
+        <source>&lt;p&gt;Vous pouvez trier tous les champs du tableau pour obtenir des résultats personallisés.&lt;/p&gt;
+			&lt;p&gt;Les colonnes &lt;b&gt;1K&lt;/b&gt;, &lt;b&gt;2K&lt;/b&gt;, ... représentent le nombre de kill par round effectué. Par exemple, si j'ai 2 dans la colonne 3K, cela veut dire que j'ai fais 2 rounds où j'ai fais 3 kills.
+			&lt;p&gt;La colonne &lt;b&gt;FK&lt;/b&gt; signifie &lt;b&gt;First Kill&lt;/b&gt;, utile pour voir les personnes qui font les premiers kills&lt;/p&gt;
+			&lt;p&gt;Les points clutchs représentent si la personne a réalisé plusieurs "clutch", par exemple, gagné un 1v1. Ils sont calculés comme ceci: nombre de 1 v X gagné multiplé par X. Si j'ai fais trois 1v1 et un 1v2, j'aurai donc 5 points. (1v1 x 3 = 3, 1v2 x 1 = 2)&lt;/p&gt;
+</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="175">
+        <source>Rafraichissement du tableau dans &lt;span id="seconds"&gt;..&lt;/span&gt; secondes</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="176">
+        <source>Date</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="177">
+        <source>Livemap</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="178">
+        <source>Log</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="179">
+        <source>Legende</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="180">
+        <source>GO TV</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="181">
+        <source>Information / stats globales</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="182">
+        <source>vs </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="183">
+        <source>1 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="184">
+        <source>2 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="185">
+        <source>3 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="186">
+        <source>4 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="187">
+        <source>5 kill par round</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="188">
+        <source>First Kill</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="189">
+        <source>Arme utilisée</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="190">
+        <source>Normal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="191">
+        <source>Point Clutch</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="192">
+        <source>Stats des armes</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="193">
+        <source>Ratio H/S</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="194">
+        <source>Ratio</source>
         <target/>
       </trans-unit>
     </body>

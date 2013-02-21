@@ -33,11 +33,11 @@ class seasonsActions extends sfActions
         $this->form->bind($datas);
         $this->form->save();
 
-        $this->getUser()->setFlash("notification_ok", $this->__("Season erfolgreich angelegt."));
+        $this->getUser()->setFlash("notification_ok", $this->__("Season created successfully"));
         $this->redirect("seasons_create");
       }
       else {
-        $this->getUser()->setFlash("notification_error", $this->__("Form invalid"));
+        $this->getUser()->setFlash("notification_error", $this->__("Error, invalid form"));
       }
     }
   }
@@ -57,11 +57,11 @@ class seasonsActions extends sfActions
         $this->form->bind($datas);
         $this->form->save();
 
-        $this->getUser()->setFlash("notification_ok", $this->__("Season erfolgreich bearbeitet."));
+        $this->getUser()->setFlash("notification_ok", $this->__("Season edited successfully"));
         $this->redirect("seasons/index");
       }
       else {
-        $this->getUser()->setFlash("notification_error", $this->__("Form invalid"));
+        $this->getUser()->setFlash("notification_error", $this->__("Error, invalid form"));
       }
     }
   }
@@ -70,7 +70,7 @@ class seasonsActions extends sfActions
     $season = $this->getRoute()->getObject();
 		$this->forward404Unless($season);
     $season->delete();
-    $this->getUser()->setFlash("notification_ok", $this->__("Season wurde gelöscht."));
+    $this->getUser()->setFlash("notification_ok", $this->__("Season deleted successfully"));
 		$this->redirect("seasons/index");
   }
 

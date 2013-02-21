@@ -35,7 +35,7 @@ all:
     use_database:           true
 
     i18n: true
-    default_culture:        de
+    default_culture:        en_EN
     standard_helpers: [Partial, Cache, I18N]
     enabled_modules:      [default, sfGuardAuth]
 
