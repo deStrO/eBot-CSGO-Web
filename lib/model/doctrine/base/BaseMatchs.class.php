@@ -20,6 +20,8 @@
  * @property integer $score_b
  * @property integer $max_round
  * @property varchar $rules
+ * @property integer $overtime_startmoney
+ * @property integer $overtime_max_round
  * @property boolean $config_full_score
  * @property boolean $config_ot
  * @property boolean $config_streamer
@@ -28,7 +30,9 @@
  * @property boolean $config_auto_change_password
  * @property varchar $config_password
  * @property boolean $config_heatmap
+ * @property varchar $config_authkey
  * @property boolean $enable
+ * @property enum $map_selection_mode
  * @property boolean $ingame_enable
  * @property integer $current_map
  * @property boolean $force_zoom_match
@@ -38,6 +42,7 @@
  * @property Teams $TeamA
  * @property Teams $TeamB
  * @property Maps $Map
+ * @property Seasons $Season
  * @property Doctrine_Collection $Maps
  * @property Doctrine_Collection $Players
  * @property Doctrine_Collection $Round
@@ -60,6 +65,8 @@
  * @method integer             getScoreB()                      Returns the current record's "score_b" value
  * @method integer             getMaxRound()                    Returns the current record's "max_round" value
  * @method varchar             getRules()                       Returns the current record's "rules" value
+ * @method integer             getOvertimeStartmoney()          Returns the current record's "overtime_startmoney" value
+ * @method integer             getOvertimeMaxRound()            Returns the current record's "overtime_max_round" value
  * @method boolean             getConfigFullScore()             Returns the current record's "config_full_score" value
  * @method boolean             getConfigOt()                    Returns the current record's "config_ot" value
  * @method boolean             getConfigStreamer()              Returns the current record's "config_streamer" value
@@ -68,7 +75,9 @@
  * @method boolean             getConfigAutoChangePassword()    Returns the current record's "config_auto_change_password" value
  * @method varchar             getConfigPassword()              Returns the current record's "config_password" value
  * @method boolean             getConfigHeatmap()               Returns the current record's "config_heatmap" value
+ * @method varchar             getConfigAuthkey()               Returns the current record's "config_authkey" value
  * @method boolean             getEnable()                      Returns the current record's "enable" value
+ * @method enum                getMapSelectionMode()            Returns the current record's "map_selection_mode" value
  * @method boolean             getIngameEnable()                Returns the current record's "ingame_enable" value
  * @method integer             getCurrentMap()                  Returns the current record's "current_map" value
  * @method boolean             getForceZoomMatch()              Returns the current record's "force_zoom_match" value
@@ -78,6 +87,7 @@
  * @method Teams               getTeamA()                       Returns the current record's "TeamA" value
  * @method Teams               getTeamB()                       Returns the current record's "TeamB" value
  * @method Maps                getMap()                         Returns the current record's "Map" value
+ * @method Seasons             getSeason()                      Returns the current record's "Season" value
  * @method Doctrine_Collection getMaps()                        Returns the current record's "Maps" collection
  * @method Doctrine_Collection getPlayers()                     Returns the current record's "Players" collection
  * @method Doctrine_Collection getRound()                       Returns the current record's "Round" collection
@@ -99,6 +109,8 @@
  * @method Matchs              setScoreB()                      Sets the current record's "score_b" value
  * @method Matchs              setMaxRound()                    Sets the current record's "max_round" value
  * @method Matchs              setRules()                       Sets the current record's "rules" value
+ * @method Matchs              setOvertimeStartmoney()          Sets the current record's "overtime_startmoney" value
+ * @method Matchs              setOvertimeMaxRound()            Sets the current record's "overtime_max_round" value
  * @method Matchs              setConfigFullScore()             Sets the current record's "config_full_score" value
  * @method Matchs              setConfigOt()                    Sets the current record's "config_ot" value
  * @method Matchs              setConfigStreamer()              Sets the current record's "config_streamer" value
@@ -107,7 +119,9 @@
  * @method Matchs              setConfigAutoChangePassword()    Sets the current record's "config_auto_change_password" value
  * @method Matchs              setConfigPassword()              Sets the current record's "config_password" value
  * @method Matchs              setConfigHeatmap()               Sets the current record's "config_heatmap" value
+ * @method Matchs              setConfigAuthkey()               Sets the current record's "config_authkey" value
  * @method Matchs              setEnable()                      Sets the current record's "enable" value
+ * @method Matchs              setMapSelectionMode()            Sets the current record's "map_selection_mode" value
  * @method Matchs              setIngameEnable()                Sets the current record's "ingame_enable" value
  * @method Matchs              setCurrentMap()                  Sets the current record's "current_map" value
  * @method Matchs              setForceZoomMatch()              Sets the current record's "force_zoom_match" value
@@ -117,6 +131,7 @@
  * @method Matchs              setTeamA()                       Sets the current record's "TeamA" value
  * @method Matchs              setTeamB()                       Sets the current record's "TeamB" value
  * @method Matchs              setMap()                         Sets the current record's "Map" value
+ * @method Matchs              setSeason()                      Sets the current record's "Season" value
  * @method Matchs              setMaps()                        Sets the current record's "Maps" collection
  * @method Matchs              setPlayers()                     Sets the current record's "Players" collection
  * @method Matchs              setRound()                       Sets the current record's "Round" collection
@@ -198,6 +213,14 @@ abstract class BaseMatchs extends sfDoctrineRecord
              'notnull' => true,
              'length' => 200,
              ));
+        $this->hasColumn('overtime_startmoney', 'integer', 5, array(
+             'type' => 'integer',
+             'length' => 5,
+             ));
+        $this->hasColumn('overtime_max_round', 'integer', 3, array(
+             'type' => 'integer',
+             'length' => 3,
+             ));
         $this->hasColumn('config_full_score', 'boolean', null, array(
              'type' => 'boolean',
              ));
@@ -223,8 +246,22 @@ abstract class BaseMatchs extends sfDoctrineRecord
         $this->hasColumn('config_heatmap', 'boolean', null, array(
              'type' => 'boolean',
              ));
+        $this->hasColumn('config_authkey', 'varchar', 200, array(
+             'type' => 'varchar',
+             'length' => 200,
+             ));
         $this->hasColumn('enable', 'boolean', null, array(
              'type' => 'boolean',
+             ));
+        $this->hasColumn('map_selection_mode', 'enum', null, array(
+             'type' => 'enum',
+             'values' => 
+             array(
+              0 => 'bo2',
+              1 => 'bo3_modea',
+              2 => 'bo3_modeb',
+              3 => 'normal',
+             ),
              ));
         $this->hasColumn('ingame_enable', 'boolean', null, array(
              'type' => 'boolean',
@@ -266,6 +303,11 @@ abstract class BaseMatchs extends sfDoctrineRecord
 
         $this->hasOne('Maps as Map', array(
              'local' => 'current_map',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
+        $this->hasOne('Seasons as Season', array(
+             'local' => 'season_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
 

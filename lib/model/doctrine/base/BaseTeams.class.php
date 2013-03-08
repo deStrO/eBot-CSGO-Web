@@ -11,6 +11,7 @@
  * @property varchar $flag
  * @property varchar $link
  * @property integer $season_id
+ * @property Seasons $Season
  * @property Doctrine_Collection $Matchs
  * 
  * @method integer             getId()          Returns the current record's "id" value
@@ -19,6 +20,7 @@
  * @method varchar             getFlag()        Returns the current record's "flag" value
  * @method varchar             getLink()        Returns the current record's "link" value
  * @method integer             getSeasonId()    Returns the current record's "season_id" value
+ * @method Seasons             getSeason()      Returns the current record's "Season" value
  * @method Doctrine_Collection getMatchs()      Returns the current record's "Matchs" collection
  * @method Teams               setId()          Sets the current record's "id" value
  * @method Teams               setName()        Sets the current record's "name" value
@@ -26,6 +28,7 @@
  * @method Teams               setFlag()        Sets the current record's "flag" value
  * @method Teams               setLink()        Sets the current record's "link" value
  * @method Teams               setSeasonId()    Sets the current record's "season_id" value
+ * @method Teams               setSeason()      Sets the current record's "Season" value
  * @method Teams               setMatchs()      Sets the current record's "Matchs" collection
  * 
  * @package    PhpProject1
@@ -72,6 +75,11 @@ abstract class BaseTeams extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('Seasons as Season', array(
+             'local' => 'season_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
         $this->hasMany('Matchs', array(
              'local' => 'id',
              'foreign' => 'team_a'));

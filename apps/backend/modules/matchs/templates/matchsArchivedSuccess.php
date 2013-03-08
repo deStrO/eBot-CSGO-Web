@@ -78,8 +78,8 @@
                         <?php echo $match->getMap()->getMapName(); ?>
                     <?php endif; ?>
                 </td>
-                <td width="120">
-                    <?php echo $match->getIp(); ?>
+                <td>
+                    <?php echo '<a href="steam://connect/' . $match->getServer()->getIp() . '/' . $match->getConfigPassword() . '">' . $match->getServer()->getHostname() . '</a>'; ?>
                 </td>
                 <td width="50" align="center">
                     <?php if ($match->getEnable()): ?>

@@ -13,10 +13,10 @@
     $(document).ready(function() {
         $('form').submit(function(event) {
             var message = "<?php echo $match->getId(); ?> executeCommand <?php echo $match->getIp(); ?> "+$('#data').val();
-            var message = message.replace('/[\x00-\x1F\x80-\xFF]/', '');
-            var data = Aes.Ctr.encrypt(message, "<?php echo utf8_encode($crypt_key); ?>", 256);
+            var data = Aes.Ctr.encrypt(message, "<?php echo $crypt_key; ?>", 256);
+            send = JSON.stringify([data, "<?php echo $match->getIp(); ?>"]);
             $("#rcon").append("<b>Send:</b> "+$('#data').val()+"<br>");
-            rcon.send(data);
+            rcon.send(send);
             return false;
         });
 
@@ -26,6 +26,7 @@
                 rcon.send('registerMatch_<?php echo $match->getId(); ?>');
             };
             rcon.onmessage = function (msg) {
+                console.log(msg.data);
                 var message = jQuery.parseJSON(msg.data);
                 $("#rcon").append(nl2br("<b>Answer</b>: "+message['content'])+"<hr style='margin: 5px 0px;'>")
                 var height = $('#rcon')[0].scrollHeight;
@@ -73,7 +74,7 @@
                     </div>
                     <h4><?php echo __("Send"); ?>:</h4>
                     <form method="POST" id="data_form" name="data_form">
-                        <input type="text" name="data" id="data" style="width: 500px;"><br><input type="submit" class="btn btn-primary" name="Send" value="Envoyer">
+                        <input type="text" name="data" id="data" style="width: 500px;"><br><input type="submit" class="btn btn-primary" name="Send" value="<?php echo __("Send"); ?>">
                     </form>
                 </div>
             </div>

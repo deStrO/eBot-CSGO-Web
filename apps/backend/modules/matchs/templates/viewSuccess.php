@@ -216,7 +216,7 @@
     </div>
     <?php if ($match->getEnable()): ?>
         <div class="tab-pane" id="livemap">
-            <?php include_partial("matchs/livemap", array("match" => $match, "ebot_ip" => $ebot_ip, "ebot_port" => $ebot_port, "crypt_key" => $crypt_key)); ?>
+            <?php include_partial("matchs/livemap", array("match" => $match, "ebot_ip" => $ebot_ip, "ebot_port" => $ebot_port)); ?>
         </div>
     <?php endif; ?>
 

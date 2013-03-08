@@ -52,6 +52,8 @@ class matchsActions extends sfActions {
 			$match->setStatus(Matchs::STATUS_STARTING);
 			$match->setScoreA(0);
 			$match->setScoreB(0);
+            if ($match->getConfigAuthkey() == "")
+                $match->setConfigAuthkey(uniqid(mt_rand(), true));
 			$match->save();
 		}
 
@@ -217,6 +219,8 @@ class matchsActions extends sfActions {
 			$match->setStatus(Matchs::STATUS_STARTING);
 		$match->setScoreA(0);
 		$match->setScoreB(0);
+        if ($match->getConfigAuthkey() == "")
+            $match->setConfigAuthkey(uniqid(mt_rand(), true));
 		$match->save();
 
 		$this->getUser()->setFlash("notification_ok", $this->__("Match will be started on") . " " . $server->getIp());
@@ -302,6 +306,8 @@ class matchsActions extends sfActions {
 
 		if ($nb == 0) {
 			$match->setEnable(1);
+            if ($match->getConfigAuthkey() == "")
+                $match->setConfigAuthkey(uniqid(mt_rand(), true));
 			$match->save();
 
 			$this->getUser()->setFlash("notification_ok", $this->__("Match is restarted on") . " " . $match->getServer()->getIp());
@@ -336,9 +342,9 @@ class matchsActions extends sfActions {
 		$this->url = "@matchs_current_page";
 
 		$this->servers = ServersTable::getInstance()->findAll();
+		$this->seasons = SeasonsTable::getInstance()->findAll();
         $this->ebot_ip = sfConfig::get("app_ebot_ip");
         $this->ebot_port = sfConfig::get("app_ebot_port");
-		$this->crypt_key = sfConfig::get("app_cryptkey");
 	}
 
 	public function executeMatchsArchived(sfWebRequest $request) {
@@ -432,6 +438,7 @@ class matchsActions extends sfActions {
 				$match->setScoreB(0);
 				$match->setCurrentMap($maps);
 				$match->setStatus(Matchs::STATUS_NOT_STARTED);
+                $match->setConfigAuthkey(uniqid(mt_rand(), true));
 				$match->save();
 
 				$this->getUser()->setFlash("notification_ok", $this->__("Match created with ID") . " " . $match->getId());
@@ -556,8 +563,6 @@ class matchsActions extends sfActions {
 
 	public function executeView(sfWebRequest $request) {
 		$this->match = $this->getRoute()->getObject();
-
-        $this->crypt_key = sfConfig::get("app_cryptkey");
         $this->ebot_ip = sfConfig::get("app_ebot_ip");
         $this->ebot_port = sfConfig::get("app_ebot_port");
 
@@ -574,9 +579,9 @@ class matchsActions extends sfActions {
 
 	public function executeOpenRcon(sfWebRequest $request) {
 		$this->match = $this->getRoute()->getObject();
-		$this->crypt_key = sfConfig::get("app_cryptkey");
         $this->ebot_ip = sfConfig::get("app_ebot_ip");
         $this->ebot_port = sfConfig::get("app_ebot_port");
+        $this->crypt_key = $this->match->getConfigAuthkey();
 	}
 
 	public function executeHeatmapData(sfWebRequest $request) {

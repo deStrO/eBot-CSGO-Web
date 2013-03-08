@@ -17,6 +17,8 @@ Matchs:
     score_b: { type: integer(5) }
     max_round: { type: integer(3), notnull: true }
     rules: { type: varchar(200), notnull: true }
+    overtime_startmoney: { type: integer(5) }
+    overtime_max_round: { type: integer(3) }
     config_full_score: { type: boolean }
     config_ot: { type: boolean }
     config_streamer: { type: boolean }
@@ -25,7 +27,9 @@ Matchs:
     config_auto_change_password: { type: boolean }
     config_password: { type: varchar(50) }
     config_heatmap: { type: boolean }
+    config_authkey: { type: varchar(200) }
     enable: { type: boolean }
+    map_selection_mode: { type: enum, values: [ bo2, bo3_modea, bo3_modeb, normal ]}
     ingame_enable: { type: boolean }
     current_map: { type: integer(20) }
     force_zoom_match: { type: boolean }
@@ -257,3 +261,14 @@ Teams:
     season_id: { type: integer(20) }
   relations:
     Season: { class: Seasons, onDelete: SET NULL, local: season_id, foreign: id }
+
+Seasons:
+  actAs:
+    Timestampable: ~
+  columns:
+    id: { primary: true, type: integer(20), autoincrement: true }
+    name: { type: varchar(50), notnull: true }
+    event: { type: varchar(50), notnull: true }
+    start: { type: timestamp, notnull: true }
+    end: { type: timestamp, notnull: true }
+    link: { type: varchar(100) }

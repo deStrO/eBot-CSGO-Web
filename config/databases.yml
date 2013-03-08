@@ -7,4 +7,4 @@ all:
     param:
       dsn:      mysql:host=localhost;dbname=ebotv3
       username: root
-      password: vinise
+      password: 

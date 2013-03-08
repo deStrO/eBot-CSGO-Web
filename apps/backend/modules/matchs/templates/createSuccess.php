@@ -105,24 +105,33 @@
 
 
         $("#matchs_team_a").change(
-        function() {
-            if ($(this).val() == 0) {
-                $("#team_a").show();
-            } else {
-                $("#team_a").hide();
+            function() {
+                if ($(this).val() == 0) {
+                    $("#team_a").show();
+                } else {
+                    $("#team_a").hide();
+                }
             }
-        }
-    );
+        );
 
         $("#matchs_team_b").change(
-        function() {
-            if ($(this).val() == 0) {
-                $("#team_b").show();
-            } else {
-                $("#team_b").hide();
+            function() {
+                if ($(this).val() == 0) {
+                    $("#team_b").show();
+                } else {
+                    $("#team_b").hide();
+                }
             }
-        }
-    );
+        );
+        $("#matchs_config_ot").click(function() {
+            if( $(this).is(':checked')) {
+                $("#overtime_startmoney").show();
+                $("#overtime_max_round").show();
+            } else {
+                $("#overtime_startmoney").hide();
+                $("#overtime_max_round").hide();
+            }
+        });
     });
 
 </script>
@@ -135,40 +144,47 @@
             <h3><?php echo __("Create new Match"); ?></h3>
         </div>
         <div class="modal-body" style="max-height: 0%;">
-
             <?php foreach ($form as $name => $widget): ?>
                 <?php if ($widget->isHidden()) continue; ?>
                 <?php if (in_array($name, array("team_a_flag", "team_b_flag", "team_a_name", "team_b_name"))) continue; ?>
-                <div class="control-group validate-field">
-                    <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
-                    <div class="controls">
-                        <?php echo $widget->render(); ?>
-                        <?php if ($name == "team_a"): ?>
-                            <span id="team_a">
-                                <span class="validate-field">
-                                    <?php echo $form["team_a_name"]->render(array("placeholder" => "Team Name")); ?>
-                                </span>
-                                <span class="validate-field">
-                                    <?php echo $form["team_a_flag"]->render(); ?>
-                                </span>
-                            </span>
-                        <?php endif; ?>
-                        <?php if ($name == "team_b"): ?>
-                            <span id="team_b">
-                                <span class="validate-field">
-                                    <?php echo $form["team_b_name"]->render(array("placeholder" => "Team Name")); ?>
-                                </span>
-                                <span class="validate-field">
-                                    <?php echo $form["team_b_flag"]->render(); ?>
-                                </span>
-                            </span>
-                        <?php endif; ?>
-
-                        <?php if ($name == "rules"): ?>
-                            <span class="help-inline"><?php echo __("Enter the name of the .cfg File without the extension (esl5on5.cfg => esl5on5)"); ?></span>
-                        <?php endif; ?>
+                <?php if ($name == "overtime_startmoney" || $name == "overtime_max_round"): ?>
+                    <div class="control-group validate-field" style="display:none;" id="<?php echo $name; ?>">
+                        <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
+                        <div class="controls">
+                            <?php echo $widget->render(); ?>
+                        </div>
                     </div>
-                </div>
+                <?php else: ?>
+                    <div class="control-group validate-field">
+                        <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
+                        <div class="controls">
+                            <?php echo $widget->render(); ?>
+                            <?php if ($name == "team_a"): ?>
+                                <span id="team_a">
+                                    <span class="validate-field">
+                                        <?php echo $form["team_a_name"]->render(array("placeholder" => "Team Name")); ?>
+                                    </span>
+                                    <span class="validate-field">
+                                        <?php echo $form["team_a_flag"]->render(); ?>
+                                    </span>
+                                </span>
+                            <?php endif; ?>
+                            <?php if ($name == "team_b"): ?>
+                                <span id="team_b">
+                                    <span class="validate-field">
+                                        <?php echo $form["team_b_name"]->render(array("placeholder" => "Team Name")); ?>
+                                    </span>
+                                    <span class="validate-field">
+                                        <?php echo $form["team_b_flag"]->render(); ?>
+                                    </span>
+                                </span>
+                            <?php endif; ?>
+                            <?php if ($name == "rules"): ?>
+                                <span class="help-inline"><?php echo __("Enter the name of the .cfg File without the extension (esl5on5.cfg => esl5on5)"); ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
             <?php endforeach; ?>
 
             <div class="control-group">

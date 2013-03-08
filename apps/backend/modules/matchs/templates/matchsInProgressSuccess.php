@@ -16,12 +16,12 @@ function getButtons($status) {
 }
 ?>
 <script>
-    function doRequest(event, ip, id){
-        var data = id+" "+event+" "+ip;
-        var data = data.replace('/[\x00-\x1F\x80-\xFF]/', '');
-        var data = Aes.Ctr.encrypt(data, "<?php echo utf8_encode($crypt_key); ?>", 256);
-        ws.send(data);
-        $('#loading_'+id).show();
+    function doRequest(event, ip, id, authkey) {
+        var data = id + " " + event + " " + ip;
+        data = Aes.Ctr.encrypt(data, authkey, 256);
+        send = JSON.stringify([data, ip]);
+        ws.send(send);
+        $('#loading_' + id).show();
         return false;
     }
     function getButtons(status) {
@@ -34,56 +34,56 @@ function getButtons($status) {
         else if (status == 3 || status == 6 || status == 8 || status == 10 || status == 12)
             return "endmatch";
     }
-    $(document).ready(function(){
+    $(document).ready(function() {
         if ("WebSocket" in window) {
             ws = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/match");
             var buttons = new Array("warmupknife", "endknife", "skipwarmup", "endmatch");
-            ws.onopen = function () {
-                <?php
-                for ($i = 0; $i < count($id); $i++) {
-                    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
-                    echo '$(".running_' . $id[$i] . '").show(); ';
-                }
-                ?>
+            ws.onopen = function() {
+<?php
+for ($i = 0; $i < count($id); $i++) {
+    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
+    echo '$(".running_' . $id[$i] . '").show(); ';
+}
+?>
                 $('.websocket_offline').hide();
             }
-            ws.onmessage = function (msg) {
+            ws.onmessage = function(msg) {
                 var data = jQuery.parseJSON(msg.data);
                 if (data['content'] == 'stop')
                     location.reload();
                 else if (data['message'] == 'button') {
                     var button_command = getButtons(data['content']);
-                    for (var i=0, j=buttons.length; i<j; i++) {
+                    for (var i = 0, j = buttons.length; i < j; i++) {
                         if (buttons[i] == button_command) {
-                            $('.'+buttons[i]+'_'+data['id']).show();
+                            $('.' + buttons[i] + '_' + data['id']).show();
                         }
                         else {
-                            $('.'+buttons[i]+'_'+data['id']).hide();
+                            $('.' + buttons[i] + '_' + data['id']).hide();
                         }
                     }
-                    $('#loading_'+data['id']).hide();
+                    $('#loading_' + data['id']).hide();
                 }
                 else if (data['message'] == 'status') {
                     if (data['content'] == 'Finished') {
                         location.reload();
                     } else if (data['content'] != 'Starting') {
-                        $("#flag-"+data['id']).attr('src',"/images/icons/flag_green.png");
-                        $('#loading_'+data['id']).hide();
+                        $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                        $('#loading_' + data['id']).hide();
                     }
-                    $("div.status-"+data['id']).html(data['content']);
+                    $("div.status-" + data['id']).html(data['content']);
                 }
                 else if (data['message'] == 'score') {
                     if (data['scoreA'] < 10)
-                        data['scoreA'] = "0"+data['scoreA'];
+                        data['scoreA'] = "0" + data['scoreA'];
                     if (data['scoreB'] < 10)
-                        data['scoreB'] = "0"+data['scoreB'];
+                        data['scoreB'] = "0" + data['scoreB'];
 
                     if (data['scoreA'] == data['scoreB'])
-                        $("#score-"+data['id']).html("<font color=\"blue\">"+data['scoreA']+"</font> - <font color=\"blue\">"+data['scoreB']+"</font>");
+                        $("#score-" + data['id']).html("<font color=\"blue\">" + data['scoreA'] + "</font> - <font color=\"blue\">" + data['scoreB'] + "</font>");
                     else if (data['scoreA'] > data['scoreB'])
-                        $("#score-"+data['id']).html("<font color=\"green\">"+data['scoreA']+"</font> - <font color=\"red\">"+data['scoreB']+"</font>");
+                        $("#score-" + data['id']).html("<font color=\"green\">" + data['scoreA'] + "</font> - <font color=\"red\">" + data['scoreB'] + "</font>");
                     else if (data['scoreA'] < data['scoreB'])
-                        $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
+                        $("#score-" + data['id']).html("<font color=\"red\">" + data['scoreA'] + "</font> - <font color=\"green\">" + data['scoreB'] + "</font>");
                 }
             };
         } else {
@@ -139,30 +139,61 @@ function getButtons($status) {
 </div>
 
 <script>
+    function getSessionStorageValue(key) {
+        if (sessionStorage) {
+            try {
+                return sessionStorage.getItem(key);
+            } catch (e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    function setSessionStorageValue(key, value) {
+        if (sessionStorage) {
+            try {
+                return sessionStorage.setItem(key, value);
+            } catch (e) {
+            }
+        }
+    }
+
     function startMatch(id) {
         $("#match_id").val(id);
         $("#match_start").submit();
-        $('#loading_'+id).show();
+        $('#loading_' + id).show();
     }
     var currentMatchAdmin = 0;
     $(function() {
         $(".match-selectable").click(function() {
             if (currentMatchAdmin == $(this).attr("data-id")) {
-                $("tr[data-id="+currentMatchAdmin+"]:first").removeClass("warning");
-                $("#button-container").find(".buttons-container").hide().appendTo($("#container-matchs-"+currentMatchAdmin));
+                $("tr[data-id=" + currentMatchAdmin + "]:first").removeClass("warning");
+                $("#button-container").find(".buttons-container").hide().appendTo($("#container-matchs-" + currentMatchAdmin));
                 currentMatchAdmin = 0;
+                setSessionStorageValue("current.selected", null);
                 return;
             }
 
             if (currentMatchAdmin != 0) {
-                $("tr[data-id="+currentMatchAdmin+"]:first").removeClass("warning");
-                $("#button-container").find(".buttons-container").hide().appendTo($("#container-matchs-"+currentMatchAdmin));
+                $("tr[data-id=" + currentMatchAdmin + "]:first").removeClass("warning");
+                $("#button-container").find(".buttons-container").hide().appendTo($("#container-matchs-" + currentMatchAdmin));
             }
 
             $(this).addClass("warning");
             $(this).find("div.buttons-container:first").show().appendTo($("#button-container"));
             currentMatchAdmin = $(this).attr("data-id");
+            setSessionStorageValue("current.selected", currentMatchAdmin);
         });
+
+        if (getSessionStorageValue("current.selected") != null) {
+            var value = getSessionStorageValue("current.selected");
+            if ($("[data-id=" + value + "]:first").length == 1) {
+                $("[data-id=" + value + "]:first").click();
+            } else {
+                setSessionStorageValue("current.selected", null);
+            }
+        }
     });
 </script>
 
@@ -243,6 +274,14 @@ function getButtons($status) {
                             <td style="padding-left: 3px;text-align:right;">
                                 <div id="container-matchs-<?php echo $match->getId(); ?>">
                                     <div class="buttons-container"  style="display: none">
+                                        <ul class="nav nav-list" style="padding-left:0; padding-right: 0;">
+                                            <li class="nav-header">Match information</li>
+                                            <li><b>Match ID:</b> <?php echo $match->getId(); ?></li>
+                                            <li><b>Team 1:</b> <?php echo $match->getTeamAName(); ?></li>
+                                            <li><b>Team 2:</b> <?php echo $match->getTeamBName(); ?></li>
+                                            <li><b>Server:</b> <?php echo $match->getIp(); ?></li>
+                                        </ul>
+                                        <hr/>
                                         <?php $buttons = $match->getActionAdmin($match->getEnable()); ?>
                                         <?php foreach ($buttons as $button): ?>
                                             <?php if ($button["route"] == "matchs_start"): ?>
@@ -262,7 +301,7 @@ function getButtons($status) {
                                                     <button
                                                         style="<?php echo @$button['style']; ?>;margin-bottom: 10px; width: 100%"
                                                         class="btn hide<?php if (@$button['add_class']) echo ' ' . $button['add_class']; ?> <?php echo @$button['type'] . '_' . $match->getId(); ?>"
-                                                        <?php if (@$button['action']) echo 'onclick="doRequest(\'' . $button['action'] . '\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\')"'; ?>>
+                                                        <?php if (@$button['action']) echo 'onclick="doRequest(\'' . $button['action'] . '\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\')"'; ?>>
                                                         <?php echo __($button['label']); ?></button>
                                                 </div>
                                             <?php endif; ?>
@@ -333,7 +372,9 @@ function getButtons($status) {
 
 <script>
     $(function() {
-        $("a[confirm=true]").click(function() { return confirm(<?php echo json_encode(__("Are you sure, you want to do this?")); ?>);});
+        $("a[confirm=true]").click(function() {
+            return confirm(<?php echo json_encode(__("Are you sure, you want to do this?")); ?>);
+        });
     }
-);
+    );
 </script>

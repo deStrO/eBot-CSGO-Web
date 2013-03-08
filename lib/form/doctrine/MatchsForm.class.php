@@ -11,7 +11,7 @@
 class MatchsForm extends BaseMatchsForm {
 
     public function configure() {
-        unset($this["ip"], $this["identifier_id"], $this["force_zoom_match"], $this["config_switch_auto"], $this["tv_record_file"], $this["server_id"], $this["ingame_enable"], $this["config_auto_change_password"], $this["created_at"], $this["updated_at"], $this["current_map"], $this["status"], $this["score_a"], $this["score_b"], $this["config_heatmap"], $this["enable"]);
+        unset($this["config_authkey"],$this["ip"], $this["identifier_id"], $this["force_zoom_match"], $this["config_switch_auto"], $this["tv_record_file"], $this["server_id"], $this["ingame_enable"], $this["config_auto_change_password"], $this["created_at"], $this["updated_at"], $this["current_map"], $this["status"], $this["score_a"], $this["score_b"], $this["config_heatmap"], $this["enable"]);
 
         $password = array('frosch', 'gehen', 'rennen', 'gucken', 'fliegen', 'rasen', 'snobb', 'peter', 'wackel', 'dackel', 'gut', 'schlecht', 'win', 'loss', 'tragen',
               'weg', 'berlin', 'aachen', 'mensch', 'tier', 'turtle', 'adler', 'raupe', 'rauben', 'bank', 'schalter', 'ticket', 'bahn', 'zug', 'delay', 'flugzeug', 'ratte',
@@ -19,14 +19,19 @@ class MatchsForm extends BaseMatchsForm {
 
         $password = $password[rand(0, count($password)-1)];
 
+        $this->widgetSchema["max_round"] = new sfWidgetFormSelect(array("choices" => array("15" => "MR15", "12" => "MR12", "9" => "MR9", "5" => "MR5", "3" => "MR3"), "default" => "MR15"));
+        $this->widgetSchema["overtime_max_round"] = new sfWidgetFormSelect(array("choices" => array("5" => "MR5", "3" => "MR3"), "default" => "MR5"));
+
         $this->widgetSchema["config_ot"]->setLabel("OverTime");
         $this->widgetSchema["config_streamer"]->setLabel("Streamer");
         $this->widgetSchema["config_knife_round"]->setLabel("KnifeRound");
         $this->widgetSchema["config_knife_round"]->setDefault(true);
-        $this->widgetSchema["config_full_score"]->setLabel("Joueur tous les rounds");
-        $this->widgetSchema["config_password"]->setLabel("Mot de passe");
+        $this->widgetSchema["config_full_score"]->setLabel("Play all Rounds");
+        $this->widgetSchema["config_password"]->setLabel("Password");
         $this->widgetSchema["config_password"]->setDefault($password);
-        $this->widgetSchema["rules"]->setDefault('');
+
+        $this->widgetSchema["overtime_startmoney"]->setLabel("Overtime: Startmoney");
+        $this->widgetSchema["overtime_max_round"]->setLabel("Overtime: Max Rounds");
 
         $this->widgetSchema['team_a']->setOption('method', 'getNameFlag');
         $this->widgetSchema['team_b']->setOption('method', 'getNameFlag');
@@ -41,7 +46,8 @@ class MatchsForm extends BaseMatchsForm {
         $this->widgetSchema["team_a_flag"] = new sfWidgetFormSelect(array("choices" => $aFlags, 'default' => 'FR'));
         $this->widgetSchema["team_b_flag"] = new sfWidgetFormSelect(array("choices" => $aFlags, 'default' => 'FR'));
 
-        $this->widgetSchema["max_round"] = new sfWidgetFormSelect(array("choices" => array("15" => "MR15", "12" => "MR12", "9" => "MR9", "5" => "MR5", "3" => "MR3"), "default" => "MR15"));
+        $this->getWidgetSchema()->moveField('overtime_startmoney', sfWidgetFormSchema::AFTER, 'config_ot');
+        $this->getWidgetSchema()->moveField('overtime_max_round', sfWidgetFormSchema::AFTER, 'overtime_startmoney');
     }
 
 }

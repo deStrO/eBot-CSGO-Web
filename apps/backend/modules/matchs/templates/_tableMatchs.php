@@ -52,7 +52,7 @@
                         <?php echo image_tag("/images/icons/flag_red.png"); ?>
                     <?php endif; ?>
                 </td>
-                <td widt>
+                <td>
                     <div class="status status-<?php echo $match->getStatus(); ?>">
                         <?php echo $match->getStatusText(); ?>
                     </div>
