@@ -21,7 +21,7 @@ class matchsActions extends sfActions {
 						'Matchs',
 						12
 		);
-		$this->pager->setQuery($query->andWhere("status >= ? AND status <= ?", array(Matchs::STATUS_NOT_STARTED, Matchs::STATUS_END_MATCH))->orderBy("status ASC"));
+		$this->pager->setQuery($query->andWhere("status >= ? AND status <= ?", array(Matchs::STATUS_NOT_STARTED, Matchs::STATUS_END_MATCH))->orderBy("status DESC"));
 		$this->pager->setPage($request->getParameter('page', 1));
 		$this->pager->init();
 
@@ -29,6 +29,8 @@ class matchsActions extends sfActions {
 		$this->url = "@matchs_current_page";
 
 		$this->servers = ServersTable::getInstance()->findAll();
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
 	}
 
 	public function executeMatchsArchived(sfWebRequest $request) {
@@ -134,4 +136,19 @@ class matchsActions extends sfActions {
 		return $this->renderText(file_get_contents(sfConfig::get("app_log_match") . "/match-" . $match->getId() . ".html"));
 	}
 
+    public function executeExternalLivemap(sfWebRequest $request) {
+        $this->setLayout("layout_external");
+        $this->forward404Unless($request->getParameter("id"));
+        $this->match = MatchsTable::getInstance()->find($request->getParameter("id"));
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
+	}
+
+    public function executeExternalCoverage(sfWebRequest $request) {
+        $this->setLayout("layout_external");
+        $this->forward404Unless($request->getParameter("id"));
+        $this->match = MatchsTable::getInstance()->find($request->getParameter("id"));
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
+    }
 }

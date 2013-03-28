@@ -192,7 +192,11 @@
                 <div class="controls">
                     <select name="maps">
                         <?php foreach ($maps as $map): ?>
-                            <option value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                            <?php if ($map == 'tba'): ?>
+                                <option value="<?php echo $map; ?>">Choose by Mapveto</option>
+                            <?php else: ?>
+                                <option value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </select>
                 </div>

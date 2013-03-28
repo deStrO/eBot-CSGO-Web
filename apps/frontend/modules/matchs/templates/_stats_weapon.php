@@ -1,4 +1,4 @@
-<h5><i class="icon-fire"></i> <?php echo __("Statistiques des armes par joueurs"); ?></h5>
+<h5><i class="icon-fire"></i> <?php echo __("Weapon Statistics by Player"); ?></h5>
 
 <?php
 $players = array();
@@ -27,10 +27,11 @@ $weapons = array("glock", "hkp2000", "deagle", "p250", "tec9", "awp", "m4a1", "a
         </tr>
     </thead>
     <tbody>
+        <?php $weaponsStats = array(); ?>
         <?php foreach ($match->getMap()->getPlayer() as $player): ?>
             <?php if ($player->getTeam() == "other") continue; ?>
             <tr>
-                <td style="width: 250px; min-width: 250px;"><a href="<?php echo url_for("player_stats", array("id" => $player->getSteamid())); ?>"><?php echo $player->getPseudo(); ?></a></td>
+                <td style="width: 150px; min-width: 150px;"><a href="<?php echo url_for("player_stats", array("id" => $player->getSteamid())); ?>"><?php echo $player->getPseudo(); ?></a></td>
                 <?php foreach ($weapons as $weapon): ?>
                     <td style="text-align: center;border-left: 2px solid #DDDDDD; border-right: 1px solid #EEEEEE;" <?php if (@$players[$player->getId()][$weapon]["k"] * 1 == 0) echo 'class="muted"'; ?>>
                         <?php echo @$players[$player->getId()][$weapon]["k"] * 1; ?>
@@ -38,7 +39,7 @@ $weapons = array("glock", "hkp2000", "deagle", "p250", "tec9", "awp", "m4a1", "a
                     <td style="text-align: center;" <?php if (@$players[$player->getId()][$weapon]["d"] * 1 == 0) echo 'class="muted"'; ?>>
                         <?php echo @$players[$player->getId()][$weapon]["d"] * 1; ?>
                     </td>
-                    <?php $weaponsStats[$weapon] += $players[$player->getId()][$weapon]["k"] * 1; ?>
+                    <?php @$weaponsStats[$weapon] += @$players[$player->getId()][$weapon]["k"] * 1; ?>
                 <?php endforeach; ?>
             </tr>
         <?php endforeach; ?>
@@ -53,7 +54,7 @@ $weapons = array("glock", "hkp2000", "deagle", "p250", "tec9", "awp", "m4a1", "a
     </tfoot>
 </table>
 
-<h5><i class="icon-info-sign"></i> <?php echo __("Aide"); ?></h5>
+<h5><i class="icon-info-sign"></i> <?php echo __("Info"); ?></h5>
 <div class="well">
-<?php echo __("<p>La colonne <b>K</b> représente les kills effectués avec l'arme, la colonne <b>D</b> représente le nombre de fois que le joueur a été tué par l'arme</p>"); ?>		
+    <?php echo __("The column <b>K</b> represents the number of kill with this weapons, the column <b>D</b> represents the number of times the player has been killed by the weapon"); ?>
 </div>

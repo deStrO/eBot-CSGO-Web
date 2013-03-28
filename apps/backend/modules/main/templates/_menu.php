@@ -14,7 +14,6 @@
                         $('div#websocketAlive').html('<font color="green"><b>WebSocket online</b></font>');
                     };
                     alive.onmessage = function (msg) {
-                        console.log(msg);
                         if (msg.data == "__isAlive__") {
                             $('div#ebotAlive').show();
                             $('div#ebotAlive').html('<font color="green"><b>eBot online</b></font>');
@@ -23,6 +22,7 @@
                     alive.onclose = function (err) {
                         $('div#websocketAlive').show();
                         $('div#websocketAlive').html('<font color="red">WebSocket offline</font>');
+                        $('div#ebotAlive').hide();
                     };
                 }
             });

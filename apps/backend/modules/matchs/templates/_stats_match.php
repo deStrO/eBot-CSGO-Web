@@ -474,6 +474,11 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
 
                 return false;
             }
+            $(document).on('mouseleave','.carousel', function(){
+                if (paused) {
+                    $(this).carousel('pause');
+                }
+            });
         </script>
 
         <table width="100%">

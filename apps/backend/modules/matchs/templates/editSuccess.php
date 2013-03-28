@@ -226,7 +226,11 @@
                         <div class="controls">
                             <select name="maps">
                                 <?php foreach ($maps as $map): ?>
-                                    <option <?php if ($map == $match->getMap()->getMapName()) echo "selected"; ?> value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                                    <?php if ($map == 'tba'): ?>
+                                        <option <?php if ($map == $match->getMap()->getMapName()) echo "selected"; ?> value="<?php echo $map; ?>">Choose by Mapveto</option>
+                                    <?php else: ?>
+                                        <option <?php if ($map == $match->getMap()->getMapName()) echo "selected"; ?> value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>

@@ -43,26 +43,19 @@ class seasonsActions extends sfActions
   }
 
   public function executeEdit($request) {
-    $this->season = $this->getRoute()->getObject();
-    $this->form = new SeasonsForm($this->season);
-    if ($request->getMethod() == sfWebRequest::POST) {
-      $this->form->bind($request->getPostParameter($this->form->getName()));
-      if ($this->form->isValid()) {
-       $datas = $request->getPostParameter($this->form->getName());
-        $datas["name"] = $this->form->getValue("name");
-        $datas["link"] = $this->form->getValue("link");
-        $datas["start"] = $this->form->getValue("start");
-        $datas["end"] = $this->form->getValue("end");
-        $this->form = new SeasonsForm();
-        $this->form->bind($datas);
-        $this->form->save();
+        $this->season = $this->getRoute()->getObject();
+        $this->form = new SeasonsForm($this->season);
+        if ($request->getMethod() == sfWebRequest::POST) {
+            $this->form->bind($request->getPostParameter($this->form->getName()));
+            if ($this->form->isValid()) {
+                $this->form->save();
 
-        $this->getUser()->setFlash("notification_ok", $this->__("Season edited successfully"));
-        $this->redirect("seasons/index");
-      }
-      else {
-        $this->getUser()->setFlash("notification_error", $this->__("Error, invalid form"));
-      }
+                $this->getUser()->setFlash("notification_ok", $this->__("Season edited successfully."));
+                $this->redirect("seasons/index");
+            } else {
+                $this->getUser()->setFlash("notification_error", $this->__("Error, invalid form"));
+            }
+        }
     }
   }
 

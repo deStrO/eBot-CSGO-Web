@@ -1,6 +1,6 @@
 <h3><?php echo __("Edit Season"); ?>: <?php echo $season->getName(); ?></h3>
 <hr/>
-<form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("seasons_edit", $team); ?>">
+<form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("seasons_edit", $season); ?>">
     <?php echo $form->renderHiddenFields(); ?>
     <div class="well">
         <?php foreach ($form as $widget): ?>

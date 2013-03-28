@@ -1,10 +1,10 @@
 <script>
-    function nl2br (str, is_xhtml) {
+    function nl2br(str, is_xhtml) {
         var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>';
         return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
     }
     $(function() {
-        $('#myTab a').click(function (e) {
+        $('#myTab a').click(function(e) {
             e.preventDefault();
             $(this).tab('show');
         })
@@ -12,44 +12,66 @@
 
     $(document).ready(function() {
         $('form').submit(function(event) {
-            var message = "<?php echo $match->getId(); ?> executeCommand <?php echo $match->getIp(); ?> "+$('#data').val();
+            var message = "<?php echo $match->getId(); ?> executeCommand <?php echo $match->getIp(); ?> " + $('#data').val();
             var data = Aes.Ctr.encrypt(message, "<?php echo $crypt_key; ?>", 256);
             send = JSON.stringify([data, "<?php echo $match->getIp(); ?>"]);
-            $("#rcon").append("<b>Send:</b> "+$('#data').val()+"<br>");
+            $("#rcon").append("<b>Send:</b> " + $('#data').val() + "<br>");
             rcon.send(send);
             return false;
         });
 
         if ("WebSocket" in window) {
             rcon = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/rcon");
-            rcon.onopen = function () {
+            rcon.onopen = function() {
                 rcon.send('registerMatch_<?php echo $match->getId(); ?>');
             };
-            rcon.onmessage = function (msg) {
+            rcon.onmessage = function(msg) {
                 console.log(msg.data);
                 var message = jQuery.parseJSON(msg.data);
-                $("#rcon").append(nl2br("<b>Answer</b>: "+message['content'])+"<hr style='margin: 5px 0px;'>")
+                $("#rcon").append(nl2br("<b>Answer</b>: " + message['content']) + "<hr style='margin: 5px 0px;'>")
                 var height = $('#rcon')[0].scrollHeight;
                 $('#rcon').scrollTop(height);
             };
-            rcon.onclose = function (err) {
+            rcon.onclose = function(err) {
                 $("#rcon").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');
                 $('#data_form input').attr('readonly', 'readonly');
             };
 
             logger = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/logger");
-            logger.onopen = function () {
+            logger.onopen = function() {
                 logger.send('registerMatch_<?php echo $match->getId(); ?>');
             }
-            logger.onmessage = function (msg) {
+            logger.onmessage = function(msg) {
                 var message = jQuery.parseJSON(msg.data);
                 $("#logger").append($("<span/>").text(message['content']));
                 var height = $('#logger')[0].scrollHeight;
                 $('#logger').scrollTop(height);
             };
-            logger.onclose = function (err) {
+            logger.onclose = function(err) {
                 $("#logger").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');
             };
+        }
+    });
+    
+    function doRequest(event, ip, id, authkey, added) {
+        var data = id + " " + event + " " + ip + added;
+        data = Aes.Ctr.encrypt(data, authkey, 256);
+        send = JSON.stringify([data, ip]);
+        ws.send(send);
+        return false;
+    }
+
+    $(document).ready(function() {
+        if ("WebSocket" in window) {
+            ws = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/match");
+            ws.onopen = function() {
+                $('.websocket_offline').hide();
+            }
+            ws.onmessage = function(msg) {
+
+            };
+        } else {
+            alert("WebSocket not supported");
         }
     });
 </script>
@@ -62,6 +84,7 @@
         <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#home"><?php echo __("RCON"); ?></a></li>
             <li><a href="#server-log"><?php echo __("Server-LOG"); ?></a></li>
+            <li><a href="#backup"><?php echo __("Backup System"); ?></a></li>
         </ul>
         <div class="tab-content" style="padding-bottom: 10px; margin-bottom: 20px;">
             <div class="tab-pane active" id="home">
@@ -80,6 +103,9 @@
             </div>
             <div class="tab-pane" id="server-log">
                 <?php include_partial("matchs/server_log", array("match" => $match)); ?>
+            </div>
+            <div class="tab-pane" id="backup">
+                <?php include_partial("matchs/backup", array("match" => $match)); ?>
             </div>
         </div>
     </div>

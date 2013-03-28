@@ -1,37 +1,5 @@
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span7">
-            <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto; max-width:100%;">
-                <div class="modal-header">
-                    <h3><?php echo __("Livemap"); ?></h3>
-                </div>
-                <div class="modal-body" style="text-align:center; max-height: 100%; min-height: 420px;" id="offline">
-                    <canvas id="livemap_canvas" width="760" height="530" ></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="span3">
-            <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto; max-width:100%;">
-                <div class="modal-header">
-                    <h3><?php echo __("Log"); ?></h3>
-                </div>
-                <div class="modal-body" style="text-align:center; max-height: 100%; min-height: 420px; max-height: 420px;">
-                    <div id="log" style="overflow:auto; padding:5px;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="span2">
-            <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto; max-width:100%; ">
-                <div class="modal-header">
-                    <h3><?php echo __("Caption"); ?></h3>
-                </div>
-                <div class="modal-body" style="max-height: 100%; min-height: 420px;">
-                    <img src="/images/maps/csgo/_blue.png" style="width: 16px; height: 16px;"> Attacker<br>
-                    <img src="/images/maps/csgo/_red.png" style="width: 16px; height: 16px;"> Victim<br>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="modal-body" style="min-height: 420px;" id="offline">
+    <canvas id="livemap_canvas" width="760" height="530" ></canvas>
 </div>
 
 <script>
@@ -40,7 +8,6 @@
     mapdata["de_dust2_se"] = [ -2216, -1176, 179, 3244, 500, 530, "V", "de_dust2_se_radar"];
     mapdata["de_inferno_se"] = [ -2000, -808, 2720, 3616, 500, 417, "V", "de_inferno_se_radar"];
     mapdata["de_mirage_csgo"] = [ -2672, -2536, 1472, 888, 500, 413, "V", "de_mirage_go_radar"];
-    mapdata["de_mirage_go"] = [ -2672, -2536, 1472, 888, 500, 413, "V", "de_mirage_go_radar"];
     mapdata["de_nuke_se"] = [ -3008, -2496, 3523, 960, 750, 398, "V", "de_nuke_ve_radar"];
     mapdata["de_train_se"] = [ -2036, -1792, 2028, 1820, 500, 442, "V", "de_train_se_radar"];
 
@@ -74,9 +41,9 @@
         var context = canvas.getContext('2d');
 
         var blue = new Image();
-        blue.src = '/images/maps/csgo/_blue.png';
+        blue.src = '/images/maps/csgo/livemap/_blue.png';
         var red = new Image();
-        red.src = '/images/maps/csgo/_red.png';
+        red.src = '/images/maps/csgo/livemap/_red.png';
 
         if ("WebSocket" in window) {
             livemap = new WebSocket("ws://<?php echo sfConfig::get("app_ebot_ip") . ':' . sfConfig::get("app_ebot_port"); ?>/livemap");
@@ -122,7 +89,7 @@
                 }
             };
             livemap.onclose = function (err) {
-                $("div#offline").append('<span style="margin: 50px; color:red;"><b><?php echo __('Websocket offline'); ?></b></span>');
+                $("div#offline").append('<span style="margin: 50px; color:red;"><b>Websocket offline</b></span>');
             };
         }
     });

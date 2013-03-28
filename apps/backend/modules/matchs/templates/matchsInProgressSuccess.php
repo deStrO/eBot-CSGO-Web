@@ -39,12 +39,12 @@ function getButtons($status) {
             ws = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/match");
             var buttons = new Array("warmupknife", "endknife", "skipwarmup", "endmatch");
             ws.onopen = function() {
-<?php
-for ($i = 0; $i < count($id); $i++) {
-    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
-    echo '$(".running_' . $id[$i] . '").show(); ';
-}
-?>
+                <?php
+                for ($i = 0; $i < count($id); $i++) {
+                    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
+                    echo '$(".running_' . $id[$i] . '").show(); ';
+                }
+                ?>
                 $('.websocket_offline').hide();
             }
             ws.onmessage = function(msg) {
@@ -108,6 +108,17 @@ for ($i = 0; $i < count($id); $i++) {
             <?php if (count($filterValues) > 0): ?>
                 <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Reset Filter"); ?></a></li>
             <?php endif; ?>
+            <li>
+                <form style="margin:0; padding-top:5px;" method="post" action="<?php echo url_for("matchs_filters"); ?>">
+                    <?php echo $filter->renderHiddenFields(); ?>
+                    <?php foreach ($filter as $widget): ?>
+                        <?php if ($widget->getName() != "season_id") continue; ?>
+                        <?php echo $widget->render(); ?>
+                    <?php endforeach; ?>
+                    <input type="submit" class="btn btn-primary btn-mini" style="margin-bottom: 15px;" value="<?php echo __("Search"); ?>">
+<!--                <a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button" data-toggle="modal"><button class="btn btn-inverse btn-mini" style="margin-bottom: 15px;"><?php echo __("Reset Filter"); ?></button></a> -->
+                </form>
+            </li>
         </ul>
     </div>
 </div>
@@ -244,10 +255,13 @@ for ($i = 0; $i < count($id); $i++) {
                             </td>
                             <td width="50" style="text-align: center;" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></td>
                             <td width="100"><span style="float:right; text-align:right;" id="team_b-<?php echo $match->getId(); ?>"><?php echo $team2; ?></span></td>
-                            <td width="150" align="center">
+                            <td width="100">
                                 <?php if ($match->getMap() && $match->getMap()->exists()): ?>
                                     <?php echo $match->getMap()->getMapName(); ?>
                                 <?php endif; ?>
+                            </td>
+                            <td width="170">
+                                <?php echo $match->getSeason(); ?>
                             </td>
                             <td>
                                 <?php echo '<a href="steam://connect/' . $match->getServer()->getIp() . '/' . $match->getConfigPassword() . '">' . $match->getServer()->getHostname() . '</a>'; ?>
@@ -274,12 +288,14 @@ for ($i = 0; $i < count($id); $i++) {
                             <td style="padding-left: 3px;text-align:right;">
                                 <div id="container-matchs-<?php echo $match->getId(); ?>">
                                     <div class="buttons-container"  style="display: none">
-                                        <ul class="nav nav-list" style="padding-left:0; padding-right: 0;">
+                                        <ul class="nav nav-list" style="padding-left:0; padding-right: 0; font-size: smaller;">
                                             <li class="nav-header">Match information</li>
-                                            <li><b>Match ID:</b> <?php echo $match->getId(); ?></li>
-                                            <li><b>Team 1:</b> <?php echo $match->getTeamAName(); ?></li>
-                                            <li><b>Team 2:</b> <?php echo $match->getTeamBName(); ?></li>
+                                            <li><b>#ID:</b> <?php echo $match->getId(); ?></li>
+                                            <li><b>Team 1:</b> <?php echo $team1; ?></li>
+                                            <li><b>Team 2:</b> <?php echo $team2; ?></li>
                                             <li><b>Server:</b> <?php echo $match->getIp(); ?></li>
+                                            <li><b>Streamer:</b> <?php echo image_tag("/images/icons/flag_" . ($match->getConfigStreamer() ? "green" : "red") . ".png"); ?></li>
+                                            <li><textarea onclick="this.focus();this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
                                         </ul>
                                         <hr/>
                                         <?php $buttons = $match->getActionAdmin($match->getEnable()); ?>
@@ -350,8 +366,11 @@ for ($i = 0; $i < count($id); $i++) {
                     </tr>
                     <tr>
                         <th><?php echo __("#ID"); ?></th>
-                        <th colspan="3"><?php echo __("Opponent - Score"); ?></th>
+                        <th><?php echo __("Team 1"); ?></th>
+                        <th style="text-align:center;"><?php echo __("Score"); ?></th>
+                        <th style="text-align:right;"><?php echo __("Team 2"); ?></th>
                         <th><?php echo __("Map"); ?></th>
+                        <th><?php echo __("Season"); ?> </th>
                         <th width="200"><?php echo __("Hostname"); ?></th>
                         <th width="100"><?php echo __("Password"); ?></th>
                         <th><?php echo __("Status"); ?></th>

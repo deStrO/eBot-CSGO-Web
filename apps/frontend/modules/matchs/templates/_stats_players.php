@@ -22,20 +22,20 @@
     }
 </style>
 
-<h5><i class="icon-fire"></i> <?php echo __("Statistiques des joueurs"); ?></h5>
+<h5><i class="icon-fire"></i> <?php echo __("Player Statistics"); ?></h5>
 
 <table class="table table-striped table-condensed" id="tablePlayers">
     <thead>
         <tr>
-            <th><?php echo __("Equipe"); ?></th>
-            <th><?php echo __("Nom du joueur"); ?></th>
+            <th><?php echo __("Team"); ?></th>
+            <th><?php echo __("Player"); ?></th>
             <th style="border-left: 1px solid #DDDDDD;"><?php echo __("Kill"); ?></th>
             <th><?php echo __("Assist"); ?></th>
             <th><?php echo __("Death"); ?></th>
-            <th><?php echo __("Ratio K/D"); ?></th>
-            <th><?php echo __("Point"); ?></th>
+            <th><?php echo __("K/D Rate"); ?></th>
+            <th><?php echo __("Points"); ?></th>
             <th><?php echo __("HeadShot"); ?></th>
-            <th><?php echo __("Ratio HS"); ?></th>
+            <th><?php echo __("HS Rate"); ?></th>
             <th style="border-left: 1px solid #DDDDDD;"><?php echo __("Defuse"); ?></th>
             <th><?php echo __("Bombe"); ?></th>
             <th><?php echo __("TK"); ?></th>
@@ -134,7 +134,7 @@
             <td></td>
             <td><?php echo $total["point"]; ?></td>
             <td><?php echo $total["hs"]; ?></td>
-            <td><?php echo round($total["hs"] / $total["kill"], 4) * 100; ?>%</td>
+            <td><?php echo @round($total["hs"] / $total["kill"], 4) * 100; ?>%</td>
             <td><?php echo $total["bombe"]; ?></td>
             <td><?php echo $total["defuse"]; ?></td>
             <td><?php echo $total["tk"]; ?></td>
@@ -154,7 +154,7 @@
     </tfoot>
 </table>
 
-<h5><i class="icon-info-sign"></i> <?php echo __("Aide"); ?></h5>
+<h5><i class="icon-info-sign"></i> <?php echo __("Info"); ?></h5>
 <div class="well">
     <?php echo __("<p>Vous pouvez trier tous les champs du tableau pour obtenir des résultats personallisés.</p>
 			<p>Les colonnes <b>1K</b>, <b>2K</b>, ... représentent le nombre de kill par round effectué. Par exemple, si j'ai 2 dans la colonne 3K, cela veut dire que j'ai fais 2 rounds où j'ai fais 3 kills.
