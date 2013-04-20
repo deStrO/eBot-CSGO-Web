@@ -21,6 +21,8 @@ abstract class BaseSeasonsForm extends BaseFormDoctrine
       'start'      => new sfWidgetFormDateTime(),
       'end'        => new sfWidgetFormDateTime(),
       'link'       => new sfWidgetFormInputText(),
+      'logo'       => new sfWidgetFormInputText(),
+      'active'     => new sfWidgetFormInputCheckbox(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -32,6 +34,8 @@ abstract class BaseSeasonsForm extends BaseFormDoctrine
       'start'      => new sfValidatorDateTime(),
       'end'        => new sfValidatorDateTime(),
       'link'       => new sfValidatorPass(array('required' => false)),
+      'logo'       => new sfValidatorPass(array('required' => false)),
+      'active'     => new sfValidatorBoolean(array('required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
     ));

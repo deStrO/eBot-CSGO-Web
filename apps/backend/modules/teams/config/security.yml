@@ -1,0 +1,12 @@
+create:
+  is_secure: true
+  credentials: [ "Create Team" ]
+edit:
+  is_secure: true
+  credentials: [ "Edit Team" ]
+delete:
+  is_secure: true
+  credentials: [ "Delete Team" ]
+index:
+  is_secure: true
+  credentials: [ "View Teams" ]

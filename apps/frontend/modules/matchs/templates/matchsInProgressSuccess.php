@@ -50,6 +50,17 @@
             <?php if (count($filterValues) > 0): ?>
                 <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Reset Filter"); ?></a></li>
             <?php endif; ?>
+            <li>
+                <form style="margin:0; padding-top:5px;" method="post" action="<?php echo url_for("matchs_filters"); ?>">
+                    <?php echo $filter->renderHiddenFields(); ?>
+                    <?php foreach ($filter as $widget): ?>
+                        <?php if ($widget->getName() != "season_id") continue; ?>
+                        <?php echo $widget->render(); ?>
+                    <?php endforeach; ?>
+                    <input type="submit" class="btn btn-primary btn-mini" style="margin-bottom: 15px;" value="<?php echo __("Search"); ?>">
+<!--                <a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button" data-toggle="modal"><button class="btn btn-inverse btn-mini" style="margin-bottom: 15px;"><?php echo __("Reset Filter"); ?></button></a> -->
+                </form>
+            </li>
         </ul>
     </div>
 </div>
@@ -117,7 +128,7 @@
                             <?php echo $match->getMap()->getMapName(); ?>
                         <?php endif; ?>
                     </td>
-                    <td width="170">
+                    <td width="250">
                         <?php echo $match->getSeason(); ?>
                     </td>
                     <td>
@@ -141,13 +152,13 @@
             <?php endforeach; ?>
             <?php if ($pager->getNbResults() == 0): ?>
                 <tr>
-                    <td colspan="<?php echo sfConfig::get("app_display_date_table") ? 10 : 9 ?>" align="center"><?php echo __("No results found."); ?></td>
+                    <td align="center" colspan="8"><?php echo __("No results found."); ?></td>
                 </tr>
             <?php endif; ?>
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="<?php echo sfConfig::get("app_display_date_table") ? 10 : 9 ?>">
+                <td>
                     <div class="pagination pagination-centered">
                         <?php
                         use_helper("TablePagination");
@@ -160,14 +171,10 @@
         <thead>
             <tr>
                 <th><?php echo __("#ID"); ?></th>
-                <?php if (sfConfig::get("app_display_date_table")): ?>
-                    <th><?php echo __("Date"); ?></th>
-                <?php endif; ?>
-<!--            <th colspan="3"><?php echo __("Opponent - Score"); ?></th> -->
                 <th><?php echo __("Team 1"); ?></th>
                 <th style="text-align:center;"><?php echo __("Score"); ?></th>
                 <th style="text-align:right;"><?php echo __("Team 2"); ?></th>
-                <th><?php echo ucfirst(__("Map")); ?></th>
+                <th><?php echo __("Map"); ?></th>
                 <th><?php echo __("Season"); ?></th>
                 <th><?php echo __("Status"); ?></th>
                 <th></th>

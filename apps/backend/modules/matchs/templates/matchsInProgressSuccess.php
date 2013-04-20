@@ -67,8 +67,12 @@ function getButtons($status) {
                     if (data['content'] == 'Finished') {
                         location.reload();
                     } else if (data['content'] != 'Starting') {
-                        $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
-                        $('#loading_' + data['id']).hide();
+                        if ($("#flag-" + data['id']).attr('src') == "/images/icons/flag_red.png") {
+                            location.reload();
+                        } else {
+                            $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                            $('#loading_' + data['id']).hide();
+                        }
                     }
                     $("div.status-" + data['id']).html(data['content']);
                 }
@@ -278,7 +282,7 @@ function getButtons($status) {
                                         <?php echo image_tag("/images/icons/flag_green.png", "id='flag-" . $match->getId() . "'"); ?>
                                     <?php endif; ?>
                                 <?php else: ?>
-                                    <?php echo image_tag("/images/icons/flag_red.png"); ?>
+                                    <?php echo image_tag("/images/icons/flag_red.png", "id='flag-" . $match->getId() . "'"); ?>
                                 <?php endif; ?>
                                 <div style="display: inline-block;" class="status status-<?php echo $match->getId(); ?>">
                                     <?php echo $match->getStatusText(); ?>
@@ -290,12 +294,20 @@ function getButtons($status) {
                                     <div class="buttons-container"  style="display: none">
                                         <ul class="nav nav-list" style="padding-left:0; padding-right: 0; font-size: smaller;">
                                             <li class="nav-header">Match information</li>
-                                            <li><b>#ID:</b> <?php echo $match->getId(); ?></li>
-                                            <li><b>Team 1:</b> <?php echo $team1; ?></li>
-                                            <li><b>Team 2:</b> <?php echo $team2; ?></li>
-                                            <li><b>Server:</b> <?php echo $match->getIp(); ?></li>
-                                            <li><b>Streamer:</b> <?php echo image_tag("/images/icons/flag_" . ($match->getConfigStreamer() ? "green" : "red") . ".png"); ?></li>
-                                            <li><textarea onclick="this.focus();this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
+                                            <!--<li><b><?php echo __("#ID"); ?>:</b> <span style="text-align:right;"><?php echo $match->getId(); ?></span></li>-->
+                                            <li><b><?php echo __("Team 1"); ?>:</b> <?php echo $team1; ?></li>
+                                            <li><b><?php echo __("Team 2"); ?>:</b> <?php echo $team2; ?></li>
+                                            <li><b><?php echo __("Server"); ?>:</b> <?php echo $match->getIp(); ?></li>
+                                            <li><b><?php echo __("Streamer"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-". ($match->getConfigStreamer() ? "ok" : "remove") . "'></i>"); ?></li>
+                                            <li><b><?php echo __("Auto-Start"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-". ($match->getAutoStart() ? "ok" : "remove") . "'></i>"); ?>
+                                                <?php if ($match->getAutoStart()): ?>
+                                                    (<?php echo $match->getAutoStartTime()." ".__("min before"); ?>)
+                                                <?php endif; ?>
+                                            </li>
+                                            <?php if ($match->getAutoStart()): ?>
+                                                <li><b><?php echo __("Startdate"); ?></b>: <?php echo $match->getDateTimeObject('startdate')->format('d.m.Y H:i'); ?></b></li>
+                                            <?php endif; ?>
+                                            <li><textarea onclick="this.focus();this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller; margin:5px;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
                                         </ul>
                                         <hr/>
                                         <?php $buttons = $match->getActionAdmin($match->getEnable()); ?>
@@ -348,23 +360,6 @@ function getButtons($status) {
                 </tfoot>
                 <thead>
                     <tr>
-                        <td colspan="4">
-                            <?php echo __("Server to use in order to start next match"); ?>
-                        </td>
-                        <td colspan="5">
-                            <form method="post" action="<?php echo url_for("matchs_start_with_server"); ?>" id="match_start" style="display: inline;">
-                                <select name="server_id">
-                                    <option value="0"><?php echo __("Random Server"); ?></option>
-                                    <?php foreach ($servers as $server): ?>
-                                        <?php if (in_array($server->getIp(), $used)) continue; ?>
-                                        <option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <input type="hidden" id="match_id" name="match_id" value="0"/>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
                         <th><?php echo __("#ID"); ?></th>
                         <th><?php echo __("Team 1"); ?></th>
                         <th style="text-align:center;"><?php echo __("Score"); ?></th>
@@ -377,6 +372,9 @@ function getButtons($status) {
                         <th></th>
                     </tr>
                 </thead>
+                <form method="post" action="<?php echo url_for("matchs_start_with_server"); ?>" id="match_start" style="display: inline;">
+                    <input type="hidden" id="match_id" name="match_id" value="0"/>
+                </form>
             </table>
         </div>
     </div>

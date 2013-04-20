@@ -35,11 +35,14 @@ Matchs:
     force_zoom_match: { type: boolean }
     tv_record_file: { type: varchar(255) }
     identifier_id: { type: integer(20) }
+    startdate: { type: timestamp }
+    auto_start: { type: boolean }
+    auto_start_time: { type: integer(3) }
   relations:
     Server: { class: Servers, onDelete: SET NULL, local: server_id, foreign: id }
     TeamA: { class: Teams, local: team_a, foreign: id, onDelete: SET NULL }
     TeamB: { class: Teams, local: team_b, foreign: id, onDelete: SET NULL }
-    Map: { class: Maps, onDelete: SET NULL, local: current_map, foreign: id }
+    Map: { class: Maps, onDelete: CASCADE, local: current_map, foreign: id }
     Season: { class: Seasons, onDelete: SET NULL, local: season_id, foreign: id }
 
 Maps:
@@ -258,9 +261,6 @@ Teams:
     shorthandle: { type: varchar(50), notnull: true }
     flag: { type: varchar(2), notnull: true }
     link: { type: varchar(100) }
-    season_id: { type: integer(20) }
-  relations:
-    Season: { class: Seasons, onDelete: SET NULL, local: season_id, foreign: id }
 
 Seasons:
   actAs:
@@ -272,3 +272,16 @@ Seasons:
     start: { type: timestamp, notnull: true }
     end: { type: timestamp, notnull: true }
     link: { type: varchar(100) }
+    logo: { type: varchar(255) }
+    active: { type: boolean }
+
+TeamsInSeasons:
+  actAs:
+    Timestampable: ~
+  columns:
+    id: { primary: true, type: integer(20), autoincrement: true  }
+    season_id: { type: integer(20) }
+    team_id: { type: integer(20) }
+  relations:
+    Seasons: { class: Seasons, onDelete: CASCADE, local: season_id, foreign: id }
+    Teams: { class: Teams, onDelete: CASCADE, local: team_id, foreign: id }

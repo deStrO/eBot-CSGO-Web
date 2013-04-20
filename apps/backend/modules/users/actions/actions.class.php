@@ -10,6 +10,10 @@
  */
 class usersActions extends sfActions {
 
+    private function __($text, $args = array()) {
+		return $this->getContext()->getI18N()->__($text, $args, 'messages');
+	}
+
     /**
      * Executes index action
      *
@@ -26,11 +30,11 @@ class usersActions extends sfActions {
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if ($this->form->isValid()) {
                 $this->form->save();
-                $this->getUser()->setFlash("notification_ok", "User created successfully");
+                $this->getUser()->setFlash("notification_ok", $this->__("User created successfully"));
                 $this->redirect("users/create");
             }
             else {
-                $this->getUser()->setFlash("notification_error", "User could not be added");
+                $this->getUser()->setFlash("notification_error", $this->__("User could not be added"));
             }
         }
     }
@@ -43,7 +47,7 @@ class usersActions extends sfActions {
             $this->form->bind($request->getPostParameter($this->form->getName()));
             if ($this->form->isValid()) {
                 $this->form->save();
-                $this->getUser()->setFlash("notification_ok", "User edited successfully");
+                $this->getUser()->setFlash("notification_ok", $this->__("User edited successfully"));
                 $this->redirect("users/index");
             }
         }

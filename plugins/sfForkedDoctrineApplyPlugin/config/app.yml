@@ -1,0 +1,23 @@
+## YAML Template.
+all:
+  recaptcha:
+    enabled: false
+  sfForkedApply:
+    applyForm: sfApplyApplyForm
+    resetForm: sfApplyResetForm
+    resetRequestForm: sfApplyResetRequestForm
+    settingsForm: sfApplySettingsForm
+    editEmailForm: sfApplyEditEmailForm
+    mail_editable: false
+    confirmation:
+      reset: true
+      apply: true
+      email: true
+      reset_logged: false
+    routes:
+      apply: /user/new
+      reset: /user/password-reset
+      resetRequest: /user/reset-request
+      resetCancel: /user/reset-cancel
+      validate: /user/confirm/:validate
+      settings: /user/settings

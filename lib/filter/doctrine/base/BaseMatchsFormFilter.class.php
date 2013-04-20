@@ -45,6 +45,9 @@ abstract class BaseMatchsFormFilter extends BaseFormFilterDoctrine
       'force_zoom_match'            => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'tv_record_file'              => new sfWidgetFormFilterInput(),
       'identifier_id'               => new sfWidgetFormFilterInput(),
+      'startdate'                   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'auto_start'                  => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'auto_start_time'             => new sfWidgetFormFilterInput(),
       'created_at'                  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'                  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
@@ -82,6 +85,9 @@ abstract class BaseMatchsFormFilter extends BaseFormFilterDoctrine
       'force_zoom_match'            => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'tv_record_file'              => new sfValidatorPass(array('required' => false)),
       'identifier_id'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'startdate'                   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'auto_start'                  => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'auto_start_time'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'                  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'                  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -136,6 +142,9 @@ abstract class BaseMatchsFormFilter extends BaseFormFilterDoctrine
       'force_zoom_match'            => 'Boolean',
       'tv_record_file'              => 'Text',
       'identifier_id'               => 'Number',
+      'startdate'                   => 'Date',
+      'auto_start'                  => 'Boolean',
+      'auto_start_time'             => 'Number',
       'created_at'                  => 'Date',
       'updated_at'                  => 'Date',
     );

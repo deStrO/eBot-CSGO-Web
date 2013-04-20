@@ -46,13 +46,26 @@
                 $("#logger").append($("<span/>").text(message['content']));
                 var height = $('#logger')[0].scrollHeight;
                 $('#logger').scrollTop(height);
+                var regex = /.+"(.+)<\d+><.+><(\w+)>"\ssay\s"(.+)"/;
+                if (message['content'].match(regex)) {
+                    var chatlog = message['content'].match(regex);
+                    if (chatlog[2] == "CT")
+                        var teamcolor = "blue";
+                    else if (chatlog[2] == "TERRORIST")
+                        var teamcolor = "red";
+                    else
+                        var teamcolor = "black";
+                    $("#chatlog").append($("<span/>").html("<font color='"+teamcolor+"'>"+chatlog[1]+"</font>: "+chatlog[3]+"<br />"));
+                    var height = $('#chatlog')[0].scrollHeight;
+                    $('#chatlog').scrollTop(height);
+                }
             };
             logger.onclose = function(err) {
                 $("#logger").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');
             };
         }
     });
-    
+
     function doRequest(event, ip, id, authkey, added) {
         var data = id + " " + event + " " + ip + added;
         data = Aes.Ctr.encrypt(data, authkey, 256);
@@ -60,20 +73,6 @@
         ws.send(send);
         return false;
     }
-
-    $(document).ready(function() {
-        if ("WebSocket" in window) {
-            ws = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/match");
-            ws.onopen = function() {
-                $('.websocket_offline').hide();
-            }
-            ws.onmessage = function(msg) {
-
-            };
-        } else {
-            alert("WebSocket not supported");
-        }
-    });
 </script>
 
 <div class="layer" style="display:inline;">
@@ -84,6 +83,7 @@
         <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#home"><?php echo __("RCON"); ?></a></li>
             <li><a href="#server-log"><?php echo __("Server-LOG"); ?></a></li>
+            <li><a href="#chat-log"><?php echo __("Chat-LOG"); ?></a></li>
             <li><a href="#backup"><?php echo __("Backup System"); ?></a></li>
         </ul>
         <div class="tab-content" style="padding-bottom: 10px; margin-bottom: 20px;">
@@ -103,6 +103,9 @@
             </div>
             <div class="tab-pane" id="server-log">
                 <?php include_partial("matchs/server_log", array("match" => $match)); ?>
+            </div>
+            <div class="tab-pane" id="chat-log">
+                <?php include_partial("matchs/chat_log", array("match" => $match)); ?>
             </div>
             <div class="tab-pane" id="backup">
                 <?php include_partial("matchs/backup", array("match" => $match)); ?>

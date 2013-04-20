@@ -471,7 +471,6 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                 }
 
                 paused = !paused;
-
                 return false;
             }
             $(document).on('mouseleave','.carousel', function(){

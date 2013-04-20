@@ -1,0 +1,12 @@
+create:
+  is_secure: true
+  credentials: [ "Add Gameserver" ]
+edit:
+  is_secure: true
+  credentials: [ "Edit Gameserver" ]
+delete:
+  is_secure: true
+  credentials: [ "Delete Gameserver" ]
+index:
+  is_secure: true
+  credentials: [ "View Gameservers" ]

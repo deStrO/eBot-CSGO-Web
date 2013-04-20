@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($teams as $team): ?>
+        <?php foreach ($pager->getResults() as $team): ?>
             <tr>
                 <td width="30"><?php echo $team->getId(); ?></td>
                 <td width="250"><?php echo $team->getName(); ?></td>
@@ -29,4 +29,10 @@
 </table>
 <div class="modal-footer" style="text-align:left;">
     <a href="<?php echo url_for("teams_create"); ?>"><button class="btn btn-primary" style="text-align:left;"><?php echo __("Create new Team"); ?></button></a>
+</div>
+<div class="pagination pagination-centered">
+    <?php
+    use_helper("TablePagination");
+    tablePagination($pager, $url);
+    ?>
 </div>

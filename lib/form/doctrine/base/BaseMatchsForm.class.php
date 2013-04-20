@@ -48,6 +48,9 @@ abstract class BaseMatchsForm extends BaseFormDoctrine
       'force_zoom_match'            => new sfWidgetFormInputCheckbox(),
       'tv_record_file'              => new sfWidgetFormInputText(),
       'identifier_id'               => new sfWidgetFormInputText(),
+      'startdate'                   => new sfWidgetFormDateTime(),
+      'auto_start'                  => new sfWidgetFormInputCheckbox(),
+      'auto_start_time'             => new sfWidgetFormInputText(),
       'created_at'                  => new sfWidgetFormDateTime(),
       'updated_at'                  => new sfWidgetFormDateTime(),
     ));
@@ -86,6 +89,9 @@ abstract class BaseMatchsForm extends BaseFormDoctrine
       'force_zoom_match'            => new sfValidatorBoolean(array('required' => false)),
       'tv_record_file'              => new sfValidatorPass(array('required' => false)),
       'identifier_id'               => new sfValidatorInteger(array('required' => false)),
+      'startdate'                   => new sfValidatorDateTime(array('required' => false)),
+      'auto_start'                  => new sfValidatorBoolean(array('required' => false)),
+      'auto_start_time'             => new sfValidatorInteger(array('required' => false)),
       'created_at'                  => new sfValidatorDateTime(),
       'updated_at'                  => new sfValidatorDateTime(),
     ));

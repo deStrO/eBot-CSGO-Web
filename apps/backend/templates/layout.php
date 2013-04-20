@@ -44,7 +44,7 @@
                         </div>
                         <?php if ($sf_user->isAuthenticated()): ?>
                             <p class="navbar-text pull-right">
-                                Logged in as <a href="#" class="navbar-link"><?php echo $sf_user->getGuarduser()->getUsername(); ?></a>
+                                Logged in as <a href="#" class="navbar-link"><?php echo $sf_user->getGuarduser()->getUsername(); ?></a> | <a href="<?php echo url_for('sf_guard_signout') ?>" class="navbar-link">Logout</a>
                             </p>
                             <ul class="nav">
                                 <li class="active"><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Administration"); ?></a></li>
@@ -66,7 +66,7 @@
                         <?php if ($sf_user->hasFlash("notification_error")): ?>
                             <div class="alert alert-error">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
-                                <h4>Erreur !</h4>
+                                <h4><?php echo __("Error:"); ?></h4>
                                 <?php echo $sf_user->getFlash("notification_error"); ?>
                             </div>
                         <?php endif; ?>
@@ -74,7 +74,7 @@
                         <?php if ($sf_user->hasFlash("notification_ok")): ?>
                             <div class="alert alert-success">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
-                                <h4>Information</h4>
+                                <h4><?php echo __("Information"); ?></h4>
                                 <?php echo $sf_user->getFlash("notification_ok"); ?>
                             </div>
                         <?php endif; ?>

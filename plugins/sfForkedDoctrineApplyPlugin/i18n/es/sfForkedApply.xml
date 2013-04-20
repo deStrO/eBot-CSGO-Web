@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="es" datatype="plaintext" original="sfForkedApply" date="2010-03-16T21:58:27Z" product-name="sfForkedApply">
+    <header/>
+    <body>
+      <trans-unit id="1" approved="yes">
+        <source>&lt;p&gt;
+Thanks for applying for an account on %1%.
+&lt;/p&gt;&lt;p&gt;
+To prevent abuse of the site, we require that you activate your account by clicking on the following link:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+Thanks again for joining us.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Gracias por registrarte en %1%.
+&lt;/p&gt;&lt;p&gt;
+La activación de tu cuenta es necesaria. Para ello, debes hacer clic en el siguiente enlace:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+Gracias de nuevo por registrarte.
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="2" approved="yes">
+        <source>Continue</source>
+        <target>Continuar</target>
+      </trans-unit>
+      <trans-unit id="3" approved="yes">
+        <source>&lt;p&gt;
+That confirmation code is invalid.
+&lt;/p&gt;&lt;p&gt;
+This may be because you have already confirmed your account. If so,
+just click on the "Log In" button to log in.
+&lt;/p&gt;&lt;p&gt;
+Other possible explanations:
+&lt;/p&gt;&lt;p&gt;
+1. If you copied and pasted the URL from
+your confirmation email, please make sure you did so correctly and
+completely.
+&lt;/p&gt;&lt;p&gt;
+2. If you received this confirmation email a long time ago
+and never confirmed your account, it is possible that your account has
+been purged from the system. In that case, you should simply apply
+for a new account.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+El código de confirmación es inválido.
+&lt;/p&gt;&lt;p&gt;
+Esto puede ser debido a que ya has confirmado la cuenta. Si es así,haz clic en "Acceder" para entrar.
+&lt;/p&gt;&lt;p&gt;
+Otras posibles soluciones:
+&lt;/p&gt;&lt;p&gt;
+1. Si has copiado y pegado la URL del e-mail de confirmación, por favor asegúrate de lo has hecho correctamente.
+&lt;p&gt;&lt;/p&gt;
+2. Si recibiste este e-mail de confirmación hace tiempo y no has confirmado tu cuenta, es posible que tu cuenta haya sido eliminada del sistema. En este caso, deberías registrarte de nuevo.
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="4" approved="yes">
+        <source>Apply for an Account</source>
+        <target>Regístrate</target>
+      </trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Create My Account</source>
+        <target>Crear una cuenta</target>
+      </trans-unit>
+      <trans-unit id="6" approved="yes">
+        <source>or</source>
+        <target>o</target>
+      </trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>Cancel</source>
+        <target>Cancelar</target>
+      </trans-unit>
+      <trans-unit id="8" approved="yes">
+        <source>Forgot your username or password? No problem! Just enter your username &lt;strong&gt;or&lt;/strong&gt;
+your email address and click "Reset My Password." You will receive an email message containing both your username and
+a link permitting you to change your password if you wish.</source>
+        <target>¿Olvidaste tu usuario o contraseña? No hay problema. Solamente introduce tu usuario &lt;strong&gt;o&lt;/strong&gt;
+        tu e-mail y haz clic en "Resetear mi contraseña". Recibirás un e-mail con el usuario y un enlace para cambiar la contraseña.
+        </target>
+      </trans-unit>
+      <trans-unit id="9" approved="yes">
+        <source>Reset My Password</source>
+        <target>Reiniciar contraseña</target>
+      </trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>Thanks for applying for an account with %1%.
+
+To prevent abuse of the site, we require that you activate your account by clicking on the following link:
+
+%2%
+
+Thanks again for joining us.</source>
+        <target>Gracias por registrarte en %1%.
+
+La activación de tu cuenta es necesaria, para ello haz clic en el siguiente enlace:
+
+%2%
+
+Gracias de nuevo por registrarte.</target>
+      </trans-unit>
+      <trans-unit id="11" approved="yes">
+        <source>Your password has been successfully reset. You are now logged
+in to this site. In the future, be sure to log in with your new password.</source>
+        <target>Tu contraseña se ha reiniciado correctamente. Ahora estás autenticado en el sistema. A partir de ahora, asegúrate de acceder con tu nueva contraseña.</target>
+      </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>Thanks for confirming your email address. You may now change your
+password using the form below.</source>
+        <target>Gracias por confirmar tu e-mail. Ahora debes cambiar tu contraseña usando el siguiente formulario.</target>
+      </trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>&lt;p&gt;
+For security reasons, a confirmation message has been sent to 
+the email address associated with this account. Please check your
+email for that message. You will need to click on a link provided
+in that email in order to change your password. If you do not see
+the message, be sure to check your "spam" and "bulk" email folders.
+&lt;/p&gt;
+&lt;p&gt;
+We apologize for the inconvenience.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Por razones de seguridad, será enviado un mensaje de confirmación
+al e-mail asociado a esta cuenta. Por favor verifica si has recibido
+el e-mail. Tendrás que hacer clic en el enlace enviado en ese e-mail para
+poder cambiar la contraseña. Si no ves el mensaje, asegúrate de mirar en
+la carpeta "spam" y "correo no deseado".
+&lt;/p&gt;
+&lt;p&gt;
+Pedimos disculpas por las molestias.
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="14" approved="yes">
+        <source>
+&lt;p&gt;
+We have received your request to recover your username and possibly your password on: %1%
+&lt;/p&gt;&lt;p&gt;
+Your username is: %USERNAME%
+&lt;/p&gt;&lt;p&gt;
+If you have lost your password or wish to reset it, click on the link that follows:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+You will then be prompted for the new password you wish to use.
+&lt;/p&gt;&lt;p&gt;
+Your password will not be changed unless you click on the link above and complete the form.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Hemos recibido tu petición para recuperar tu usuario y posiblemente tu contraseña en: %1%
+&lt;/p&gt;&lt;p&gt;
+Tu usuario es: %USERNAME%
+&lt;/p&gt;&lt;p&gt;
+Si has perdido tu contraseña o quieres reiniciarla, haz clic en el siguiente enlace:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+A continuación puedes cambiarlo.
+&lt;/p&gt;&lt;p&gt;
+Tu contraseña no será cambiada hasta que hagas clic en el enlace siguiente para completar el formulario.
+&lt;/p&gt;
+</target>
+      </trans-unit>
+      <trans-unit id="15" approved="yes">
+        <source>&lt;p&gt;
+An error took place during the email delivery process. Please try
+again later.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Ha ocurrido un error durante el proceso de envío del e-mail. Por favor, inténtalo de nuevo más tarde.
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="16" approved="yes">
+        <source>sign in</source>
+        <target>acceder</target>
+      </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Reset Your Password</source>
+        <target>Reiniciar tu contraseña</target>
+      </trans-unit>
+      <trans-unit id="18" approved="yes">
+        <source>Create a New Account</source>
+        <target>Crear una cuenta nueva</target>
+      </trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>Account Settings</source>
+        <target>Preferencias de cuenta</target>
+      </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>Save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Click the button below to change your password. For security reasons, you
+will receive a confirmation email containing a link allowing you to complete the password change.</source>
+        <target>Haz clic sobre el botón de abajo para cambiar tu contraseña. Por razones de seguridad, recibirás un e-mail
+            de confirmación con un enlace para completar el cambio de contraseña.</target>
+      </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>Reset Password</source>
+        <target>Reiniciar contraseña</target>
+      </trans-unit>
+      <trans-unit id="23" approved="yes">
+        <source>Thank you for applying for an account. You will receive a verification email shortly. If you do not see that email, please be sure to check your "spam" or "bulk" folder.</source>
+        <target>Gracias por registrarte. Recibirás un e-mail de verificación en breve. Si no ves el e-mail, asegúrate de que no se encuentra en la carpeta de "spam" o "correo no deseado".</target>
+      </trans-unit>
+      <trans-unit id="24" approved="yes">
+        <source>Sorry, there is no user with that username or email address.</source>
+        <target>Lo sentimos, no existe ninguna cuenta con ese nombre de usuario.</target>
+      </trans-unit>
+      <trans-unit id="25" approved="yes">
+        <source>
+That account was never verified. You must verify the account before you can log in or, if
+necessary, reset the password. We have resent your verification email, which contains
+instructions to verify your account. If you do not see that email, please be sure to check 
+your "spam" or "bulk" folder.</source>
+        <target>
+            Esta cuenta nunca ha sido verificada. Debes verificar la cuenta antes de acceder o, si es necesario,
+            reiniciar la contraseña. Se ha reenviado el e-mail de verificación, asegúrate de comprobar en las carpetas
+            de "spam" o "correo no deseado".
+</target>
+      </trans-unit>
+      <trans-unit id="26" approved="yes">
+        <source>We have received your request to recover your username and possibly your password on:
+
+%1%
+
+Your username is: %USERNAME%
+
+If you have lost your password or wish to reset it, click on the link that follows:
+
+%2%
+
+You will then be prompted for the new password you wish to use.
+
+Your password will NOT be changed unless you click on the link above and complete the form.
+        </source>
+        <target>Hemos recibido tu petición para recuperar tu usuario y tu contraseña en:
+
+%1%
+
+Tu usuario es: "%USERNAME%"
+
+Si has perdido tu contraseña o deseas reiniciarla, haz clic en el siguiente enlace:
+
+%2%
+
+A continuación se pedirá la nueva contraseña que deseas utilizar.
+
+Tu contraseña NO será cambiada hasta que hagas clic en el link de abajo y completes el formulario.
+        </target>
+      </trans-unit>
+      <trans-unit id="27" approved="yes">
+        <source>Thank you for confirming your account! You are now logged into the site.</source>
+        <target>Gracias por confirmar tu cuenta. Ahora estás logueado.</target>
+      </trans-unit>
+      <trans-unit id="28" approved="yes">
+        <source>&lt;p&gt;
+This account is inactive. Please contact the administrator.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Esta cuenta está inactiva. Por favor, contacta con el administrador.
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="29" approved="yes">
+        <source>Logged in as %1%</source>
+        <target>Conectado en %1%</target>
+      </trans-unit>
+      <trans-unit id="30" approved="yes">
+        <source>Log Out</source>
+        <target>Desconectar</target>
+      </trans-unit>
+      <trans-unit id="31" approved="yes">
+        <source>Settings</source>
+        <target>Configuración</target>
+      </trans-unit>
+      <trans-unit id="32" approved="yes">
+        <source>Please verify your account on %1%</source>
+        <target>Por favor, verifica tu cuenta en %1%</target>
+      </trans-unit>
+      <trans-unit id="33" approved="yes">
+        <source>Please verify your password reset request on %1%</source>
+        <target>Por favor, verifica tu petición de reinicio de contraseña en %1%</target>
+      </trans-unit>
+      <trans-unit id="34" approved="yes">
+        <source>You may change your password using the form below.</source>
+        <target>Puedes cambiar tu contraseña utilizando el siguiente formulario.</target>
+      </trans-unit>
+      <trans-unit id="35" approved="yes">
+        <source>The captcha is not valid (%error%).</source>
+        <target>El captcha no es válido (%error%).</target>
+      </trans-unit>
+      <trans-unit id="36" approved="yes">
+        <source>Unable to check the captcha from the server (%error%).</source>
+        <target>Imposible verificar el captcha desde el servidor (%error%).</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

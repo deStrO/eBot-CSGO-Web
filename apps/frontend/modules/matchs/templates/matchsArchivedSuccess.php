@@ -7,6 +7,17 @@
             <?php if (count($filterValues) > 0): ?>
                 <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Reset Filter"); ?></a></li>
             <?php endif; ?>
+            <li>
+                <form style="margin:0; padding-top:5px;" method="post" action="<?php echo url_for("matchs_filters"); ?>">
+                    <?php echo $filter->renderHiddenFields(); ?>
+                    <?php foreach ($filter as $widget): ?>
+                        <?php if ($widget->getName() != "season_id") continue; ?>
+                        <?php echo $widget->render(); ?>
+                    <?php endforeach; ?>
+                    <input type="submit" class="btn btn-primary btn-mini" style="margin-bottom: 15px;" value="<?php echo __("Search"); ?>">
+<!--                <a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button" data-toggle="modal"><button class="btn btn-inverse btn-mini" style="margin-bottom: 15px;"><?php echo __("Reset Filter"); ?></button></a> -->
+                </form>
+            </li>
         </ul>
     </div>
 </div>
@@ -41,8 +52,11 @@
     <thead>
         <tr>
             <th><?php echo __("#ID"); ?></th>
-            <th colspan="3"><?php echo __("Opponent - Score"); ?></th>
+            <th><?php echo __("Team 1"); ?></th>
+            <th style="text-align:center;"><?php echo __("Score"); ?></th>
+            <th style="text-align:right;"><?php echo __("Team 2"); ?></th>
             <th><?php echo __("Map"); ?></th>
+            <th><?php echo __("Season"); ?></th>
             <th><?php echo __("Enabled"); ?></th>
             <th><?php echo __("Status"); ?></th>
         </tr>
@@ -68,14 +82,18 @@
                 <td width="100"  style="padding-left: 10px;">
                     <span style="float:left"><?php echo $team1; ?></span>
                 </td>
-                <td width="50" align="center"><?php echo $score1; ?> - <?php echo $score2; ?></td>
-                <td width="100"><span style="float:right"><?php echo $team2; ?></span></td>
+                <td width="50">
+                    <div class="score" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></div>
+                </td>
+                <td width="100"><span style="float:right; text-align:right;"><?php echo $team2; ?></span></td>
                 <td width="150" align="center">
                     <?php if ($match->getMap() && $match->getMap()->exists()): ?>
                         <?php echo $match->getMap()->getMapName(); ?>
                     <?php endif; ?>
                 </td>
-
+                <td width="250">
+                    <?php echo $match->getSeason(); ?>
+                </td>
                 <td width="50" align="center">
                     <?php if ($match->getEnable()): ?>
                         <?php if ($match->getStatus() == Matchs::STATUS_STARTING): ?>
@@ -93,7 +111,6 @@
                         <?php echo $match->getStatusText(); ?>
                     </div>
                 </td>
-
                 <td width="50" style="padding-left: 3px;" align="center">
                     <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse"><?php echo __("Show"); ?></button></a>
                 </td>
