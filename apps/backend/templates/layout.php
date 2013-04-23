@@ -26,6 +26,10 @@
             function submitForm (id) {
                 $("#"+id).submit();
             }
+            $(document).ready(function() {
+                if (!"WebSocket" in window)
+                    $('#websocket_support').show();
+            });
         </script>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
@@ -79,12 +83,18 @@
                             </div>
                         <?php endif; ?>
 
+                        <div class="alert alert-error" id="websocket_support" style="display:none;">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <h4><?php echo __("Warning!"); ?></h4>
+                            <p><?php echo __("Your Browser does not support WebSocket Connections. Without WebSockets you are not abled to control and manage Matches at the eBot Webpanel!"); ?><br>
+                            <?php echo __("Update your Browser to the latest version. To check supported Browsers, visit:"); ?> <a href="http://caniuse.com/websockets" target="_blank">http://caniuse.com/websockets</a></p>
+                        </div>
+
                         <?php echo $sf_content ?>
                     <?php else: ?>
                         <div class="span12">
                             <?php echo $sf_content ?>
                         </div>
-
                     <?php endif; ?>
                 </div>
             </div>
