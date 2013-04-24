@@ -61,7 +61,7 @@
             <li class="nav-header"><?php echo __("User Management"); ?></li>
             <li><a href="<?php echo url_for("users/create"); ?>"><?php echo __("Add new User"); ?></a></li>
             <li><a href="<?php echo url_for("users/index"); ?>"><?php echo __("User Management"); ?></a></li>
-            <?php endif; ?>
+
         </ul>
     </div>
 </div>
