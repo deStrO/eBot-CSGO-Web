@@ -252,6 +252,17 @@ Servers:
     hostname: { type: varchar(100), notnull: true }
     tv_ip: { type: varchar(100) }
 
+Advertising:
+  actAs:
+    Timestampable: ~
+  columns:
+    id: { primary: true, type: integer(20), autoincrement: true }
+    season_id: { type: integer(20) }
+    message: { type: varchar(1000) }
+    active: { type: boolean }
+  relations:
+    Season: { class: Seasons, onDelete: CASCADE, local: season_id, foreign: id }
+
 Teams:
   actAs:
     Timestampable: ~

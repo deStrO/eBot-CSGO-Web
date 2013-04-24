@@ -3,4 +3,4 @@
 
 default:
   is_secure: true
-  credentials: isAdmin
+  credentials: admin
