@@ -13,63 +13,94 @@
 </style>
 
 <script>
-    $(document).ready(function() {
+    $(function() {
         jQuery.validator.addMethod("team_a", function(value, element) {
             var valid = false;
-            if ($(element).attr("name") == "matchs[team_a]")
+            if ($(element).attr("name") == "matchs[team_a]") {
                 valid = true;
+            }
+
             if ($(element).attr("name") == "matchs[team_a_name]") {
                 if ($("#matchs_team_a").val() == 0) {
-                    if (value != "")
+                    if (value != "") {
                         valid = true;
-                } else
+                    }
+                } else {
                     valid = true;
-            }
-            if ($(element).attr("name") == "matchs[team_a]") {
-                if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
-                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val())
-                        valid = false;
                 }
             }
+
+            if ($(element).attr("name") == "matchs[team_a]") {
+                if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
+                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val()) {
+                        valid = false;
+                    }
+                }
+            }
+
             return valid;
         }, "");
 
         jQuery.validator.addMethod("team_b", function(value, element) {
             var valid = false;
-            if ($(element).attr("name") == "matchs[team_b]")
+            if ($(element).attr("name") == "matchs[team_b]") {
                 valid = true;
+            }
+
             if ($(element).attr("name") == "matchs[team_b_name]") {
                 if ($("#matchs_team_b").val() == 0) {
-                    if (value != "")
+                    if (value != "") {
                         valid = true;
-                } else
+                    }
+                } else {
                     valid = true;
-            }
-            if ($(element).attr("name") == "matchs[team_b]") {
-                if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
-                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val())
-                        valid = false;
                 }
             }
+
+            if ($(element).attr("name") == "matchs[team_b]") {
+                if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
+                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val()) {
+                        valid = false;
+                    }
+                }
+            }
+
             return valid;
         }, "");
 
-        $('#form-match').validate({
+        $('#form-match').validate(
+        {
             rules: {
-                "matchs[team_a]": { team_a: true },
-                "matchs[team_a_name]": { team_a: true },
-                "matchs[team_b]": { team_b: true },
-                "matchs[team_b_name]": { team_b: true },
-                "matchs[max_round]": { number: true, required: true },
-                "matchs[rules]": { minlength: 1, required: true }
+                "matchs[team_a]": {
+                    team_a: true
+                },
+                "matchs[team_a_name]": {
+                    team_a: true
+                },
+                "matchs[team_b]": {
+                    team_b: true
+                },
+                "matchs[team_b_name]": {
+                    team_b: true
+                },
+                "matchs[max_round]": {
+                    number: true,
+                    required: true
+                },"matchs[rules]": {
+                    minlength: 1,
+                    required: true
+                }
             },
             highlight: function(label) {
                 $(label).closest('.validate-field').addClass('error').removeClass("success");
             },
             success: function(label) {
-                label.text('OK!').addClass('valid').closest('.validate-field').addClass('success').removeClass("error");
+                label
+                .text('OK!').addClass('valid')
+                .closest('.validate-field').addClass('success').removeClass("error");
             }
         });
+
 
         // Remember the full configuration
         matchs_team_content = $('#matchs_team_a').html();
@@ -126,6 +157,17 @@
                 }
             }
         );
+
+        $('#matchs_map_selection_mode').change(
+            function() {
+                if ($(this).val() == "bo3_modeb") {
+                    $('.bo3').show();
+                } else {
+                    $('.bo3').hide();
+                }
+            }
+        );
+
         $("#matchs_config_ot").click(function() {
             if( $(this).is(':checked')) {
                 $("#overtime_startmoney").show();
@@ -216,15 +258,33 @@
             <div class="control-group">
                 <label class="control-label"><?php echo __("Map"); ?></label>
                 <div class="controls">
-                    <select name="maps">
-                        <?php foreach ($maps as $map): ?>
-                            <?php if ($map == 'tba'): ?>
-                                <option value="<?php echo $map; ?>">Choose by Mapveto</option>
-                            <?php else: ?>
-                                <option value="<?php echo $map; ?>"><?php echo $map; ?></option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select>
+                    <?php for ($i=0;$i<3;$i++): ?>
+                        <?php if ($i == 0): ?>
+                            <span class="help-inline"><?php echo $i+1; ?>. Map:</span>
+                            <select name="maps[]">
+                                <?php foreach ($maps as $map): ?>
+                                    <?php if ($map == 'tba'): ?>
+                                        <option value="<?php echo $map; ?>"><?php echo __("Choose by Mapveto"); ?></option>
+                                    <?php else: ?>
+                                        <option value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php else: ?>
+                            <div class="bo3" style="display:none;">
+                                <span class="help-inline"><?php echo $i+1; ?>. Map:</span>
+                                <select name="maps[]">
+                                    <?php foreach ($maps as $map): ?>
+                                        <?php if ($map == 'tba'): ?>
+                                            <option value="<?php echo $map; ?>"><?php echo __("Choose by Mapveto"); ?></option>
+                                        <?php else: ?>
+                                            <option value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        <?php endif; ?>
+                    <?php endfor; ?>
                 </div>
             </div>
             <div class="control-group">

@@ -126,6 +126,15 @@
                 }
             }
         );
+        $('#matchs_map_selection_mode').change(
+            function() {
+                if ($(this).val() == "bo3_modeb") {
+                    $('.bo3').show();
+                } else {
+                    $('.bo3').hide();
+                }
+            }
+        );
         $("#matchs_config_ot").click(function() {
             if( $(this).is(':checked')) {
                 $("#overtime_startmoney").show();
@@ -154,6 +163,9 @@
         if ($('#matchs_auto_start').prop('checked')) {
             $("#startdate").show();
             $("#auto_start_time").show();
+        }
+        if ($("#matchs_map_selection_mode").val() == "bo3_modeb") {
+            $('.bo3').show();
         }
         $("#match_startdate").datetimepicker({format: 'dd.mm.yyyy hh:ii', autoclose: true, language: 'de'});
     });
@@ -230,6 +242,39 @@
                     <?php endforeach; ?>
 
                     <div class="control-group">
+                        <label class="control-label"><?php echo __("Map"); ?></label>
+                        <div class="controls">
+                            <?php for ($i=0;$i<3;$i++): ?>
+                                <?php if ($i == 0): ?>
+                                    <span class="help-inline"><?php echo $i+1; ?>. <?php echo __("Map"); ?>:</span>
+                                    <select name="maps[]">
+                                        <?php foreach ($maps as $map): ?>
+                                            <?php if ($map == 'tba'): ?>
+                                                <option <?php if ($map == $maps_set[$i]->getMapName()) echo "selected"; ?> value="<?php echo $map; ?>"><?php echo __("Choose by Mapveto"); ?></option>
+                                            <?php else: ?>
+                                                <option <?php if ($map == $maps_set[$i]->getMapName()) echo "selected"; ?> value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php else: ?>
+                                    <div class="bo3" style="display:none;">
+                                        <span class="help-inline"><?php echo $i+1; ?>. <?php echo __("Map"); ?>:</span>
+                                        <select name="maps[]">
+                                            <?php foreach ($maps as $map): ?>
+                                                <?php if ($map == 'tba'): ?>
+                                                    <option <?php if ($map == $maps_set[$i]->getMapName()) echo "selected"; ?> value="<?php echo $map; ?>"><?php echo __("Choose by Mapveto"); ?></option>
+                                                <?php else: ?>
+                                                    <option <?php if ($map == $maps_set[$i]->getMapName()) echo "selected"; ?> value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
                         <label class="control-label"><?php echo __("Server"); ?></label>
                         <div class="controls">
                             <select name="server_id">
@@ -247,21 +292,6 @@
                         </div>
                     </div>
 
-
-                    <div class="control-group">
-                        <label class="control-label"><?php echo __("Map"); ?></label>
-                        <div class="controls">
-                            <select name="maps">
-                                <?php foreach ($maps as $map): ?>
-                                    <?php if ($map == 'tba'): ?>
-                                        <option <?php if ($map == $match->getMap()->getMapName()) echo "selected"; ?> value="<?php echo $map; ?>">Choose by Mapveto</option>
-                                    <?php else: ?>
-                                        <option <?php if ($map == $match->getMap()->getMapName()) echo "selected"; ?> value="<?php echo $map; ?>"><?php echo $map; ?></option>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
                     <div class="control-group">
                         <div class="controls">
                             <input type="submit" class="btn btn-primary" value="<?php echo __("Save Match"); ?>"/>

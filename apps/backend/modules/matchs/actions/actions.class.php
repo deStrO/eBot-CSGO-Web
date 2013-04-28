@@ -270,7 +270,7 @@ class matchsActions extends sfActions {
 //			$match->setIp(null);
 //			$match->setServer(null);
             $match->save();
-            foreach ($match->getMaps() as $map) {
+            foreach ($match->getMaps() as $index => $map) {
                 $map->score_1 = 0;
                 $map->score_2 = 0;
                 $map->setNbOt(0);
@@ -279,7 +279,10 @@ class matchsActions extends sfActions {
                 foreach ($map->getMapsScore() as $score) {
                     $score->delete();
                 }
+                if ($index == 0)
+                    $match->setCurrentMap($map);
             }
+            $match->save();
 
             foreach ($match->getRoundSummary() as $round) {
                 $round->delete();
@@ -325,7 +328,7 @@ class matchsActions extends sfActions {
     }
 
     public function executeMatchsInProgress(sfWebRequest $request) {
-        $this->filter = new MatchsFormFilter($this->getFilters());
+        $this->filter = new MatchsActiveFormFilter($this->getFilters());
         $query = $this->filter->buildQuery($this->getFilters());
         $this->filterValues = $this->getFilters();
 
@@ -394,7 +397,7 @@ class matchsActions extends sfActions {
 
         if ($request->getMethod() == sfWebRequest::POST) {
             $this->form->bind($request->getPostParameter($this->form->getName()));
-            if ($this->form->isValid() && in_array($_POST["maps"], $this->maps)) {
+            if ($this->form->isValid()) {
                 $match = $this->form->save();
 
                 if ($match->getTeamA()->exists()) {
@@ -427,20 +430,30 @@ class matchsActions extends sfActions {
                         $match->setAutoStart(false);
                 }
 
-                $maps = new Maps();
-                $maps->setMatch($match);
-                $maps->setMapsFor("default");
-                $maps->setNbOt(0);
-                $maps->setStatus(0);
-                $maps->score_1 = 0;
-                $maps->score_2 = 0;
-                $maps->current_side = $side;
-                $maps->setMapName($request->getPostParameter("maps"));
-                $maps->save();
+                $maps_set = $request->getPostParameter('maps');
+                if ($match->getMapSelectionMode() == "bo3_modeb") {
+                    $setMapsFor = array("team1", "team2", "default");
+                } else {
+                    $setMapsFor = array("default", "default", "default");
+                }
+
+                for ($i=0;$i<3; $i++) {
+                    $maps[$i] = new Maps();
+                    $maps[$i]->setMatch($match);
+                    $maps[$i]->setMapsFor($setMapsFor[$i]);
+                    $maps[$i]->setNbOt(0);
+                    $maps[$i]->setStatus(0);
+                    $maps[$i]->score_1 = 0;
+                    $maps[$i]->score_2 = 0;
+                    $maps[$i]->current_side = $side;
+                    $maps[$i]->setMapName($maps_set[$i]);
+                    $maps[$i]->save();
+                    if ($i == 0)
+                        $match->setCurrentMap($maps[$i]);
+                }
 
                 $match->setScoreA(0);
                 $match->setScoreB(0);
-                $match->setCurrentMap($maps);
                 $match->setStatus(Matchs::STATUS_NOT_STARTED);
                 $match->setConfigAuthkey(uniqid(mt_rand(), true));
                 $match->save();
@@ -448,6 +461,8 @@ class matchsActions extends sfActions {
                 $this->getUser()->setFlash("notification_ok", $this->__("Match created with ID") . " " . $match->getId());
 
                 $this->redirect("matchs_create");
+            } else {
+                $this->getUser()->setFlash("notification_error", $this->__("Error while creating the Match."));
             }
         }
     }
@@ -457,6 +472,7 @@ class matchsActions extends sfActions {
         $this->forward404Unless($this->match);
         $this->maps = sfConfig::get("app_maps");
         array_push($this->maps, 'tba');
+        $this->maps_set = $this->match->getMaps();
         $this->servers = ServersTable::getInstance()->findAll();
 
         if ($this->match->getEnable()) {
@@ -474,7 +490,9 @@ class matchsActions extends sfActions {
 
         if ($request->getMethod() == sfWebRequest::POST) {
             $this->form->bind($request->getPostParameter($this->form->getName()));
-            if ($this->form->isValid() && in_array($_POST["maps"], $this->maps)) {
+            if ($this->form->isValid()) {
+
+                $oldMapSelectionMode = $this->match->getMapSelectionMode();
 
                 $server = null;
                 $server_id = $request->getPostParameter("server_id");
@@ -515,10 +533,30 @@ class matchsActions extends sfActions {
                 }
                 $match->save();
 
-                $map = $match->getMap();
-                $map->setMapName($_POST["maps"]);
-                $map->save();
+                $side = $request->getPostParameter("side");
+                if (!in_array($side, array("ct", "t"))) {
+                    $side = rand(100) > 50 ? "ct" : "t";
+                }
 
+                $maps_set = $request->getPostParameter('maps');
+                if ($match->getMapSelectionMode() == "normal") {
+                    $map = $match->getMaps();
+                    $setMapsFor = array("default", "default", "default");
+                    for ($i=0;$i<3; $i++) {
+                        $map[$i]->setMapsFor($setMapsFor[$i]);
+                        $map[$i]->setMapName($maps_set[$i]);
+                    }
+                    $map->save();
+                } elseif ($match->getMapSelectionMode() == "bo3_modeb") {
+                    $map = $match->getMaps();
+                    $setMapsFor = array("team1", "team2", "default");
+                    for ($i=0;$i<3; $i++) {
+                        $map[$i]->setMapsFor($setMapsFor[$i]);
+                        $map[$i]->setMapName($maps_set[$i]);
+                        $map[$i]->save();
+                    }
+                    $map->save();
+                }
                 $this->getUser()->setFlash("notification_ok", $this->__("Match edited successfully"));
                 $this->redirect("matchs_current");
             }
@@ -574,6 +612,29 @@ class matchsActions extends sfActions {
         $this->match = $this->getRoute()->getObject();
         $this->ebot_ip = sfConfig::get("app_ebot_ip");
         $this->ebot_port = sfConfig::get("app_ebot_port");
+
+        $this->purchased = RoundTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->andWhere("event_name LIKE 'purchased'")->fetchArray();
+        $buy = array();
+        for ($i=0;$i<count($this->purchased);$i++) {
+            $buy_data = unserialize(stripslashes($this->purchased[$i]['event_text']));
+            if (in_array("smokegrenade", $buy_data)) {
+                $buy[$this->purchased[$i]['map_id']][$this->purchased[$i]['round_id']][$buy_data['playerName']] += 1;
+            }
+        }
+
+        $this->warningBox = array();
+        foreach ($buy as $map => $roundArray) {
+            foreach ($roundArray as $round => $playerArray) {
+                foreach ($playerArray as $player => $value) {
+                    if ($value > 1) {
+                        $this->warningBox["map"][] = $map;
+                        $this->warningBox["round"][] = $round;
+                        $this->warningBox["player"][] = $player;
+                        $this->warningBox["value"][] = $value;
+                    }
+                }
+            }
+        }
 
         $this->heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->count() > 0;
         if ($this->heatmap) {
