@@ -1,4 +1,15 @@
-<h4><?php echo __("Match"); ?> #<?php echo $match->getId(); ?> - <?php echo $match->getTeamA(); ?> vs <?php echo $match->getTeamB(); ?></h4>
+<?php
+
+$team1 = $match->getTeamA();
+if (!$team1->exists())
+    $team1 = $match->getTeamAName();
+$team2 = $match->getTeamB();
+if (!$team2->exists())
+    $team2 = $match->getTeamBName();
+
+?>
+
+<h4><?php echo __("Match"); ?> #<?php echo $match->getId(); ?> - <?php echo $team1; ?> vs <?php echo $team2; ?></h4>
 <hr/>
 
 <style>
@@ -109,8 +120,6 @@
 
                     \ScoreColorUtils::colorForScore($score1, $score2);
 
-                    $team1 = $match->getTeamA();
-                    $team2 = $match->getTeamB();
                     if ($match->getMap() && $match->getMap()->exists()) {
                         \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                     }

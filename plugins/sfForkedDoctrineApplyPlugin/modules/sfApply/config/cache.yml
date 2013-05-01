@@ -1,0 +1,6 @@
+## YAML Template.
+reset:
+  client_lifetime: 0
+
+resetRequest:
+  client_lifetime: 0

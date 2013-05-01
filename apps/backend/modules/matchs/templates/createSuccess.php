@@ -9,100 +9,103 @@
     label.error {
         font-weight: bold;
         color: red;
-
     }
 </style>
 
 <script>
-    $(function() {
+    $(document).ready(function() {
         jQuery.validator.addMethod("team_a", function(value, element) {
             var valid = false;
-            if ($(element).attr("name") == "matchs[team_a]") {
+            if ($(element).attr("name") == "matchs[team_a]")
                 valid = true;
-            }
-
             if ($(element).attr("name") == "matchs[team_a_name]") {
                 if ($("#matchs_team_a").val() == 0) {
-                    if (value != "") {
+                    if (value != "")
                         valid = true;
-                    }
-                } else {
+                } else
                     valid = true;
-                }
             }
-
             if ($(element).attr("name") == "matchs[team_a]") {
                 if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
-                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val()) {
+                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val())
                         valid = false;
-                    }
                 }
             }
-
             return valid;
         }, "");
 
         jQuery.validator.addMethod("team_b", function(value, element) {
             var valid = false;
-            if ($(element).attr("name") == "matchs[team_b]") {
+            if ($(element).attr("name") == "matchs[team_b]")
                 valid = true;
-            }
-
             if ($(element).attr("name") == "matchs[team_b_name]") {
                 if ($("#matchs_team_b").val() == 0) {
-                    if (value != "") {
+                    if (value != "")
                         valid = true;
-                    }
-                } else {
+                } else
                     valid = true;
-                }
             }
-
             if ($(element).attr("name") == "matchs[team_b]") {
                 if ($("#matchs_team_a").val() > 0 && $("#matchs_team_b").val() > 0) {
-                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val()) {
+                    if ($("#matchs_team_a").val() == $("#matchs_team_b").val())
                         valid = false;
-                    }
                 }
             }
-
             return valid;
         }, "");
 
-        $('#form-match').validate(
-        {
+        $('#form-match').validate({
             rules: {
-                "matchs[team_a]": {
-                    team_a: true
-                },
-                "matchs[team_a_name]": {
-                    team_a: true
-                },
-                "matchs[team_b]": {
-                    team_b: true
-                },
-                "matchs[team_b_name]": {
-                    team_b: true
-                },
-                "matchs[max_round]": {
-                    number: true,
-                    required: true
-                },"matchs[rules]": {
-                    minlength: 1,
-                    required: true
-                }
+                "matchs[team_a]": { team_a: true },
+                "matchs[team_a_name]": { team_a: true },
+                "matchs[team_b]": { team_b: true },
+                "matchs[team_b_name]": { team_b: true },
+                "matchs[max_round]": { number: true, required: true },
+                "matchs[rules]": { minlength: 1, required: true }
             },
             highlight: function(label) {
                 $(label).closest('.validate-field').addClass('error').removeClass("success");
             },
             success: function(label) {
-                label
-                .text('OK!').addClass('valid')
-                .closest('.validate-field').addClass('success').removeClass("error");
+                label.text('OK!').addClass('valid').closest('.validate-field').addClass('success').removeClass("error");
             }
         });
 
+        // Remember the full configuration
+        matchs_team_content = $('#matchs_team_a').html();
 
+        $('#matchs_season_id').change(
+            function() {
+                if($(this).val() != "") {
+                    $.ajax({
+                        url: "/admin.php/teams/getbyseasons",
+                        data: {season_id: $(this).val()},
+                        datatype: "json",
+                        type: "POST",
+                        success: function(data) { setTeamData(data); }
+                    });
+                } else {
+                    $('#matchs_team_a').empty();
+                    $('#matchs_team_b').empty();
+                    $('#matchs_team_a').append(matchs_team_content);
+                    $('#matchs_team_b').append(matchs_team_content);
+                }
+            }
+        );
+
+        function setTeamData(data) {
+            var data = jQuery.parseJSON(data);
+            $('#matchs_team_a').empty();
+            $('#matchs_team_b').empty();
+            if (!$.isEmptyObject(data)) {
+                var optionsAsString = '<option value="" selected="selected"></option>';
+                for(var i = 0; i < data['id'].length; i++) {
+                    optionsAsString += "<option value='" + data['id'][i] + "'>" + data['name'][i] + " (" + data['flag'][i] + ") </option>";
+                }
+                $('#matchs_team_a').append($(optionsAsString));
+                $('#matchs_team_b').append($(optionsAsString));
+            }
+        }
 
         $("#matchs_team_a").change(
             function() {
@@ -132,8 +135,19 @@
                 $("#overtime_max_round").hide();
             }
         });
-    });
 
+        $("#matchs_auto_start").click(function() {
+            if( $(this).is(':checked')) {
+                $("#startdate").show();
+                $("#auto_start_time").show();
+            } else {
+                $("#startdate").hide();
+                $("#auto_start_time").hide();
+            }
+        });
+
+        $("#match_startdate").datetimepicker({format: 'dd.mm.yyyy hh:ii', autoclose: true, language: 'de'});
+    });
 </script>
 
 <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("matchs_create"); ?>">
@@ -148,10 +162,22 @@
                 <?php if ($widget->isHidden()) continue; ?>
                 <?php if (in_array($name, array("team_a_flag", "team_b_flag", "team_a_name", "team_b_name"))) continue; ?>
                 <?php if ($name == "overtime_startmoney" || $name == "overtime_max_round"): ?>
-                    <div class="control-group validate-field" style="display:none;" id="<?php echo $name; ?>">
-                        <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
-                        <div class="controls">
-                            <?php echo $widget->render(); ?>
+                    <div class="control-group validate-field input-append" style="display:none;" id="<?php echo $name; ?>">
+                        <div class="alert alert-info">
+                            <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
+                            <div class="controls">
+                                <?php echo $widget->render(); ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php elseif ($name == "startdate" || $name == "auto_start_time"): ?>
+                    <div class="control-group input-append" style="display:none;" id="<?php echo $name; ?>">
+                        <div class="alert alert-info">
+                            <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
+                            <div class="controls">
+                                <?php echo $widget->render(); ?>
+                                <span class="add-on"><i class="icon-time"></i></span>
+                            </div>
                         </div>
                     </div>
                 <?php else: ?>
@@ -205,9 +231,7 @@
                 <label class="control-label"><?php echo __("Server"); ?></label>
                 <div class="controls">
                     <select name="server_id">
-                        <option value="0"><?php echo __("Choose Random Server"); ?></option>
                         <?php foreach ($servers as $server): ?>
-                            <?php if (in_array($server->getIp(), $used)) continue; ?>
                             <option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?></option>
                         <?php endforeach; ?>
                     </select>

@@ -284,15 +284,30 @@ teams_delete:
     id : \d+
     sf_method: [get]
 
-users_delete:
-  url: /users/delete/:id
+teams_view:
+  url: /teams/view/:id
   class: sfDoctrineRoute
-  options: { model: sfGuardUser, type: object}
-  param: { module: users, action: delete }
+  options: { model: Teams, type: object}
+  param: { module: teams, action: view }
   requirements:
     id : \d+
     sf_method: [get]
-    
+
+teams_index:
+  url: /teams/index/:page
+  class: sfRequestRoute
+  param: { module: teams, action: index }
+  requirements:
+    sf_method: [get]
+    page: \d+
+
+teams_in_seasons:
+  url: /teams/getbyseasons
+  class: sfRequestRoute
+  param: { module: teams, action: teamsInSeasons }
+  requirements:
+    sf_method: [get,put,post]
+
 seasons_create:
   url: /seasons/create
   class: sfRequestRoute
@@ -314,6 +329,24 @@ seasons_delete:
   class: sfDoctrineRoute
   options: { model: Seasons, type: object}
   param: { module: seasons, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+season_deactivate:
+  url: /seasons/deactivate/:id
+  class: sfDoctrineRoute
+  options: { model: Seasons, type: object}
+  param: { module: seasons, action: deactivate }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+users_delete:
+  url: /users/delete/:id
+  class: sfDoctrineRoute
+  options: { model: sfGuardUser, type: object}
+  param: { module: users, action: delete }
   requirements:
     id : \d+
     sf_method: [get]

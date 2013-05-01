@@ -422,6 +422,11 @@ class matchsActions extends sfActions {
                     }
                 }
 
+                if ($match->getAutoStart()) {
+                    if ($match->getStartdate() == NULL)
+                        $match->setAutoStart(false);
+                }
+
                 $maps = new Maps();
                 $maps->setMatch($match);
                 $maps->setMapsFor("default");
@@ -504,6 +509,10 @@ class matchsActions extends sfActions {
                 $match = $this->form->save();
                 $match->setIp($server->getIp());
                 $match->setServer($server);
+                if ($match->getAutoStart()) {
+                    if ($match->getStartdate() == NULL)
+                        $match->setAutoStart(false);
+                }
                 $match->save();
 
                 $map = $match->getMap();

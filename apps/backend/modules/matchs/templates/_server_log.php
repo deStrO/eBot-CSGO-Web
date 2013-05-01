@@ -4,6 +4,7 @@
             <pre>
                 <div id="logger" style="overflow:auto; padding:5px; height:490px; min-height:450px; max-height:490px"></div>
             </pre>
+            <span style="float:right; text-align:right;" id="logger_scroll"><i class="icon-pause"></i><a href="#" onclick="toggleScroll('logger'); return false;"> pause auto-scrolling</a></span>
         </div>
     </div>
 </div>

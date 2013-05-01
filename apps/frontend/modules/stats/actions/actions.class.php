@@ -24,7 +24,7 @@ class statsActions extends sfActions {
                 ->fetchOne();
         $this->nbHs = $data["total_hs"];
 
-        $this->nbNotStarted = MatchsTable::getInstance()->createQuery()->where("status IN ?", array(array(Matchs::STATUS_NOT_STARTED)))->orWhere("enable = ?", 0)->count();
+        $this->nbNotStarted = MatchsTable::getInstance()->createQuery()->where("status IN ?", array(array(Matchs::STATUS_NOT_STARTED)))->count();
         $this->nbClosed = MatchsTable::getInstance()->createQuery()->where("status >= ?", array(Matchs::STATUS_END_MATCH))->count();
         $this->nbInProgress = MatchsTable::getInstance()->createQuery()->where("status >= ? AND status <= ?", array(Matchs::STATUS_STARTING, Matchs::STATUS_OT_SECOND_SIDE))->andWhere("enable = ?", 1)->count();
 
@@ -32,11 +32,15 @@ class statsActions extends sfActions {
     }
 
     public function executeGlobal(sfWebRequest $request) {
+        $this->filter = new MatchsFormFilter($this->getFilters());
+		$query = $this->filter->buildQuery($this->getFilters());
+		$this->filterValues = $this->getFilters();
+
         $matchs = $this->getUser()->getAttribute("global.stats.matchs", array());
         if (count($matchs) > 0) {
-            $this->matchs = MatchsTable::getInstance()->createQuery()->where("id IN ?", array($matchs))->execute();
+            $this->matchs = $query->andWhere("id IN ?", array($matchs))->execute();
         } else {
-            $this->matchs = MatchsTable::getInstance()->findAll();
+            $this->matchs = $query->execute();
         }
 
         if ($request->getMethod() == sfWebRequest::POST) {
@@ -53,14 +57,14 @@ class statsActions extends sfActions {
                 }
 
                 if (count($matchTab) == 0) {
-                    $this->getUser()->setFlash("notification.error", "Pas de match à filtrer");
+                    $this->getUser()->setFlash("notification.error", "No entry found.");
                     $this->getUser()->setAttribute("global.stats.matchs", null);
                 } else {
-                    $this->getUser()->setFlash("notification.ok", "Le filtre a été appliqué");
+                    $this->getUser()->setFlash("notification.ok", "Filter applied.");
                     $this->getUser()->setAttribute("global.stats.matchs", $matchTab);
                 }
             } else {
-                $this->getUser()->setFlash("notification.ok", "Le filtre a été remis à zéro");
+                $this->getUser()->setFlash("notification.ok", "The filter was resetted.");
                 $this->getUser()->setAttribute("global.stats.matchs", null);
             }
 
@@ -77,7 +81,11 @@ class statsActions extends sfActions {
     }
 
     public function executeMapsStats(sfWebRequest $request) {
-        $this->matchs = MatchsTable::getInstance()->createQuery()->where("status >= ?", array(Matchs::STATUS_END_MATCH))->execute();
+        $this->filter = new MatchsFormFilter($this->getFilters());
+		$query = $this->filter->buildQuery($this->getFilters());
+		$this->filterValues = $this->getFilters();
+
+        $this->matchs = $query->andWhere("status >= ?", array(Matchs::STATUS_END_MATCH))->execute();
     }
 
     public function executeWeaponStats(sfWebRequest $request) {
@@ -95,5 +103,28 @@ class statsActions extends sfActions {
 
         $this->weapons = $weapons;
     }
+
+    public function executeFilters(sfWebRequest $request) {
+		$this->filter = new MatchsFormFilter();
+		$this->filter->bind($request->getPostParameter($this->filter->getName()));
+		if ($this->filter->isValid()) {
+			$this->setFilters($this->filter->getValues());
+		}
+
+		$this->redirect($request->getReferer());
+	}
+
+	public function executeFiltersClear(sfWebRequest $request) {
+		$this->setFilters(array());
+		$this->redirect($request->getReferer());
+	}
+
+	private function getFilters() {
+		return $this->getUser()->getAttribute('matchs.filters', array(), 'admin_module');
+	}
+
+	private function setFilters($filters) {
+		return $this->getUser()->setAttribute('matchs.filters', $filters, 'admin_module');
+	}
 
 }

@@ -3,3 +3,13 @@
 
 # default values
 #all:
+
+sfForkedApply:
+  from:
+    email: "mail@csgolive.eslproseries.de"
+    fullname: "ESL.eu"
+# that section is as a fallback only
+sfApplyPlugin:
+  from:
+    email: "mail@csgolive.eslproseries.de"
+    fullname: "ESL.eu"

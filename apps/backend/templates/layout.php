@@ -26,6 +26,10 @@
             function submitForm (id) {
                 $("#"+id).submit();
             }
+            $(document).ready(function() {
+                if (!"WebSocket" in window)
+                    $('#websocket_support').show();
+            });
         </script>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
@@ -44,7 +48,7 @@
                         </div>
                         <?php if ($sf_user->isAuthenticated()): ?>
                             <p class="navbar-text pull-right">
-                                Logged in as <a href="#" class="navbar-link"><?php echo $sf_user->getGuarduser()->getUsername(); ?></a>
+                                Logged in as <a href="#" class="navbar-link"><?php echo $sf_user->getGuarduser()->getUsername(); ?></a> | <a href="<?php echo url_for('sf_guard_signout') ?>" class="navbar-link">Logout</a>
                             </p>
                             <ul class="nav">
                                 <li class="active"><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Administration"); ?></a></li>
@@ -66,7 +70,7 @@
                         <?php if ($sf_user->hasFlash("notification_error")): ?>
                             <div class="alert alert-error">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
-                                <h4>Erreur !</h4>
+                                <h4><?php echo __("Error:"); ?></h4>
                                 <?php echo $sf_user->getFlash("notification_error"); ?>
                             </div>
                         <?php endif; ?>
@@ -74,17 +78,23 @@
                         <?php if ($sf_user->hasFlash("notification_ok")): ?>
                             <div class="alert alert-success">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
-                                <h4>Information</h4>
+                                <h4><?php echo __("Information"); ?></h4>
                                 <?php echo $sf_user->getFlash("notification_ok"); ?>
                             </div>
                         <?php endif; ?>
+
+                        <div class="alert alert-error" id="websocket_support" style="display:none;">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <h4><?php echo __("Warning!"); ?></h4>
+                            <p><?php echo __("Your Browser does not support WebSocket Connections. Without WebSockets you are not abled to control and manage Matches at the eBot Webpanel!"); ?><br>
+                            <?php echo __("Update your Browser to the latest version. To check supported Browsers, visit:"); ?> <a href="http://caniuse.com/websockets" target="_blank">http://caniuse.com/websockets</a></p>
+                        </div>
 
                         <?php echo $sf_content ?>
                     <?php else: ?>
                         <div class="span12">
                             <?php echo $sf_content ?>
                         </div>
-
                     <?php endif; ?>
                 </div>
             </div>
@@ -92,7 +102,7 @@
             <?php if ($sf_user->isAuthenticated()): ?>
                 <!-- Please, don't remove the brand -->
                 <footer class="footer">
-                    <p>&copy; <a target="_blank" href="http://www.esport-tools.net/ebot">eSport-tools</a> 2012 - <?php echo sfConfig::get("app_version"); ?> - By deStrO - Follow me on <a target="_blank" href="https://twitter.com/deStrO_BE">Twitter</a> - Propulsed by <a target="_blank" href="http://twitter.github.com/bootstrap">Bootstrap</a> & <a target="_blank" href="http://www.symfony-project.com">Symfony</a> - Follow me <a target="_blank" href="https://github.com/deStrO/eBot-CSGO">GitHub</a></p>
+                    <p>&copy; <a target="_blank" href="http://www.esport-tools.net/ebot">eSport-tools</a> 2012-2013 - <?php echo (sfConfig::get("app_version") != "") ? sfConfig::get("app_version") : "3.0 RC6"; ?> - By deStrO &amp; Basert - Follow me on <a target="_blank" href="https://twitter.com/deStrO_BE">Twitter</a> - Propulsed by <a target="_blank" href="http://twitter.github.com/bootstrap">Bootstrap</a> & <a target="_blank" href="http://www.symfony-project.com">Symfony</a> - Follow eBot on <a target="_blank" href="https://github.com/deStrO/eBot-CSGO">GitHub</a></p>
                 </footer>
             <?php endif; ?>
         </div>

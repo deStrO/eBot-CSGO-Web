@@ -1,0 +1,31 @@
+sfGuardUserProfile:
+  actAs:
+    Timestampable: ~
+  columns:
+    user_id:
+      type: integer
+      notnull: true
+      unique: true
+    email_new:
+      type: string(255)
+      unique: true
+    firstname:
+      type: string(255)
+    lastname:
+      type: string(255)
+    validate_at:
+      type: timestamp
+    validate:
+      type: string(33)
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one
+      onDelete: cascade
+      foreignType: one
+      foreignAlias: Profile
+  indexes:
+    validate:
+      fields: [validate]

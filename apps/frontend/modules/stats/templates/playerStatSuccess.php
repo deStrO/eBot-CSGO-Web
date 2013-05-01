@@ -1,5 +1,6 @@
 <?php $s = $stats->getLast(); ?>
-<h3><?php echo __("Statistique de"); ?> <?php echo $s->getPseudo(); ?></h3>
+
+<h3><?php echo __("Player Statistics of"); ?> <?php echo $s->getPseudo(); ?></h3>
 <hr/>
 
 <script>
@@ -8,18 +9,18 @@
             e.preventDefault();
             $(this).tab('show');
         })
-        
+
         $(".needTips").tipsy({live:true});
         $(".needTips_S").tipsy({live:true, gravity: "s"});
     });
 </script>
 
 <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a href="#home"><?php echo __("Information / stats globales"); ?></a></li>
+    <li class="active"><a href="#home"><?php echo __("Information / Global Statistics"); ?></a></li>
     <?php foreach ($stats as $stat): ?>
         <?php if ($stat->getTeam() == "other") continue; ?>
         <?php $team = ($stat->getTeam() == 'a') ? $stat->getMatch()->getTeamB() : $stat->getMatch()->getTeamA(); ?>
-        <li><a href="#match-<?php echo $stat->getMatchId(); ?>"><?php echo __("vs " . $team); ?></a></li>
+        <li><a href="#match-<?php echo $stat->getMatchId(); ?>"><?php echo __("vs. " . $team); ?></a></li>
     <?php endforeach; ?>
 </ul>
 
@@ -52,35 +53,35 @@
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span6">
-                        <h5><i class="icon-tasks"></i> <?php echo __("Statistiques"); ?></h5>
+                        <h5><i class="icon-tasks"></i> <?php echo __("Statistics"); ?></h5>
 
                         <table class="table table-striped table-condensed" style="margin-top: 10px;">
                             <tr>
-                                <th><?php echo __("Point"); ?></td>
+                                <th><?php echo __("Points"); ?></td>
                                 <td><?php echo $stat->getPoint() ?></td>
                             </tr>
                             <tr>
-                                <th><?php echo __("Kill"); ?></td>
+                                <th><?php echo __("Kills"); ?></td>
                                 <td><?php echo $stat->getNbKill() ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("Death"); ?></th>
+                                <th width="50"><?php echo __("Deaths"); ?></th>
                                 <td width="125"><?php echo $stat->getDeath() ?></td>
                             </tr>
                             <tr>
                                 <th width="50"><?php echo __("HS"); ?></th>
-                                <td><?php echo $stat->getHs() ?> (soit <?php echo $stat->getRatioHS() ?> %)</td>
+                                <td><?php echo $stat->getHs() ?> (<?php echo $stat->getRatioHS() ?> %)</td>
                             </tr>
                             <tr>
                                 <th width="50"><?php echo __("K/D"); ?></th>
                                 <td><?php echo $stat->getRatio() ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("Bombe"); ?></th>
+                                <th width="50"><?php echo __("Bomb planted"); ?></th>
                                 <td><?php echo $stat->getBombe() ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("Defuse"); ?></th>
+                                <th width="50"><?php echo __("Bomb defused"); ?></th>
                                 <td><?php echo $stat->getDefuse() ?></td>
                             </tr>
                             <tr>
@@ -104,31 +105,31 @@
                                 <td><?php echo $stat->getNb5() ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("1 kill par round"); ?></th>
+                                <th width="50"><?php echo __("1 kill per round"); ?></th>
                                 <td><?php echo $stat->getNb1Kill() ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("2 kill par round"); ?></th>
+                                <th width="50"><?php echo __("2 kills per round"); ?></th>
                                 <td><?php echo $stat->getNb2Kill() ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("3 kill par round"); ?></th>
+                                <th width="50"><?php echo __("3 kills per round"); ?></th>
                                 <td><?php echo $stat->getNb3Kill() ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("4 kill par round"); ?></th>
+                                <th width="50"><?php echo __("4 kills per round"); ?></th>
                                 <td><?php echo $stat->getNb4Kill() ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("5 kill par round"); ?></th>
+                                <th width="50"><?php echo __("5 kills per round"); ?></th>
                                 <td><?php echo $stat->getNb5Kill() ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("TK"); ?></th>
+                                <th width="50"><?php echo __("TKs"); ?></th>
                                 <td><?php echo ($stat->getTk() > 0) ? "<font color='red'>" . $stat->getTk() . "</font>" : "0"; ?></td>
                             </tr>
                             <tr>
-                                <th width="50"><?php echo __("First Kill"); ?></th>
+                                <th width="50"><?php echo __("First Kills"); ?></th>
                                 <td><?php echo $stat->getFirstkill() ?></td>
                             </tr>
                         </table>
@@ -147,7 +148,7 @@
                             \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                         }
                         ?>
-                        <h5><i class="icon-tasks"></i> <?php echo __("Information du match"); ?></h5>
+                        <h5><i class="icon-tasks"></i> <?php echo __("Match Informations"); ?></h5>
 
                         <table class="table">
                             <tr>
@@ -155,27 +156,25 @@
                                 <td><?php echo $team1; ?> (<?php echo $score1; ?>) - (<?php echo $score2; ?>) <?php echo $team2; ?></td>
                             </tr>
                             <tr>
-                                <th width="200"><?php echo __("Statut"); ?></th>
+                                <th width="200"><?php echo __("Status"); ?></th>
                                 <td><?php echo $match->getStatusText(); ?></td>
                             </tr>
                             <tr>
-                                <th width="200"><?php echo __("Maps"); ?></th>
+                                <th width="200"><?php echo __("Map"); ?></th>
                                 <td><?php echo $match->getMap()->getMapName(); ?></td>
                             </tr>
                         </table>
 
-                        <h5><i class="icon-tasks"></i> <?php echo __("Arme utilisée"); ?></h5>
-
-                        <hr/>
-
+                        <hr />
+                        <h5><i class="icon-tasks"></i> <?php echo __("Used Weapons"); ?></h5>
                         <table class="table table-striped" style="width: auto;" id="tableWeapons">
                             <thead>
                                 <tr>
-                                    <th width="100"><?php echo __("Arme"); ?></th>
+                                    <th width="100"><?php echo __("Weapon"); ?></th>
                                     <th><?php echo __("Total"); ?></th>
-                                    <th><?php echo __("Normal"); ?></th>
-                                    <th><?php echo __("HeadShot"); ?></th>
-                                    <th>Ratio H/S</th>
+                                    <th><?php echo __("Normal Kills"); ?></th>
+                                    <th><?php echo __("HeadShots"); ?></th>
+                                    <th><?php echo __("HS Rate"); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -213,15 +212,15 @@
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span6">
-                    <h5><i class="icon-tasks"></i> <?php echo __("Statistiques"); ?></h5>
+                    <h5><i class="icon-tasks"></i> <?php echo __("Statistics"); ?></h5>
 
                     <table class="table table-striped table-condensed" style="margin-top: 10px;">
                         <tr>
-                            <th><?php echo __("Kill"); ?></td>
+                            <th><?php echo __("Kills"); ?></td>
                             <td><?php echo $total['kill'] ?></td>
                         </tr>
                         <tr>
-                            <th width="50"><?php echo __("Death"); ?></th>
+                            <th width="50"><?php echo __("Deaths"); ?></th>
                             <td width="125"><?php echo $total['death'] ?></td>
                         </tr>
                         <tr>
@@ -233,11 +232,11 @@
                             <td><?php echo round($total['kill'] / $total['death'], 2); ?></td>
                         </tr>
                         <tr>
-                            <th width="50"><?php echo __("Bombe"); ?></th>
+                            <th width="50"><?php echo __("Bomb planted"); ?></th>
                             <td><?php echo $total['bombe'] ?></td>
                         </tr>
                         <tr>
-                            <th width="50"><?php echo __("Defuse"); ?></th>
+                            <th width="50"><?php echo __("Bomb defused"); ?></th>
                             <td><?php echo $total['defuse'] ?></td>
                         </tr>
                         <tr>
@@ -261,31 +260,31 @@
                             <td><?php echo $total['1v5'] ?></td>
                         </tr>
                         <tr>
-                            <th width="50"><?php echo __("1 kill par round"); ?></th>
+                            <th width="50"><?php echo __("1 kill per round"); ?></th>
                             <td><?php echo $total["1kill"] ?></td>
                         </tr>
                         <tr>
-                            <th width="50"><?php echo __("2 kill par round"); ?></th>
+                            <th width="50"><?php echo __("2 kills per round"); ?></th>
                             <td><?php echo $total["2kill"] ?></td>
                         </tr>
                         <tr>
-                            <th width="50"><?php echo __("3 kill par round"); ?></th>
+                            <th width="50"><?php echo __("3 kills per round"); ?></th>
                             <td><?php echo $total["3kill"] ?></td>
                         </tr>
                         <tr>
-                            <th width="50"><?php echo __("4 kill par round"); ?></th>
+                            <th width="50"><?php echo __("4 kills per round"); ?></th>
                             <td><?php echo $total["4kill"] ?></td>
                         </tr>
                         <tr>
-                            <th width="50"><?php echo __("5 kill par round"); ?></th>
+                            <th width="50"><?php echo __("5 kills per round"); ?></th>
                             <td><?php echo $total["5kill"] ?></td>
                         </tr>
                         <tr>
-                            <th width="50">TK</th>
+                            <th width="50"><?php echo __("TKs"); ?></th>
                             <td><?php echo ($total["tk"] > 0) ? "<font color='red'>" . $total["tk"] . "</font>" : "0"; ?></td>
                         </tr>
                         <tr>
-                            <th width="50">First Kill</th>
+                            <th width="50"><?php echo __("First Kills"); ?></th>
                             <td><?php echo $total["fk"] ?></td>
                         </tr>
                         <tr>
@@ -296,16 +295,16 @@
 
                 </div>
                 <div class="span6">
-                    <h5><i class="icon-tasks"></i> <?php echo __("Arme utilisée"); ?></h5>
+                    <h5><i class="icon-tasks"></i> <?php echo __("Used Weapons"); ?></h5>
 
                     <table class="table table-striped" style="width: auto;" id="tableWeapons">
                         <thead>
                             <tr>
-                                <th width="100"><?php echo __("Arme"); ?></th>
+                                <th width="100"><?php echo __("Weapon"); ?></th>
                                 <th><?php echo __("Total"); ?></th>
-                                <th><?php echo __("Normal"); ?></th>
-                                <th><?php echo __("HeadShot"); ?></th>
-                                <th>Ratio H/S</th>
+                                <th><?php echo __("Normal Kills"); ?></th>
+                                <th><?php echo __("HeadShots"); ?></th>
+                                <th><?php echo __("HS Rate"); ?></th>
                             </tr>
                         </thead>
                         <tbody>

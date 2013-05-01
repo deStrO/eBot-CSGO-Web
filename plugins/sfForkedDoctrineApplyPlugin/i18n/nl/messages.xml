@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="nl" datatype="plaintext" original="messages" date="2010-03-16T21:58:27Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1" approved="yes">
+        <source>Username</source>
+        <target>Gebruikersnaam</target>
+      </trans-unit>
+      <trans-unit id="2" approved="yes">
+        <source>Password</source>
+        <target>Wachtwoord</target>
+      </trans-unit>
+      <trans-unit id="3" approved="yes">
+        <source>Confirm password</source>
+        <target>Wachtwoord nogmaals</target>
+      </trans-unit>
+      <trans-unit id="4" approved="yes">
+        <source>Email address</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Confirm email</source>
+        <target>Email nogmaals</target>
+      </trans-unit>
+      <trans-unit id="6" approved="yes">
+        <source>First Name</source>
+        <target>Voornaam</target>
+      </trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>Last name</source>
+        <target>Achternaam</target>
+      </trans-unit>
+      <trans-unit id="8" approved="yes">
+        <source>Usernames must contain only letters, numbers and underscores.</source>
+	<target>Gebruikersnaam mag alleen letters, cijfers en underscores bevatten.</target>
+      </trans-unit>
+      <trans-unit id="9" approved="yes">
+        <source>There is already a user by that name. Choose another.</source>
+        <target>Gebruikersnaam bestaat al. Kies een andere.</target>
+      </trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>That password is too short. It must contain a minimum of %min_length% characters.</source>
+        <target>Het opgegeven wachtwoord is te kort. Deze moet minimaal %min_length% tekens bevatten.</target>
+      </trans-unit>
+      <trans-unit id="11" approved="yes">
+        <source>Required.</source>
+        <target>Vereist.</target>
+      </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>An account with that email address already exists. If you have forgotten your password, click "cancel", then "Reset My Password."</source>
+        <target>Er bestaat al een account met dat emailadres. Indien u uw wachtwoord bent vergeten, kies dan "annuleren" en "Herstel mijn wachtwoord."</target>
+      </trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>The passwords did not match.</source>
+        <target>De wachtwoorden komen niet overeen.</target>
+      </trans-unit>
+      <trans-unit id="14" approved="yes">
+        <source>The email addresses did not match.</source>
+        <target>De emailadressen komen niet overeen.</target>
+      </trans-unit>
+      <trans-unit id="15" approved="yes">
+        <source>First name may not contain &lt;, &gt;, | or &amp;.</source>
+        <target>De voornaam mag geen &lt;, &gt;, | of &amp; bevatten.</target>
+      </trans-unit>
+      <trans-unit id="16" approved="yes">
+        <source>Last name may not contain &lt;, &gt;, | or &amp;.</source>
+        <target>De achternaam mag geen &lt;, &gt;, | of &amp; bevatten.</target>
+      </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Choose NEW Password</source>
+        <target>Kies een NIEUW paswoord</target>
+      </trans-unit>
+      <trans-unit id="18" approved="yes">
+        <source>Confirm NEW Password</source>
+        <target>Bevestig nieuwe wachtwoord</target>
+      </trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>There is no such user.</source>
+        <target>Opgegeven gebruiker bestaat niet.</target>
+      </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>Remember</source>
+        <target>Onthouden?</target>
+      </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Forgot your password?</source>
+        <target>Wachtwoord vergeten?</target>
+      </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>The username and/or password is invalid.</source>
+        <target>De gebruikersnaam of het wachtwoord is ongeldig.</target>
+      </trans-unit>
+      <trans-unit id="23" approved="yes">
+        <source>Login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="24" approved="yes">
+        <source>Username or email</source>
+        <target>Gebruikersnaam of email</target>
+      </trans-unit>
+      <trans-unit id="25" approved="yes">
+        <source>sign in</source>
+        <target>Inloggen</target>
+      </trans-unit>
+      <trans-unit id="26" approved="yes">
+        <source>This email is already used by you</source>
+        <target>Deze email wordt al door u gebruikt.</target>
+      </trans-unit>
+      <trans-unit id="27" approved="yes">
+        <source>This email is already in use by some one else</source>
+        <target>Deze email wordt al door iemand anders gebruikt.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -11,7 +11,7 @@
 class matchsActions extends sfActions {
 
 	public function executeMatchsInProgress(sfWebRequest $request) {
-		$this->filter = new MatchsFormFilter($this->getFilters());
+		$this->filter = new MatchsActiveFormFilter($this->getFilters());
 		$query = $this->filter->buildQuery($this->getFilters());
 		$this->filterValues = $this->getFilters();
 

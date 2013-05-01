@@ -20,7 +20,6 @@ abstract class BaseTeamsForm extends BaseFormDoctrine
       'shorthandle' => new sfWidgetFormInputText(),
       'flag'        => new sfWidgetFormInputText(),
       'link'        => new sfWidgetFormInputText(),
-      'season_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Season'), 'add_empty' => true)),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -31,7 +30,6 @@ abstract class BaseTeamsForm extends BaseFormDoctrine
       'shorthandle' => new sfValidatorPass(),
       'flag'        => new sfValidatorPass(),
       'link'        => new sfValidatorPass(array('required' => false)),
-      'season_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Season'), 'required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));
