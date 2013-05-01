@@ -267,10 +267,12 @@ class matchsActions extends sfActions {
             $match->setScoreB(0);
             $match->setStatus(0);
             $match->setIngameEnable(NULL);
-//			$match->setIp(null);
-//			$match->setServer(null);
             $match->save();
             foreach ($match->getMaps() as $index => $map) {
+                if ($index == 0) {
+                    $match->setCurrentMap($map);
+                    $match->save();
+                }
                 $map->score_1 = 0;
                 $map->score_2 = 0;
                 $map->setNbOt(0);
@@ -279,10 +281,7 @@ class matchsActions extends sfActions {
                 foreach ($map->getMapsScore() as $score) {
                     $score->delete();
                 }
-                if ($index == 0)
-                    $match->setCurrentMap($map);
             }
-            $match->save();
 
             foreach ($match->getRoundSummary() as $round) {
                 $round->delete();
@@ -291,7 +290,42 @@ class matchsActions extends sfActions {
         } else {
             $this->getUser()->setFlash("notification_error", $this->__("Match can't be resetted"));
         }
+        $this->redirect("matchs_current");
+    }
 
+    public function executeResetMap(sfWebRequest $request) {
+        $match = $this->getRoute()->getObject();
+        $this->forward404Unless($match);
+        $this->forward404Unless(!$match->getEnable());
+        if (($match->getStatus() >= Matchs::STATUS_WU_KNIFE) && ($match->getStatus() < Matchs::STATUS_END_MATCH)) {
+            $match->setScoreA(0);
+            $match->setScoreB(0);
+            $match->setStatus(0);
+            $match->setIngameEnable(NULL);
+            $match->save();
+
+            $map = $match->getMap();
+            $map->score_1 = 0;
+            $map->score_2 = 0;
+            $map->setNbOt(0);
+            $map->setStatus(0);
+            $map->save();
+
+            foreach ($map->getMapsScore() as $score) {
+                $score->setScore1Side1(0);
+                $score->setScore1Side2(0);
+                $score->setScore2Side1(0);
+                $score->setScore2Side2(0);
+                $score->save();
+            }
+
+            foreach ($match->getRoundSummary() as $round) {
+                $round->delete();
+            }
+            $this->getUser()->setFlash("notification_ok", $this->__("Map resetted"));
+        } else {
+            $this->getUser()->setFlash("notification_error", $this->__("Map can't be resetted"));
+        }
         $this->redirect("matchs_current");
     }
 
