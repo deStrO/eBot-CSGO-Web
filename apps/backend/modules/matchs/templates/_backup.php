@@ -2,26 +2,24 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Score <?php echo $match->getTeamAName(); ?></th>
-            <th>Score <?php echo $match->getTeamBName(); ?></th>
-            <th>Info</th>
+            <th><?php echo __("Round #"); ?></th>
+            <th><?php echo __("Score"); ?> <?php echo $match->getTeamAName(); ?></th>
+            <th><?php echo __("Score"); ?> <?php echo $match->getTeamBName(); ?></th>
+            <th><?php echo __("Info"); ?></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($match->getRoundSummaries() as $round): ?>
             <tr>
+                <td><?php echo $round->getRoundId(); ?></td>
                 <td><?php echo $round->getScoreA(); ?></td>
                 <td><?php echo $round->getScoreB(); ?></td>
                 <td>
-                    <?php if ($round->getTeamWin() == "a"): ?>
-                        Won by <?php echo $match->getTeamAName(); ?>
-                    <?php else: ?>
-                        Won by <?php echo $match->getTeamBName(); ?>
-                    <?php endif; ?>
+                    <?php echo __("Won by")." ".(($round->getTeamWin() == "a") ? $match->getTeamAName() : $match->getTeamBName()); ?>
                 </td>
                 <td>
-                    <a class="btn btn-primary" href="#" <?php echo 'onclick="doRequest(\'goBackRounds\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\', \' '.$round->getRoundId().'\')"'; ?>>Reload this round</a>
+                    <a class="btn btn-primary" href="#" <?php echo 'onclick="doRequest(\'goBackRounds\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\', \' '.$round->getRoundId().'\')"'; ?>><?php echo __("Reload to round")." ".($round->getRoundId()+1); ?></a>
                 </td>
             </tr>
         <?php endforeach; ?>

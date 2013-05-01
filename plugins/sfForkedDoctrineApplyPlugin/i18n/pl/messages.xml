@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="pl" datatype="plaintext" original="messages" date="2010-03-16T21:58:27Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1" approved="yes">
+        <source>Username</source>
+        <target>Nazwa użytkownika</target>
+      </trans-unit>
+      <trans-unit id="2" approved="yes">
+        <source>Password</source>
+        <target>Hasło</target>
+      </trans-unit>
+      <trans-unit id="3" approved="yes">
+        <source>Confirm password</source>
+        <target>Potwierdź hasło</target>
+      </trans-unit>
+      <trans-unit id="4" approved="yes">
+        <source>Email address</source>
+        <target>Adres e-mail</target>
+      </trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Confirm email</source>
+        <target>Potwierdź email</target>
+      </trans-unit>
+      <trans-unit id="6" approved="yes">
+        <source>First Name</source>
+        <target>Imię</target>
+      </trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>Last name</source>
+        <target>Nazwisko</target>
+      </trans-unit>
+      <trans-unit id="8" approved="yes">
+        <source>Usernames must contain only letters, numbers and underscores.</source>
+        <target>Nazwa użytkownika może zawierać tylko litery, cyfry i podkreślenia.</target>
+      </trans-unit>
+      <trans-unit id="9" approved="yes">
+        <source>There is already a user by that name. Choose another.</source>
+        <target>Istnieje już użytkownik o tej nazwie. Wybierz inną.</target>
+      </trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>That password is too short. It must contain a minimum of %min_length% characters.</source>
+        <target>Hasło jest za krótkie. Musi zawierać no najmniej %min_length% znaków.</target>
+      </trans-unit>
+      <trans-unit id="11" approved="yes">
+        <source>Required.</source>
+        <target>Wymagane.</target>
+      </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>An account with that email address already exists. If you have forgotten your password, click "cancel", then "Reset My Password."</source>
+        <target>Istnieje już konto używające tego adresu email. Jeśli zapomniałeś hasła, kliknij "anuluj", a potem użyj opcji resetuj hasło.</target>
+      </trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>The passwords did not match.</source>
+        <target>Hasła nie pasują do siebie.</target>
+      </trans-unit>
+      <trans-unit id="14" approved="yes">
+        <source>The email addresses did not match.</source>
+        <target>Adresy email nie pasują do siebie.</target>
+      </trans-unit>
+      <trans-unit id="15" approved="yes">
+        <source>First name may not contain &lt;, &gt;, | or &amp;.</source>
+        <target>Imię nie może zawierać znaków &lt;, &gt;, | i &amp;.</target>
+      </trans-unit>
+      <trans-unit id="16" approved="yes">
+        <source>Last name may not contain &lt;, &gt;, | or &amp;.</source>
+        <target>Nazwisko nie może zawierać znaków &lt;, &gt;, | i &amp;.</target>
+      </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Choose NEW Password</source>
+        <target>Wpisz NOWE hasło</target>
+      </trans-unit>
+      <trans-unit id="18" approved="yes">
+        <source>Confirm NEW Password</source>
+        <target>Potwierdź NOWE hasło</target>
+      </trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>There is no such user.</source>
+        <target>Nie ma takiego użytkownika.</target>
+      </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>Remember</source>
+        <target>Zapamiętaj</target>
+      </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Forgot your password?</source>
+        <target>Zapomniałeś hasła?</target>
+      </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>The username and/or password is invalid.</source>
+        <target>Hasło, oraz/lub nazwa użytkownika są nieprawidłowe.</target>
+      </trans-unit>
+      <trans-unit id="23" approved="yes">
+        <source>Login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="24" approved="yes">
+        <source>Username or E-Mail</source>
+        <target>Login lub e-mail</target>
+      </trans-unit>
+      <trans-unit id="25" approved="yes">
+        <source>sign in</source>
+        <target>Zaloguj się</target>
+      </trans-unit>
+      <trans-unit id="26" approved="yes">
+        <source>This email is already used by you</source>
+        <target>Ten adres email jest już używany przez ciebie</target>
+      </trans-unit>
+      <trans-unit id="27" approved="yes">
+        <source>This email is already in use by some one else</source>
+        <target>Ten adres email jest już przez kogoś używany</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

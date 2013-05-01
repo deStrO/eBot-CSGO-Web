@@ -1,0 +1,8 @@
+#Upgrade of sfForkedDoctrineApplyPlugin#
+
+This file contains the list of major plugin's version, and activities you need
+to perform in order to install it. The list is thought that in order to upgrade
+to equal or higher version you should execrcise recommended activities for
+version between your and the one you're upgrading to.
+
+* **1.2** - generate migrations and migrate database. New file is added.

@@ -38,6 +38,9 @@
  * @property boolean $force_zoom_match
  * @property varchar $tv_record_file
  * @property integer $identifier_id
+ * @property timestamp $startdate
+ * @property boolean $auto_start
+ * @property integer $auto_start_time
  * @property Servers $Server
  * @property Teams $TeamA
  * @property Teams $TeamB
@@ -83,6 +86,9 @@
  * @method boolean             getForceZoomMatch()              Returns the current record's "force_zoom_match" value
  * @method varchar             getTvRecordFile()                Returns the current record's "tv_record_file" value
  * @method integer             getIdentifierId()                Returns the current record's "identifier_id" value
+ * @method timestamp           getStartdate()                   Returns the current record's "startdate" value
+ * @method boolean             getAutoStart()                   Returns the current record's "auto_start" value
+ * @method integer             getAutoStartTime()               Returns the current record's "auto_start_time" value
  * @method Servers             getServer()                      Returns the current record's "Server" value
  * @method Teams               getTeamA()                       Returns the current record's "TeamA" value
  * @method Teams               getTeamB()                       Returns the current record's "TeamB" value
@@ -127,6 +133,9 @@
  * @method Matchs              setForceZoomMatch()              Sets the current record's "force_zoom_match" value
  * @method Matchs              setTvRecordFile()                Sets the current record's "tv_record_file" value
  * @method Matchs              setIdentifierId()                Sets the current record's "identifier_id" value
+ * @method Matchs              setStartdate()                   Sets the current record's "startdate" value
+ * @method Matchs              setAutoStart()                   Sets the current record's "auto_start" value
+ * @method Matchs              setAutoStartTime()               Sets the current record's "auto_start_time" value
  * @method Matchs              setServer()                      Sets the current record's "Server" value
  * @method Matchs              setTeamA()                       Sets the current record's "TeamA" value
  * @method Matchs              setTeamB()                       Sets the current record's "TeamB" value
@@ -281,6 +290,16 @@ abstract class BaseMatchs extends sfDoctrineRecord
              'type' => 'integer',
              'length' => 20,
              ));
+        $this->hasColumn('startdate', 'timestamp', null, array(
+             'type' => 'timestamp',
+             ));
+        $this->hasColumn('auto_start', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('auto_start_time', 'integer', 3, array(
+             'type' => 'integer',
+             'length' => 3,
+             ));
     }
 
     public function setUp()
@@ -304,7 +323,7 @@ abstract class BaseMatchs extends sfDoctrineRecord
         $this->hasOne('Maps as Map', array(
              'local' => 'current_map',
              'foreign' => 'id',
-             'onDelete' => 'SET NULL'));
+             'onDelete' => 'CASCADE'));
 
         $this->hasOne('Seasons as Season', array(
              'local' => 'season_id',

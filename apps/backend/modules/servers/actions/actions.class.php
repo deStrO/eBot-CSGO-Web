@@ -37,6 +37,7 @@ class serversActions extends sfActions {
 			$server->delete();
 			$this->getUser()->setFlash("notification_ok", $this->__("Server deleted."));
 		}
+
 		$this->redirect("servers/index");
 	}
 
@@ -96,7 +97,7 @@ class serversActions extends sfActions {
 				} else {
 					$server = $this->form->save();
 
-					$this->getUser()->setFlash("notification_ok", $this->__("1 serveur a été ajouté (") . $server->getIp() . ")");
+					$this->getUser()->setFlash("notification_ok", $this->__("1 Server was added with IP (") . $server->getIp() . ")");
 					$this->redirect("servers_create");
 				}
 			}

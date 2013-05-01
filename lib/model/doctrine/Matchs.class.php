@@ -116,6 +116,9 @@ class Matchs extends BaseMatchs {
                 }
 
                 $tab[] = array("label" => "Reset", "route" => "matchs_reset", "add_class" => "btn-warning", "type" => "routing");
+                if ($this->getMapSelectionMode() == "bo3_modeb") {
+                    $tab[] = array("label" => "Reset ".$this->getMap()->getMapName(), "route" => "matchs_reset_map", "add_class" => "btn-warning", "type" => "routing");
+                }
                 $tab[] = array("label" => "Edit", "route" => "matchs_edit", "add_class" => "btn-primary", "type" => "routing");
                 $tab[] = array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing");
 
@@ -128,24 +131,28 @@ class Matchs extends BaseMatchs {
                     array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing")
                 );
             }
-
-            //if (($this->getStatus() >= Matchs::STATUS_WU_KNIFE) && ($this->getStatus() <= Matchs::STATUS_WU_OT_2_SIDE)) {
+            // Match is Running
             $actions[] = array("label" => "Stop", "add_class" => "btn-danger", "action" => "stopNoRs", "type" => "running", "style" => "display:inline;");
             $actions[] = array("label" => "Stop with Restart", "add_class" => "btn-danger", "action" => "stop", "type" => "running", "style" => "display:inline;");
+            if ($this->getMapSelectionMode() == "bo3_modeb") {
+                $actions[] = array("label" => "< Map", "add_class" => "btn-danger", "action" => "skipmapprev", "type" => "running", "style" => "display:inline;");
+                $actions[] = array("label" => "Map >", "add_class" => "btn-danger", "action" => "skipmapnext", "type" => "running", "style" => "display:inline;");
+            }
             $actions[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary", "type" => "running", "style" => "display:inline;");
             $actions[] = array("label" => "Fix Sides", "action" => "fixsides", "type" => "running", "add_class" => "btn-primary", "style" => "display:inline;");
-            //if ($this->getStatus() == Matchs::STATUS_WU_KNIFE) {
+            // Warmup Knife
             $actions[] = array("label" => "Skip Knife", "action" => "passknife", "type" => "warmupknife", "style" => "display:none;");
             $actions[] = array("label" => "Force Knife", "action" => "forceknife", "type" => "warmupknife", "style" => "display:none;");
-            //if ($this->getStatus() == Matchs::STATUS_END_KNIFE) {
+            // Knife Round
             $actions[] = array("label" => "End Knife", "action" => "forceknifeend", "type" => "endknife", "style" => "display:none;");
-            //if (in_array($this->getStatus(), array(Matchs::STATUS_WU_1_SIDE, Matchs::STATUS_WU_2_SIDE, Matchs::STATUS_WU_OT_1_SIDE, Matchs::STATUS_WU_OT_2_SIDE))) {
+            // Warmup Match
             $actions[] = array("label" => "Skip Warmup", "action" => "forcestart", "type" => "skipwarmup", "style" => "display:none;");
-            //if (in_array($this->getStatus(), array(Matchs::STATUS_KNIFE, Matchs::STATUS_FIRST_SIDE, Matchs::STATUS_SECOND_SIDE, Matchs::STATUS_OT_FIRST_SIDE, Matchs::STATUS_OT_SECOND_SIDE))) {
+            // Match Active
             $actions[] = array("label" => "Stop to warmup", "action" => "stopback", "type" => "endmatch", "style" => "display:none;");
             $actions[] = array("label" => "Un/Pause", "action" => "pauseunpause", "type" => "endmatch", "style" => "display:none;");
+            // RCON
+            $actions[] = array("label" => "RCON", "route" => "matchs_rcon", "type" => "routing");
         }
-        $actions[] = array("label" => "RCON", "route" => "matchs_rcon", "type" => "routing");
         return $actions;
     }
 

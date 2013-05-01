@@ -13,9 +13,12 @@ class ServersForm extends BaseServersForm {
     public function configure() {
         $this->useFields(array("id", "ip", "rcon", "hostname", "tv_ip"));
 
-        $this->widgetSchema["rcon"] = new sfWidgetFormInputPassword();
+        $this->widgetSchema["ip"]->setLabel("Server IP");
+        $this->widgetSchema["rcon"]->setLabel("RCON Password");
+        $this->widgetSchema["hostname"]->setLabel("Internal Servername");
+        $this->widgetSchema["tv_ip"]->setLabel("GOTV IP");
 
-        $this->widgetSchema["hostname"]->setLabel("Nom du serveur");
+        $this->getWidgetSchema()->moveField('rcon', sfWidgetFormSchema::AFTER, 'hostname');
     }
 
 }

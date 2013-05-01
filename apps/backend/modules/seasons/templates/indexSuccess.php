@@ -8,6 +8,7 @@
             <th><?php echo __("Start"); ?></th>
             <th><?php echo __("End"); ?></th>
             <th><?php echo __("Link"); ?></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +23,9 @@
                 <?php else: ?>
                     <td></td>
                 <?php endif; ?>
-                <td width="170">
+                <td><?php echo image_tag("/images/icons/flag_" . ($season->getActive() ? "green" : "red") . ".png"); ?></td>
+                <td width="230">
+                    <a href="<?php echo url_for("season_deactivate", $season); ?>"><button class="btn"><?php echo __("De/Activate"); ?></button></a>
                     <a href="<?php echo url_for("seasons_edit", $season); ?>"><button class="btn btn-inverse"><?php echo __("Edit"); ?></button></a>
                     <a href="<?php echo url_for("seasons_delete", $season); ?>"><button class="btn btn-danger"><?php echo __("Delete"); ?></button></a></td>
             </tr>

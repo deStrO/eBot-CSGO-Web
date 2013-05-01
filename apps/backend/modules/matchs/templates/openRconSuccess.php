@@ -10,6 +10,21 @@
         })
     });
 
+    function toggleScroll(type) {
+        if (autoscroll[type]) {
+            autoscroll[type] = false;
+            $('#'+type+'_scroll').html('<i class="icon-play"></i><a href="#" onclick="toggleScroll(\'logger\'); return false;"> resume auto-scrolling</a>');
+        } else {
+            autoscroll[type] = true;
+            $('#'+type+'_scroll').html('<i class="icon-pause"></i><a href="#" onclick="toggleScroll(\'logger\'); return false;"> pause auto-scrolling</a>');
+        }
+    }
+
+    var autoscroll = new Array();
+    autoscroll['logger'] = true;
+    autoscroll['rcon'] = true;
+    autoscroll['chat'] = true;
+
     $(document).ready(function() {
         $('form').submit(function(event) {
             var message = "<?php echo $match->getId(); ?> executeCommand <?php echo $match->getIp(); ?> " + $('#data').val();
@@ -29,30 +44,78 @@
                 console.log(msg.data);
                 var message = jQuery.parseJSON(msg.data);
                 $("#rcon").append(nl2br("<b>Answer</b>: " + message['content']) + "<hr style='margin: 5px 0px;'>")
-                var height = $('#rcon')[0].scrollHeight;
-                $('#rcon').scrollTop(height);
+                if (autoscroll['rcon']) {
+                    var height = $('#rcon')[0].scrollHeight;
+                    $('#rcon').scrollTop(height);
+                }
             };
             rcon.onclose = function(err) {
                 $("#rcon").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');
                 $('#data_form input').attr('readonly', 'readonly');
             };
 
+            var loggerFirstMessage = true;
             logger = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/logger");
             logger.onopen = function() {
                 logger.send('registerMatch_<?php echo $match->getId(); ?>');
             }
             logger.onmessage = function(msg) {
-                var message = jQuery.parseJSON(msg.data);
-                $("#logger").append($("<span/>").text(message['content']));
-                var height = $('#logger')[0].scrollHeight;
-                $('#logger').scrollTop(height);
+                if (loggerFirstMessage) {
+                    loggerFirstMessage = false;
+                    var oldlog = jQuery.parseJSON(msg.data);
+                    for (var i=0; i < oldlog.length; i++) {
+                        var message = jQuery.parseJSON(oldlog[i]);
+                        $("#logger").append($("<span/>").text(message['content']));
+                        if (autoscroll['logger']) {
+                            var height = $('#logger')[0].scrollHeight;
+                            $('#logger').scrollTop(height);
+                        }
+                        var regex = /.+"(.+)<\d+><.+><(\w+)>"\ssay\s"(.+)"/;
+                        if (message['content'].match(regex)) {
+                            var chatlog = message['content'].match(regex);
+                            if (chatlog[2] == "CT")
+                                var teamcolor = "blue";
+                            else if (chatlog[2] == "TERRORIST")
+                                var teamcolor = "red";
+                            else
+                                var teamcolor = "black";
+                            $("#chatlog").append($("<span/>").html("<font color='"+teamcolor+"'>"+chatlog[1]+"</font>: "+chatlog[3]+"<br />"));
+                            if (autoscroll['chat']) {
+                                var height = $('#chatlog')[0].scrollHeight;
+                                $('#chatlog').scrollTop(height);
+                            }
+                        }
+                    }
+                } else {
+                    var message = jQuery.parseJSON(msg.data);
+                    $("#logger").append($("<span/>").text(message['content']));
+                    if (autoscroll['logger']) {
+                        var height = $('#logger')[0].scrollHeight;
+                        $('#logger').scrollTop(height);
+                    }
+                    var regex = /.+"(.+)<\d+><.+><(\w+)>"\ssay\s"(.+)"/;
+                    if (message['content'].match(regex)) {
+                        var chatlog = message['content'].match(regex);
+                        if (chatlog[2] == "CT")
+                            var teamcolor = "blue";
+                        else if (chatlog[2] == "TERRORIST")
+                            var teamcolor = "red";
+                        else
+                            var teamcolor = "black";
+                        $("#chatlog").append($("<span/>").html("<font color='"+teamcolor+"'>"+chatlog[1]+"</font>: "+chatlog[3]+"<br />"));
+                        if (autoscroll['chat']) {
+                            var height = $('#chatlog')[0].scrollHeight;
+                            $('#chatlog').scrollTop(height);
+                        }
+                    }
+                }
             };
             logger.onclose = function(err) {
                 $("#logger").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');
             };
         }
     });
-    
+
     function doRequest(event, ip, id, authkey, added) {
         var data = id + " " + event + " " + ip + added;
         data = Aes.Ctr.encrypt(data, authkey, 256);
@@ -60,20 +123,6 @@
         ws.send(send);
         return false;
     }
-
-    $(document).ready(function() {
-        if ("WebSocket" in window) {
-            ws = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/match");
-            ws.onopen = function() {
-                $('.websocket_offline').hide();
-            }
-            ws.onmessage = function(msg) {
-
-            };
-        } else {
-            alert("WebSocket not supported");
-        }
-    });
 </script>
 
 <div class="layer" style="display:inline;">
@@ -84,6 +133,7 @@
         <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#home"><?php echo __("RCON"); ?></a></li>
             <li><a href="#server-log"><?php echo __("Server-LOG"); ?></a></li>
+            <li><a href="#chat-log"><?php echo __("Chat-LOG"); ?></a></li>
             <li><a href="#backup"><?php echo __("Backup System"); ?></a></li>
         </ul>
         <div class="tab-content" style="padding-bottom: 10px; margin-bottom: 20px;">
@@ -103,6 +153,9 @@
             </div>
             <div class="tab-pane" id="server-log">
                 <?php include_partial("matchs/server_log", array("match" => $match)); ?>
+            </div>
+            <div class="tab-pane" id="chat-log">
+                <?php include_partial("matchs/chat_log", array("match" => $match)); ?>
             </div>
             <div class="tab-pane" id="backup">
                 <?php include_partial("matchs/backup", array("match" => $match)); ?>

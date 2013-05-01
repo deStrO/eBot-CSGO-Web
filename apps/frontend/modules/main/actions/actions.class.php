@@ -16,13 +16,39 @@ class mainActions extends sfActions {
      * @param sfRequest $request A request object
      */
     public function executeIndex(sfWebRequest $request) {
-        $query =  MatchsTable::getInstance()->getMatchsInProgressQuery();
-        if (sfConfig::get("app_mode") == "net") {
-            $query->andWhere("status > 0");
-        }
-        $this->matchs = $query->limit(10)->execute();
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
+
+        $this->filter = new MatchsActiveFormFilter($this->getFilters());
+		$query = $this->filter->buildQuery($this->getFilters());
+		$this->filterValues = $this->getFilters();
+
+        $this->matchs = $query->andWhere("status >= ?", array(Matchs::STATUS_NOT_STARTED))->andWhere("status <= ?", array(Matchs::STATUS_END_MATCH))->orderBy("status DESC")->limit(10)->execute();
     }
-        
+
     public function executeIngame(sfWebRequest $request) { }
+
+    public function executeFilters(sfWebRequest $request) {
+		$this->filter = new MatchsFormFilter();
+		$this->filter->bind($request->getPostParameter($this->filter->getName()));
+		if ($this->filter->isValid()) {
+			$this->setFilters($this->filter->getValues());
+		}
+
+		$this->redirect($request->getReferer());
+	}
+
+    public function executeFiltersClear(sfWebRequest $request) {
+		$this->setFilters(array());
+		$this->redirect($request->getReferer());
+	}
+
+	private function getFilters() {
+		return $this->getUser()->getAttribute('matchs.filters', array(), 'admin_module');
+	}
+
+	private function setFilters($filters) {
+		return $this->getUser()->setAttribute('matchs.filters', $filters, 'admin_module');
+	}
 
 }

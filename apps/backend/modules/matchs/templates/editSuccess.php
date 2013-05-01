@@ -135,12 +135,27 @@
                 $("#overtime_max_round").hide();
             }
         });
+
+        $("#matchs_auto_start").click(function() {
+            if( $(this).is(':checked')) {
+                $("#startdate").show();
+                $("#auto_start_time").show();
+            } else {
+                $("#startdate").hide();
+                $("#auto_start_time").hide();
+            }
+        });
     });
     $(document).ready(function() {
         if ($('#matchs_config_ot').prop('checked')) {
             $("#overtime_startmoney").show();
             $("#overtime_max_round").show();
         }
+        if ($('#matchs_auto_start').prop('checked')) {
+            $("#startdate").show();
+            $("#auto_start_time").show();
+        }
+        $("#match_startdate").datetimepicker({format: 'dd.mm.yyyy hh:ii', autoclose: true, language: 'de'});
     });
 
 </script>
@@ -163,10 +178,22 @@
                         <?php if (in_array($name, array("team_a_flag", "team_b_flag", "team_a_name", "team_b_name"))) continue; ?>
                         <?php if ($widget->isHidden()) continue; ?>
                         <?php if ($name == "overtime_startmoney" || $name == "overtime_max_round"): ?>
-                            <div class="control-group validate-field" style="display:none;" id="<?php echo $name; ?>">
-                                <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
-                                <div class="controls">
-                                    <?php echo $widget->render(); ?>
+                            <div class="control-group validate-field input-append" style="display:none; margin-bottom: auto;" id="<?php echo $name; ?>">
+                                <div class="alert alert-info">
+                                    <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
+                                    <div class="controls">
+                                        <?php echo $widget->render(); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php elseif ($name == "startdate" || $name == "auto_start_time"): ?>
+                            <div class="control-group input-append" style="display:none; margin-bottom: auto;" id="<?php echo $name; ?>">
+                                <div class="alert alert-info">
+                                    <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
+                                    <div class="controls">
+                                        <?php echo $widget->render(); ?>
+                                        <span class="add-on"><i class="icon-time"></i></span>
+                                    </div>
                                 </div>
                             </div>
                         <?php else: ?>

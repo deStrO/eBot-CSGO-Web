@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="es" datatype="plaintext" original="messages" date="2010-03-16T21:58:27Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1" approved="yes">
+        <source>Username</source>
+        <target>Usuario</target>
+      </trans-unit>
+      <trans-unit id="2" approved="yes">
+        <source>Password</source>
+        <target>Contraseña</target>
+      </trans-unit>
+      <trans-unit id="3" approved="yes">
+        <source>Confirm password</source>
+        <target>Confirmar contraseña</target>
+      </trans-unit>
+      <trans-unit id="4" approved="yes">
+        <source>Email address</source>
+        <target>Dirección de correo electrónico</target>
+      </trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Confirm email</source>
+        <target>Confirmar e-mail</target>
+      </trans-unit>
+      <trans-unit id="6" approved="yes">
+        <source>First Name</source>
+        <target>Nombre</target>
+      </trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>Last name</source>
+        <target>Apellidos</target>
+      </trans-unit>
+      <trans-unit id="8" approved="yes">
+        <source>Usernames must contain only letters, numbers and underscores.</source>
+        <target>El nombre de usuario debe contener solamente letras, nombres y '_'.</target>
+      </trans-unit>
+      <trans-unit id="9" approved="yes">
+        <source>There is already a user by that name. Choose another.</source>
+        <target>Ya existe un usuario con este nombre. Elige otro.</target>
+      </trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>That password is too short. It must contain a minimum of %min_length% characters.</source>
+        <target>La constraseña es demasiado corta. Debe contener un mínimo de %min_length% caracteres.</target>
+      </trans-unit>
+      <trans-unit id="11" approved="yes">
+        <source>Required.</source>
+        <target>Requerido.</target>
+      </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>An account with that email address already exists. If you have forgotten your password, click "cancel", then "Reset My Password."</source>
+        <target>Ya existe una cuenta con este e-mail. Si has olvidado la contraseña, haz clic en "cancelar", luego en "Restablecer Mi Contraseña."</target>
+      </trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>The passwords did not match.</source>
+        <target>Las contraseñas no coinciden.</target>
+      </trans-unit>
+      <trans-unit id="14" approved="yes">
+        <source>The email addresses did not match.</source>
+        <target>Los e-mails no coinciden.</target>
+      </trans-unit>
+      <trans-unit id="15" approved="yes">
+        <source>First name may not contain &lt;, &gt;, | or &amp;.</source>
+        <target>El nombre no puede contener  &lt;, &gt;, | o &amp;.</target>
+      </trans-unit>
+      <trans-unit id="16" approved="yes">
+        <source>Last name may not contain &lt;, &gt;, | or &amp;.</source>
+        <target>Los apellidos no pueden contener &lt;, &gt;, | o &amp;.</target>
+      </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Choose NEW Password</source>
+        <target>Elige una contraseña nueva</target>
+      </trans-unit>
+      <trans-unit id="18" approved="yes">
+        <source>Confirm NEW Password</source>
+        <target>Confirma tu NUEVA contraseña</target>
+      </trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>There is no such user.</source>
+        <target>Usuario no existente.</target>
+      </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>Remember</source>
+        <target>¿Recordarme?</target>
+      </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Forgot your password?</source>
+        <target>¿Olvidate tu contraseña?</target>
+      </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>The username and/or password is invalid.</source>
+        <target>El usuario y/o contraseña es inválido.</target>
+      </trans-unit>
+      <trans-unit id="23" approved="yes">
+        <source>Login</source>
+        <target>Iniciar sesión</target>
+      </trans-unit>
+      <trans-unit id="24" approved="yes">
+        <source>Username or E-Mail</source>
+        <target>Usuario o contraseña</target>
+      </trans-unit>
+      <trans-unit id="25" approved="yes">
+        <source>sign in</source>
+        <target>acceder</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

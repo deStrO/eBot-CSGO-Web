@@ -1,0 +1,186 @@
+.sf_apply
+{
+  width: 500px;
+  padding: 10px;
+}
+
+.sf_apply ul
+{
+  list-style: none;
+  display: block;
+}
+
+.sf_apply li
+{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.sf_apply label
+{
+  display: block;
+  clear: left;
+  float: left;
+  width: 150px;
+  padding-right: 20px;
+}
+
+.sf_apply_notice
+{
+  padding-bottom: 20px;
+  font-size: 125%;
+}
+
+#sf_apply_logged_in_as
+{
+  float: right;
+  width: 160px;
+  padding: 10px;
+  border: 1px solid green;
+}
+
+#sf_apply_logged_in_as input
+{
+  margin-right: 4px;
+}
+
+#sf_guard_signin
+{
+  float: right;
+  padding: 10px;
+  width: 160px;
+  border: 1px solid green;
+}
+
+#sf_guard_signin p
+{
+  padding-top: 10px;
+}
+
+#sf_guard_signin fieldset
+{
+  margin-bottom: 5px;
+  border: none;
+}
+
+#sf_guard_signin .form-row
+{
+  padding: 5px;
+}
+
+#sf_guard_signin .form-row label
+{
+  display: block;
+}
+
+#sf_guard_signin .form-row input
+{
+  display: block;  
+  width: 100px;
+}
+
+#sf_guard_auth_forgot_password
+{
+  display: block;
+  padding-top: 10px;
+}
+
+#sf_apply_need_an_account
+{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#sf_apply_logged_in_as p
+{
+  padding-bottom: 10px;
+}
+
+#sf_apply_logout
+{
+  display: block;
+  float: left;
+  padding-left: 10px;
+  border: 1px solid green;
+}
+
+#sf_apply_settings
+{
+  display: block;
+  padding-bottom: 10px;
+}
+
+#sf_apply_settings input
+{
+  margin-right: 4px;
+}
+
+#sf_guard_auth_form
+{
+  width: 350px;
+}
+
+#sf_guard_auth_form fieldset
+{
+  margin-bottom: 10px;
+}
+
+#sf_guard_auth_form .form-row
+{
+  clear: both;
+  padding: 10px;
+}
+
+#sf_guard_auth_form label
+{
+  float: left;
+  width: 150px;
+}
+
+#sf_guard_auth_form input
+{
+  display: block;
+  width: 150px;
+}
+
+#sf_guard_auth_form .buttons
+{
+  border: none;
+}
+
+#sf_guard_auth_form .buttons input
+{
+  display: inline;
+  width: auto;
+}
+
+#sf_guard_auth_form .buttons p
+{
+  padding-bottom: 10px;
+}
+
+h2.sf_apply_heading
+{
+  padding-bottom: 20px;
+}
+
+.sf_apply_notice p
+{
+  padding-bottom: 10px;
+}
+
+.sf_apply_notice a
+{
+  padding: 4px;
+}
+
+.sf_apply a
+{
+  padding: 4px;
+}
+
+#sf_apply_logged_in_as a
+{
+  padding: 4px;
+}
+
