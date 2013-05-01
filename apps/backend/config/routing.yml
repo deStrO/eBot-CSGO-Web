@@ -101,6 +101,15 @@ matchs_reset:
     id : \d+
     sf_method: [get]
 
+matchs_reset_map:
+  url: /matchs/resetmap/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: resetMap }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
 matchs_pause_unpause:
   url: /matchs/pause/unpause/:id
   class: sfDoctrineRoute
@@ -338,6 +347,40 @@ season_deactivate:
   class: sfDoctrineRoute
   options: { model: Seasons, type: object}
   param: { module: seasons, action: deactivate }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+advertising_create:
+  url: /advertising/create
+  class: sfRequestRoute
+  param: { module: advertising, action: create }
+  requirements:
+    sf_method: [get,put,post]
+
+advertising_edit:
+  url: /advertising/edit/:id
+  class: sfDoctrineRoute
+  options: { model: advertising, type: object}
+  param: { module: advertising, action: edit }
+  requirements:
+    id : \d+
+    sf_method: [get, put,post]
+
+advertising_delete:
+  url: /advertising/delete/:id
+  class: sfDoctrineRoute
+  options: { model: advertising, type: object}
+  param: { module: advertising, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+advertising_deactivate:
+  url: /advertising/deactivate/:id
+  class: sfDoctrineRoute
+  options: { model: advertising, type: object}
+  param: { module: advertising, action: deactivate }
   requirements:
     id : \d+
     sf_method: [get]
