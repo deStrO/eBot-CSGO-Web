@@ -14,25 +14,31 @@
  * @property varchar $logo
  * @property boolean $active
  * @property Doctrine_Collection $Matchs
+ * @property Doctrine_Collection $Advertising
+ * @property Doctrine_Collection $TeamsInSeasons
  * 
- * @method integer             getId()     Returns the current record's "id" value
- * @method varchar             getName()   Returns the current record's "name" value
- * @method varchar             getEvent()  Returns the current record's "event" value
- * @method timestamp           getStart()  Returns the current record's "start" value
- * @method timestamp           getEnd()    Returns the current record's "end" value
- * @method varchar             getLink()   Returns the current record's "link" value
- * @method varchar             getLogo()   Returns the current record's "logo" value
- * @method boolean             getActive() Returns the current record's "active" value
- * @method Doctrine_Collection getMatchs() Returns the current record's "Matchs" collection
- * @method Seasons             setId()     Sets the current record's "id" value
- * @method Seasons             setName()   Sets the current record's "name" value
- * @method Seasons             setEvent()  Sets the current record's "event" value
- * @method Seasons             setStart()  Sets the current record's "start" value
- * @method Seasons             setEnd()    Sets the current record's "end" value
- * @method Seasons             setLink()   Sets the current record's "link" value
- * @method Seasons             setLogo()   Sets the current record's "logo" value
- * @method Seasons             setActive() Sets the current record's "active" value
- * @method Seasons             setMatchs() Sets the current record's "Matchs" collection
+ * @method integer             getId()             Returns the current record's "id" value
+ * @method varchar             getName()           Returns the current record's "name" value
+ * @method varchar             getEvent()          Returns the current record's "event" value
+ * @method timestamp           getStart()          Returns the current record's "start" value
+ * @method timestamp           getEnd()            Returns the current record's "end" value
+ * @method varchar             getLink()           Returns the current record's "link" value
+ * @method varchar             getLogo()           Returns the current record's "logo" value
+ * @method boolean             getActive()         Returns the current record's "active" value
+ * @method Doctrine_Collection getMatchs()         Returns the current record's "Matchs" collection
+ * @method Doctrine_Collection getAdvertising()    Returns the current record's "Advertising" collection
+ * @method Doctrine_Collection getTeamsInSeasons() Returns the current record's "TeamsInSeasons" collection
+ * @method Seasons             setId()             Sets the current record's "id" value
+ * @method Seasons             setName()           Sets the current record's "name" value
+ * @method Seasons             setEvent()          Sets the current record's "event" value
+ * @method Seasons             setStart()          Sets the current record's "start" value
+ * @method Seasons             setEnd()            Sets the current record's "end" value
+ * @method Seasons             setLink()           Sets the current record's "link" value
+ * @method Seasons             setLogo()           Sets the current record's "logo" value
+ * @method Seasons             setActive()         Sets the current record's "active" value
+ * @method Seasons             setMatchs()         Sets the current record's "Matchs" collection
+ * @method Seasons             setAdvertising()    Sets the current record's "Advertising" collection
+ * @method Seasons             setTeamsInSeasons() Sets the current record's "TeamsInSeasons" collection
  * 
  * @package    PhpProject1
  * @subpackage model
@@ -85,6 +91,14 @@ abstract class BaseSeasons extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('Matchs', array(
+             'local' => 'id',
+             'foreign' => 'season_id'));
+
+        $this->hasMany('Advertising', array(
+             'local' => 'id',
+             'foreign' => 'season_id'));
+
+        $this->hasMany('TeamsInSeasons', array(
              'local' => 'id',
              'foreign' => 'season_id'));
 

@@ -43,6 +43,20 @@
 
 <div class="tab-content" style="padding-bottom: 10px; margin-bottom: 20px;">
     <div class="tab-pane active" id="home">
+        <?php if (!empty($warningBox["map"])): ?>
+            <div class="alert warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h5><?php echo __("Warning!"); ?></h5>
+                <strong><?php echo __("The following Player(s) buyed more then one Smokegrenade per Round:"); ?></strong>
+                <ul style="margin-bottom:0px;">
+                <?php
+                    for ($i=0;$i<count($warningBox["map"]);$i++) {
+                        echo "<li>".__("Player").": ".$warningBox["player"][$i]." - ".__("Round").": ".$warningBox["round"][$i]."</li>";
+                    }
+                ?>
+                </ul>
+            </div>
+        <?php endif; ?>
         <table border="0" cellpadding="5" cellspacing="5" width="100%">
             <tr>
                 <td width="50%">

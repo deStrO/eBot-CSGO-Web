@@ -102,27 +102,26 @@
                 \ScoreColorUtils::colorForScore($score1, $score2);
 
                 $team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
+                $team1_flag = $match->getTeamA()->exists() ? "<i class='flag flag-".strtolower($match->getTeamA()->getFlag())."'></i>" : "<i class='flag flag-".strtolower($match->getTeamAFlag())."'></i>";
+
                 $team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
+                $team2_flag = $match->getTeamB()->exists() ? "<i class='flag flag-".strtolower($match->getTeamB()->getFlag())."'></i>" : "<i class='flag flag-".strtolower($match->getTeamBFlag())."'></i>";
+
                 if ($match->getMap() && $match->getMap()->exists()) {
                     \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                 }
                 ?>
                 <tr>
-                    <td width="20"  style="padding-left: 10px;">
+                    <td width="20" style="padding-left: 10px;">
                         <span style="float:left">#<?php echo $match->getId(); ?></span>
                     </td>
-                    <?php if (sfConfig::get("app_display_date_table")): ?>
-                        <td width="20"  style="padding-left: 10px;">
-                            <span style="float:left"><?php echo format_date($match->getCreatedAt(), 'd') ?></span>
-                        </td>
-                    <?php endif; ?>
-                    <td width="100"  style="padding-left: 10px;">
-                        <span style="float:left"><?php echo $team1; ?></span>
+                    <td width="200" style="padding-left: 10px;">
+                        <span style="float:left"><?php echo $team1_flag." ".$team1; ?></span>
                     </td>
                     <td width="50">
                         <div class="score" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></div>
                     </td>
-                    <td width="100"><span style="float:right; text-align:right;"><?php echo $team2; ?></span></td>
+                    <td width="200"><span style="float:right; text-align:right;"><?php echo $team2." ".$team2_flag; ?></span></td>
                     <td width="150" align="center">
                         <?php if ($match->getMap() && $match->getMap()->exists()): ?>
                             <?php echo $match->getMap()->getMapName(); ?>
@@ -170,12 +169,12 @@
         </tfoot>
         <thead>
             <tr>
-                <th><?php echo __("#ID"); ?></th>
-                <th><?php echo __("Team 1"); ?></th>
-                <th style="text-align:center;"><?php echo __("Score"); ?></th>
-                <th style="text-align:right;"><?php echo __("Team 2"); ?></th>
-                <th><?php echo __("Map"); ?></th>
-                <th><?php echo __("Season"); ?></th>
+                <th width="20"><?php echo __("#ID"); ?></th>
+                <th width="100"><?php echo __("Team 1"); ?></th>
+                <th width="50" style="text-align:center;"><?php echo __("Score"); ?></th>
+                <th width="100" style="text-align:right;"><?php echo __("Team 2"); ?></th>
+                <th width="150"><?php echo __("Map"); ?></th>
+                <th width="250"><?php echo __("Season"); ?></th>
                 <th><?php echo __("Status"); ?></th>
                 <th></th>
             </tr>

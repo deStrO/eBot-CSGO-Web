@@ -55,14 +55,16 @@ class MatchsForm extends BaseMatchsForm {
         $this->widgetSchema["auto_start"]->setLabel("Autostart Match");
         $this->widgetSchema["auto_start_time"]->setLabel("Start Match");
 
-        $flags = sfConfig::get("app_flag_team".((sfContext::getInstance()->getUser()->getCulture() != "fr") ? "_en" : ""));
+        $flags = sfConfig::get("app_flag_team_en");
         $aFlags = array();
         $aFlags[""] = "";
         foreach ($flags as $k => $flag) {
             $aFlags[$k] = $flag;
         }
-        $this->widgetSchema["team_a_flag"] = new sfWidgetFormSelect(array("choices" => $aFlags, 'default' => 'FR'));
-        $this->widgetSchema["team_b_flag"] = new sfWidgetFormSelect(array("choices" => $aFlags, 'default' => 'FR'));
+        $this->widgetSchema["team_a_flag"] = new sfWidgetFormSelect(array("choices" => $aFlags));
+        $this->widgetSchema["team_b_flag"] = new sfWidgetFormSelect(array("choices" => $aFlags));
+
+        $this->widgetSchema["map_selection_mode"]->addOption('choices', array('normal' => 'BO1', 'bo3_modeb' => 'BO3'));
 
         // MOVING FIELDS
 

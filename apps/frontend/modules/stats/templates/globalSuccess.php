@@ -1,19 +1,38 @@
-<div style="float: right">
-    <a href="#modalSearch" role="button" class="btn btn-primary" data-toggle="modal">Filtrer par matchs</a>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li>
+                <a href="#modalSearch" role="button" data-toggle="modal"><?php echo __("Match Search"); ?></a>
+            </li>
+            <?php if (count($filterValues) > 0): ?>
+                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Reset Filter"); ?></a></li>
+            <?php endif; ?>
+            <li>
+                <form style="margin:0; padding-top:5px;" method="post" action="<?php echo url_for("stats_filters"); ?>">
+                    <?php echo $filter->renderHiddenFields(); ?>
+                    <?php foreach ($filter as $widget): ?>
+                        <?php if ($widget->getName() != "season_id") continue; ?>
+                        <?php echo $widget->render(); ?>
+                    <?php endforeach; ?>
+                    <input type="submit" class="btn btn-primary btn-mini" style="margin-bottom: 15px;" value="<?php echo __("Search"); ?>">
+                </form>
+            </li>
+        </ul>
+    </div>
 </div>
 
-<h3><?php echo __("Statistiques des joueurs"); ?></h3>
+<h3><?php echo __("Global Player Statistics"); ?></h3>
 <hr/>
 
 <div id="modalSearch" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="modalSearchLabel" aria-hidden="true">
     <form class="form-horizontal" action="<?php echo url_for("global_stats"); ?>" method="post">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="modalSearchLabel">Filtrer par matchs</h3>
+            <h3 id="modalSearchLabel"><?php echo __("Filter"); ?></h3>
         </div>
         <div class="modal-body">
             <div class="control-group">
-                <label class="control-label" for="inputMatchs">Matchs</label>
+                <label class="control-label" for="inputMatchs"><?php echo __("Matches"); ?></label>
                 <div class="controls">
                     <select name="ids[]" id="inputMatchs" multiple="multiple" class="input-xlarge">
                         <?php foreach (MatchsTable::getInstance()->findAll() as $match): ?>
@@ -24,8 +43,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Fermer</button>
-            <input type="submit" value="Filtrer" class="btn btn-primary"/>
+            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo __("Cancel"); ?></button>
+            <input type="submit" value="<?php echo __("Filter"); ?>" class="btn btn-primary"/>
         </div>
     </form>
 </div>
@@ -69,20 +88,20 @@ foreach ($matchs as $m) {
 uksort($scores, "cmp");
 ?>
 <script>
-   
+
     $(function() {
         $("#tableScore").dataTable({
             "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
             "sPaginationType": "bootstrap",
             "oLanguage": {
-                "sLengthMenu": "_MENU_ records per page"
+                "sLengthMenu": "_MENU_ <?php echo __('records per page'); ?>"
             },
             "iDisplayLength": 25,
             "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
             "aaSorting": [[ 1, "desc" ]]
 
         });
-        
+
         $.extend( $.fn.dataTableExt.oStdClasses, {
             "sWrapper": "dataTables_wrapper form-inline"
         } );
@@ -96,16 +115,16 @@ uksort($scores, "cmp");
             <th><?php echo __("K"); ?></th>
             <th><?php echo __("A"); ?></th>
             <th><?php echo __("D"); ?></th>
-            <th><?php echo __("Ratio K/D"); ?></th>
+            <th><?php echo __("K/D"); ?></th>
             <th><?php echo __("HS"); ?></th>
-            <th><?php echo __("Ratio HS"); ?></th>
+            <th><?php echo __("HS Rate"); ?></th>
             <th><?php echo __("TK"); ?></th>
-            <th><?php echo __("Bombe"); ?></th>
+            <th><?php echo __("Bomb"); ?></th>
             <th><?php echo __("Defuse"); ?></th>
-            <th><?php echo __("Point"); ?></th>
-            <th><?php echo __("Pt MVP"); ?></th>
-            <th><?php echo __("Pt Clutch"); ?></th>
-            <th><?php echo __("Nombre de Match"); ?></th>
+            <th><?php echo __("Points"); ?></th>
+            <th><?php echo __("MVP"); ?></th>
+            <th><?php echo __("Clutch"); ?></th>
+            <th><?php echo __("Number of Matches"); ?></th>
         </tr>
     </thead>
     <tbody>

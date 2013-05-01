@@ -1,5 +1,24 @@
 <?php use_javascript("highcharts.js"); ?>
-<h3><?php echo __("Statistiques par maps"); ?></h3>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <?php if (count($filterValues) > 0): ?>
+                <li><a href="<?php echo url_for("matchs_filters_clear"); ?>" role="button"  data-toggle="modal"><?php echo __("Reset Filter"); ?></a></li>
+            <?php endif; ?>
+            <li>
+                <form style="margin:0; padding-top:5px;" method="post" action="<?php echo url_for("stats_filters"); ?>">
+                    <?php echo $filter->renderHiddenFields(); ?>
+                    <?php foreach ($filter as $widget): ?>
+                        <?php if ($widget->getName() != "season_id") continue; ?>
+                        <?php echo $widget->render(); ?>
+                    <?php endforeach; ?>
+                    <input type="submit" class="btn btn-primary btn-mini" style="margin-bottom: 15px;" value="<?php echo __("Search"); ?>">
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+<h3><?php echo __("Statistics by Map"); ?></h3>
 <hr/>
 
 
@@ -11,18 +30,20 @@
         $sideCT = ($match->getMap()->getCurrentSide() == "t") ? "a" : "b";
         if ($match->getScoreA() > $match->getScoreB()) {
             if ($sideCT == "a") {
-                @$maps[$map_name]["side_ct_map_win"]++;
-            } else {
                 @$maps[$map_name]["side_t_map_win"]++;
+            } else {
+                @$maps[$map_name]["side_ct_map_win"]++;
             }
         } elseif ($match->getScoreB() > $match->getScoreA()) {
             if ($sideCT == "b") {
-                @$maps[$map_name]["side_ct_map_win"]++;
-            } else {
                 @$maps[$map_name]["side_t_map_win"]++;
+            } else {
+                @$maps[$map_name]["side_ct_map_win"]++;
             }
+        } elseif ($match->getScoreB() == $match->getScoreA()) {
+            @$maps[$map_name]["draw_map_win"]++;
         }
-        
+
         @$maps[$map_name]["count"]++;
         $rounds = $match->getRoundSummaries();
         foreach ($rounds as $round) {
@@ -54,10 +75,10 @@
                     type: 'column'
                 },
                 title: {
-                    text: <?php echo json_encode(__("Maps round average")); ?>
+                    text: <?php echo json_encode(__("Average Rounds by Map")); ?>
                 },
                 xAxis: {
-                    categories: 
+                    categories:
 <?php
 $mapData = array();
 foreach ($maps as $k => $v):
@@ -72,14 +93,14 @@ echo json_encode($mapData);
                     min: 0,
                     //                    max: 100,
                     title: {
-                        text: <?php echo json_encode(__("Nombre de round gagné par side")); ?>
+                        text: <?php echo json_encode(__("Number of rounds won by side")); ?>
                     }
                 },
-                
+
                 tooltip: {
                     formatter: function() {
                         return ''+
-                            this.series.name +': '+ this.y +' round';
+                            this.series.name +': '+ this.y +' <?php echo __("rounds"); ?>';
                     }
                 },
                 plotOptions: {
@@ -90,7 +111,7 @@ echo json_encode($mapData);
                 },
                 series: [{
                         name: 'CT',
-                        data: 
+                        data:
 <?php
 $mapData = array();
 foreach ($maps as $k => $v) {
@@ -99,7 +120,7 @@ foreach ($maps as $k => $v) {
 
 echo json_encode($mapData);
 ?>
-    
+
                     }, {
                         name: 'T',
                         data: <?php
@@ -110,37 +131,38 @@ foreach ($maps as $k => $v) {
 
 echo json_encode($mapData);
 ?>
-    
+
                     }]
             });
         });
-    
+
     });
-            
+
 </script>
 
-<h3><?php echo __("Détails des statistiques"); ?></h3>
+<h3><?php echo __("Details"); ?></h3>
 
-<table class="table table-striped" style="width: auto;">
+<table class="table table-striped table-hover" style="width: auto;">
     <thead>
         <tr>
-            <th rowspan="2"><?php echo __("Nom de la map"); ?></th>
-            <th rowspan="2"><?php echo __("Nombre de match"); ?></th>
+            <th rowspan="2"><?php echo __("Map"); ?></th>
+            <th rowspan="2"><?php echo __("Number of Matches"); ?></th>
             <th style="text-align: center;border-left: 1px solid #DDDDDD;" colspan="4">CT</th>
             <th style="text-align: center;border-left: 1px solid #DDDDDD;" colspan="4">T</th>
-            <th style="text-align: center;border-left: 1px solid #DDDDDD;" colspan="2"><?php echo __("Probabilité de gagner en commencant"); ?></th>
+            <th style="text-align: center;border-left: 1px solid #DDDDDD;" colspan="2"><?php echo __("Probability of winning by starting on this side"); ?>*</th>
+            <th rowspan="2" style="text-align: center;border-left: 1px solid #DDDDDD;" ><?php echo __("Draws"); ?></th>
         </tr>
         <tr>
-            <td style="border-left: 1px solid #DDDDDD;" width="50">#</td>
-            <td style="border-left: 1px solid #EEEEEE;" width="75">%</td>
-            <td style="border-left: 1px solid #EEEEEE;" width="50"><?php echo __("GR"); ?></td>
-            <td style="border-left: 1px solid #EEEEEE;" width="75">% <?php echo __("GR"); ?></td>
-            <td style="border-left: 1px solid #DDDDDD;" width="50">#</td>
-            <td style="border-left: 1px solid #EEEEEE;" width="75">%</td>
-            <td style="border-left: 1px solid #EEEEEE;" width="50"><?php echo __("GR"); ?></td>
-            <td style="border-left: 1px solid #EEEEEE;" width="75">% <?php echo __("GR"); ?></td>
-            <td style="border-left: 1px solid #DDDDDD;" width="75">CT</td>
-            <td style="border-left: 1px solid #EEEEEE;" width="75">T</td>
+            <td style="border-left: 1px solid #DDDDDD; text-align:center;" width="50">#</td>
+            <td style="border-left: 1px solid #EEEEEE; text-align:center;" width="75">%</td>
+            <td style="border-left: 1px solid #EEEEEE; text-align:center;" width="50"><?php echo __("Pistol Round"); ?></td>
+            <td style="border-left: 1px solid #EEEEEE; text-align:center;" width="75">% <?php echo __("Pistol Round"); ?></td>
+            <td style="border-left: 1px solid #DDDDDD; text-align:center;" width="50">#</td>
+            <td style="border-left: 1px solid #EEEEEE; text-align:center;" width="75">%</td>
+            <td style="border-left: 1px solid #EEEEEE; text-align:center;" width="50"><?php echo __("Pistol Round"); ?></td>
+            <td style="border-left: 1px solid #EEEEEE; text-align:center;" width="75">% <?php echo __("Pistol Round"); ?></td>
+            <td style="border-left: 1px solid #DDDDDD; text-align:center;" width="75">CT</td>
+            <td style="border-left: 1px solid #EEEEEE; text-align:center;" width="75">T</td>
         </tr>
     </thead>
     <tbody>
@@ -148,17 +170,21 @@ echo json_encode($mapData);
             <tr>
                 <td><?php echo $map; ?></td>
                 <td><?php echo $stats["count"]; ?></td>
-                <td style="border-left: 1px solid #DDDDDD;"><?php echo $stats["ct"]; ?></td>
-                <td style="border-left: 1px solid #EEEEEE;"><?php echo round(($stats["ct"] / ($stats["t"] + $stats["ct"])) * 100, 2); ?> %</td>
-                <td style="border-left: 1px solid #EEEEEE;"><?php echo $stats["gr_ct"]; ?></td>
-                <td style="border-left: 1px solid #EEEEEE;"><?php echo round(($stats["gr_ct"] / ($stats["gr_t"] + $stats["gr_ct"])) * 100, 2); ?> %</td>
-                <td style="border-left: 1px solid #DDDDDD;"><?php echo $stats["t"]; ?></td>
-                <td style="border-left: 1px solid #EEEEEE;"><?php echo round(($stats["t"] / ($stats["t"] + $stats["ct"])) * 100, 2); ?> %</td>
-                <td style="border-left: 1px solid #EEEEEE;"><?php echo $stats["gr_t"]; ?></td>
-                <td style="border-left: 1px solid #EEEEEE;"><?php echo round(($stats["gr_t"] / ($stats["gr_t"] + $stats["gr_ct"])) * 100, 2); ?> %</td>
-                <td style="border-left: 1px solid #DDDDDD;"><?php echo round(($stats["side_ct_map_win"] / $stats["count"]) * 100, 2); ?> %</td>
-                <td style="border-left: 1px solid #EEEEEE;"><?php echo round(($stats["side_t_map_win"] / $stats["count"]) * 100, 2); ?> %</td>
+                <td style="border-left: 1px solid #DDDDDD; text-align:center;"><?php echo $stats["ct"]; ?></td>
+                <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo round(($stats["ct"] / ($stats["t"] + $stats["ct"])) * 100, 2); ?> %</td>
+                <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo $stats["gr_ct"]; ?></td>
+                <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo round(($stats["gr_ct"] / ($stats["gr_t"] + $stats["gr_ct"])) * 100, 2); ?> %</td>
+                <td style="border-left: 1px solid #DDDDDD; text-align:center;"><?php echo $stats["t"]; ?></td>
+                <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo round(($stats["t"] / ($stats["t"] + $stats["ct"])) * 100, 2); ?> %</td>
+                <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo $stats["gr_t"]; ?></td>
+                <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo round(($stats["gr_t"] / ($stats["gr_t"] + $stats["gr_ct"])) * 100, 2); ?> %</td>
+                <td style="border-left: 1px solid #DDDDDD; text-align:center;"><?php echo round(($stats["side_ct_map_win"] / $stats["count"]) * 100, 2); ?> %</td>
+                <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo round(($stats["side_t_map_win"] / $stats["count"]) * 100, 2); ?> %</td>
+                <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo $stats["draw_map_win"]; ?></td>
             </tr>
         <?php endforeach; ?>
+            <tr>
+                <td colspan="12"><span style="float:right; text-align:right;"><?php echo __("* may not be 100%, if the result was a draw."); ?></span></td>
+            </tr>
     </tbody>
 </table>

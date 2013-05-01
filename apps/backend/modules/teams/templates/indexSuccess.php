@@ -4,6 +4,7 @@
     <thead>
         <tr>
             <th><?php echo __("#ID"); ?></th>
+            <th></th>
             <th><?php echo __("Name"); ?></th>
             <th><?php echo __("Shorthandle"); ?></th>
             <th><?php echo __("Team Link"); ?></th>
@@ -12,11 +13,12 @@
     <tbody>
         <?php foreach ($pager->getResults() as $team): ?>
             <tr>
-                <td width="30"><?php echo $team->getId(); ?></td>
-                <td width="250"><?php echo $team->getName(); ?></td>
-                <td width="200"><?php echo $team->getShorthandle(); ?></td>
+                <td width="30" style="vertical-align:middle;"><?php echo $team->getId(); ?></td>
+                <td width="20" style="vertical-align:middle;"><i class="flag flag-<?php echo strtolower($team->getFlag()); ?>"></i></td>
+                <td width="250" style="vertical-align:middle;"><?php echo $team->getName(); ?></td>
+                <td width="200" style="vertical-align:middle;"><?php echo $team->getShorthandle(); ?></td>
                 <?php if ($team->getLink() != ""): ?>
-                    <td width="200"><a href="<?php echo $team->getLink(); ?>" target="_blank"><?php echo __("Link"); ?></a></td>
+                    <td width="200" style="vertical-align:middle;"><a href="<?php echo $team->getLink(); ?>" target="_blank"><?php echo __("Link"); ?></a></td>
                 <?php else: ?>
                     <td width="200"></td>
                 <?php endif; ?>

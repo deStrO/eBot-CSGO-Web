@@ -73,7 +73,7 @@ class seasonsActions extends sfActions {
         else
             $season->setActive(true);
         $season->save();
-        $this->getUser()->setFlash("notification_ok", $this->__("Season deleted successfully"));
+        $this->getUser()->setFlash("notification_ok", $this->__("Season de/activated successfully"));
 		$this->redirect("seasons/index");
     }
 
