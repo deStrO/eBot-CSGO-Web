@@ -19,7 +19,7 @@
                     <?php echo __("Won by")." ".(($round->getTeamWin() == "a") ? $match->getTeamAName() : $match->getTeamBName()); ?>
                 </td>
                 <td>
-                    <a class="btn btn-primary" href="#" <?php echo 'onclick="doRequest(\'goBackRounds\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\', \' '.$round->getRoundId().'\')"'; ?>><?php echo __("Reload to round")." ".($round->getRoundId()+1); ?></a>
+                    <a class="btn btn-primary" href="#" <?php echo 'onclick="doRequest(\'goBackRounds\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\', \' '.$round->getRoundId().'\')"'; ?>><?php echo __("Reload to Start of Round")." ".($round->getRoundId()+1); ?></a>
                 </td>
             </tr>
         <?php endforeach; ?>
