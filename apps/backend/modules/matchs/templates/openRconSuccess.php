@@ -120,7 +120,7 @@
         var data = id + " " + event + " " + ip + added;
         data = Aes.Ctr.encrypt(data, authkey, 256);
         send = JSON.stringify([data, ip]);
-        ws.send(send);
+        rcon.send(send);
         return false;
     }
 </script>

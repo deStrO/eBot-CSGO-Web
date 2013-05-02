@@ -50,7 +50,7 @@
 							<ul class="nav">
 								<li class="active"><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Home"); ?></a></li>
 								<li><a href="/admin.php"><?php echo __("Admin"); ?></a></li>
-								<li><a href="http://www.esport-tools.net/ebot"><?php echo __("Aide"); ?></a></li>
+								<li><a href="http://www.esport-tools.net/ebot"><?php echo __("Help"); ?></a></li>
 								<li><a href="http://www.esport-tools.net/about"><?php echo __("About"); ?></a></li>
 							</ul>
 						<?php endif; ?>
@@ -67,7 +67,7 @@
 					<?php if ($sf_user->hasFlash("notification_error")): ?>
 						<div class="alert alert-error">
 							<button type="button" class="close" data-dismiss="alert">×</button>
-							<h4><?php echo __("Erreur"); ?> !</h4>
+							<h4><?php echo __("Error"); ?> !</h4>
 							<?php echo $sf_user->getFlash("notification_error"); ?>
 						</div>
 					<?php endif; ?>
