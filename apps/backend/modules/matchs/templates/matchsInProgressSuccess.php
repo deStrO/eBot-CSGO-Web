@@ -221,7 +221,7 @@ function getButtons($status) {
 
 <?php $used = array(); ?>
 
-<div class="container-fluid" style="padding-left:0px;">
+<div class="container-fluid">
     <div class="span10">
         <div id="tableMatch">
             <table class="table table-striped">
