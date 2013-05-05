@@ -33,7 +33,6 @@ Matchs:
     ingame_enable: { type: boolean }
     current_map: { type: integer(20) }
     force_zoom_match: { type: boolean }
-    tv_record_file: { type: varchar(255) }
     identifier_id: { type: integer(20) }
     startdate: { type: timestamp }
     auto_start: { type: boolean }
@@ -59,6 +58,7 @@ Maps:
     maps_for: { type: enum, values: [ default, team1, team2 ]}
     nb_ot: { type: integer(20) }
     identifier_id: { type: integer(20) }
+    tv_record_file: { type: varchar(255) }
   relations:
     Match: { class: Matchs, onDelete: CASCADE, local: match_id, foreign: id }
 

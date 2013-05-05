@@ -15,6 +15,7 @@
  * @property enum $maps_for
  * @property integer $nb_ot
  * @property integer $identifier_id
+ * @property varchar $tv_record_file
  * @property Matchs $Match
  * @property Doctrine_Collection $Matchs
  * @property Doctrine_Collection $MapsScore
@@ -34,6 +35,7 @@
  * @method enum                getMapsFor()        Returns the current record's "maps_for" value
  * @method integer             getNbOt()           Returns the current record's "nb_ot" value
  * @method integer             getIdentifierId()   Returns the current record's "identifier_id" value
+ * @method varchar             getTvRecordFile()   Returns the current record's "tv_record_file" value
  * @method Matchs              getMatch()          Returns the current record's "Match" value
  * @method Doctrine_Collection getMatchs()         Returns the current record's "Matchs" collection
  * @method Doctrine_Collection getMapsScore()      Returns the current record's "MapsScore" collection
@@ -52,6 +54,7 @@
  * @method Maps                setMapsFor()        Sets the current record's "maps_for" value
  * @method Maps                setNbOt()           Sets the current record's "nb_ot" value
  * @method Maps                setIdentifierId()   Sets the current record's "identifier_id" value
+ * @method Maps                setTvRecordFile()   Sets the current record's "tv_record_file" value
  * @method Maps                setMatch()          Sets the current record's "Match" value
  * @method Maps                setMatchs()         Sets the current record's "Matchs" collection
  * @method Maps                setMapsScore()      Sets the current record's "MapsScore" collection
@@ -122,6 +125,10 @@ abstract class BaseMaps extends sfDoctrineRecord
         $this->hasColumn('identifier_id', 'integer', 20, array(
              'type' => 'integer',
              'length' => 20,
+             ));
+        $this->hasColumn('tv_record_file', 'varchar', 255, array(
+             'type' => 'varchar',
+             'length' => 255,
              ));
     }
 

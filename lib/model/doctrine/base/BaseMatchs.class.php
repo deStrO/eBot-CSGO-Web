@@ -36,7 +36,6 @@
  * @property boolean $ingame_enable
  * @property integer $current_map
  * @property boolean $force_zoom_match
- * @property varchar $tv_record_file
  * @property integer $identifier_id
  * @property timestamp $startdate
  * @property boolean $auto_start
@@ -84,7 +83,6 @@
  * @method boolean             getIngameEnable()                Returns the current record's "ingame_enable" value
  * @method integer             getCurrentMap()                  Returns the current record's "current_map" value
  * @method boolean             getForceZoomMatch()              Returns the current record's "force_zoom_match" value
- * @method varchar             getTvRecordFile()                Returns the current record's "tv_record_file" value
  * @method integer             getIdentifierId()                Returns the current record's "identifier_id" value
  * @method timestamp           getStartdate()                   Returns the current record's "startdate" value
  * @method boolean             getAutoStart()                   Returns the current record's "auto_start" value
@@ -131,7 +129,6 @@
  * @method Matchs              setIngameEnable()                Sets the current record's "ingame_enable" value
  * @method Matchs              setCurrentMap()                  Sets the current record's "current_map" value
  * @method Matchs              setForceZoomMatch()              Sets the current record's "force_zoom_match" value
- * @method Matchs              setTvRecordFile()                Sets the current record's "tv_record_file" value
  * @method Matchs              setIdentifierId()                Sets the current record's "identifier_id" value
  * @method Matchs              setStartdate()                   Sets the current record's "startdate" value
  * @method Matchs              setAutoStart()                   Sets the current record's "auto_start" value
@@ -281,10 +278,6 @@ abstract class BaseMatchs extends sfDoctrineRecord
              ));
         $this->hasColumn('force_zoom_match', 'boolean', null, array(
              'type' => 'boolean',
-             ));
-        $this->hasColumn('tv_record_file', 'varchar', 255, array(
-             'type' => 'varchar',
-             'length' => 255,
              ));
         $this->hasColumn('identifier_id', 'integer', 20, array(
              'type' => 'integer',
