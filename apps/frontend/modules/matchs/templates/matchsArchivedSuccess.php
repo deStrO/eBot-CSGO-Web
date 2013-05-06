@@ -100,7 +100,8 @@
                         <?php echo $match->getStatusText(); ?>
                     </div>
                 </td>
-                <td width="50" style="padding-left: 3px;" align="center">
+                <td width="150" style="padding-left: 3px;" align="center">
+                    <a href="<?php echo url_for("matchs_view", $match); ?>#demos"><button class="btn btn-inverse"><?php echo __("Demo"); ?></button></a>
                     <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse"><?php echo __("Show"); ?></button></a>
                 </td>
 
