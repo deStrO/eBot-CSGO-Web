@@ -66,6 +66,10 @@ function getButtons($status) {
                 else if (data['message'] == 'status') {
                     if (data['content'] == 'Finished') {
                         location.reload();
+                    } else if (data['content'] == 'is_paused') {
+                        $("#flag-" + data['id']).attr('src', "/images/icons/flag_yellow.png");
+                    } else if (data['content'] == 'is_unpaused') {
+                        $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
                     } else if (data['content'] != 'Starting') {
                         if ($("#flag-" + data['id']).attr('src') == "/images/icons/flag_red.png") {
                             location.reload();
@@ -73,8 +77,8 @@ function getButtons($status) {
                             $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
                             $('#loading_' + data['id']).hide();
                         }
+                        $("div.status-" + data['id']).html(data['content']);
                     }
-                    $("div.status-" + data['id']).html(data['content']);
                 }
                 else if (data['message'] == 'score') {
                     if (data['scoreA'] < 10)
@@ -318,6 +322,8 @@ function getButtons($status) {
                                     <?php if ($match->getStatus() == Matchs::STATUS_STARTING): ?>
                                         <?php echo image_tag("/images/icons/flag_blue.png", "id='flag-" . $match->getId() . "'"); ?>
                                         <?php echo '<script> $(document).ready(function() { $("#loading_' . $match->getId() . '").show(); }); </script>'; ?>
+                                    <?php elseif ($match->getIsPaused()): ?>
+                                        <?php echo image_tag("/images/icons/flag_yellow.png", "id='flag-" . $match->getId() . "'"); ?>
                                     <?php else: ?>
                                         <?php echo image_tag("/images/icons/flag_green.png", "id='flag-" . $match->getId() . "'"); ?>
                                     <?php endif; ?>

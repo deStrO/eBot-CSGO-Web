@@ -11,7 +11,7 @@
 class MatchsForm extends BaseMatchsForm {
 
     public function configure() {
-        unset($this["config_authkey"],$this["ip"], $this["identifier_id"], $this["force_zoom_match"], $this["config_switch_auto"], $this["tv_record_file"], $this["server_id"], $this["ingame_enable"], $this["config_auto_change_password"], $this["created_at"], $this["updated_at"], $this["current_map"], $this["status"], $this["score_a"], $this["score_b"], $this["config_heatmap"], $this["enable"]);
+        unset($this["config_authkey"], $this["ip"], $this["identifier_id"], $this["force_zoom_match"], $this["config_switch_auto"], $this["server_id"], $this["ingame_enable"], $this["config_auto_change_password"], $this["created_at"], $this["updated_at"], $this["current_map"], $this["status"], $this["score_a"], $this["score_b"], $this["config_heatmap"], $this["enable"], $this["is_paused"]);
 
         $password = array('frosch', 'gehen', 'rennen', 'gucken', 'fliegen', 'rasen', 'snobb', 'peter', 'wackel', 'dackel', 'gut', 'schlecht', 'win', 'loss', 'tragen',
               'weg', 'berlin', 'aachen', 'mensch', 'tier', 'turtle', 'adler', 'raupe', 'rauben', 'bank', 'schalter', 'ticket', 'bahn', 'zug', 'delay', 'flugzeug', 'ratte',
