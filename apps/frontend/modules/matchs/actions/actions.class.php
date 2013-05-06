@@ -151,4 +151,16 @@ class matchsActions extends sfActions {
         $this->ebot_ip = sfConfig::get("app_ebot_ip");
         $this->ebot_port = sfConfig::get("app_ebot_port");
     }
+
+    public function executeDemo(sfWebRequest $request) {
+        $this->map = $this->getRoute()->getObject();
+        $this->forward404Unless($this->map);
+        $this->demo = MapsTable::getInstance()->createQuery()->select("tv_record_file")->where("id = ?", $request->getParameter("id"))->execute();
+        if (file_exists($demo_file = sfConfig::get("app_demo_path") . DIRECTORY_SEPARATOR . $this->demo[0]->getTvRecordFile() . ".dem.zip") && !preg_match('=/=', $this->demo[0]->getTvRecordFile())) {
+            header("Content-Type: application/octet-stream");
+            header("Content-Disposition: attachment; filename='".$this->demo[0]->getTvRecordFile() . ".dem.zip'");
+            readfile($demo_file);
+        }
+        return sfView::NONE;
+    }
 }

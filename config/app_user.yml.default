@@ -4,6 +4,7 @@
 
   log_match: ../../ebotv3/logs/log_match
   log_match_admin: ../../ebotv3/logs/log_match_admin
+  demo_path: ../../ebotv3/demos
 
   ebot_ip: 192.168.1.1
   ebot_port: 12360
@@ -11,9 +12,6 @@
   # lan or net, it's to display the server IP or the GO TV IP
   # net mode display only started match on home page
   mode: lan
-  
+
   # set to 0 if you don't want a refresh
   refresh_time: 30
-  
-  # option to display or not the date
-  display_date_table: false

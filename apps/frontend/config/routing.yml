@@ -79,6 +79,15 @@ matchs_view:
     id : \d+
     sf_method: [get]
 
+matchs_demo:
+  url: /matchs/demo/:id
+  class: sfDoctrineRoute
+  options: { model: Maps, type: object}
+  param: { module: matchs, action: demo }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
 player_stats:
   url: /stats/players/:id
   param: { module: stats, action: playerStat }
