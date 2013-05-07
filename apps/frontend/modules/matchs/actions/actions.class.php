@@ -157,9 +157,16 @@ class matchsActions extends sfActions {
         $this->forward404Unless($this->map);
         $this->demo = MapsTable::getInstance()->createQuery()->select("tv_record_file")->where("id = ?", $request->getParameter("id"))->execute();
         if (file_exists($demo_file = sfConfig::get("app_demo_path") . DIRECTORY_SEPARATOR . $this->demo[0]->getTvRecordFile() . ".dem.zip") && !preg_match('=/=', $this->demo[0]->getTvRecordFile())) {
-            header("Content-Type: application/octet-stream");
-            header("Content-Disposition: attachment; filename='".$this->demo[0]->getTvRecordFile() . ".dem.zip'");
-            readfile($demo_file);
+            $apache_modules = apache_get_modules();
+            if (in_array("mod_xsendfile", $apache_modules)) {
+                header("X-Sendfile: $demo_file");
+                header("Content-type: application/octet-stream");
+                header("Content-Disposition: attachment; filename='".$this->demo[0]->getTvRecordFile() . ".dem.zip'");
+            } else {
+                header("Content-Type: application/octet-stream");
+                header("Content-Disposition: attachment; filename='".$this->demo[0]->getTvRecordFile() . ".dem.zip'");
+                readfile($demo_file);
+            }
         }
         return sfView::NONE;
     }
