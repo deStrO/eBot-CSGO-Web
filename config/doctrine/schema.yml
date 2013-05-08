@@ -13,6 +13,7 @@ Matchs:
     team_b_flag: { type: varchar(2) }
     team_b_name: { type: varchar(25) }
     status: { type: integer(2) }
+    is_paused: { type: boolean }
     score_a: { type: integer(5) }
     score_b: { type: integer(5) }
     max_round: { type: integer(3), notnull: true }

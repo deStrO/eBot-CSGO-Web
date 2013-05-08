@@ -30,6 +30,14 @@ if (!$team2->exists())
             if ($(this).attr("href") == "#stats-match") {
                 generateTimeLine(1);
             }
+        });
+
+        var url = document.location.toString();
+        if (url.match('#')) {
+            $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+        }
+        $('.nav-tabs a').on('shown', function (e) {
+            window.location.hash = e.target.hash;
         })
 
         $(".needTips").tipsy({live:true});
@@ -46,7 +54,12 @@ if (!$team2->exists())
     <?php if ($heatmap): ?>
         <li><a href="#heatmap"><?php echo __("Heatmap"); ?></a></li>
     <?php endif; ?>
+    <!--
     <li><a href="#livemap"><?php echo __("Livemap"); ?></a></li>
+    -->
+    <?php if (sfConfig::get("app_demo_download")): ?>
+        <li><a href="#demos"><?php echo __("Demos"); ?></a></li>
+    <?php endif; ?>
     <?php if (file_exists(sfConfig::get("app_log_match") . "/match-" . $match->getId() . ".html")): ?>
         <li><a href="#logs"><?php echo __("Logs"); ?></a></li>
     <?php endif; ?>
@@ -215,9 +228,11 @@ if (!$team2->exists())
     <div class="tab-pane" id="stats-weapon">
         <?php include_partial("matchs/stats_weapon", array("match" => $match)); ?>
     </div>
+    <!--
     <div class="tab-pane" id="livemap">
         <?php include_partial("matchs/livemap", array("match" => $match)); ?>
     </div>
+    -->
     <div class="tab-pane" id="stats-killer-killed">
         <?php include_partial("matchs/stats_killer_killed", array("match" => $match)); ?>
     </div>
@@ -262,6 +277,9 @@ if (!$team2->exists())
             <?php include_partial("matchs/stats_heatmap", array("match" => $match, "class_heatmap" => $class_heatmap)); ?>
         </div>
     <?php endif; ?>
+    <div class="tab-pane" id="demos">
+        <?php include_partial("matchs/stats_demos", array("match" => $match)); ?>
+    </div>
 
 </div>
 
