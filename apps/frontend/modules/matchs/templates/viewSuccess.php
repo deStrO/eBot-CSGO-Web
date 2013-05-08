@@ -57,7 +57,9 @@ if (!$team2->exists())
     <!--
     <li><a href="#livemap"><?php echo __("Livemap"); ?></a></li>
     -->
-    <li><a href="#demos"><?php echo __("Demos"); ?></a></li>
+    <?php if (sfConfig::get("app_demo_download")): ?>
+        <li><a href="#demos"><?php echo __("Demos"); ?></a></li>
+    <?php endif; ?>
     <?php if (file_exists(sfConfig::get("app_log_match") . "/match-" . $match->getId() . ".html")): ?>
         <li><a href="#logs"><?php echo __("Logs"); ?></a></li>
     <?php endif; ?>
