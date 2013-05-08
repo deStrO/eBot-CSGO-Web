@@ -267,6 +267,7 @@ class matchsActions extends sfActions {
             $match->setScoreB(0);
             $match->setStatus(0);
             $match->setIngameEnable(NULL);
+            $match->setIsPaused(NULL);
 //			$match->setIp(null);
 //			$match->setServer(null);
             $match->save();
