@@ -33,15 +33,15 @@ all:
 
     # Enable the database manager
     use_database:           true
-    
+
     enabled_modules: [sfGuardAuth, sfGuardGroup, sfGuardUser, sfGuardPermission]
     i18n: true
-    default_culture:        fr
+    culture: en_US
     standard_helpers: [Partial, Cache, I18N]
   .actions:
     error_404_module: error
     error_404_action: 404
-    
+
     login_module:           sfGuardAuth
     login_action:           signin
 

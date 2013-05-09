@@ -101,6 +101,15 @@ matchs_reset:
     id : \d+
     sf_method: [get]
 
+matchs_reset_map:
+  url: /matchs/resetmap/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: resetMap }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
 matchs_pause_unpause:
   url: /matchs/pause/unpause/:id
   class: sfDoctrineRoute
@@ -160,6 +169,15 @@ matchs_force_start:
   class: sfDoctrineRoute
   options: { model: Matchs, type: object}
   param: { module: matchs, action: forceStart }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+matchs_rcon:
+  url: /matchs/rcon/open/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: openRcon }
   requirements:
     id : \d+
     sf_method: [get]
@@ -249,6 +267,132 @@ users_edit:
   requirements:
     id : \d+
     sf_method: [get, put,post]
+
+teams_create:
+  url: /teams/create
+  class: sfRequestRoute
+  param: { module: teams, action: create }
+  requirements:
+    sf_method: [get,put,post]
+
+teams_edit:
+  url: /teams/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Teams, type: object}
+  param: { module: teams, action: edit }
+  requirements:
+    id : \d+
+    sf_method: [get, put,post]
+
+teams_delete:
+  url: /teams/delete/:id
+  class: sfDoctrineRoute
+  options: { model: Teams, type: object}
+  param: { module: teams, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+teams_view:
+  url: /teams/view/:id
+  class: sfDoctrineRoute
+  options: { model: Teams, type: object}
+  param: { module: teams, action: view }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+teams_index:
+  url: /teams/index/:page
+  class: sfRequestRoute
+  param: { module: teams, action: index }
+  requirements:
+    sf_method: [get]
+    page: \d+
+
+teams_in_seasons:
+  url: /teams/getbyseasons
+  class: sfRequestRoute
+  param: { module: teams, action: teamsInSeasons }
+  requirements:
+    sf_method: [get,put,post]
+
+seasons_create:
+  url: /seasons/create
+  class: sfRequestRoute
+  param: { module: seasons, action: create }
+  requirements:
+    sf_method: [get,put,post]
+
+seasons_edit:
+  url: /seasons/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Seasons, type: object}
+  param: { module: seasons, action: edit }
+  requirements:
+    id : \d+
+    sf_method: [get, put,post]
+
+seasons_delete:
+  url: /seasons/delete/:id
+  class: sfDoctrineRoute
+  options: { model: Seasons, type: object}
+  param: { module: seasons, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+season_deactivate:
+  url: /seasons/deactivate/:id
+  class: sfDoctrineRoute
+  options: { model: Seasons, type: object}
+  param: { module: seasons, action: deactivate }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+advertising_create:
+  url: /advertising/create
+  class: sfRequestRoute
+  param: { module: advertising, action: create }
+  requirements:
+    sf_method: [get,put,post]
+
+advertising_edit:
+  url: /advertising/edit/:id
+  class: sfDoctrineRoute
+  options: { model: advertising, type: object}
+  param: { module: advertising, action: edit }
+  requirements:
+    id : \d+
+    sf_method: [get, put,post]
+
+advertising_delete:
+  url: /advertising/delete/:id
+  class: sfDoctrineRoute
+  options: { model: advertising, type: object}
+  param: { module: advertising, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+advertising_deactivate:
+  url: /advertising/deactivate/:id
+  class: sfDoctrineRoute
+  options: { model: advertising, type: object}
+  param: { module: advertising, action: deactivate }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+users_delete:
+  url: /users/delete/:id
+  class: sfDoctrineRoute
+  options: { model: sfGuardUser, type: object}
+  param: { module: users, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
 
 # generic rules
 # please, remove them by adding more specific rules

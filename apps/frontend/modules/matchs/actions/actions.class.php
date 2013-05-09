@@ -11,7 +11,7 @@
 class matchsActions extends sfActions {
 
 	public function executeMatchsInProgress(sfWebRequest $request) {
-		$this->filter = new MatchsFormFilter($this->getFilters());
+		$this->filter = new MatchsActiveFormFilter($this->getFilters());
 		$query = $this->filter->buildQuery($this->getFilters());
 		$this->filterValues = $this->getFilters();
 
@@ -21,7 +21,7 @@ class matchsActions extends sfActions {
 						'Matchs',
 						12
 		);
-		$this->pager->setQuery($query->andWhere("status >= ? AND status <= ?", array(Matchs::STATUS_NOT_STARTED, Matchs::STATUS_END_MATCH))->orderBy("status ASC"));
+		$this->pager->setQuery($query->andWhere("status >= ? AND status <= ?", array(Matchs::STATUS_NOT_STARTED, Matchs::STATUS_END_MATCH))->orderBy("status DESC"));
 		$this->pager->setPage($request->getParameter('page', 1));
 		$this->pager->init();
 
@@ -29,6 +29,8 @@ class matchsActions extends sfActions {
 		$this->url = "@matchs_current_page";
 
 		$this->servers = ServersTable::getInstance()->findAll();
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
 	}
 
 	public function executeMatchsArchived(sfWebRequest $request) {
@@ -74,6 +76,8 @@ class matchsActions extends sfActions {
 
 	public function executeView(sfWebRequest $request) {
 		$this->match = $this->getRoute()->getObject();
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
 
 		$this->heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->count() > 0;
 		if ($this->heatmap) {
@@ -132,4 +136,38 @@ class matchsActions extends sfActions {
 		return $this->renderText(file_get_contents(sfConfig::get("app_log_match") . "/match-" . $match->getId() . ".html"));
 	}
 
+    public function executeExternalLivemap(sfWebRequest $request) {
+        $this->setLayout("layout_external");
+        $this->forward404Unless($request->getParameter("id"));
+        $this->match = MatchsTable::getInstance()->find($request->getParameter("id"));
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
+	}
+
+    public function executeExternalCoverage(sfWebRequest $request) {
+        $this->setLayout("layout_external");
+        $this->forward404Unless($request->getParameter("id"));
+        $this->match = MatchsTable::getInstance()->find($request->getParameter("id"));
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
+    }
+
+    public function executeDemo(sfWebRequest $request) {
+        $this->map = $this->getRoute()->getObject();
+        $this->forward404Unless($this->map);
+        $this->demo = MapsTable::getInstance()->createQuery()->select("tv_record_file")->where("id = ?", $request->getParameter("id"))->execute();
+        if (file_exists($demo_file = sfConfig::get("app_demo_path") . DIRECTORY_SEPARATOR . $this->demo[0]->getTvRecordFile() . ".dem.zip") && !preg_match('=/=', $this->demo[0]->getTvRecordFile())) {
+            $apache_modules = apache_get_modules();
+            if (in_array("mod_xsendfile", $apache_modules)) {
+                header("X-Sendfile: $demo_file");
+                header("Content-type: application/octet-stream");
+                header("Content-Disposition: attachment; filename='".$this->demo[0]->getTvRecordFile() . ".dem.zip'");
+            } else {
+                header("Content-Type: application/octet-stream");
+                header("Content-Disposition: attachment; filename='".$this->demo[0]->getTvRecordFile() . ".dem.zip'");
+                readfile($demo_file);
+            }
+        }
+        return sfView::NONE;
+    }
 }

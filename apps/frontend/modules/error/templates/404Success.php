@@ -1,3 +1,3 @@
 <div class="alert alert-error">
-    ERROR - <?php echo __("Page non trouvable !"); ?>
+    <?php echo __("Error"); ?> - <?php echo __("Page not found!"); ?>
 </div>

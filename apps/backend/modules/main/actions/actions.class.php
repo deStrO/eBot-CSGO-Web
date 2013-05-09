@@ -16,7 +16,7 @@ class mainActions extends sfActions {
      * @param sfRequest $request A request object
      */
     public function executeIndex(sfWebRequest $request) {
-        
+        $this->news = file_get_contents("http://www.esport-tools.net/ebot/news.txt?version=".sfConfig::get("app_version"));
     }
 
 }

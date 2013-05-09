@@ -11,7 +11,8 @@
 class MatchsFormFilter extends BaseMatchsFormFilter {
 
     public function configure() {
-        $this->useFields(array("server_id", "team_a", "team_b"));
+        $this->useFields(array("server_id", "team_a", "team_b", "season_id"));
+//        $this->widgetSchema['season_id']->addOption('add_empty', false);
     }
 
 }

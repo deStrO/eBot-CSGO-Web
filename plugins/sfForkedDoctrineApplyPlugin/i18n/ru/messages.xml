@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="ru" datatype="plaintext" original="messages" date="2010-03-16T21:58:27Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1" approved="yes">
+        <source>Username</source>
+        <target>Логин</target>
+      </trans-unit>
+      <trans-unit id="2" approved="yes">
+        <source>Password</source>
+        <target>Пароль</target>
+      </trans-unit>
+      <trans-unit id="3" approved="yes">
+        <source>Confirm password</source>
+        <target>Повторите пароль</target>
+      </trans-unit>
+      <trans-unit id="4" approved="yes">
+        <source>Email address</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Confirm email</source>
+        <target>>Повторите email</target>
+      </trans-unit>
+      <trans-unit id="6" approved="yes">
+        <source>First Name</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>Last name</source>
+        <target>Фамилия</target>
+      </trans-unit>
+      <trans-unit id="8" approved="yes">
+        <source>Usernames must contain only letters, numbers and underscores.</source>
+        <target>Логин должен содержать только буквы, цифры и символ подчеркивания.</target>
+      </trans-unit>
+      <trans-unit id="9" approved="yes">
+        <source>There is already a user by that name. Choose another.</source>
+        <target>Этот логин уже используется. Выберете другой.</target>
+      </trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>That password is too short. It must contain a minimum of %min_length% characters.</source>
+        <target>Этот пароль очень короткий. Он должен содержать не менее %min_length% символов.</target>
+      </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>An account with that email address already exists. If you have forgotten your password, click "cancel", then "Reset My Password."</source>
+        <target>Аккаунт с этим email уже вуществует. Если вы просто забыли пароль нажмите "отмена", а потом "Востановить пароль"</target>
+      </trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>The passwords did not match.</source>
+        <target>Пароли не совпадают..</target>
+      </trans-unit>
+      <trans-unit id="14" approved="yes">
+        <source>The email addresses did not match.</source>
+        <target>Email не совпадают..</target>
+      </trans-unit>
+      <trans-unit id="15" approved="yes">
+        <source>First name may not contain &lt;, &gt;, | or &amp;.</source>
+        <target>Имя не может содержать &lt;, &gt;, | или &amp;.</target>
+      </trans-unit>
+      <trans-unit id="16" approved="yes">
+        <source>Last name may not contain &lt;, &gt;, | or &amp;.</source>
+        <target>Фамилия не может содержать &lt;, &gt;, | или &amp;.</target>
+      </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Choose NEW Password</source>
+        <target>Придумайте НОВЫЙ пароль</target>
+      </trans-unit>
+      <trans-unit id="18" approved="yes">
+        <source>Confirm NEW Password</source>
+        <target>Повторите НОВЫЙ пароль</target>
+      </trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>There is no such user.</source>
+        <target>Пользователь не существует.</target>
+      </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>Remember</source>
+        <target>Запомнить</target>
+      </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Forgot your password?</source>
+        <target>Забыли свой пароль?</target>
+      </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>The username and/or password is invalid.</source>
+        <target>Лоигн или пароль не верные.</target>
+      </trans-unit>
+      <trans-unit id="23" approved="yes">
+        <source>Login</source>
+        <target>Вход</target>
+      </trans-unit>
+      <trans-unit id="24" approved="yes">
+        <source>Username or E-Mail</source>
+        <target>Логин или Email</target>
+      </trans-unit>
+      <trans-unit id="25" approved="yes">
+        <source>sign in</source>
+        <target>вход</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

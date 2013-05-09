@@ -32,11 +32,12 @@ class serversActions extends sfActions {
 		$this->forward404Unless($server);
 
 		if ($server->used()) {
-			$this->getUser()->setFlash("notification_error", $this->__("Le serveur est en cours d'utilisation !"));
+			$this->getUser()->setFlash("notification_error", $this->__("This server is currently in use!"));
 		} else {
 			$server->delete();
-			$this->getUser()->setFlash("notification_ok", $this->__("Le serveur a été supprimé"));
+			$this->getUser()->setFlash("notification_ok", $this->__("Server deleted."));
 		}
+
 		$this->redirect("servers/index");
 	}
 
@@ -86,17 +87,17 @@ class serversActions extends sfActions {
 							$added[] = $ip;
 						}
 					} else {
-						$this->getUser()->setFlash("notification_error", $this->__("Format non reconnu"));
+						$this->getUser()->setFlash("notification_error", $this->__("Unknown Server-Format"));
 					}
 
 					if (count($added) > 0) {
-						$this->getUser()->setFlash("notification_ok", count($added) . $this->__(" serveurs ont été ajoutés (") . implode(", ", $added) . ")");
+						$this->getUser()->setFlash("notification_ok", count($added) . $this->__(" server were added ") . "(" . implode(", ", $added) . ")");
 						$this->redirect("servers_create");
 					}
 				} else {
 					$server = $this->form->save();
 
-					$this->getUser()->setFlash("notification_ok", $this->__("1 serveur a été ajouté (") . $server->getIp() . ")");
+					$this->getUser()->setFlash("notification_ok", $this->__("1 Server was added with IP (") . $server->getIp() . ")");
 					$this->redirect("servers_create");
 				}
 			}

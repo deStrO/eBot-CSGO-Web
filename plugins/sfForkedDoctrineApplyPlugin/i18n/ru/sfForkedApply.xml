@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="ru" datatype="plaintext" original="sfForkedApply" date="2010-03-16T21:58:27Z" product-name="sfForkedApply">
+    <header/>
+    <body>
+      <trans-unit id="1" approved="yes">
+        <source>&lt;p&gt;
+Thanks for applying for an account on %1%.
+&lt;/p&gt;&lt;p&gt;
+To prevent abuse of the site, we require that you activate your account by clicking on the following link:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+Thanks again for joining us.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Спасибо за регистрацию пользователя на %1%.
+&lt;/p&gt;&lt;p&gt;
+Активируете свою учётную запись, перейдя по следующей ссылке:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+Ещё раз спасибо за то что присоеденились к нам!
+&lt;/p&gt;
+</target>
+      </trans-unit>
+      <trans-unit id="2" approved="yes">
+        <source>Continue</source>
+        <target>Продолжить</target>
+      </trans-unit>
+      <trans-unit id="3" approved="yes">
+        <source>&lt;p&gt;
+That confirmation code is invalid.
+&lt;/p&gt;&lt;p&gt;
+This may be because you have already confirmed your account. If so,
+just click on the "Log In" button to log in.
+&lt;/p&gt;&lt;p&gt;
+Other possible explanations:
+&lt;/p&gt;&lt;p&gt;
+1. If you copied and pasted the URL from
+your confirmation email, please make sure you did so correctly and
+completely.
+&lt;/p&gt;&lt;p&gt;
+2. If you received this confirmation email a long time ago
+and never confirmed your account, it is possible that your account has
+been purged from the system. In that case, you should simply apply
+for a new account.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Этот код подтверждения является не правильным.
+&lt;/p&gt;&lt;p&gt;
+Это может быть потому что Вы уже активировали свою учётную запись. Если это так,
+просто нажмите на ссылку "Войти", чтобы войти.
+&lt;/p&gt;&lt;p&gt;
+Другие возможные причины::
+&lt;/p&gt;&lt;p&gt;
+1. Если Вы скопировали и вставили URL из
+письма по электронной почте, убедитесь, что Вы сделали это правильно и
+полностью.
+&lt;/p&gt;&lt;p&gt;
+2. Если Вы получили это письмо с активацией давно
+и не активировали свою учётную запись, вполне возможно, что она
+уже удалена из системы. В этом случае нужно просто зарегистрироваться снова.
+&lt;/p&gt;
+</target>
+      </trans-unit>
+      <trans-unit id="4" approved="yes">
+        <source>Apply for an Account</source>
+        <target>Регистрация</target>
+      </trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Create My Account</source>
+        <target>Регистрация</target>
+      </trans-unit>
+      <trans-unit id="6" approved="yes">
+        <source>or</source>
+        <target>или</target>
+      </trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>Cancel</source>
+        <target>Отменить</target>
+      </trans-unit>
+      <trans-unit id="8" approved="yes">
+        <source>Forgot your username or password? No problem! Just enter your username &lt;strong&gt;or&lt;/strong&gt;
+your email address and click "Reset My Password." You will receive an email message containing both your username and
+a link permitting you to change your password if you wish.</source>
+        <target>Забыли логин или пароль? Не проблема! Просто введите Ваши логин &lt;strong&gt;или&lt;/strong&gt;
+Ваш email адрес и нажмите "Изменить пароль." Вы получите по электронной почте сообщение, содержащее логин и
+ссылку, которая позволят Вам изменить Ваш пароль, если Вы этого захотите.</target>
+      </trans-unit>
+      <trans-unit id="9" approved="yes">
+        <source>Reset My Password</source>
+        <target>Изменить пароль</target>
+      </trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>Thanks for applying for an account with %1%.
+
+To prevent abuse of the site, we require that you activate your account by clicking on the following link:
+
+%2%
+
+Thanks again for joining us.</source>
+        <target>Спасибо за регистрацию пользователя %1%.
+
+Активируете свою учётную запись, перейдя по следующей ссылке:
+
+%2%
+
+Ещё раз спасибо за то что присоеденились к нам!
+</target>
+      </trans-unit>
+      <trans-unit id="11" approved="yes">
+        <source>Your password has been successfully reset. You are now logged
+in to this site. In the future, be sure to log in with your new password.</source>
+        <target>Ваш пароль был успешно изменён. Теперь Вы авторизированны на сайте.
+В будущем, убедитесь, что входите с новым паролем.</target>
+      </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>Thanks for confirming your email address. You may now change your
+password using the form below.</source>
+        <target>Теперь Вы можете изменить пароль, используя форму ниже.</target>
+      </trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>&lt;p&gt;
+For security reasons, a confirmation message has been sent to
+the email address associated with this account. Please check your
+email for that message. You will need to click on a link provided
+in that email in order to change your password. If you do not see
+the message, be sure to check your "spam" and "bulk" email folders.
+&lt;/p&gt;
+&lt;p&gt;
+We apologize for the inconvenience.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+По соображениям безопасности, подтверждающее сообщение было отправлено
+на email, связанный с этой учетной записью. Пожалуйста, проверьте
+Вашу почту. Вам нужно будет нажать на ссылку
+в этом письме, чтобы изменить свой пароль. Если Вы не видите
+письмо, не забудьте проверить папку "спам".
+&lt;/p&gt;
+&lt;p&gt;
+Мы приносим извинения за причиненные неудобства.
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="14" approved="yes">
+        <source>
+&lt;p&gt;
+We have received your request to recover your username and possibly your password on: %1%
+&lt;/p&gt;&lt;p&gt;
+Your username is: %USERNAME%
+&lt;/p&gt;&lt;p&gt;
+If you have lost your password or wish to reset it, click on the link that follows:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+You will then be prompted for the new password you wish to use.
+&lt;/p&gt;&lt;p&gt;
+Your password will not be changed unless you click on the link above and complete the form.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Мы получили Ваш запрос на восстановление логина и возможно пароля на: %1%
+&lt;/p&gt;&lt;p&gt;
+Ваш логин: %USERNAME%
+&lt;/p&gt;&lt;p&gt;
+Если Вы забыли свой пароль или хотите восстановить, нажмите на следующую ссылку:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+Вам будет предложено ввести новый пароль.
+&lt;/p&gt;&lt;p&gt;
+Ваш пароль не будет изменен, если Вы не нажмете на ссылку или не заполните форму.
+&lt;/p&gt;
+</target>
+      </trans-unit>
+      <trans-unit id="15" approved="yes">
+        <source>&lt;p&gt;
+An error took place during the email delivery process. Please try
+again later.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Ошибка в процессе отправки почты. Пожалуйста, попробуйте
+еще раз позже.
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="16" approved="yes">
+        <source>sign in</source>
+        <target>вход</target>
+      </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Reset Your Password</source>
+        <target>напомнить пароль</target>
+      </trans-unit>
+      <trans-unit id="18" approved="yes">
+        <source>Create a New Account</source>
+        <target>регистрация</target>
+      </trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>Account Settings</source>
+        <target>Профиль</target>
+      </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>Save</source>
+        <target>Сохранить</target>
+      </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Click the button below to change your password.</source>
+        <target>Нажмите на кнопку, чтобы изменить пароль.</target>
+      </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>Reset Password</source>
+        <target>Изменить пароль</target>
+      </trans-unit>
+      <trans-unit id="23" approved="yes">
+        <source>Thank you for applying for an account. You will receive a verification
+email shortly. If you do not see that email, please be sure to check your "spam" or "bulk" folder.</source>
+        <target>Спасибо за регистрацию. Для подтверждения почтового адреса, Вам по электронной почте отправленно письмо. 
+Если Вы его не видите - проверьте папку "Спам".
+        </target>
+      </trans-unit>
+      <trans-unit id="24" approved="yes">
+        <source>Sorry, there is no user with that username or email address.</source>
+        <target>К сожалению, не существует пользователя с указанным логином или адресом электронной почты.</target>
+      </trans-unit>
+      <trans-unit id="25" approved="yes">
+        <source>
+That account was never verified. You must verify the account before you can log in or, if
+necessary, reset the password. We have resent your verification email, which contains
+instructions to verify your account. If you do not see that email, please be sure to check 
+your "spam" or "bulk" folder.</source>
+        <target>
+Эта учётная запись не была подтверждён. Вы должны подтвердить её прежде чем Вы сможете войти в систему или, если
+необходимо, изенить пароль. Мы повторно отправляем письмо, в котором содержится
+инструкциии о том как подтвердить Ваш аккаунт. Если Вы не видите эти сообщения, пожалуйста, не забудьте проверить папку "спам".</target>
+      </trans-unit>
+      <trans-unit id="26" approved="yes">
+        <source>We have received your request to recover your username and possibly your password on:
+
+%1%
+
+Your username is: %USERNAME%
+
+If you have lost your password or wish to reset it, click on the link that follows:
+
+%2%
+
+You will then be prompted for the new password you wish to use.
+
+Your password will NOT be changed unless you click on the link above and complete the form.</source>
+        <target>Мы получили запрос на восстановление логина и пароля на:
+
+%1%
+
+Ваш логин: %USERNAME%
+
+Если Вы забыли пароль или хотите восстановить, нажмите на следующую ссылку:
+
+%2%
+
+Вам будет предложено ввести новый пароль.
+
+Ваш пароль НЕ будут изменены, если Вы не нажмете на ссылку или не заполните форму.
+</target>
+      </trans-unit>
+      <trans-unit id="27" approved="yes">
+        <source>Thank you for confirming your account! You are now logged into the site.</source>
+        <target>Благодарим Вас за подтверждение вашей учётной записи! Теперь Вы вошли на сайт.</target>
+      </trans-unit>
+      <trans-unit id="28" approved="yes">
+        <source>&lt;p&gt;
+This account is inactive. Please contact the administrator.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+Эта учётная запись деактивирован. Пожалуйста, обратитесь к администратору.
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="29" approved="yes">
+        <source>Logged in as %1%</source>
+        <target>Привет %1%</target>
+      </trans-unit>
+      <trans-unit id="30" approved="yes">
+        <source>Log Out</source>
+        <target>Выход</target>
+      </trans-unit>
+      <trans-unit id="31" approved="yes">
+        <source>Settings</source>
+        <target>Настройки</target>
+      </trans-unit>
+      <trans-unit id="32" approved="yes">
+        <source>Please verify your account on %1%</source>
+        <target>Проверьте свою учетную запись на %1%</target>
+      </trans-unit>
+      <trans-unit id="33" approved="yes">
+        <source>Please verify your password reset request on %1%</source>
+        <target>Пожалуйста, проверьте свой запрос на изменение пароля на %1%</target>
+      </trans-unit>
+      <trans-unit id="34" approved="yes">
+        <source>You may change your password using the form below.</source>
+        <target>Вы можете изменить пароль, используя форму ниже.</target>
+      </trans-unit>
+      <trans-unit id="35" approved="yes">
+        <source>The captcha is not valid (%error%).</source>
+        <target>Ошибка кода (%error%).</target>
+      </trans-unit>
+      <trans-unit id="36" approved="yes">
+        <source>Unable to check the captcha from the server (%error%).</source>
+        <target>Невозможно проверить код на сервере (%error%).</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

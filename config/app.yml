@@ -4,9 +4,9 @@
 # default values
 all:
   <?php require_once(sfConfig::get('sf_root_dir')."/config/app_user.yml") ?>
-  
+
   .array:
-    maps: [ de_dust2_se, de_nuke_se, de_nuke_ve, de_train_se, de_mirage_csgo, de_inferno_se ]
+    maps: [ de_dust2_se, de_nuke_se, de_nuke_ve, de_train_se, de_mirage_csgo, de_mirage_go, de_inferno_se ]
     flag_team:
       ZA:	AFRIQUE DU SUD
       DZ:	ALGERIE
@@ -29,6 +29,7 @@ all:
       ES:	ESPAGNE
       EE:	ESTONIA
       US:	ETATS-UNIS
+      EU:   EUROPE
       FI:	FINLAND
       FR:	FRANCE
       GR:	GRECE
@@ -71,7 +72,7 @@ all:
       TR:	TURQUIE
       UA:	UKRAINE
       VE:	VENEZUELA
-      
+
     flag_team_en:
       DZ:	ALGERIA
       AR:	ARGENTINA
@@ -88,6 +89,7 @@ all:
       CZ:	CZECH REPUBLIC
       DK:	DENMARK
       EE:	ESTONIA
+      EU:   EUROPE
       FI:	FINLAND
       FR:	FRANCE
       DE:	GERMANY
@@ -136,5 +138,5 @@ all:
       GB:	UNITED KINGDOM
       US:	UNITED STATES
       VE:	VENEZUELA
-      
-  version: "3.0.2"
+
+  version: "3.1.0"

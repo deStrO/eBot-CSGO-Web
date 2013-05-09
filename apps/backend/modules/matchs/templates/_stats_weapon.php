@@ -1,4 +1,4 @@
-<h5><i class="icon-fire"></i> <?php echo __("Statistiques des armes par joueurs"); ?></h5>
+<h5><i class="icon-fire"></i> <?php echo __("Weapon Statistics by Player"); ?></h5>
 
 <?php
 $players = array();
@@ -54,7 +54,7 @@ $weapons = array("glock", "hkp2000", "deagle", "p250", "tec9", "awp", "m4a1", "a
     </tfoot>
 </table>
 
-<h5><i class="icon-info-sign"></i> <?php echo __("Aide"); ?></h5>
+<h5><i class="icon-info-sign"></i> <?php echo __("Info"); ?></h5>
 <div class="well">
-    <?php echo __("<p>La colonne <b>K</b> représente les kills effectués avec l'arme, la colonne <b>D</b> représente le nombre de fois que le joueur a été tué par l'arme</p>"); ?>		
+    <?php echo __("The column <b>K</b> represents the number of kill with this weapons, the column <b>D</b> represents the number of times the player has been killed by the weapon"); ?>
 </div>

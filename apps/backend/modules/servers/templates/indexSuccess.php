@@ -1,12 +1,12 @@
-<h3><?php echo __("Listes des serveurs"); ?></h3>
+<h3><?php echo __("Server Management"); ?></h3>
 <hr/>
 <table class="table table-striped">
     <thead>
         <tr>
             <th><?php echo __("#ID"); ?></th>
-            <th><?php echo __("Adresse IP"); ?></th>
-            <th><?php echo __("Nom"); ?></th>
-            <th><?php echo __("Utilisation"); ?></th>
+            <th><?php echo __("IP Adress"); ?></th>
+            <th><?php echo __("Name"); ?></th>
+            <th><?php echo __("used?"); ?></th>
             <th><?php echo __("Action"); ?></th>
         </tr>
     </thead>
@@ -19,21 +19,21 @@
                 <td><?php echo $server->getHostname(); ?></td>
                 <td width="100">
                     <?php if ($used): ?>
-                        <?php echo image_tag("/images/icons/flag_green.png"); ?> <?php echo __("En cours"); ?>
+                        <?php echo image_tag("/images/icons/flag_green.png"); ?> <?php echo __("in use"); ?>
                     <?php else: ?>
-                        <?php echo image_tag("/images/icons/flag_red.png"); ?> <?php echo __("Non utilisé"); ?>
+                        <?php echo image_tag("/images/icons/flag_red.png"); ?> <?php echo __("not used"); ?>
                     <?php endif; ?>
                 </td>
                 <td width="100">
                     <?php if (!$used): ?>
-                        <a href="<?php echo url_for("server_delete", $server); ?>"><button class="btn btn-danger"><?php echo __("Supprimer"); ?></button></a>
+                        <a href="<?php echo url_for("server_delete", $server); ?>"><button class="btn btn-danger"><?php echo __("Delete"); ?></button></a>
                     <?php endif; ?>
                 </td>
             </tr>
         <?php endforeach; ?>
         <?php if ($servers->count() == 0): ?>
             <tr>
-                <td colspan="5"><?php echo __("Pas de serveur enregistré"); ?></td>
+                <td colspan="5"><?php echo __("No Servers registered."); ?></td>
             </tr>
         <?php endif; ?>
     </tbody>

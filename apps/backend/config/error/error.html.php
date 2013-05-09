@@ -32,10 +32,10 @@
     </head>
     <body>
         <div class="hero-unit">
-            <h1>Error !</h1>
-            <p>Une erreur s'est produite durant le chargement de la page</p>
+            <h1><?php echo "Error"; ?></h1>
+            <p><?php echo "Page could not be loaded due to an error."; ?></p>
         </div>
 
-       
+
     </body>
 </html>

@@ -1,3 +1,3 @@
 <div class="alert alert-error">
-    ERROR - <?php echo __("Vous n'avez pas les droits requis !"); ?>
+    <?php echo __("Error"); ?> - <?php echo __("You do not have the required rights to access this site!"); ?>
 </div>

@@ -49,7 +49,8 @@
 							</p>
 							<ul class="nav">
 								<li class="active"><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Home"); ?></a></li>
-								<li><a href="http://www.esport-tools.net/ebot"><?php echo __("Aide"); ?></a></li>
+								<li><a href="/admin.php"><?php echo __("Admin"); ?></a></li>
+								<li><a href="http://www.esport-tools.net/ebot"><?php echo __("Help"); ?></a></li>
 								<li><a href="http://www.esport-tools.net/about"><?php echo __("About"); ?></a></li>
 							</ul>
 						<?php endif; ?>
@@ -66,7 +67,7 @@
 					<?php if ($sf_user->hasFlash("notification_error")): ?>
 						<div class="alert alert-error">
 							<button type="button" class="close" data-dismiss="alert">×</button>
-							<h4><?php echo __("Erreur"); ?> !</h4>
+							<h4><?php echo __("Error"); ?> !</h4>
 							<?php echo $sf_user->getFlash("notification_error"); ?>
 						</div>
 					<?php endif; ?>
@@ -85,7 +86,7 @@
 
 			<!-- Please, don't remove the brand -->
 			<footer class="footer">
-				<p>&copy; <a target="_blank" href="http://www.esport-tools.net/ebot">eSport-tools</a> 2012 - <?php echo (sfConfig::get("app_version") != "") ? sfConfig::get("app_version") : "3.0 RC6"; ?> - By deStrO - Follow me on <a target="_blank" href="https://twitter.com/deStrO_BE">Twitter</a> - Propulsed by <a target="_blank" href="http://twitter.github.com/bootstrap">Bootstrap</a> & <a target="_blank" href="http://www.symfony-project.com">Symfony</a> - Follow me <a target="_blank" href="https://github.com/deStrO/eBot-CSGO">GitHub</a></p>
+				<p>&copy; <a target="_blank" href="http://www.esport-tools.net/ebot">eSport-tools</a> 2012-2013 - <?php echo (sfConfig::get("app_version") != "") ? sfConfig::get("app_version") : "3.0 RC6"; ?> - By deStrO &amp; Basert - Follow me on <a target="_blank" href="https://twitter.com/deStrO_BE">Twitter</a> - Propulsed by <a target="_blank" href="http://twitter.github.com/bootstrap">Bootstrap</a> & <a target="_blank" href="http://www.symfony-project.com">Symfony</a> - Follow eBot on <a target="_blank" href="https://github.com/deStrO/eBot-CSGO">GitHub</a></p>
 			</footer>
         </div>
     </body>

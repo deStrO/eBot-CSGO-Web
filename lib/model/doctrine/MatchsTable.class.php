@@ -38,12 +38,4 @@ class MatchsTable extends Doctrine_Table {
         return $this->createQuery()->where("status = ?", Matchs::STATUS_ARCHIVE)->orderBy("id DESC");
     }
 
-    public function getLastMatch()
-    {
-        return $this->createQuery()
-            ->orderBy('created_at DESC')
-            ->fetchOne()
-        ;
-    }
-
 }

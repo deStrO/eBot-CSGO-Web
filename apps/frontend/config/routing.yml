@@ -79,6 +79,15 @@ matchs_view:
     id : \d+
     sf_method: [get]
 
+matchs_demo:
+  url: /matchs/demo/:id
+  class: sfDoctrineRoute
+  options: { model: Maps, type: object}
+  param: { module: matchs, action: demo }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
 player_stats:
   url: /stats/players/:id
   param: { module: stats, action: playerStat }
@@ -104,6 +113,17 @@ matchs_heatmap_data:
     id : \d+
     sf_method: [post]
 
+seasons_index:
+    url: /seasons
+    param: { module: seasons, action: index }
+
+season_select:
+  url: /seasons/select
+  class: sfRequestRoute
+  param: { module: seasons, action: select }
+  requirements:
+    sf_method: [get]
+
 stats_index:
   url: /stats
   param: { module: stats, action: index }
@@ -115,6 +135,36 @@ stats_maps:
 stats_weapons:
   url: /stats/weapons
   param: { module: stats, action: weaponStats }
+
+stats_filters:
+  url: /stats/filter
+  class: sfRequestRoute
+  param: { module: stats, action: filters }
+  requirements:
+    sf_method: [put,post]
+
+stats_filters_clear:
+  url: /stats/filter/clear
+  class: sfRequestRoute
+  param: { module: stats, action: filtersClear }
+  requirements:
+    sf_method: [get]
+
+external_livemap:
+  url: /matchs/livemap/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: externalLivemap }
+  requirements:
+    id : \d+
+
+external_coverage:
+  url: /matchs/coverage/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: externalCoverage }
+  requirements:
+    id : \d+
 
 ingame:
   url: /main/ingame

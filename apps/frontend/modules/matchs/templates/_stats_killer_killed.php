@@ -1,21 +1,18 @@
-<h5><i class="icon-fire"></i> <?php echo __("Tueur / tué"); ?></h5>
+<h5><i class="icon-fire"></i> <?php echo __("Killer / Killed"); ?></h5>
 
 <script>
-$(function() { 
+$(function() {
     $(".highlight_name").mouseover(
     function() {
         var id = $(this).attr("target");
         $("#player-"+id).addClass("highlight");
     });
-    
+
     $(".highlight_name").mouseout(
-    function() { 
+    function() {
         var id = $(this).attr("target");
         $("#player-"+id).removeClass("highlight");
     })
-    
-     $("#tableKilledKiller").tablesorter({sortList: [[2,1] ]});
-
 });
 </script>
 
@@ -23,7 +20,7 @@ $(function() {
     .highlight {
         font-weight: bolder;
     }
-    
+
     .highlight_name {
         cursor: default;
     }
