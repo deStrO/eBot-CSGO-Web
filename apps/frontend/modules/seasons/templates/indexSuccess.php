@@ -47,10 +47,10 @@
                 </tr>
                 <tr>
                     <td colspan="7" style="padding:0; border:0;">
-                        <div class="collapse" id="collapse-<?php echo $season->getId(); ?>"> <!--  -->
+                        <div class="collapse" id="collapse-<?php echo $season->getId(); ?>">
                             <div style="width:60%; float:left;">
                                 <table class="table table-striped">
-                                    <?php $matchs = $season->getMatchs(); ?>
+                                    <?php $matchs = Doctrine::getTable('Matchs')->createQuery('m')->andWhere('m.season_id = ?', $season->getId())->orderBy('m.id DESC')->execute(); ?>
                                     <?php foreach ($matchs as $index => $match): ?>
                                         <?php if ($index >= 6): ?>
                                             <tfoot>
@@ -167,10 +167,10 @@
                 </tr>
                 <tr>
                     <td colspan="7" style="padding:0; border:0;">
-                        <div class="collapse" id="collapse-<?php echo $season->getId(); ?>"> <!--  -->
+                        <div class="collapse" id="collapse-<?php echo $season->getId(); ?>">
                             <div style="width:60%; float:left;">
                                 <table class="table table-striped">
-                                    <?php $matchs = $season->getMatchs(); ?>
+                                    <?php $matchs = Doctrine::getTable('Matchs')->createQuery('m')->andWhere('m.season_id = ?', $season->getId())->orderBy('m.id DESC')->execute(); ?>
                                     <?php foreach ($matchs as $index => $match): ?>
                                         <?php if ($index >= 6): ?>
                                             <tfoot>
