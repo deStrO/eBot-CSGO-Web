@@ -1,3 +1,14 @@
+<script>
+    $(document).ready(function(){
+        ws = new WebSocket("ws://<?php echo $ebot_ip; ?>:<?php echo $ebot_port; ?>/reload");
+    });
+
+    function doRequest(event) {
+        ws.send("reload");
+        return false;
+    }
+</script>
+
 <h3><?php echo __("Advertising Management"); ?></h3>
 <hr/>
 <table class="table table-striped">
@@ -27,4 +38,5 @@
 </table>
 <div class="modal-footer" style="text-align:left;">
     <a href="<?php echo url_for("advertising_create"); ?>"><button class="btn btn-primary" style="text-align:left;"><?php echo __("Add new Advert"); ?></button></a>
+    <a href="" onclick="doRequest(); return false;"><button class="btn btn-primary"><?php echo __("Reload Adverts"); ?></button></a>
 </div>
