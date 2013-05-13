@@ -17,6 +17,7 @@
             </div>
         <?php endforeach; ?>
 
+<!--
         <div class="control-group">
             <label class="control-label"><?php echo __("Season"); ?></label>
             <div class="controls">
@@ -37,6 +38,7 @@
                 </select>
             </div>
         </div>
+-->
 
         <div class="control-group">
             <div class="controls">
