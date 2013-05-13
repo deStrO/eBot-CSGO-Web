@@ -13,8 +13,9 @@
         <?php $noentry = true; ?>
         <?php foreach($match->getMaps() as $index => $map): ?>
             <?php
-                $score1 = $map->getMapsScore()[$index]->getScore1Side1() + $map->getMapsScore()[$index]->getScore1Side2();
-                $score2 = $map->getMapsScore()[$index]->getScore2Side1() + $map->getMapsScore()[$index]->getScore2Side2();
+                $mapScore = $map->getMapsScore();
+                $score1 = $mapScore[$index]->getScore1Side1() + $mapScore[$index]->getScore1Side2();
+                $score2 = $mapScore[$index]->getScore2Side1() + $mapScore[$index]->getScore2Side2();
 
                 \ScoreColorUtils::colorForScore($score1, $score2);
 
