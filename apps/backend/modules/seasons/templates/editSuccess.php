@@ -44,9 +44,10 @@
                             <th><?php echo __("Shorthandle"); ?></th>
                         </thead>
                         <tbody>
+                            <?php $listedTeams = array(); ?>
                             <?php foreach ($teamsInSeasons as $team): ?>
                                 <tr>
-                                    <td><input type="checkbox" checked="checked" name="teams[]" value="<?php echo $team->getId(); ?>"></td>
+                                    <td><input type="checkbox" checked="checked" name="teams[]" value="<?php echo $team->getTeamId(); ?>"></td>
                                     <td>#<?php echo $team->getTeams()->getId(); ?></td>
                                     <td><i class="flag flag-<?php echo strtolower($team->getTeams()->getFlag()); ?>"></i></td>
                                     <td><?php echo $team->getTeams()->getName(); ?></td>

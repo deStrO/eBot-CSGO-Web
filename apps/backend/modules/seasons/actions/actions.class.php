@@ -63,7 +63,7 @@ class seasonsActions extends sfActions {
             if ($this->form->isValid()) {
                 $this->form->save();
 
-                $deleted = TeamsInSeasonsTable::getInstance()->createQuery('s')->delete()->where('s.season_id = ?', $this->season->getId())->execute();
+                $deleted = TeamsInSeasonsTable::getInstance()->createQuery('s')->where('s.season_id = ?', $this->season->getId())->delete()->execute();
                 foreach ($teams as $team) {
                     $teamsInSeasons = new TeamsInSeasons();
                     $teamsInSeasons->setSeasons($this->season);

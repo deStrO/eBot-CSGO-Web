@@ -44,16 +44,8 @@
                         </thead>
                         <tbody>
                             <?php foreach ($teams as $index => $team): ?>
-                                <?php if (in_array($team->getId(), $listedTeams)) continue; ?>
-                                <?php
-                                    $inarray = false;
-                                    for ($i=0;$i<count($teamsInSeasons); $i++) {
-                                        if ($team->getId() == $teamsInSeasons[$i]['team_id'])
-                                            $inarray = true;
-                                    }
-                                ?>
                                 <tr>
-                                    <td><input type="checkbox" <?php if ($inarray) echo 'checked="checked"'; ?> name="teams[]" value="<?php echo $team->getId(); ?>"></td>
+                                    <td><input type="checkbox" name="teams[]" value="<?php echo $team->getId(); ?>"></td>
                                     <td>#<?php echo $team->getId(); ?></td>
                                     <td><i class="flag flag-<?php echo strtolower($team->getFlag()); ?>"></i></td>
                                     <td><?php echo $team->getName(); ?></td>
