@@ -5,6 +5,24 @@
     });
 </script>
 
+<script>
+    $(document).ready(function(){
+        $("#kwd_search").keyup(function(){
+            if( $(this).val() != "") {
+                $("#tableTeams tbody>tr").hide();
+                $("#tableTeams td:contains-ci('" + $(this).val() + "')").parent("tr").show();
+            } else {
+                $("#tableTeams tbody>tr").show();
+            }
+        });
+    });
+    $.extend($.expr[":"], {
+        "contains-ci": function(elem, i, match, array) {
+            return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+        }
+    });
+</script>
+
 <h3><?php echo __("Edit Season"); ?>: <?php echo $season->getName(); ?></h3>
 <hr/>
 <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("seasons_edit", $season); ?>" enctype="multipart/form-data">
@@ -48,7 +66,7 @@
                             <?php foreach ($teamsInSeasons as $team): ?>
                                 <tr>
                                     <td><input type="checkbox" checked="checked" name="teams[]" value="<?php echo $team->getTeamId(); ?>"></td>
-                                    <td>#<?php echo $team->getTeams()->getId(); ?></td>
+                                    <td><?php echo $team->getTeams()->getId(); ?></td>
                                     <td><i class="flag flag-<?php echo strtolower($team->getTeams()->getFlag()); ?>"></i></td>
                                     <td><?php echo $team->getTeams()->getName(); ?></td>
                                     <td><?php echo $team->getTeams()->getShorthandle(); ?></td>
@@ -62,7 +80,10 @@
                     </table>
                 </div>
                 <div class="well">
-                    <table id="tableTeams"  cellpadding="0" cellspacing="0" border="0" class="table table-striped table-condensed">
+                    <div class="span6">
+                        <input type="text" id="kwd_search" value=""/ placeholder="Search">
+                    </div>
+                    <table id="tableTeams" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-condensed">
                         <thead>
                             <th width="25"></th>
                             <th width="50"><?php echo __("#ID"); ?></th>
@@ -82,7 +103,7 @@
                                 ?>
                                 <tr>
                                     <td><input type="checkbox" <?php if ($inarray) echo 'checked="checked"'; ?> name="teams[]" value="<?php echo $team->getId(); ?>"></td>
-                                    <td>#<?php echo $team->getId(); ?></td>
+                                    <td><?php echo $team->getId(); ?></td>
                                     <td><i class="flag flag-<?php echo strtolower($team->getFlag()); ?>"></i></td>
                                     <td><?php echo $team->getName(); ?></td>
                                     <td><?php echo $team->getShorthandle(); ?></td>

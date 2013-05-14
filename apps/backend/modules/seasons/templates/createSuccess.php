@@ -5,6 +5,24 @@
     });
 </script>
 
+<script>
+    $(document).ready(function(){
+        $("#kwd_search").keyup(function(){
+            if( $(this).val() != "") {
+                $("#tableTeams tbody>tr").hide();
+                $("#tableTeams td:contains-ci('" + $(this).val() + "')").parent("tr").show();
+            } else {
+                $("#tableTeams tbody>tr").show();
+            }
+        });
+    });
+    $.extend($.expr[":"], {
+        "contains-ci": function(elem, i, match, array) {
+            return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+        }
+    });
+</script>
+
 <h3><?php echo __("Create Season"); ?></h3>
 <hr/>
 <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("seasons_create"); ?>" enctype="multipart/form-data">
@@ -34,6 +52,9 @@
                     </div>
                 </td><td width="50%" style="vertical-align:top;">
                 <div class="well">
+                    <div class="span6">
+                        <input type="text" id="kwd_search" value=""/ placeholder="Search">
+                    </div>
                     <table id="tableTeams"  cellpadding="0" cellspacing="0" border="0" class="table table-striped table-condensed">
                         <thead>
                             <th width="25"></th>

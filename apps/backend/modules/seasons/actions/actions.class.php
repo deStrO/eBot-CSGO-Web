@@ -33,11 +33,11 @@ class seasonsActions extends sfActions {
                 $datas["end"] = $this->form->getValue("end");
                 $this->form = new SeasonsForm();
                 $this->form->bind($datas, $upload);
-                $this->form->save();
+                $season = $this->form->save();
 
                 foreach ($teams as $team) {
                     $teamsInSeasons = new TeamsInSeasons();
-                    $teamsInSeasons->setSeasons($this->season);
+                    $teamsInSeasons->setSeasons($season);
                     $teamsInSeasons->setTeamId($team);
                     $teamsInSeasons->save();
                 }
@@ -70,6 +70,7 @@ class seasonsActions extends sfActions {
                     $teamsInSeasons->setTeamId($team);
                     $teamsInSeasons->save();
                 }
+
 
                 $this->getUser()->setFlash("notification_ok", $this->__("Season edited successfully."));
                 $this->redirect("seasons/index");
