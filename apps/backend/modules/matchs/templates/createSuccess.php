@@ -109,7 +109,7 @@
             function() {
                 if($(this).val() != "") {
                     $.ajax({
-                        url: "/admin.php/teams/getbyseasons",
+                        url: "<?php echo url_for("teams_in_seasons"); ?>",
                         data: {season_id: $(this).val()},
                         datatype: "json",
                         type: "POST",
@@ -135,6 +135,9 @@
                 }
                 $('#matchs_team_a').append($(optionsAsString));
                 $('#matchs_team_b').append($(optionsAsString));
+            } else {
+                $('#matchs_team_a').append(matchs_team_content);
+                $('#matchs_team_b').append(matchs_team_content);
             }
         }
 

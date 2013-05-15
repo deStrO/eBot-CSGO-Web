@@ -15,13 +15,7 @@ class teamsActions extends sfActions {
     }
 
     public function executeIndex(sfWebRequest $request) {
-        $table = TeamsTable::getInstance();
-        $this->pager = null;
-        $this->pager = new sfDoctrinePager('Teams', 12);
-        $this->pager->setPage($request->getParameter('page', 1));
-        $this->pager->init();
-
-        $this->url = "@teams_index";
+        $this->teams = TeamsTable::getInstance()->findAll();
     }
 
     public function executeCreate(sfWebRequest $request) {
@@ -105,6 +99,8 @@ class teamsActions extends sfActions {
                     $teams['name'][] = $name[0]['name'];
                     $teams['flag'][] = $name[0]['flag'];
                 }
+                $array_lowercase = array_map('strtolower', $teams['name']);
+                array_multisort($array_lowercase, SORT_ASC, SORT_STRING, $teams['name'], $teams['id'], $teams['flag']);
                 print_r(json_encode($teams));
             }
         }
