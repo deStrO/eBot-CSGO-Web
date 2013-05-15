@@ -1,11 +1,4 @@
 <script>
-    $(document).ready(function() {
-        $("#start").datepicker({format: 'dd.mm.yyyy', autoclose: true, language: 'de'});
-        $("#end").datepicker({format: 'dd.mm.yyyy', autoclose: true, language: 'de'});
-    });
-</script>
-
-<script>
     $(document).ready(function(){
         $("#kwd_search").keyup(function(){
             if( $(this).val() != "") {
@@ -15,6 +8,14 @@
                 $("#tableTeams tbody>tr").show();
             }
         });
+
+        $(".team_checkbox").click(function() {
+            $("#kwd_search").val("");
+            $("#tableTeams tbody>tr").show();
+        });
+
+        $("#start").datepicker({format: 'dd.mm.yyyy', autoclose: true, language: 'de'});
+        $("#end").datepicker({format: 'dd.mm.yyyy', autoclose: true, language: 'de'});
     });
     $.extend($.expr[":"], {
         "contains-ci": function(elem, i, match, array) {
@@ -52,7 +53,7 @@
                 </div>
             </td><td width="50%" style="vertical-align:top;">
                 <div class="well">
-                    <h5><?php echo __("Current Teams"); ?></h5>
+                    <h5><?php echo __("Current Teams"); ?> (<?php echo count($teamsInSeasons) . " " . __("Teams"); ?>)</h5>
                     <table class="table table-striped table-condensed">
                         <thead>
                             <th width="25"></th>
@@ -94,15 +95,8 @@
                         <tbody>
                             <?php foreach ($teams as $index => $team): ?>
                                 <?php if (in_array($team->getId(), $listedTeams)) continue; ?>
-                                <?php
-                                    $inarray = false;
-                                    for ($i=0;$i<count($teamsInSeasons); $i++) {
-                                        if ($team->getId() == $teamsInSeasons[$i]['team_id'])
-                                            $inarray = true;
-                                    }
-                                ?>
                                 <tr>
-                                    <td><input type="checkbox" <?php if ($inarray) echo 'checked="checked"'; ?> name="teams[]" value="<?php echo $team->getId(); ?>"></td>
+                                    <td><input type="checkbox" class="team_checkbox" name="teams[]" value="<?php echo $team->getId(); ?>"></td>
                                     <td><?php echo $team->getId(); ?></td>
                                     <td><i class="flag flag-<?php echo strtolower($team->getFlag()); ?>"></i></td>
                                     <td><?php echo $team->getName(); ?></td>

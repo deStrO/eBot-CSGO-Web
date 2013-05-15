@@ -161,10 +161,10 @@ class matchsActions extends sfActions {
             if (in_array("mod_xsendfile", $apache_modules)) {
                 header("X-Sendfile: $demo_file");
                 header("Content-type: application/octet-stream");
-                header("Content-Disposition: attachment; filename='".$this->demo[0]->getTvRecordFile() . ".dem.zip'");
+                header("Content-Disposition: attachment; filename=".$this->demo[0]->getTvRecordFile() . ".dem.zip");
             } else {
                 header("Content-Type: application/octet-stream");
-                header("Content-Disposition: attachment; filename='".$this->demo[0]->getTvRecordFile() . ".dem.zip'");
+                header("Content-Disposition: attachment; filename=".$this->demo[0]->getTvRecordFile() . ".dem.zip");
                 readfile($demo_file);
             }
         }
