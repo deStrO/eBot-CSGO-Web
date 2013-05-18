@@ -8,18 +8,25 @@ $(document).ready(function(){
         };
         match.onmessage = function (msg) {
             var data = jQuery.parseJSON(msg.data);
-            if (data['content'] == "stop")
+            if (data['content'] == "stop") {
                 location.reload();
-            else if (data['message'] == 'status') {
+            } else if (data['message'] == 'status') {
                 if (data['content'] == 'Finished') {
                     location.reload();
+                } else if (data['content'] == 'is_paused') {
+                    $("#flag-" + data['id']).attr('src', "/images/icons/flag_yellow.png");
+                } else if (data['content'] == 'is_unpaused') {
+                    $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                } else if (data['content'] != 'Starting') {
+                    if ($("#flag-" + data['id']).attr('src') == "/images/icons/flag_red.png") {
+                        location.reload();
+                    } else {
+                        $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                        $('#loading_' + data['id']).hide();
+                    }
+                    $("div.status-" + data['id']).html(data['content']);
                 }
-                if (data['content'] != 'Starting') {
-                    $("#flag-"+data['id']).attr('src',"/images/icons/flag_green.png");
-                }
-                $("div.status-"+data['id']).html(data['content']);
-            }
-            else if (data['message'] == 'score') {
+            } else if (data['message'] == 'score') {
                 if (data['scoreA'] < 10)
                     data['scoreA'] = "0"+data['scoreA'];
                 if (data['scoreB'] < 10)
@@ -31,6 +38,14 @@ $(document).ready(function(){
                     $("#score-"+data['id']).html("<font color=\"green\">"+data['scoreA']+"</font> - <font color=\"red\">"+data['scoreB']+"</font>");
                 else if (data['scoreA'] < data['scoreB'])
                     $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
+            } else if (data['message'] == 'teams') {
+                if (data['teamA'] == 'ct') {
+                    $("#team_a-"+data['id']).html("<font color='blue'>"+$("#team_a-"+data['id']).text()+"</font>")
+                    $("#team_b-"+data['id']).html("<font color='red'>"+$("#team_b-"+data['id']).text()+"</font>")
+                } else {
+                    $("#team_a-"+data['id']).html("<font color='red'>"+$("#team_a-"+data['id']).text()+"</font>")
+                    $("#team_b-"+data['id']).html("<font color='blue'>"+$("#team_b-"+data['id']).text()+"</font>")
+                }
             }
         };
         match.onclose = function () {
