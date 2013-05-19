@@ -136,6 +136,9 @@
                     </td>
                 </tr>
             <?php endforeach; ?>
+            <?php if (!count($current_seasons)): ?>
+                <tr><td colspan="7"><center><?php echo __("There are currently no season running."); ?></center></td></tr>
+            <?php endif; ?>
         </tbody>
     </table>
     <hr>
@@ -251,6 +254,9 @@
                     </td>
                 </tr>
             <?php endforeach; ?>
+            <?php if (!count($inactive_seasons)): ?>
+                <tr><td colspan="7"><center><?php echo __("There are currently no last seasons."); ?></center></td></tr>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>
