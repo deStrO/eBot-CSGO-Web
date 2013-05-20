@@ -157,7 +157,9 @@ class matchsActions extends sfActions {
         $this->forward404Unless($this->map);
         $this->demo = MapsTable::getInstance()->createQuery()->select("tv_record_file")->where("id = ?", $request->getParameter("id"))->execute();
         if (file_exists($demo_file = sfConfig::get("app_demo_path") . DIRECTORY_SEPARATOR . $this->demo[0]->getTvRecordFile() . ".dem.zip") && !preg_match('=/=', $this->demo[0]->getTvRecordFile())) {
-            $apache_modules = apache_get_modules();
+            $apache_modules = array();
+            if (function_exists("apache_get_modules"))
+                $apache_modules = apache_get_modules();
             if (in_array("mod_xsendfile", $apache_modules)) {
                 header("X-Sendfile: $demo_file");
                 header("Content-type: application/octet-stream");
