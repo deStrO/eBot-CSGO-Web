@@ -176,9 +176,12 @@
     <tr>
         <td width="50%">
             <h5><?php echo __("Edit Match information"); ?></h5>
+            <hr>
             <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("matchs_edit", $match); ?>">
                 <?php echo $form->renderHiddenFields(); ?>
                 <div class="well">
+                    <h5><?php echo __("Edit Match information"); ?></h5>
+                    <hr>
                     <div class="control-group">
                         <label class="control-label"><?php echo __("Match Status"); ?></label>
                         <div class="controls">
@@ -301,11 +304,12 @@
             </form>
         </td>
         <td width="50%" valign="top">
-            <h5><?php echo __("Edit Match Score"); ?></h5>
             <?php foreach ($formScores as $form): ?>
                 <form class="form-horizontal" method="post" action="<?php echo url_for("matchs_score_edit", $form->getObject()); ?>">
                     <?php echo $form->renderHiddenFields(); ?>
                     <div class="well">
+                        <h5><?php echo __("Edit Match Score"); ?></h5>
+                        <hr>
                         <div class="control-group">
                             <label class="control-label"><?php echo __("Score Type"); ?></label>
                             <div class="controls">

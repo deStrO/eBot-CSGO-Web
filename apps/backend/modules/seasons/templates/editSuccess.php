@@ -24,14 +24,15 @@
     });
 </script>
 
-<h3><?php echo __("Edit Season"); ?>: <?php echo $season->getName(); ?></h3>
-<hr/>
+
 <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("seasons_edit", $season); ?>" enctype="multipart/form-data">
     <table border="0" cellpadding="5" cellspacing="5" width="100%">
         <tr>
             <td width="50%" style="vertical-align:top;">
                 <?php echo $form->renderHiddenFields(); ?>
                 <div class="well">
+                    <span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Edit Season"); ?>: <?php echo $season->getName(); ?></span>
+                    <hr/>
                     <?php foreach ($form as $name => $widget): ?>
                         <?php if ($widget->isHidden()) continue; ?>
                         <div class="control-group">

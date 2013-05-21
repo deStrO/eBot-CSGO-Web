@@ -1,5 +1,4 @@
-<h3><?php echo __("Create new Server"); ?></h3>
-<hr/>
+
 <style>
     label.valid {
         width: 24px;
@@ -47,6 +46,8 @@
 <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("servers_create"); ?>">
     <?php echo $form->renderHiddenFields(); ?>
     <div class="well">
+        <span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Create new Server"); ?></span>
+        <hr/>
         <?php foreach ($form as $widget): ?>
             <?php if ($widget->isHidden()) continue; ?>
             <div class="control-group">

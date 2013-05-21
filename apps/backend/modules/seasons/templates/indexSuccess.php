@@ -1,4 +1,4 @@
-<h3><?php echo __("Seasons Management"); ?></h3>
+<span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Seasons Management"); ?></span>
 <hr/>
 <table class="table table-striped">
     <thead>

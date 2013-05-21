@@ -9,7 +9,7 @@
     }
 </script>
 
-<h3><?php echo __("Advertising Management"); ?></h3>
+<span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Advertising Management"); ?></span>
 <hr/>
 <table class="table table-striped">
     <thead>

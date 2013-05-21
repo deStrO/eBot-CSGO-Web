@@ -197,9 +197,9 @@
 
 <form class="form-horizontal" id="form-match" method="post" action="<?php echo url_for("matchs_create"); ?>">
     <?php echo $form->renderHiddenFields(); ?>
-    <h3><?php echo __("Create new Match"); ?></h3>
-    <hr />
     <div class="well">
+        <h3><?php echo __("Create new Match"); ?></h3>
+        <hr>
         <?php foreach ($form as $name => $widget): ?>
             <?php if ($widget->isHidden()) continue; ?>
             <?php if (in_array($name, array("team_a_flag", "team_b_flag", "team_a_name", "team_b_name"))) continue; ?>

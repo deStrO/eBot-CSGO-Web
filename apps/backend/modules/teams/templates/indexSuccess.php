@@ -18,7 +18,7 @@
     });
 </script>
 
-<h3><?php echo __("Team Managment"); ?></h3>
+<span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Team Managment"); ?></span>
 <hr/>
 <table id="tableTeams" class="table table-striped table-condensed">
     <thead>
