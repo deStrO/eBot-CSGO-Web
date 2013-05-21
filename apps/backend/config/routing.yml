@@ -385,6 +385,38 @@ advertising_deactivate:
     id : \d+
     sf_method: [get]
 
+config_index:
+  url: /config/index
+  class: sfRequestRoute
+  param: { module: configs, action: index }
+  requirements:
+    sf_method: [get]
+
+config_create:
+  url: /config/create
+  class: sfRequestRoute
+  param: { module: configs, action: create }
+  requirements:
+    sf_method: [get,put,post]
+
+config_edit:
+  url: /config/edit/:id
+  class: sfDoctrineRoute
+  options: { model: configs, type: object}
+  param: { module: configs, action: edit }
+  requirements:
+    id : \d+
+    sf_method: [get, put,post]
+
+config_delete:
+  url: /config/delete/:id
+  class: sfDoctrineRoute
+  options: { model: configs, type: object}
+  param: { module: configs, action: delete }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
 users_delete:
   url: /users/delete/:id
   class: sfDoctrineRoute

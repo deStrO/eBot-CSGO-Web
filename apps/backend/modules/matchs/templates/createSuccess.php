@@ -171,6 +171,16 @@
             }
         );
 
+        $("#matchs_config_id").change(
+            function() {
+                if ($(this).val() == 0) {
+                    $("#config").show();
+                } else {
+                    $("#config").hide();
+                }
+            }
+        );
+
         $("#matchs_config_ot").click(function() {
             if( $(this).is(':checked')) {
                 $("#overtime_startmoney").show();
@@ -202,7 +212,7 @@
         <hr>
         <?php foreach ($form as $name => $widget): ?>
             <?php if ($widget->isHidden()) continue; ?>
-            <?php if (in_array($name, array("team_a_flag", "team_b_flag", "team_a_name", "team_b_name"))) continue; ?>
+            <?php if (in_array($name, array("team_a_flag", "team_b_flag", "team_a_name", "team_b_name", "rules"))) continue; ?>
             <?php if ($name == "overtime_startmoney" || $name == "overtime_max_round"): ?>
                 <div class="control-group validate-field input-append" style="display:none;" id="<?php echo $name; ?>">
                     <div class="alert alert-info">
@@ -247,8 +257,13 @@
                                 </span>
                             </span>
                         <?php endif; ?>
-                        <?php if ($name == "rules"): ?>
-                            <span class="help-inline"><?php echo __("Enter the name of the .cfg File without the extension (esl5on5.cfg => esl5on5)"); ?></span>
+                        <?php if ($name == "config_id"): ?>
+                            <span id="config">
+                                <span class="validate-field">
+                                    <?php echo $form["rules"]->render(array("placeholder" => "Rules Name")); ?>
+                                </span>
+                            </span>
+                            <span class="help-inline"><?php echo __("You can add a new Configfile right here:"); ?> <a href="<?php url_for('configs/create'); ?>"><?php echo __("Add new Config"); ?></a></span>
                         <?php endif; ?>
                     </div>
                 </div>
