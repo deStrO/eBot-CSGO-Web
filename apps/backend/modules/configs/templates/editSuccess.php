@@ -41,13 +41,17 @@
         reader.readAsBinaryString(blob);
     }
     $(document).ready(function() {
-        document.querySelector('#readBytesButtons').addEventListener('click', function(evt) {
-            if (evt.target.tagName.toLowerCase() == 'button') {
-                var startByte = evt.target.getAttribute('data-startbyte');
-                var endByte = evt.target.getAttribute('data-endbyte');
-                readBlob(startByte, endByte);
-            }
-        }, false);
+        if (window.File && window.FileReader && window.FileList && window.Blob && typeof new FileReader().readAsBinaryString == 'function') {
+            document.querySelector('#readBytesButtons').addEventListener('click', function(evt) {
+                if (evt.target.tagName.toLowerCase() == 'button') {
+                    var startByte = evt.target.getAttribute('data-startbyte');
+                    var endByte = evt.target.getAttribute('data-endbyte');
+                    readBlob(startByte, endByte);
+                }
+            }, false);
+        } else {
+            $('#fileReader').hide();
+        }
         $('textarea').autosize();
     });
 </script>
@@ -69,7 +73,9 @@
         <div class="control-group">
             <label class="control-label"><?php echo __("Config"); ?></label>
             <div class="controls">
-                <input type="file" id="files" name="file" /><br><span id="readBytesButtons"><button type="button" class="btn btn-inverse"><?php echo __("Insert File"); ?></button></span><br><br>
+                <div id="fileReader">
+                    <input type="file" id="files" name="file" /><br><span id="readBytesButtons"><button type="button" class="btn btn-inverse"><?php echo __("Insert File"); ?></button></span><br><br>
+                </div>
                 <textarea name="config" id="config" style="width: 50%; height: 250px;"><?php echo $config->getContent(); ?></textarea>
             </div>
         </div>
