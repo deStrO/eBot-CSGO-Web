@@ -47,6 +47,7 @@ function getButtons($status) {
                 ?>
             }
             ws.onmessage = function(msg) {
+                console.log(msg.data);
                 var data = jQuery.parseJSON(msg.data);
                 if (data['content'] == 'stop') {
                     location.reload();
@@ -60,6 +61,9 @@ function getButtons($status) {
                             $('.' + buttons[i] + '_' + data['id']).hide();
                         }
                     }
+                    $('#loading_' + data['id']).hide();
+                } else if (data['message'] == 'streamerReady') {
+                    $('.streamer').addClass('disabled');
                     $('#loading_' + data['id']).hide();
                 } else if (data['message'] == 'status') {
                     if (data['content'] == 'Finished') {
@@ -97,6 +101,8 @@ function getButtons($status) {
                         $("#team_a-"+data['id']).html("<font color='red'>"+$("#team_a-"+data['id']).text()+"</font>")
                         $("#team_b-"+data['id']).html("<font color='blue'>"+$("#team_b-"+data['id']).text()+"</font>")
                     }
+                } else if (data['message'] == 'currentMap') {
+                    $("#map-"+data['id']).html(data['mapname']);
                 }
             };
         }
@@ -294,7 +300,7 @@ function getButtons($status) {
                                 </td>
                             <?php endif; ?>
                             <td width="100"><span style="float:right; text-align:right;" id="team_b-<?php echo $match->getId(); ?>"><?php echo $team2; ?></span></td>
-                            <td width="100">
+                            <td width="100" id="map-<?php echo $match->getId(); ?>">
                                 <?php if ($match->getMap() && $match->getMap()->exists() && $match->getMapSelectionMode() == "normal"): ?>
                                     <?php echo $match->getMap()->getMapName(); ?>
                                 <?php elseif ($match->getMapSelectionMode() == "bo3_modeb"): ?>
@@ -406,7 +412,7 @@ function getButtons($status) {
                                                             <?php echo __($button['label']); ?></button>
                                                     </div>
                                                 <?php endif; ?>
-                                                <?php if (@$buttons[$index+1]['add_class'] != @$buttons[$index]['add_class']): ?>
+                                                <?php if (preg_match('/btn-\w+/', @$buttons[$index+1]['add_class']) != preg_match('/btn-\w+/', @$buttons[$index]['add_class'])): ?>
                                                     <hr style="margin:5px 0;"/>
                                                 <?php endif; ?>
                                             <?php endif; ?>

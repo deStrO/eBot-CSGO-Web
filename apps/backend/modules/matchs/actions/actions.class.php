@@ -268,6 +268,8 @@ class matchsActions extends sfActions {
             $match->setStatus(0);
             $match->setIngameEnable(NULL);
             $match->setIsPaused(NULL);
+            if ($match->getConfigStreamer() == 2)
+                $match->setConfigStreamer(1);
             $match->save();
             foreach ($match->getMaps() as $index => $map) {
                 if ($index == 0) {

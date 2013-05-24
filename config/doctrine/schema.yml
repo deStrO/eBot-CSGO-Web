@@ -17,12 +17,13 @@ Matchs:
     score_a: { type: integer(5) }
     score_b: { type: integer(5) }
     max_round: { type: integer(3), notnull: true }
-    rules: { type: varchar(200), notnull: true }
+    rules: { type: varchar(200) }
     overtime_startmoney: { type: integer(5) }
     overtime_max_round: { type: integer(3) }
+    config_id: { type: integer(20) }
     config_full_score: { type: boolean }
     config_ot: { type: boolean }
-    config_streamer: { type: boolean }
+    config_streamer: { type: integer(1) }
     config_knife_round: { type: boolean }
     config_switch_auto: { type: boolean }
     config_auto_change_password: { type: boolean }
@@ -44,6 +45,7 @@ Matchs:
     TeamB: { class: Teams, local: team_b, foreign: id, onDelete: SET NULL }
     Map: { class: Maps, onDelete: CASCADE, local: current_map, foreign: id }
     Season: { class: Seasons, onDelete: SET NULL, local: season_id, foreign: id }
+    Config: { class: Configs, onDelete: SET NULL, local: config_id, foreign: id }
 
 Maps:
   actAs:
@@ -297,3 +299,12 @@ TeamsInSeasons:
   relations:
     Seasons: { class: Seasons, onDelete: CASCADE, local: season_id, foreign: id }
     Teams: { class: Teams, onDelete: CASCADE, local: team_id, foreign: id }
+
+Configs:
+  actAs:
+    Timestampable: ~
+  columns:
+    id: { primary: true, type: integer(20), autoincrement: true  }
+    name: { type: varchar(50) }
+    description: { type: varchar(255) }
+    content: { type: clob(65532) }

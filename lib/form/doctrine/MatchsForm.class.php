@@ -24,6 +24,8 @@ class MatchsForm extends BaseMatchsForm {
         $this->widgetSchema["overtime_max_round"] = new sfWidgetFormSelect(array("choices" => array("5" => "MR5", "3" => "MR3"), "default" => "MR5"));
         $this->widgetSchema["auto_start_time"] = new sfWidgetFormSelect(array("choices" => array("5" => "05 Minutes Before Startdate", "10" => "10 Minutes Before Startdate", "15" => "15 Minutes Before Startdate", "30" => "30 Minutes Before Startdate")));
         $this->widgetSchema["startdate"] = new sfWidgetFormInputText(array("default" => date("d.m.Y H:i")), array("id" => "match_startdate", "style" => "width:180px;"));
+        $this->widgetSchema["config_streamer"] = new sfWidgetFormInputCheckbox();
+        $this->validatorSchema["config_streamer"] = new sfValidatorBoolean();
 
         $query = Doctrine_Core::getTable('Seasons')->createQuery()->where('active = ?', '1');
         $this->widgetSchema['season_id']->setOption('query', $query);

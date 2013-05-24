@@ -26,7 +26,7 @@
  * @property integer $config_id
  * @property boolean $config_full_score
  * @property boolean $config_ot
- * @property boolean $config_streamer
+ * @property integer $config_streamer
  * @property boolean $config_knife_round
  * @property boolean $config_switch_auto
  * @property boolean $config_auto_change_password
@@ -76,7 +76,7 @@
  * @method integer             getConfigId()                    Returns the current record's "config_id" value
  * @method boolean             getConfigFullScore()             Returns the current record's "config_full_score" value
  * @method boolean             getConfigOt()                    Returns the current record's "config_ot" value
- * @method boolean             getConfigStreamer()              Returns the current record's "config_streamer" value
+ * @method integer             getConfigStreamer()              Returns the current record's "config_streamer" value
  * @method boolean             getConfigKnifeRound()            Returns the current record's "config_knife_round" value
  * @method boolean             getConfigSwitchAuto()            Returns the current record's "config_switch_auto" value
  * @method boolean             getConfigAutoChangePassword()    Returns the current record's "config_auto_change_password" value
@@ -248,8 +248,9 @@ abstract class BaseMatchs extends sfDoctrineRecord
         $this->hasColumn('config_ot', 'boolean', null, array(
              'type' => 'boolean',
              ));
-        $this->hasColumn('config_streamer', 'boolean', null, array(
-             'type' => 'boolean',
+        $this->hasColumn('config_streamer', 'integer', 1, array(
+             'type' => 'integer',
+             'length' => 1,
              ));
         $this->hasColumn('config_knife_round', 'boolean', null, array(
              'type' => 'boolean',
