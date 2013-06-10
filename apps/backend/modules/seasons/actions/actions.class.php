@@ -20,8 +20,10 @@ class seasonsActions extends sfActions {
 
     public function executeCreate(sfWebRequest $request) {
         $this->form = new SeasonsForm();
+        $this->teams = TeamsTable::getInstance()->createQuery('t')->select('t.id')->orderBy("t.id ASC")->execute();
         if ($request->getMethod() == sfWebRequest::POST) {
             $this->form->bind($request->getPostParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+            $teams = $request->getPostParameter('teams');
             if ($this->form->isValid()) {
                 $datas = $request->getPostParameter($this->form->getName());
                 $upload = $request->getFiles($this->form->getName());
@@ -31,7 +33,14 @@ class seasonsActions extends sfActions {
                 $datas["end"] = $this->form->getValue("end");
                 $this->form = new SeasonsForm();
                 $this->form->bind($datas, $upload);
-                $this->form->save();
+                $season = $this->form->save();
+
+                foreach ($teams as $team) {
+                    $teamsInSeasons = new TeamsInSeasons();
+                    $teamsInSeasons->setSeasons($season);
+                    $teamsInSeasons->setTeamId($team);
+                    $teamsInSeasons->save();
+                }
 
                 $this->getUser()->setFlash("notification_ok", $this->__("Season created successfully"));
                 $this->redirect("seasons_create");
@@ -44,10 +53,24 @@ class seasonsActions extends sfActions {
     public function executeEdit($request) {
         $this->season = $this->getRoute()->getObject();
         $this->form = new SeasonsForm($this->season);
+        $this->teams = TeamsTable::getInstance()->createQuery('t')->select('t.id')->orderBy("t.id ASC")->execute();
+        $this->teamsInSeasons = TeamsInSeasonsTable::getInstance()->createQuery('s')->select('s.team_id')->where('s.season_id = ?', $this->season->getId())->orderBy("s.team_id ASC")->execute();
+
         if ($request->getMethod() == sfWebRequest::POST) {
             $this->form->bind($request->getPostParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+            $teams = $request->getPostParameter('teams');
+
             if ($this->form->isValid()) {
                 $this->form->save();
+
+                $deleted = TeamsInSeasonsTable::getInstance()->createQuery('s')->where('s.season_id = ?', $this->season->getId())->delete()->execute();
+                foreach ($teams as $team) {
+                    $teamsInSeasons = new TeamsInSeasons();
+                    $teamsInSeasons->setSeasons($this->season);
+                    $teamsInSeasons->setTeamId($team);
+                    $teamsInSeasons->save();
+                }
+
 
                 $this->getUser()->setFlash("notification_ok", $this->__("Season edited successfully."));
                 $this->redirect("seasons/index");
@@ -76,5 +99,4 @@ class seasonsActions extends sfActions {
         $this->getUser()->setFlash("notification_ok", $this->__("Season de/activated successfully"));
 		$this->redirect("seasons/index");
     }
-
 }

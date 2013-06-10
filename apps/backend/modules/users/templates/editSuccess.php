@@ -17,22 +17,18 @@
 
 <form class="form-horizontal" id="form-users" method="post" action="<?php echo url_for("users_edit", $user); ?>">
     <?php echo $form->renderHiddenFields(); ?>
-
-    <div class="modal" style="position:relative; top:auto; left:auto; margin:0 auto 20px; z-index:1; width: auto;max-width:100%;">
-        <div class="modal-header">
-            <h3><?php echo __("Edit User"); ?></h3>
-        </div>
-        <div class="modal-body" style="max-height: 0%;">
-            <?php foreach ($form as $widget): ?>
-                <?php if ($widget->isHidden()) continue; ?>
-                <div class="control-group">
-                    <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
-                    <div class="controls">
-                        <?php echo $widget->render(); ?>
-                    </div>
+    <div class="well">
+        <span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Edit User"); ?></span>
+        <hr>
+        <?php foreach ($form as $widget): ?>
+            <?php if ($widget->isHidden()) continue; ?>
+            <div class="control-group">
+                <?php echo $widget->renderLabel(null, array("class" => "control-label")); ?>
+                <div class="controls">
+                    <?php echo $widget->render(); ?>
                 </div>
-            <?php endforeach; ?>
-        </div>
+            </div>
+        <?php endforeach; ?>
         <div class="modal-footer">
             <input type="submit" class="btn btn-primary" value="<?php echo __("Edit User"); ?>"/>
         </div>

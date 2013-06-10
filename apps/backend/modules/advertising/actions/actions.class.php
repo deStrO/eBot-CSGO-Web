@@ -16,6 +16,8 @@ class advertisingActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
         $this->advertising = AdvertisingTable::getInstance()->findAll();
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
     }
 
     public function executeCreate(sfWebRequest $request) {

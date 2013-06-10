@@ -1,4 +1,4 @@
-<h3><?php echo __("Statistics"); ?></h3>
+<span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Statistics"); ?></span>
 <hr/>
 <div class="well well-small">
     <?php echo __("You will find all eBot usage statistics here."); ?>

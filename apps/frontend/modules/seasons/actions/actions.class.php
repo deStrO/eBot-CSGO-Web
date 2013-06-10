@@ -16,7 +16,7 @@ class seasonsActions extends sfActions {
     */
     public function executeIndex(sfWebRequest $request) {
         $this->current_seasons = Doctrine::getTable('Seasons')->createQuery('s')->andWhere('s.active = ?', '1')->orderBy('s.start')->execute();
-        $this->inactive_seasons = Doctrine::getTable('Seasons')->createQuery('s')->andWhere('s.active = ?', '0')->orderBy('s.start DESC')->limit(5)->execute();
+        $this->inactive_seasons = Doctrine::getTable('Seasons')->createQuery('s')->andWhere('s.active = ?', '0')->orderBy('s.end DESC')->limit(5)->execute();
     }
 
     public function executeSelect($request) {

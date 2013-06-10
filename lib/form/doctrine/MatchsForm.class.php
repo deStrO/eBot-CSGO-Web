@@ -11,7 +11,7 @@
 class MatchsForm extends BaseMatchsForm {
 
     public function configure() {
-        unset($this["config_authkey"], $this["ip"], $this["identifier_id"], $this["force_zoom_match"], $this["config_switch_auto"], $this["server_id"], $this["ingame_enable"], $this["config_auto_change_password"], $this["created_at"], $this["updated_at"], $this["current_map"], $this["status"], $this["score_a"], $this["score_b"], $this["config_heatmap"], $this["enable"], $this["is_paused"]);
+        unset($this["config_authkey"], $this["ip"], $this["identifier_id"], $this["force_zoom_match"], $this["config_switch_auto"], $this["tv_record_file"], $this["server_id"], $this["ingame_enable"], $this["config_auto_change_password"], $this["created_at"], $this["updated_at"], $this["current_map"], $this["status"], $this["score_a"], $this["score_b"], $this["config_heatmap"], $this["enable"], $this["is_paused"]);
 
         $password = array('frosch', 'gehen', 'rennen', 'gucken', 'fliegen', 'rasen', 'snobb', 'peter', 'wackel', 'dackel', 'gut', 'schlecht', 'win', 'loss', 'tragen',
               'weg', 'berlin', 'aachen', 'mensch', 'tier', 'turtle', 'adler', 'raupe', 'rauben', 'bank', 'schalter', 'ticket', 'bahn', 'zug', 'delay', 'flugzeug', 'ratte',
@@ -24,6 +24,8 @@ class MatchsForm extends BaseMatchsForm {
         $this->widgetSchema["overtime_max_round"] = new sfWidgetFormSelect(array("choices" => array("5" => "MR5", "3" => "MR3"), "default" => "MR5"));
         $this->widgetSchema["auto_start_time"] = new sfWidgetFormSelect(array("choices" => array("5" => "05 Minutes Before Startdate", "10" => "10 Minutes Before Startdate", "15" => "15 Minutes Before Startdate", "30" => "30 Minutes Before Startdate")));
         $this->widgetSchema["startdate"] = new sfWidgetFormInputText(array("default" => date("d.m.Y H:i")), array("id" => "match_startdate", "style" => "width:180px;"));
+        $this->widgetSchema["config_streamer"] = new sfWidgetFormInputCheckbox();
+        $this->validatorSchema["config_streamer"] = new sfValidatorBoolean();
 
         $query = Doctrine_Core::getTable('Seasons')->createQuery()->where('active = ?', '1');
         $this->widgetSchema['season_id']->setOption('query', $query);
@@ -68,6 +70,7 @@ class MatchsForm extends BaseMatchsForm {
 
         // MOVING FIELDS
 
+        $this->getWidgetSchema()->moveField('rules', sfWidgetFormSchema::AFTER, 'config_id');
         $this->getWidgetSchema()->moveField('config_password', sfWidgetFormSchema::AFTER, 'rules');
         $this->getWidgetSchema()->moveField('max_round', sfWidgetFormSchema::AFTER, 'config_password');
 

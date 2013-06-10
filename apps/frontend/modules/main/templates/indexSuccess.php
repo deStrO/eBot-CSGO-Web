@@ -1,46 +1,98 @@
 <script>
-$(document).ready(function(){
-    if ("WebSocket" in window) {
-        match = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/match");
-        match.onopen = function() {
-            $("#refreshOffline").hide();
-            $("#refreshOnline").show();
-        };
-        match.onmessage = function (msg) {
-            var data = jQuery.parseJSON(msg.data);
-            if (data['content'] == "stop")
-                location.reload();
-            else if (data['message'] == 'status') {
-                if (data['content'] == 'Finished') {
+    $(document).ready(function(){
+        if ("WebSocket" in window) {
+            match = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/match");
+            match.onopen = function() {
+                $("#refreshOffline").hide();
+                $("#refreshOnline").show();
+            };
+            match.onmessage = function (msg) {
+                var data = jQuery.parseJSON(msg.data);
+                if (data['content'] == "stop") {
                     location.reload();
-                }
-                if (data['content'] != 'Starting') {
-                    $("#flag-"+data['id']).attr('src',"/images/icons/flag_green.png");
-                }
-                $("div.status-"+data['id']).html(data['content']);
-            }
-            else if (data['message'] == 'score') {
-                if (data['scoreA'] < 10)
-                    data['scoreA'] = "0"+data['scoreA'];
-                if (data['scoreB'] < 10)
-                    data['scoreB'] = "0"+data['scoreB'];
+                } else if (data['message'] == 'status') {
+                    if (data['content'] == 'Finished') {
+                        location.reload();
+                    } else if (data['content'] == 'is_paused') {
+                        $("#flag-" + data['id']).attr('src', "/images/icons/flag_yellow.png");
+                    } else if (data['content'] == 'is_unpaused') {
+                        $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                    } else if (data['content'] != 'Starting') {
+                        if ($("#flag-" + data['id']).attr('src') == "/images/icons/flag_red.png") {
+                            location.reload();
+                        } else {
+                            $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                            $('#loading_' + data['id']).hide();
+                        }
+                        $("div.status-" + data['id']).html(data['content']);
+                    }
+                } else if (data['message'] == 'score') {
+                    if (data['scoreA'] < 10)
+                        data['scoreA'] = "0"+data['scoreA'];
+                    if (data['scoreB'] < 10)
+                        data['scoreB'] = "0"+data['scoreB'];
 
-                if (data['scoreA'] == data['scoreB'])
-                    $("#score-"+data['id']).html("<font color=\"blue\">"+data['scoreA']+"</font> - <font color=\"blue\">"+data['scoreB']+"</font>");
-                else if (data['scoreA'] > data['scoreB'])
-                    $("#score-"+data['id']).html("<font color=\"green\">"+data['scoreA']+"</font> - <font color=\"red\">"+data['scoreB']+"</font>");
-                else if (data['scoreA'] < data['scoreB'])
-                    $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
-            }
-        };
-        match.onclose = function () {
-            $("#refreshOnline").hide();
+                    if (data['scoreA'] == data['scoreB'])
+                        $("#score-"+data['id']).html("<font color=\"blue\">"+data['scoreA']+"</font> - <font color=\"blue\">"+data['scoreB']+"</font>");
+                    else if (data['scoreA'] > data['scoreB'])
+                        $("#score-"+data['id']).html("<font color=\"green\">"+data['scoreA']+"</font> - <font color=\"red\">"+data['scoreB']+"</font>");
+                    else if (data['scoreA'] < data['scoreB'])
+                        $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
+                } else if (data['message'] == 'teams') {
+                    if (data['teamA'] == 'ct') {
+                        $("#team_a-"+data['id']).html("<font color='blue'>"+$("#team_a-"+data['id']).text()+"</font>")
+                        $("#team_b-"+data['id']).html("<font color='red'>"+$("#team_b-"+data['id']).text()+"</font>")
+                    } else {
+                        $("#team_a-"+data['id']).html("<font color='red'>"+$("#team_a-"+data['id']).text()+"</font>")
+                        $("#team_b-"+data['id']).html("<font color='blue'>"+$("#team_b-"+data['id']).text()+"</font>")
+                    }
+                }
+            };
+            match.onclose = function () {
+                $("#refreshOnline").hide();
+                $("#refreshOffline").show();
+            };
+        } else {
             $("#refreshOffline").show();
-        };
-    } else {
-        $("#refreshOffline").show();
+        }
+    });
+
+    function getSessionStorageValue(key) {
+        if (sessionStorage) {
+            try {
+                return sessionStorage.getItem(key);
+            } catch (e) {
+                return null;
+            }
+        }
+        return null;
     }
-});
+
+    function setSessionStorageValue(key, value) {
+        if (sessionStorage) {
+            try {
+                return sessionStorage.setItem(key, value);
+            } catch (e) {
+            }
+        }
+    }
+
+    $(document).ready(function() {
+        $('#switch').iphoneSwitch("off",
+            function() {
+                $('.score').show();
+                setSessionStorageValue('switch', 'on');
+            }, function() {
+                $('.score').hide();
+                setSessionStorageValue('switch', 'off');
+            }, {
+                switch_on_container_path: './images/iphone_switch_container_off.png'
+            }
+        );
+        if (getSessionStorageValue('switch') == 'on') {
+            $('#switch').trigger('click');
+        }
+    });
 </script>
 
 <div class="well">
@@ -48,20 +100,7 @@ $(document).ready(function(){
 </div>
 
 <div class="row-fluid">
-    <div class="span7">
-        <script>
-            $(document).ready(function() {
-                $('#switch').iphoneSwitch("off",
-                    function() {
-                        $('.score').show();
-                    }, function() {
-                        $('.score').hide();
-                    }, {
-                        switch_on_container_path: './images/iphone_switch_container_off.png'
-                    }
-                );
-            });
-        </script>
+    <div class="span8">
         <div class="navbar">
             <div class="navbar-inner">
                 <ul class="nav">
@@ -121,7 +160,7 @@ $(document).ready(function(){
                             <span style="float:left"><?php echo $team1; ?></span>
                         </td>
                         <td width="50">
-                            <div class="score" style="display:none;" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></div>
+                            <div class="score" style="display:none; text-align:center;" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></div>
                         </td>
                         <td width="125">
                             <span style="text-align:right; float:right;"><?php echo $team2; ?></span>
@@ -163,13 +202,13 @@ $(document).ready(function(){
                 <?php endforeach; ?>
                 <?php if ($matchs->count() == 0): ?>
                     <tr>
-                        <td colspan="9" align="center"><?php echo __("No results to display."); ?></td>
+                        <td colspan="11" align="center"><?php echo __("No results to display."); ?></td>
                     </tr>
                 <?php endif; ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="9" style="text-align: center;">
+                    <td colspan="11" style="text-align: center;">
                         <a href="<?php echo url_for("matchs_current"); ?>"><?php echo __("Display all Matches"); ?></a>
                     </td>
                 </tr>
@@ -191,7 +230,7 @@ $(document).ready(function(){
             </thead>
         </table>
     </div>
-    <div class="span5">
+    <div class="span4">
         <h5><?php echo __("Informationen"); ?></h5>
         <div class="well">
             <p><i class="icon-arrow-right"></i> <?php echo __("La nouvelle version de l'eBot vous permet d'avoir accès à plus de statistiques sur les matchs mais aussi une meilleur gestion des matchs."); ?></p>

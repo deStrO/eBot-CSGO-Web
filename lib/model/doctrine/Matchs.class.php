@@ -138,7 +138,10 @@ class Matchs extends BaseMatchs {
                 $actions[] = array("label" => "< Map", "add_class" => "btn-danger", "action" => "skipmapprev", "type" => "running", "style" => "display:inline;");
                 $actions[] = array("label" => "Map >", "add_class" => "btn-danger", "action" => "skipmapnext", "type" => "running", "style" => "display:inline;");
             }
-            $actions[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary", "type" => "running", "style" => "display:inline;");
+            if ($this->getConfigStreamer() == "1")
+                $actions[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary streamer", "type" => "running", "style" => "display:inline;");
+            elseif ($this->getConfigStreamer() == "2")
+                $actions[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary disabled streamer", "type" => "running", "style" => "display:inline;");
             $actions[] = array("label" => "Fix Sides", "action" => "fixsides", "type" => "running", "add_class" => "btn-primary", "style" => "display:inline;");
             // Warmup Knife
             $actions[] = array("label" => "Skip Knife", "action" => "passknife", "type" => "warmupknife", "style" => "display:none;");

@@ -1,4 +1,4 @@
-<h3><?php echo __("Server list"); ?></h3>
+<span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Server list"); ?></span>
 <hr/>
 <div class="well well-small">
     <?php echo __("Statistics are generated on page loading, which can explain why it loads slowly!"); ?>

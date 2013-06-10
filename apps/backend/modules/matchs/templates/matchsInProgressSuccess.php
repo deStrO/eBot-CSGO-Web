@@ -49,9 +49,9 @@ function getButtons($status) {
             ws.onmessage = function(msg) {
                 console.log(msg.data);
                 var data = jQuery.parseJSON(msg.data);
-                if (data['content'] == 'stop')
+                if (data['content'] == 'stop') {
                     location.reload();
-                else if (data['message'] == 'button') {
+                } else if (data['message'] == 'button') {
                     var button_command = getButtons(data['content']);
                     for (var i = 0, j = buttons.length; i < j; i++) {
                         if (buttons[i] == button_command) {
@@ -62,8 +62,10 @@ function getButtons($status) {
                         }
                     }
                     $('#loading_' + data['id']).hide();
-                }
-                else if (data['message'] == 'status') {
+                } else if (data['message'] == 'streamerReady') {
+                    $('.streamer').addClass('disabled');
+                    $('#loading_' + data['id']).hide();
+                } else if (data['message'] == 'status') {
                     if (data['content'] == 'Finished') {
                         location.reload();
                     } else if (data['content'] == 'is_paused') {
@@ -79,8 +81,7 @@ function getButtons($status) {
                         }
                         $("div.status-" + data['id']).html(data['content']);
                     }
-                }
-                else if (data['message'] == 'score') {
+                } else if (data['message'] == 'score') {
                     if (data['scoreA'] < 10)
                         data['scoreA'] = "0" + data['scoreA'];
                     if (data['scoreB'] < 10)
@@ -92,10 +93,18 @@ function getButtons($status) {
                         $("#score-" + data['id']).html("<font color=\"green\">" + data['scoreA'] + "</font> - <font color=\"red\">" + data['scoreB'] + "</font>");
                     else if (data['scoreA'] < data['scoreB'])
                         $("#score-" + data['id']).html("<font color=\"red\">" + data['scoreA'] + "</font> - <font color=\"green\">" + data['scoreB'] + "</font>");
+                } else if (data['message'] == 'teams') {
+                    if (data['teamA'] == 'ct') {
+                        $("#team_a-"+data['id']).html("<font color='blue'>"+$("#team_a-"+data['id']).text()+"</font>")
+                        $("#team_b-"+data['id']).html("<font color='red'>"+$("#team_b-"+data['id']).text()+"</font>")
+                    } else {
+                        $("#team_a-"+data['id']).html("<font color='red'>"+$("#team_a-"+data['id']).text()+"</font>")
+                        $("#team_b-"+data['id']).html("<font color='blue'>"+$("#team_b-"+data['id']).text()+"</font>")
+                    }
+                } else if (data['message'] == 'currentMap') {
+                    $("#map-"+data['id']).html(data['mapname']);
                 }
             };
-        } else {
-            alert("WebSocket not supported");
         }
     });
 </script>
@@ -291,7 +300,7 @@ function getButtons($status) {
                                 </td>
                             <?php endif; ?>
                             <td width="100"><span style="float:right; text-align:right;" id="team_b-<?php echo $match->getId(); ?>"><?php echo $team2; ?></span></td>
-                            <td width="100">
+                            <td width="100" id="map-<?php echo $match->getId(); ?>">
                                 <?php if ($match->getMap() && $match->getMap()->exists() && $match->getMapSelectionMode() == "normal"): ?>
                                     <?php echo $match->getMap()->getMapName(); ?>
                                 <?php elseif ($match->getMapSelectionMode() == "bo3_modeb"): ?>
@@ -339,23 +348,27 @@ function getButtons($status) {
                                 <div id="container-matchs-<?php echo $match->getId(); ?>">
                                     <div class="buttons-container"  style="display: none">
                                         <ul class="nav nav-list" style="padding-left:0; padding-right: 0; font-size: smaller;">
-                                            <li class="nav-header">Match information</li>
-                                            <!--<li><b><?php echo __("#ID"); ?>:</b> <span style="text-align:right;"><?php echo $match->getId(); ?></span></li>-->
+                                            <li class="nav-header"><?php echo __("Match Information"); ?></li>
                                             <li><b><?php echo __("Team 1"); ?>:</b> <?php echo $team1; ?></li>
                                             <li><b><?php echo __("Team 2"); ?>:</b> <?php echo $team2; ?></li>
                                             <li><b><?php echo __("Server"); ?>:</b> <?php echo $match->getIp(); ?></li>
                                             <?php if ($match->getMapSelectionMode() == "bo3_modeb"): ?>
                                                 <li><b><div style="float:left;"><?php echo __("Maps"); ?>:</b></div><div style="float:left; padding-left:5px;"><?php echo $bo3_maps; ?></div></li>
                                             <?php endif; ?>
-                                            <li><b><?php echo __("Streamer"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-". ($match->getConfigStreamer() ? "ok" : "remove") . "'></i>"); ?></li>
-                                            <li><b><?php echo __("Auto-Start"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-". ($match->getAutoStart() ? "ok" : "remove") . "'></i>"); ?>
-                                                <?php if ($match->getAutoStart()): ?>
-                                                    (<?php echo $match->getAutoStartTime()." ".__("min before"); ?>)
-                                                <?php endif; ?>
+                                            <li>
+                                                <table>
+                                                    <tr><td><b><?php echo __("Streamer"); ?>:</b></td><td><?php echo "<i style='margin-left: 5px;' class='icon-". ($match->getConfigStreamer() ? "ok" : "remove") . "'></i>"; ?></li>
+                                                    <tr><td><b><?php echo __("Overtime"); ?>:</b></td><td><?php echo "<i style='margin-left: 5px;' class='icon-". ($match->getConfigOt() ? "ok" : "remove") . "'></i>"; ?></li>
+                                                    <?php if ($match->getAutoStart()): ?>
+                                                        <?php $autostart_time = "(".$match->getAutoStartTime()." ".__("min before").")"; ?>
+                                                    <?php else: $autostart_time = ""; ?>
+                                                    <?php endif; ?>
+                                                    <tr><td><b><?php echo __("Auto-Start"); ?>:</b></td><td><?php echo "<i style='margin-left: 5px;' class='icon-". ($match->getAutoStart() ? "ok" : "remove") . "'></i> ".$autostart_time; ?></td></tr>
+                                                    <?php if ($match->getAutoStart()): ?>
+                                                        <tr><td><b><?php echo __("Startdate"); ?>:</b></td><td><?php echo $match->getDateTimeObject('startdate')->format('d.m.Y H:i'); ?></b></td></tr>
+                                                    <?php endif; ?>
+                                                </table>
                                             </li>
-                                            <?php if ($match->getAutoStart()): ?>
-                                                <li><b><?php echo __("Startdate"); ?></b>: <?php echo $match->getDateTimeObject('startdate')->format('d.m.Y H:i'); ?></b></li>
-                                            <?php endif; ?>
                                             <li><textarea onclick="this.focus();this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller; margin:5px;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
                                         </ul>
                                         <hr style="margin:5px 0;"/>
@@ -399,7 +412,7 @@ function getButtons($status) {
                                                             <?php echo __($button['label']); ?></button>
                                                     </div>
                                                 <?php endif; ?>
-                                                <?php if (@$buttons[$index+1]['add_class'] != @$buttons[$index]['add_class']): ?>
+                                                <?php if (preg_match('/btn-\w+/', @$buttons[$index+1]['add_class']) != preg_match('/btn-\w+/', @$buttons[$index]['add_class'])): ?>
                                                     <hr style="margin:5px 0;"/>
                                                 <?php endif; ?>
                                             <?php endif; ?>
