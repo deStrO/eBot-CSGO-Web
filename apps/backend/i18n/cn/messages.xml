@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="CN" target-language="cn" datatype="plaintext" original="messages" date="2013-06-22T16:33:12Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Administration</source>
+        <target>管理</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Back to site</source>
+        <target>返回网站</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Help</source>
+        <target>帮助</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>About</source>
+        <target>关于</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Error:</source>
+        <target>错误:</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Information</source>
+        <target>信息</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Warning!</source>
+        <target>警告!</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Your Browser does not support WebSocket Connections. Without WebSockets you are not abled to control and manage Matches at the eBot Webpanel!</source>
+        <target>您的浏览器不支持WebSocket连接。没有WebSockets支持无法使用eBot网络控制面板控制和管理比赛!</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Update your Browser to the latest version. To check supported Browsers, visit:</source>
+        <target>请升级浏览器至最新版本。要查看受支持的浏览器，请访问</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Prev</source>
+        <target>上一页</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Next</source>
+        <target>下一页</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>ERROR</source>
+        <target>错误</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Page not found!</source>
+        <target>未找到页面</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>You do not have the required rights to access this site!</source>
+        <target>你无权访问该网站</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>eBot-CSGO</source>
+        <target>eBot-CSGO</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Welcome to CSGO eBot administration panel, you can manage your matches and also consult various statistics.</source>
+        <target>欢迎来到CSGO eBot管理面板, 您可以使用此面板管理比赛和查看统计。</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>You can start using the panel via the menus on your left.</source>
+        <target>您可以使用左侧的菜单开始使用管理面板。</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>News</source>
+        <target>新闻</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>No news available.</source>
+        <target>无可用新闻</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Main Menu</source>
+        <target>主菜单</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Home</source>
+        <target>主页</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>Statistics</source>
+        <target>统计</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>Loading</source>
+        <target>载入中</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>Match Menu</source>
+        <target>比赛菜单</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Create New Match</source>
+        <target>创建新比赛</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>Matches in Progress</source>
+        <target>进行中的比赛</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>Archived Matches</source>
+        <target>已存档比赛</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>Go</source>
+        <target>Go</target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>Server Management</source>
+        <target>服务器管理</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>Add Gameserver</source>
+        <target>添加服务器</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>Usage Statistics</source>
+        <target>使用统计</target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>Team Management</source>
+        <target>队伍管理</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>Create Team</source>
+        <target>创建队伍</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>Season Management</source>
+        <target>赛季管理</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>Create Season</source>
+        <target>创建赛季</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>Seasons Management</source>
+        <target>赛季管理</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>Advertising</source>
+        <target>广告</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>Add Advert</source>
+        <target>添加广告</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>Advertising Management</source>
+        <target>广告管理</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>User Management</source>
+        <target>用户管理</target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>Add new User</source>
+        <target>添加新用户</target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>No match started</source>
+        <target>尚未有比赛开始</target>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>No Server available</source>
+        <target>无可用服务器</target>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>The matches were started successfully</source>
+        <target>比赛成功开始</target>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>Command send to the server, match will be stopped.</source>
+        <target>命令已发送至服务器，比赛将被停止。</target>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>Match deleted</source>
+        <target>比赛已删除</target>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>Command send to the server, knife will be skipped.</source>
+        <target>命令已发送至服务器，刀局将被跳过。</target>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>Command send to the server, knife will be forced.</source>
+        <target>命令已发送至服务器，刀局将被强制执行。</target>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>Command send to the server, match will skipped to warmup.</source>
+        <target>命令已发送至服务器，比赛将直接进入热身阶段。</target>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>Command send to the server, match will be started.</source>
+        <target>命令已发送至服务器，比赛将立即开始。</target>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>Command send to the server, match will be stopped to warmup.</source>
+        <target>命令已发送至服务器，比赛将立即停止并进入热身阶段。</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>Command send to the server, match will be paused/unpaused.</source>
+        <target>命令已发送至服务器，比赛将被暂停/继续。</target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>No server available</source>
+        <target>无可用服务器</target>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>Match will be started on</source>
+        <target>比赛将在_开始</target>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Match archived</source>
+        <target>比赛已存档</target>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>No Match archived</source>
+        <target>未存档任何比赛</target>
+      </trans-unit>
+      <trans-unit id="57">
+        <source> match(es) archived</source>
+        <target>比赛已存档</target>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>Match is resetted</source>
+        <target>比赛已重置</target>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>Match can't be resetted</source>
+        <target>比赛无法重置</target>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Match is restarted on</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>A match is currently played on</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>Server resetted from match</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Match created with ID</source>
+        <target>成功创建比赛，比赛ID: </target>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>Match is currently in progress, can't be edited.</source>
+        <target>比赛当前正在进行中，无法编辑。</target>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Match edited successfully</source>
+        <target>编辑比赛成功</target>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>Match is currently in progress.</source>
+        <target>比赛当前正在进行中。</target>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Score updated successfully - New Score</source>
+        <target>比分成功更新 - 新比分</target>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>Error, invalid data.</source>
+        <target>错误, 无效数据</target>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>#ID</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>Opponent - Score</source>
+        <target>对手 - 比分</target>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Map</source>
+        <target>地图</target>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>IP</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>Enabled</source>
+        <target>启用</target>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>Status</source>
+        <target>状态</target>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Show</source>
+        <target>显示</target>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>Delete</source>
+        <target>删除</target>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>No results available.</source>
+        <target>无可用结果</target>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>Player Statistics</source>
+        <target>玩家统计</target>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Team</source>
+        <target>队伍</target>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Player</source>
+        <target>玩家</target>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>Kill</source>
+        <target>杀敌</target>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>Assist</source>
+        <target>助攻</target>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>Death</source>
+        <target>阵亡</target>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>K/D Rate</source>
+        <target>K/D比</target>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>Points</source>
+        <target>积分</target>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>HeadShot</source>
+        <target>爆头</target>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>HS Rate</source>
+        <target>爆头率</target>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>Defuse</source>
+        <target>拆弹</target>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>Bombe</source>
+        <target>装弹</target>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>TK</source>
+        <target>击杀队友</target>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>1v1</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>1v2</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>1v3</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="94">
+        <source>1v4</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>1v5</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>1K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>2K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>3K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>4K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>5K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>FK</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>Pt Clutch</source>
+        <target>残局1vN</target>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>Total</source>
+        <target>总计</target>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Info</source>
+        <target>提示</target>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>&lt;p&gt;Vous pouvez trier tous les champs du tableau pour obtenir des résultats personallisés.&lt;/p&gt;
+			&lt;p&gt;Les colonnes &lt;b&gt;1K&lt;/b&gt;, &lt;b&gt;2K&lt;/b&gt;, ... représentent le nombre de kill par round effectué. Par exemple, si j'ai 2 dans la colonne 3K, cela veut dire que j'ai fais 2 rounds où j'ai fais 3 kills.
+			&lt;p&gt;La colonne &lt;b&gt;FK&lt;/b&gt; signifie &lt;b&gt;First Kill&lt;/b&gt;, utile pour voir les personnes qui font les premiers kills&lt;/p&gt;
+			&lt;p&gt;Les points clutchs représentent si la personne a réalisé plusieurs "clutch", par exemple, gagné un 1v1. Ils sont calculés comme ceci: nombre de 1 v X gagné multiplé par X. Si j'ai fais trois 1v1 et un 1v2, j'aurai donc 5 points. (1v1 x 3 = 3, 1v2 x 1 = 2)&lt;/p&gt;
+</source>
+        <target>&lt;p&gt;您可以点击表头对表格进行排序。&lt;/p&gt;
+			&lt;p&gt;&lt;b&gt;1K&lt;/b&gt;, &lt;b&gt;2K&lt;/b&gt;, ...代表每回合的杀敌数。例如:如果列3K为2，表示有2局杀敌3人。&lt;/p&gt;
+			&lt;p&gt;&lt;b&gt;FK&lt;/b&gt;代表&lt;b&gt;首先杀敌&lt;/b&gt;。&lt;/p&gt;
+			&lt;p&gt;残局1vN代表玩家所在队伍在仅省他自己后的杀敌数。&lt;/p&gt;
+      </target>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Server-Log</source>
+        <target>服务器日志</target>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>Chat-Log</source>
+        <target>聊天日志</target>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Refresh</source>
+        <target>刷新</target>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Quick Administration</source>
+        <target>快速管理</target>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Start all Matches</source>
+        <target>开始所有比赛</target>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>Archive all Matches</source>
+        <target>存档所有比赛</target>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Search Match</source>
+        <target>搜索比赛</target>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>Reset Filter</source>
+        <target>重置过滤器</target>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Search</source>
+        <target>搜索</target>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>Close</source>
+        <target>关闭</target>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>Cancel</source>
+        <target>取消</target>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>BO3 Maps</source>
+        <target>BO3地图</target>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>Team 1</source>
+        <target>队伍1</target>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Team 2</source>
+        <target>队伍2</target>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>Server</source>
+        <target>服务器</target>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>Maps</source>
+        <target>地图</target>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>Streamer</source>
+        <target>直播</target>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>Auto-Start</source>
+        <target>自动开始</target>
+      </trans-unit>
+      <trans-unit id="124">
+        <source>min before</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="125">
+        <source>Startdate</source>
+        <target>起始日期</target>
+      </trans-unit>
+      <trans-unit id="126">
+        <source>No results for this filter.</source>
+        <target>该过滤器设置未返回任何结果。</target>
+      </trans-unit>
+      <trans-unit id="127">
+        <source>Score</source>
+        <target>比分</target>
+      </trans-unit>
+      <trans-unit id="128">
+        <source>Season</source>
+        <target>赛季</target>
+      </trans-unit>
+      <trans-unit id="129">
+        <source>Hostname</source>
+        <target>主机名</target>
+      </trans-unit>
+      <trans-unit id="130">
+        <source>Password</source>
+        <target>密码</target>
+      </trans-unit>
+      <trans-unit id="131">
+        <source>Match Admin</source>
+        <target>比赛管理员</target>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>Are you sure, you want to do this?</source>
+        <target>您确定想要继续</target>
+      </trans-unit>
+      <trans-unit id="133">
+        <source>Edit Match</source>
+        <target>编辑比赛</target>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>Edit Match information</source>
+        <target>编辑比赛信息</target>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>Match Status</source>
+        <target>比赛状态</target>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>Enter the name of the .cfg File without the extension (esl5on5.cfg =&gt; esl5on5)</source>
+        <target>输入cfg文件名 (不要后缀名，例如esl5on5.cfg =&gt; esl5on5)</target>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>Choose Random Server</source>
+        <target>选择随机服务器</target>
+      </trans-unit>
+      <trans-unit id="138">
+        <source>Save Match</source>
+        <target>保存比赛</target>
+      </trans-unit>
+      <trans-unit id="139">
+        <source>Edit Match Score</source>
+        <target>编辑比赛分数</target>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>Score Type</source>
+        <target>比分类型</target>
+      </trans-unit>
+      <trans-unit id="141">
+        <source>Save Scores</source>
+        <target>保存比分</target>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>&lt;b&gt;Attention!&lt;/b&gt; - Changing the Match Scores will recalc the match!</source>
+        <target>&lt;b&gt;注意!&lt;/b&gt; - 更改比分将会重新计算比赛!</target>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>Heatmap</source>
+        <target>热图</target>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>Configuration</source>
+        <target>设定</target>
+      </trans-unit>
+      <trans-unit id="145">
+        <source>Event</source>
+        <target>赛事</target>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>All Events</source>
+        <target>所有赛事</target>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>Rounds</source>
+        <target>回合</target>
+      </trans-unit>
+      <trans-unit id="148">
+        <source>Round</source>
+        <target>回合</target>
+      </trans-unit>
+      <trans-unit id="149">
+        <source>Side</source>
+        <target>阵营</target>
+      </trans-unit>
+      <trans-unit id="150">
+        <source>Both Sides</source>
+        <target>双方</target>
+      </trans-unit>
+      <trans-unit id="151">
+        <source>Side CT</source>
+        <target>CT阵营</target>
+      </trans-unit>
+      <trans-unit id="152">
+        <source>Side T</source>
+        <target>T阵营</target>
+      </trans-unit>
+      <trans-unit id="153">
+        <source>Players</source>
+        <target>玩家</target>
+      </trans-unit>
+      <trans-unit id="154">
+        <source>Generate Heatmap</source>
+        <target>生成热图</target>
+      </trans-unit>
+      <trans-unit id="155">
+        <source>Create new Match</source>
+        <target>创建新比赛</target>
+      </trans-unit>
+      <trans-unit id="156">
+        <source>First Side</source>
+        <target>上半场</target>
+      </trans-unit>
+      <trans-unit id="157">
+        <source>Team A CT / Team B T</source>
+        <target>队伍A CT/队伍B T</target>
+      </trans-unit>
+      <trans-unit id="158">
+        <source>队伍A T/队伍B CT</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="159">
+        <source>Random</source>
+        <target>随机</target>
+      </trans-unit>
+      <trans-unit id="160">
+        <source>Create Match</source>
+        <target>创建比赛</target>
+      </trans-unit>
+      <trans-unit id="161">
+        <source>Match</source>
+        <target>比赛</target>
+      </trans-unit>
+      <trans-unit id="162">
+        <source>RCON</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="163">
+        <source>Server-LOG</source>
+        <target>服务器日志</target>
+      </trans-unit>
+      <trans-unit id="164">
+        <source>Chat-LOG</source>
+        <target>聊天日志</target>
+      </trans-unit>
+      <trans-unit id="165">
+        <source>Backup System</source>
+        <target>备份系统</target>
+      </trans-unit>
+      <trans-unit id="166">
+        <source>RCON-Log</source>
+        <target>RCON日志</target>
+      </trans-unit>
+      <trans-unit id="167">
+        <source>Send</source>
+        <target>发送</target>
+      </trans-unit>
+      <trans-unit id="168">
+        <source>Weapon Statistics by Player</source>
+        <target>玩家武器统计</target>
+      </trans-unit>
+      <trans-unit id="169">
+        <source>The column &lt;b&gt;K&lt;/b&gt; represents the number of kill with this weapons, the column &lt;b&gt;D&lt;/b&gt; represents the number of times the player has been killed by the weapon</source>
+        <target>&lt;b&gt;K&lt;/b&gt;列代表该武器的杀敌数。&lt;b&gt;D&lt;/b&gt;列代表被该武器杀死的次数</target>
+      </trans-unit>
+      <trans-unit id="170">
+        <source>Round #</source>
+        <target>回合 #</target>
+      </trans-unit>
+      <trans-unit id="171">
+        <source>获胜方</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="172">
+        <source>Reload to round</source>
+        <target>重载至回合</target>
+      </trans-unit>
+      <trans-unit id="173">
+        <source>Livemap</source>
+        <target>直播地图</target>
+      </trans-unit>
+      <trans-unit id="174">
+        <source>Log</source>
+        <target>日志</target>
+      </trans-unit>
+      <trans-unit id="175">
+        <source>Legende</source>
+        <target>图例</target>
+      </trans-unit>
+      <trans-unit id="176">
+        <source>Match Statistics</source>
+        <target>比赛统计</target>
+      </trans-unit>
+      <trans-unit id="177">
+        <source>Round Series</source>
+        <target>回合胜负分布</target>
+      </trans-unit>
+      <trans-unit id="178">
+        <source>Halftime</source>
+        <target>半场</target>
+      </trans-unit>
+      <trans-unit id="179">
+        <source>rounds</source>
+        <target>回合</target>
+      </trans-unit>
+      <trans-unit id="180">
+        <source>Caption</source>
+        <target>标题</target>
+      </trans-unit>
+      <trans-unit id="181">
+        <source>Victory: Bomb Exploded</source>
+        <target>胜利: 炸弹成功引爆</target>
+      </trans-unit>
+      <trans-unit id="182">
+        <source>Defeat: Bomb Defused</source>
+        <target>失败: 炸弹成功拆除</target>
+      </trans-unit>
+      <trans-unit id="183">
+        <source>Victory: Bomb Defused</source>
+        <target>胜利: 炸弹成功拆除</target>
+      </trans-unit>
+      <trans-unit id="184">
+        <source>Victory</source>
+        <target>胜利</target>
+      </trans-unit>
+      <trans-unit id="185">
+        <source>Total Elimination</source>
+        <target>全歼敌人</target>
+      </trans-unit>
+      <trans-unit id="186">
+        <source>Victory: Out of Time</source>
+        <target>胜利: 时间耗尽</target>
+      </trans-unit>
+      <trans-unit id="187">
+        <source>Longest Round Streak</source>
+        <target>最长连胜回合数</target>
+      </trans-unit>
+      <trans-unit id="188">
+        <source>Round Details</source>
+        <target>回合详情</target>
+      </trans-unit>
+      <trans-unit id="189">
+        <source>Winner</source>
+        <target>获胜方</target>
+      </trans-unit>
+      <trans-unit id="190">
+        <source>Victory by</source>
+        <target>获胜方式</target>
+      </trans-unit>
+      <trans-unit id="191">
+        <source>Bomb defused</source>
+        <target>拆除炸弹</target>
+      </trans-unit>
+      <trans-unit id="192">
+        <source>Bomb exploded</source>
+        <target>引爆炸弹</target>
+      </trans-unit>
+      <trans-unit id="193">
+        <source>Out of Time</source>
+        <target>耗尽时间</target>
+      </trans-unit>
+      <trans-unit id="194">
+        <source>Bomb planted</source>
+        <target>炸弹成功安装</target>
+      </trans-unit>
+      <trans-unit id="195">
+        <source>Bombe defused</source>
+        <target>炸弹成功拆除</target>
+      </trans-unit>
+      <trans-unit id="196">
+        <source>Bombe exploded</source>
+        <target>炸弹成功引爆</target>
+      </trans-unit>
+      <trans-unit id="197">
+        <source>Action of the Round</source>
+        <target>回合详情</target>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>a mis un</source>
+        <target>完成了</target>
+      </trans-unit>
+      <trans-unit id="199">
+        <source>did</source>
+        <target>击杀了</target>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>Kills</source>
+        <target> 人</target>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>Details / Matchsettings</source>
+        <target>详情/比赛设置</target></trans-unit>
+      <trans-unit id="202">
+        <source>Weapon Statistics</source>
+        <target>武器统计</target></trans-unit>
+      <trans-unit id="203">
+        <source>Killer / Killed</source>
+        <target>击杀/被击杀</target></trans-unit>
+      <trans-unit id="204">
+        <source>The following Player(s) buyed more then one Smokegrenade per Round:</source>
+        <target>下列玩家每回合购买一枚以上烟雾弹:</target></trans-unit>
+      <trans-unit id="205">
+        <source>Match Settings</source>
+        <target>比赛设置</target></trans-unit>
+      <trans-unit id="206">
+        <source>Configuration File</source>
+        <target>配置文件</target></trans-unit>
+      <trans-unit id="207">
+        <source>MaxRound</source>
+        <target>半场回合数</target></trans-unit>
+      <trans-unit id="208">
+        <source>Active</source>
+        <target>活跃</target></trans-unit>
+      <trans-unit id="209">
+        <source>Config: Full Score</source>
+        <target>Config: 完整分数</target></trans-unit>
+      <trans-unit id="210">
+        <source>Config: Streamer</source>
+        <target>Config: 直播</target></trans-unit>
+      <trans-unit id="211">
+        <source>Config: Overtime</source>
+        <target>Config: 加时赛</target></trans-unit>
+      <trans-unit id="212">
+        <source>Config: Knife Round</source>
+        <target>Config: 刀局</target></trans-unit>
+      <trans-unit id="213">
+        <source>Config: Switch Auto</source>
+        <target>Config: 自动交换阵营</target></trans-unit>
+      <trans-unit id="214">
+ 214">
+        <source>Match Details</source>
+        <target>比赛详情</target>
+      </trans-unit>
+      <trans-unit id="215">
+        <source>Played Rounds</source>
+        <target>比赛回合数</target>
+      </trans-unit>
+      <trans-unit id="216">
+        <source>Gameserver</source>
+        <target>游戏服务器</target>
+      </trans-unit>
+      <trans-unit id="217">
+        <source>Player Numbers</source>
+        <target>玩家数量</target>
+      </trans-unit>
+      <trans-unit id="218">
+        <source>Spectator</source>
+        <target>旁观者</target>
+      </trans-unit>
+      <trans-unit id="219">
+        <source>Score Details</source>
+        <target>比分详情</target>
+      </trans-unit>
+      <trans-unit id="220">
+        <source>Overtime</source>
+        <target>加时赛</target>
+      </trans-unit>
+      <trans-unit id="221">
+        <source>Second Side</source>
+        <target>下半场</target>
+      </trans-unit>
+      <trans-unit id="222">
+        <source>Team created successfully.</source>
+        <target>成功创建队伍</target>
+      </trans-unit>
+      <trans-unit id="223">
+        <source>Error, invalid form</source>
+        <target>错误, 无效格式</target>
+      </trans-unit>
+      <trans-unit id="224">
+        <source>Team edited successfully.</source>
+        <target>队伍编辑成功</target>
+      </trans-unit>
+      <trans-unit id="225">
+        <source>Team deleted successfully.</source>
+        <target>队伍删除成功</target>
+      </trans-unit>
+      <trans-unit id="226">
+        <source>Edit Team</source>
+        <target>编辑队伍</target>
+      </trans-unit>
+      <trans-unit id="227">
+        <source>Team Managment</source>
+        <target>队伍管理</target>
+      </trans-unit>
+      <trans-unit id="228">
+        <source>Name</source>
+        <target>名称</target>
+      </trans-unit>
+      <trans-unit id="229">
+        <source>Shorthandle</source>
+        <target>队标</target>
+      </trans-unit>
+      <trans-unit id="230">
+        <source>Team Link</source>
+        <target>队伍链接</target>
+      </trans-unit>
+      <trans-unit id="231">
+        <source>Link</source>
+        <target>链接</target>
+      </trans-unit>
+      <trans-unit id="232">
+        <source>Edit</source>
+        <target>编辑</target>
+      </trans-unit>
+      <trans-unit id="233">
+        <source>Create new Team</source>
+        <target>创建新队伍</target>
+      </trans-unit>
+      <trans-unit id="234">
+        <source>ID</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="235">
+        <source>Details</source>
+        <target>详情</target>
+      </trans-unit>
+      <trans-unit id="236">
+        <source>Signin</source>
+        <target>登录</target>
+      </trans-unit>
+      <trans-unit id="237">
+        <source>Forgot your password?</source>
+        <target>忘记密码?</target>
+      </trans-unit>
+      <trans-unit id="238">
+        <source>Want to register?</source>
+        <target>想要注册?</target>
+      </trans-unit>
+      <trans-unit id="239">
+        <source>Login</source>
+        <target>登录</target>
+      </trans-unit>
+      <trans-unit id="240">
+        <source>You have to be logged in to access this site!</source>
+        <target>你必须登录才能访问该网站!</target>
+      </trans-unit>
+      <trans-unit id="241">
+        <source>Oops! The page you asked for is secure and you do not have proper credentials.</source>
+        <target>你请求的页面需要恰当的权限才能访问</target>
+      </trans-unit>
+      <trans-unit id="242">
+        <source>Login below to gain access</source>
+        <target>请登录以继续</target>
+      </trans-unit>
+      <trans-unit id="243">
+        <source>User created successfully</source>
+        <target>用户成功创建</target>
+      </trans-unit>
+      <trans-unit id="244">
+        <source>User could not be added</source>
+        <target>无法添加用户</target>
+      </trans-unit>
+      <trans-unit id="245">
+        <source>User edited successfully</source>
+        <target>编辑用户成功</target>
+      </trans-unit>
+      <trans-unit id="246">
+        <source>User deleted successfully</source>
+        <target>用户成功删除</target>
+      </trans-unit>
+      <trans-unit id="247">
+        <source>Edit User</source>
+        <target>编辑用户</target>
+      </trans-unit>
+      <trans-unit id="248">
+        <source>Username</source>
+        <target>用户名</target>
+      </trans-unit>
+      <trans-unit id="249">
+        <source>Created</source>
+        <target>创建</target>
+      </trans-unit>
+      <trans-unit id="250">
+        <source>Updated</source>
+        <target>更新</target>
+      </trans-unit>
+      <trans-unit id="251">
+        <source>Last Loging</source>
+        <target>上次登录</target>
+      </trans-unit>
+      <trans-unit id="252">
+        <source>Action</source>
+        <target>操作</target>
+      </trans-unit>
+      <trans-unit id="253">
+        <source>Create new User</source>
+        <target>创建新用户</target>
+      </trans-unit>
+      <trans-unit id="254">
+        <source>Create User</source>
+        <target>创建用户</target>
+      </trans-unit>
+      <trans-unit id="255">
+        <source>This server is currently in use!</source>
+        <target>服务器当前正在使用中!</target>
+      </trans-unit>
+      <trans-unit id="256">
+        <source>Server deleted.</source>
+        <target>服务器已删除</target>
+      </trans-unit>
+      <trans-unit id="257">
+        <source>Unknown Server-Format</source>
+        <target>未知服务器格式</target>
+      </trans-unit>
+      <trans-unit id="258">
+        <source> server were added </source>
+        <target>台服务器已被成功添加</target>
+      </trans-unit>
+      <trans-unit id="259">
+        <source>1 Server was added with IP (</source>
+        <target>成功添加1台服务器。IP: </target>
+      </trans-unit>
+      <trans-unit id="260">
+        <source>IP Adress</source>
+        <target>IP地址</target>
+      </trans-unit>
+      <trans-unit id="261">
+        <source>used?</source>
+        <target>使用过?</target>
+      </trans-unit>
+      <trans-unit id="262">
+        <source>in use</source>
+        <target>正在使用中</target>
+      </trans-unit>
+      <trans-unit id="263">
+        <source>not used</source>
+        <target>不在使用中</target>
+      </trans-unit>
+      <trans-unit id="264">
+        <source>No Servers registered.</source>
+        <target>未注册任何服务器</target>
+      </trans-unit>
+      <trans-unit id="265">
+        <source>Create new Server</source>
+        <target>创建新服务器</target>
+      </trans-unit>
+      <trans-unit id="266">
+        <source>Create Server</source>
+        <target>创建服务器</target>
+      </trans-unit>
+      <trans-unit id="267">
+        <source>To create several gameservers at once, you can type the server address in various formats:</source>
+        <target>要一次性创建多台服务器，您可以以多种格式输入服务器地址:</target>
+      </trans-unit>
+      <trans-unit id="268">
+        <source>will generate 3 gameservers with ips like 172.16.100.101:27015, 172.16.100.102:27015, 172.16.100.103:27015</source>
+        <target>将生成3台服务器: 172.16.100.101:27015, 172.16.100.102:27015, 172.16.100.103:27015</target>
+      </trans-unit>
+      <trans-unit id="269">
+        <source>will generate 4 gameservers with ips like 172.16.100.101:27015, 172.16.100.101:27025, 172.16.100.101:27035</source>
+        <target>将生成4台服务器:  172.16.100.101:27015, 172.16.100.101:27025, 172.16.100.101:27035</target>
+      </trans-unit>
+      <trans-unit id="270">
+        <source>will generate 9 gameservers with ips like 172.16.100.101:27015&gt; 172.16.100.101:27035, etc ...</source>
+        <target>将生成9台服务器: 172.16.100.101:27015&gt; 172.16.100.101:27035, 等等...</target>
+      </trans-unit>
+      <trans-unit id="271">
+        <source>Server list</source>
+        <target>服务器列表</target>
+      </trans-unit>
+      <trans-unit id="272">
+        <source>Statistics are generated on page loading, which can explain why it loads slowly!</source>
+        <target>统计数据是在页面载入时生成的。因此有时页面载入会比较慢!</target>
+      </trans-unit>
+      <trans-unit id="273">
+        <source>Matches</source>
+        <target>比赛</target>
+      </trans-unit>
+      <trans-unit id="274">
+        <source>Headshots</source>
+        <target>爆头</target>
+      </trans-unit>
+      <trans-unit id="275">
+        <source>Headshot Rate</source>
+        <target>爆头率</target>
+      </trans-unit>
+      <trans-unit id="276">
+        <source>Advert added successfully</source>
+        <target>成功添加广告</target>
+      </trans-unit>
+      <trans-unit id="277">
+        <source>Advert edited successfully.</source>
+        <target>成功编辑广告</target>
+      </trans-unit>
+      <trans-unit id="278">
+        <source>Advert deleted successfully</source>
+        <target>成功删除广告</target>
+      </trans-unit>
+      <trans-unit id="279">
+        <source>Advert de/activated successfully</source>
+        <target>成功激活/冻结广告</target>
+      </trans-unit>
+      <trans-unit id="280">
+        <source>Edit Advert</source>
+        <target>编辑广告</target>
+      </trans-unit>
+      <trans-unit id="281">
+        <source>Message</source>
+        <target>信息</target>
+      </trans-unit>
+      <trans-unit id="282">
+        <source>Season Name</source>
+        <target>赛季名称</target>
+      </trans-unit>
+      <trans-unit id="283">
+        <source>De/Activate</source>
+        <target>激活/冻结</target>
+      </trans-unit>
+      <trans-unit id="284">
+        <source>Add new Advert</source>
+        <target>添加新广告</target>
+      </trans-unit>
+      <trans-unit id="285">
+        <source>Empty, if it's a general Advert</source>
+        <target>如果要发布常规广告，请留空</target>
+      </trans-unit>
+      <trans-unit id="286">
+        <source>You will find all eBot usage statistics here.</source>
+        <target>您将在此处找到eBot的使用统计数据。</target>
+      </trans-unit>
+      <trans-unit id="287">
+        <source>Players Statistics</source>
+        <target>玩家统计</target>
+      </trans-unit>
+      <trans-unit id="288">
+        <source>Number of Kills</source>
+        <target>杀敌数</target>
+      </trans-unit>
+      <trans-unit id="289">
+        <source>Number of Headshots</source>
+        <target>爆头数</target>
+      </trans-unit>
+      <trans-unit id="290">
+        <source>not available</source>
+        <target>不可用</target>
+      </trans-unit>
+      <trans-unit id="291">
+        <source>Matches not Started</source>
+        <target>尚未开始的比赛</target>
+      </trans-unit>
+      <trans-unit id="292">
+        <source>finished/archived Matches</source>
+        <target>已结束/已存档的比赛</target>
+      </trans-unit>
+      <trans-unit id="293">
+        <source>Matches Count</source>
+        <target>比赛数量</target>
+      </trans-unit>
+      <trans-unit id="294">
+        <source>Server Statistics</source>
+        <target>服务器统计</target>
+      </trans-unit>
+      <trans-unit id="295">
+        <source>Number of Servers</source>
+        <target>服务器数量</target>
+      </trans-unit>
+      <trans-unit id="296">
+        <source>Season created successfully</source>
+        <target>成功创建赛季</target>
+      </trans-unit>
+      <trans-unit id="297">
+        <source>Season edited successfully.</source>
+        <target>成功编辑赛季</target>
+      </trans-unit>
+      <trans-unit id="298">
+        <source>Season deleted successfully</source>
+        <target>成功删除赛季</target>
+      </trans-unit>
+      <trans-unit id="299">
+        <source>Season de/activated successfully</source>
+        <target>成功激活/冻结</target>
+      </trans-unit>
+      <trans-unit id="300">
+        <source>Edit Season</source>
+        <target>编辑赛季</target>
+      </trans-unit>
+      <trans-unit id="301">
+        <source>Start</source>
+        <target>开始</target>
+      </trans-unit>
+      <trans-unit id="302">
+        <source>End</source>
+        <target>结束</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

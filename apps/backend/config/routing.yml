@@ -12,7 +12,7 @@ switch_lang:
   allow_empty: false
   requirements:
     sf_method: [post]
-    langage: (?:fr|en|de)
+    langage: (?:fr|en|de|cn)
 
 matchs_current:
   url: /matchs/current

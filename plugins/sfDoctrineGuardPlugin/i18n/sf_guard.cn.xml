@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd" >
+<xliff version="1.0">
+  <file original="global" source-language="en" datatype="plaintext">
+    <header/>
+    <body>
+      <trans-unit>
+        <source>Username</source>
+        <target>用户名</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Password</source>
+        <target>密码</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Remember</source>
+        <target>记住密码</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Signin</source>
+        <target>登录</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Forgot your password?</source>
+        <target>忘记密码?</target>
+      </trans-unit>
+      <trans-unit>
+        <source>You don't have the required permission to access this page.</source>
+        <target>你无权访问该页。</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

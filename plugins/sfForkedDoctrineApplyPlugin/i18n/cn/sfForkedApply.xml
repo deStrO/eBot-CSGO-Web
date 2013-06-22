@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="fr" datatype="plaintext" original="sfForkedApply" date="2010-03-16T21:58:27Z" product-name="sfForkedApply">
+    <header/>
+    <body>
+      <trans-unit id="1" approved="yes">
+        <source>&lt;p&gt;
+Thanks for applying for an account on %1%.
+&lt;/p&gt;&lt;p&gt;
+To prevent abuse of the site, we require that you activate your account by clicking on the following link:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+Thanks again for joining us.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+感谢注册%1%.
+&lt;/p&gt;&lt;p&gt;
+为了安全起见，我们需要您点击下列链接激活您的帐号:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+再次感谢使用电竞中国的服务。
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="2" approved="yes">
+        <source>Continue</source>
+        <target>Continuer</target>
+      </trans-unit>
+      <trans-unit id="3" approved="yes">
+        <source>&lt;p&gt;
+That confirmation code is invalid.
+&lt;/p&gt;&lt;p&gt;
+This may be because you have already confirmed your account. If so,
+just click on the "Log In" button to log in.
+&lt;/p&gt;&lt;p&gt;
+Other possible explanations:
+&lt;/p&gt;&lt;p&gt;
+1. If you copied and pasted the URL from
+your confirmation email, please make sure you did so correctly and
+completely.
+&lt;/p&gt;&lt;p&gt;
+2. If you received this confirmation email a long time ago
+and never confirmed your account, it is possible that your account has
+been purged from the system. In that case, you should simply apply
+for a new account.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+验证码无效。
+&lt;/p&gt;&lt;p&gt;
+造成该结果的可能原因之一是您的帐号已经验证通过了。如果是这样，请点击"登录"按钮进行登录。
+&lt;/p&gt;&lt;p&gt;
+其它可能的原因:
+&lt;/p&gt;&lt;p&gt;
+1. 如果您是将链接从email中复制到浏览器地址栏中，请确保没有遗漏任何字符.
+&lt;p&gt;&lt;/p&gt;
+2. 如果您很久以前收到该验证邮件但却从未进行验证，那么您的帐号很可能已经被系统删除。如果是这样的话，你应该重新申请一个帐号。
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="4" approved="yes">
+        <source>Apply for an Account</source>
+        <target>申请帐号</target>
+      </trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Create My Account</source>
+        <target>创建帐号</target>
+      </trans-unit>
+      <trans-unit id="6" approved="yes">
+        <source>or</source>
+        <target>或</target>
+      </trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>Cancel</source>
+        <target>取消</target>
+      </trans-unit>
+      <trans-unit id="8" approved="yes">
+        <source>Forgot your username or password? No problem! Just enter your username &lt;strong&gt;or&lt;/strong&gt;
+your email address and click "Reset My Password." You will receive an email message containing both your username and
+a link permitting you to change your password if you wish.</source>
+        <target>忘记密码了？别担心！只要填写你的用户名&lt;strong&gt;或&lt;/strong&gt;电子邮件地址并点击"重置密码"，你就会收到一封包含你的用户名和更改密码链接的邮件</target>
+      </trans-unit>
+      <trans-unit id="9" approved="yes">
+        <source>Reset My Password</source>
+        <target>重置密码</target>
+      </trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>Thanks for applying for an account with %1%.
+
+To prevent abuse of the site, we require that you activate your account by clicking on the following link:
+
+%2%
+
+Thanks again for joining us.</source>
+        <target>感谢注册%1%！
+
+为了安全起见，我们需要您点击以下链接激活帐号:
+
+%2%
+
+感谢使用电竞中国的服务。</target>
+      </trans-unit>
+      <trans-unit id="11" approved="yes">
+        <source>Your password has been successfully reset. You are now logged
+in to this site. In the future, be sure to log in with your new password.</source>
+        <target>您的密码已经被成功重置。您现在将直接登录网站。将来请务必使用新密码进行登录。</target>
+      </trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>Thanks for confirming your email address. You may now change your
+password using the form below.</source>
+        <target>感谢验证您的电子邮箱。您现在可以使用以下表单更改密码。</target>
+      </trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>&lt;p&gt;
+For security reasons, a confirmation message has been sent to
+the email address associated with this account. Please check your
+email for that message. You will need to click on a link provided
+in that email in order to change your password. If you do not see
+the message, be sure to check your &quot;spam&quot; and &quot;bulk&quot; email folders.
+&lt;/p&gt;
+&lt;p&gt;
+We apologize for the inconvenience.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+为了安全起见，我们已经发送了一封验证邮件到您注册时填写的邮箱。
+您需要点击邮件中提供的链接才能更改密码。如果你没有收到邮件。请
+务必检查您的&quot;垃圾&quot;邮件文件夹。
+&lt;/p&gt;
+&lt;p&gt;
+我们对由此造成的不便表示歉意。
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="14" approved="yes">
+        <source>
+&lt;p&gt;
+We have received your request to recover your username and possibly your password on: %1%
+&lt;/p&gt;&lt;p&gt;
+Your username is: %USERNAME%
+&lt;/p&gt;&lt;p&gt;
+If you have lost your password or wish to reset it, click on the link that follows:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+You will then be prompted for the new password you wish to use.
+&lt;/p&gt;&lt;p&gt;
+Your password will not be changed unless you click on the link above and complete the form.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+我们收到了您要求恢复在%1%上的用户名及密码的请求。
+&lt;/p&gt;&lt;p&gt;
+您的用户名是: %USERNAME%
+&lt;/p&gt;&lt;p&gt;
+如果您丢失了密码或者想要重置密码，请点击以下链接:
+&lt;/p&gt;&lt;p&gt;
+%2%
+&lt;/p&gt;&lt;p&gt;
+您将被要求输入新密码。
+&lt;/p&gt;&lt;p&gt;
+除非您点击上面的链接并且提交填写好的表单，否则您的密码将不会被更改。
+&lt;/p&gt;
+</target>
+      </trans-unit>
+      <trans-unit id="15" approved="yes">
+        <source>&lt;p&gt;
+An error took place during the email delivery process. Please try
+again later.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+发送邮件时遇到错误。请稍候再试。
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="16" approved="yes">
+        <source>sign in</source>
+        <target>登录</target>
+      </trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Reset Your Password</source>
+        <target>重置密码</target>
+      </trans-unit>
+      <trans-unit id="18" approved="yes">
+        <source>Create a New Account</source>
+        <target>创建新帐号</target>
+      </trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>Account Settings</source>
+        <target>帐号设置</target>
+      </trans-unit>
+      <trans-unit id="20" approved="yes">
+        <source>Save</source>
+        <target>保存</target>
+      </trans-unit>
+      <trans-unit id="21" approved="yes">
+        <source>Click the button below to change your password.</source>
+        <target>点击以下按钮更改密码。</target>
+      </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>Reset Password</source>
+        <target>重置密码</target>
+      </trans-unit>
+      <trans-unit id="23" approved="yes">
+        <source>Thank you for applying for an account. You will receive a verification
+email shortly. If you do not see that email, please be sure to check your "spam" or "bulk" folder.</source>
+        <target>感谢您的注册。您不久将会收到一封验证邮件。如果您未收到邮件，请务必
+检查您的垃圾邮件文件夹。
+</target>
+      </trans-unit>
+      <trans-unit id="24" approved="yes">
+        <source>Sorry, there is no user with that username or email address.</source>
+        <target>对不起，该用户名或Email尚未和任何用户绑定。</target>
+      </trans-unit>
+      <trans-unit id="25" approved="yes">
+        <source>
+That account was never verified. You must verify the account before you can log in or, if
+necessary, reset the password. We have resent your verification email, which contains
+instructions to verify your account. If you do not see that email, please be sure to check 
+your "spam" or "bulk" folder.</source>
+        <target>该帐号尚未被验证。您必须在验证您的帐号之后才能使用其登录。如果有必要，请
+重置密码。我们已经重新向您的邮箱发送了一封验证邮件，请按照邮件中的提示进行操作。如果您未
+收到邮件，请务必检查您的垃圾邮件文件夹。
+</target>
+      </trans-unit>
+      <trans-unit id="26" approved="yes">
+        <source>We have received your request to recover your username and possibly your password on:
+
+%1%
+
+Your username is: %USERNAME%
+
+If you have lost your password or wish to reset it, click on the link that follows:
+
+%2%
+
+You will then be prompted for the new password you wish to use.
+
+Your password will NOT be changed unless you click on the link above and complete the form.</source>
+        <target>
+我们收到了您要求恢复在%1%上的用户名及密码的请求。
+
+您的用户名是: %USERNAME%
+
+如果您丢失了密码或者想要重置密码，请点击以下链接:
+
+%2%
+
+您将会被要求输入新密码。
+
+请务必点击上面的链接并且提交填写好的表单，否则您的密码将不会被更改。
+</target>
+      </trans-unit>
+      <trans-unit id="27" approved="yes">
+        <source>Thank you for confirming your account! You are now logged into the site.</source>
+        <target>感谢验证您的帐号! 现在您将以用户的身份登录网站。</target>
+      </trans-unit>
+      <trans-unit id="28" approved="yes">
+        <source>&lt;p&gt;
+This account is inactive. Please contact the administrator.
+&lt;/p&gt;</source>
+        <target>&lt;p&gt;
+该帐户已被冻结。请联系管理员。
+&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="29" approved="yes">
+        <source>Logged in as %1%</source>
+        <target>以%1%登录</target>
+      </trans-unit>
+      <trans-unit id="30" approved="yes">
+        <source>Log Out</source>
+        <target>注销</target>
+      </trans-unit>
+      <trans-unit id="31" approved="yes">
+        <source>Settings</source>
+        <target>首选项</target>
+      </trans-unit>
+      <trans-unit id="32" approved="yes">
+        <source>Please verify your account on %1%</source>
+        <target>请验证您在%1%上的帐号</target>
+      </trans-unit>
+      <trans-unit id="33" approved="yes">
+        <source>Please verify your password reset request on %1%</source>
+        <target>请验证您在%1%上的重置密码请求</target>
+      </trans-unit>
+      <trans-unit id="34" approved="yes">
+        <source>You may change your password using the form below.</source>
+        <target>您可以使用以下表单更改密码。</target>
+      </trans-unit>
+      <trans-unit id="35" approved="yes">
+        <source>The captcha is not valid (%error%).</source>
+        <target>验证码无效 (%error%).</target>
+      </trans-unit>
+      <trans-unit id="36" approved="yes">
+        <source>Unable to check the captcha from the server (%error%).</source>
+        <target>无法向服务器核实验证码 (%error%).</target>
+      </trans-unit>
+      <trans-unit id="43" approved="yes">
+        <source>For security reasons, you
+will receive a confirmation email containing a link allowing you to complete the password change.</source>
+        <target>出于安全方面的考虑，您将会收到一封确认邮件。
+        	邮件中将包含一个链接。你可以使用该链接完成密码更改操作。</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
