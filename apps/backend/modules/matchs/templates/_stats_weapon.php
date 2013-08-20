@@ -8,7 +8,7 @@ foreach ($kills as $kill) {
     @$players[$kill->getKilledId()][$kill->getWeapon()]["d"]++;
 }
 
-$weapons = array("glock", "hkp2000", "deagle", "p250", "tec9", "awp", "m4a1", "ak47", "famas", "galilar", "hegrenade", "inferno", "scar20", "mp7", "bizon", "p90", "mag7", "ump45", "taser", "nova", "mac10", "mp9", "elite", "ssg08");
+$weapons = array("glock", "hkp2000", "deagle", "p250", "tec9", "awp", "m4a1", "ak47", "famas", "galilar", "hegrenade", "inferno", "scar20", "mp7", "bizon", "p90", "mag7", "ump45", "taser", "nova", "mac10", "mp9", "elite", "ssg08", "m4a1_silencer", "m4a1_silencer_off", "usp_silencer", "usp_silencer_off");
 ?>
 
 <table class="table">
