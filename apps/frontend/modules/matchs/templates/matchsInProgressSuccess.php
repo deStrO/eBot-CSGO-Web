@@ -1,43 +1,43 @@
 <?php use_helper('Date') ?>
 
 <script>
-    $(document).ready(function() {
-        if ("WebSocket" in window) {
-            match = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/match");
-            match.onopen = function() {
-            };
-            match.onmessage = function (msg) {
-                var data = jQuery.parseJSON(msg.data);
-                if (data['content'] == "stop")
+$(document).ready(function(){
+    initSocketIo(function(socket) {
+        $("#refreshOffline").hide();
+        $("#refreshOnline").show();
+        socket.emit("identify", { type: "matchs" });
+        socket.on("matchsHandler", function (data) {
+            var data = jQuery.parseJSON(data);
+            if (data['content'] == "stop") {
+                location.reload();
+            } else if (data['message'] == 'status') {
+                if (data['content'] == 'Finished') {
                     location.reload();
-                else if (data['message'] == 'status') {
-                    if (data['content'] == 'Finished') {
-                        location.reload();
-                    }
-                    if (data['content'] != 'Starting') {
-                        $("#flag-"+data['id']).attr('src',"/images/icons/flag_green.png");
-                    }
-                    $("div.status-"+data['id']).html(data['content']);
                 }
-                else if (data['message'] == 'score') {
-                    if (data['scoreA'] < 10)
-                        data['scoreA'] = "0"+data['scoreA'];
-                    if (data['scoreB'] < 10)
-                        data['scoreB'] = "0"+data['scoreB'];
+                if (data['content'] != 'Starting') {
+                    $("#flag-"+data['id']).attr('src',"/images/icons/flag_green.png");
+                }
+                $("div.status-"+data['id']).html(data['content']);
+            } else if (data['message'] == 'score') {
+                if (data['scoreA'] < 10)
+                    data['scoreA'] = "0"+data['scoreA'];
+                if (data['scoreB'] < 10)
+                    data['scoreB'] = "0"+data['scoreB'];
 
-                    if (data['scoreA'] == data['scoreB'])
-                        $("#score-"+data['id']).html("<font color=\"blue\">"+data['scoreA']+"</font> - <font color=\"blue\">"+data['scoreB']+"</font>");
-                    else if (data['scoreA'] > data['scoreB'])
-                        $("#score-"+data['id']).html("<font color=\"green\">"+data['scoreA']+"</font> - <font color=\"red\">"+data['scoreB']+"</font>");
-                    else if (data['scoreA'] < data['scoreB'])
-                        $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
-                }
-            };
-            match.onclose = function () {
-                $("#refreshOffline").show();
-            };
-        }
+                if (data['scoreA'] == data['scoreB'])
+                    $("#score-"+data['id']).html("<font color=\"blue\">"+data['scoreA']+"</font> - <font color=\"blue\">"+data['scoreB']+"</font>");
+                else if (data['scoreA'] > data['scoreB'])
+                    $("#score-"+data['id']).html("<font color=\"green\">"+data['scoreA']+"</font> - <font color=\"red\">"+data['scoreB']+"</font>");
+                else if (data['scoreA'] < data['scoreB'])
+                    $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
+            }
+        });
+        socket.on("disconnect", function() {
+            $("#refreshOnline").hide();
+            $("#refreshOffline").show();
+        });
     });
+});
 </script>
 
 <span style="font-size:24.5px; font-weight:bold;"><br><?php echo __("Matches in Progress"); ?></span>

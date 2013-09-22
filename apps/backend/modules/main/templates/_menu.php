@@ -4,24 +4,25 @@
             function goToMatch() {
                 var id = $("#match_id_go").val();
                 if (id > 0)
-                    document.location.href = "<?php echo url_for("@matchs_view?id="); ?>"+id;
-            };
+                    document.location.href = "<?php echo url_for("@matchs_view?id="); ?>" + id;
+            }
             $(document).ready(function() {
-                if ("WebSocket" in window) {
-                    var alive = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/alive");
-                    alive.onopen = function () {
-                        $('div#websocketAlive').html('<font color="green"><b>WebSocket online</b></font>');
-                    };
-                    alive.onmessage = function (msg) {
-                        if (msg.data == "__isAlive__") {
+                initSocketIo(function(socket) {
+                   $('div#websocketAlive').html('<font color="green"><b>WebSocket online</b></font>');
+                   socket.on('connect', function() {
+                       $('div#websocketAlive').html('<font color="green"><b>WebSocket online</b></font>');
+                   });
+                   socket.emit("identify", { type: "alive" } ); 
+                   socket.on("aliveHandler", function (data) {
+                       if (data.data == "__isAlive__") {
                             $('div#ebotAlive').html('<font color="green"><b>eBot online</b></font>');
                         }
-                    };
-                    alive.onclose = function (err) {
-                        $('div#websocketAlive').html('<font color="red"><b>WebSocket offline</b></font>');
+                   });
+                   socket.on('disconnect', function(){
+                       $('div#websocketAlive').html('<font color="red"><b>WebSocket offline</b></font>');
                         $('div#ebotAlive').html('<font color="red"><b>eBot offline</b></font>');
-                    };
-                }
+                   });
+                });
             });
         </script>
         <ul class="nav nav-list">

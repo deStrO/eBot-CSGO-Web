@@ -1,49 +1,48 @@
 <script>
-$(document).ready(function(){
-    if ("WebSocket" in window) {
-        ws = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/match");
-        ws.onmessage = function (msg) {
-            var data = jQuery.parseJSON(msg.data);
-            if (data['content'] == "stop")
-                location.reload();
-            else if (data['message'] == 'status') {
-                if (data['content'] == 'Finished') {
+    $(document).ready(function() {
+        initSocketIo(function(socket) {
+            socket.emit("identify", {type: "matchs"});
+            socket.on("matchsHandler", function(data) {
+                var data = jQuery.parseJSON(data);
+                if (data['content'] == "stop")
                     location.reload();
-                } else if (data['content'] != 'Starting') {
-                    $("#flag-"+data['id']).attr('src',"/images/icons/flag_green.png");
+                else if (data['message'] == 'status') {
+                    if (data['content'] == 'Finished') {
+                        location.reload();
+                    } else if (data['content'] != 'Starting') {
+                        $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                    }
+                    $("div.status-" + data['id']).html(data['content']);
                 }
-                $("div.status-"+data['id']).html(data['content']);
-            }
-            else if (data['message'] == 'score') {
-                if (data['scoreA'] < 10)
-                    data['scoreA'] = "0"+data['scoreA'];
-                if (data['scoreB'] < 10)
-                    data['scoreB'] = "0"+data['scoreB'];
+                else if (data['message'] == 'score') {
+                    if (data['scoreA'] < 10)
+                        data['scoreA'] = "0" + data['scoreA'];
+                    if (data['scoreB'] < 10)
+                        data['scoreB'] = "0" + data['scoreB'];
 
-                if (data['scoreA'] == data['scoreB'])
-                    $("#score-"+data['id']).html("<font color=\"blue\">"+data['scoreA']+"</font> - <font color=\"blue\">"+data['scoreB']+"</font>");
-                else if (data['scoreA'] > data['scoreB'])
-                    $("#score-"+data['id']).html("<font color=\"green\">"+data['scoreA']+"</font> - <font color=\"red\">"+data['scoreB']+"</font>");
-                else if (data['scoreA'] < data['scoreB'])
-                    $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
-            }
-        };
-    }
-});
+                    if (data['scoreA'] == data['scoreB'])
+                        $("#score-" + data['id']).html("<font color=\"blue\">" + data['scoreA'] + "</font> - <font color=\"blue\">" + data['scoreB'] + "</font>");
+                    else if (data['scoreA'] > data['scoreB'])
+                        $("#score-" + data['id']).html("<font color=\"green\">" + data['scoreA'] + "</font> - <font color=\"red\">" + data['scoreB'] + "</font>");
+                    else if (data['scoreA'] < data['scoreB'])
+                        $("#score-" + data['id']).html("<font color=\"red\">" + data['scoreA'] + "</font> - <font color=\"green\">" + data['scoreB'] + "</font>");
+                }
+            });
+
+        });
+    });
 </script>
 
 <?php
+$score1 = $match->getScoreA();
+$score2 = $match->getScoreB();
 
-    $score1 = $match->getScoreA();
-    $score2 = $match->getScoreB();
+\ScoreColorUtils::colorForScore($score1, $score2);
 
-    \ScoreColorUtils::colorForScore($score1, $score2);
-
-    $team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
-    $team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
-    if ($match->getMap() && $match->getMap()->exists())
-        \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
-
+$team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
+$team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
+if ($match->getMap() && $match->getMap()->exists())
+    \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
 ?>
 <table class="table table-striped table-condensed" style="font-size: 0.9em; margin-bottom:0px;">
     <tbody>

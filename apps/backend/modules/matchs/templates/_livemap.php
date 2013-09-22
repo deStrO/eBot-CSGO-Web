@@ -80,19 +80,19 @@
         var red = new Image();
         red.src = '<?php echo url_for("/images/maps/csgo"); ?>/livemap/_red.png';
 
-        if ("WebSocket" in window) {
-            livemapSocket = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/livemap");
-            livemapSocket.onopen = function () {
-                var map = new Image();
-                data = mapdata["<?php echo $match->getMap()->getMapName(); ?>"];
-                map.src = '<?php echo url_for("/images/maps/csgo/overview"); ?>/'+data[7]+'.png';
-                map.onload = function() {
-                    context.drawImage(map, 0, 0, data[4], data[5]);
-                };
+        initSocketIo(function(socket) {
+            var map = new Image();
+            data = mapdata["<?php echo $match->getMap()->getMapName(); ?>"];
+            map.src = '<?php echo url_for("/images/maps/csgo/overview"); ?>/'+data[7]+'.png';
+            map.onload = function() {
+                context.drawImage(map, 0, 0, data[4], data[5]);
             };
-            livemapSocket.onmessage = function (msg) {
-                if (msg.data.match(/\d+_newRound_\d+/)) {
-                    var get = msg.data.split("_");
+            
+            socket.emit("identify", {type: "livemap", match_id: <?php echo $match->getId(); ?>});
+            socket.on("livemapHandler", function(data) {
+                var data = jQuery.parseJSON(data);
+                if (data.match(/\d+_newRound_\d+/)) {
+                    var get = data.split("_");
                     if (get[0] == "<?php echo $match->getId(); ?>") {
                         context.clearRect(0, 0, canvas.width, canvas.height);
                         var map = new Image();
@@ -107,8 +107,7 @@
                     }
                 }
                 else {
-                    data = jQuery.parseJSON(msg.data);
-                    console.log(data);
+                    data = jQuery.parseJSON(data);
                     if (data[0] == "<?php echo $match->getId(); ?>") {
                         var killer = data[1];
                         var killed = data[4];
@@ -131,14 +130,8 @@
                         $('#log').scrollTop(height);
                     }
                 }
-            };
-            livemapSocket.onclose = function (err) {
-                console.log(err);
-            };
-            livemapSocket.onerror = function (err) {
-                console.log(err);
-            };
-        }
+            });
+        });
     });
 
 </script>

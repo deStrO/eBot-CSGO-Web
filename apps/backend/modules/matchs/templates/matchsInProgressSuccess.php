@@ -20,7 +20,7 @@ function getButtons($status) {
         var data = id + " " + event + " " + ip;
         data = Aes.Ctr.encrypt(data, authkey, 256);
         send = JSON.stringify([data, ip]);
-        ws.send(send);
+        socket.emit("matchCommandSend", send);
         $('#loading_' + id).show();
         return false;
     }
@@ -35,20 +35,26 @@ function getButtons($status) {
             return "endmatch";
     }
     $(document).ready(function() {
-        if ("WebSocket" in window) {
-            ws = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/match");
+        initSocketIo(function(socket) {
             var buttons = new Array("warmupknife", "endknife", "skipwarmup", "endmatch");
-            ws.onopen = function() {
-                <?php
-                for ($i = 0; $i < count($id); $i++) {
-                    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
-                    echo '$(".running_' . $id[$i] . '").show(); ';
-                }
-                ?>
-            }
-            ws.onmessage = function(msg) {
-                console.log(msg.data);
-                var data = jQuery.parseJSON(msg.data);
+            socket.on("connect", function() {
+<?php
+for ($i = 0; $i < count($id); $i++) {
+    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
+    echo '$(".running_' . $id[$i] . '").show(); ';
+}
+?>
+            });
+
+<?php
+for ($i = 0; $i < count($id); $i++) {
+    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
+    echo '$(".running_' . $id[$i] . '").show(); ';
+}
+?>
+            socket.emit("identify", {type: "matchs"});
+            socket.on("matchsHandler", function(data) {
+                var data = jQuery.parseJSON(data);
                 if (data['content'] == 'stop')
                     location.reload();
                 else if (data['message'] == 'button') {
@@ -62,8 +68,7 @@ function getButtons($status) {
                         }
                     }
                     $('#loading_' + data['id']).hide();
-                }
-                else if (data['message'] == 'status') {
+                } else if (data['message'] == 'status') {
                     if (data['content'] == 'Finished') {
                         location.reload();
                     } else if (data['content'] == 'is_paused') {
@@ -79,8 +84,7 @@ function getButtons($status) {
                         }
                         $("div.status-" + data['id']).html(data['content']);
                     }
-                }
-                else if (data['message'] == 'score') {
+                } else if (data['message'] == 'score') {
                     if (data['scoreA'] < 10)
                         data['scoreA'] = "0" + data['scoreA'];
                     if (data['scoreB'] < 10)
@@ -93,10 +97,8 @@ function getButtons($status) {
                     else if (data['scoreA'] < data['scoreB'])
                         $("#score-" + data['id']).html("<font color=\"red\">" + data['scoreA'] + "</font> - <font color=\"green\">" + data['scoreB'] + "</font>");
                 }
-            };
-        } else {
-            alert("WebSocket not supported");
-        }
+            });
+        });
     });
 </script>
 
@@ -256,10 +258,10 @@ function getButtons($status) {
                         \ScoreColorUtils::colorForScore($score1, $score2);
 
                         $team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
-                        $team1_flag = $match->getTeamA()->exists() ? "<i class='flag flag-".strtolower($match->getTeamA()->getFlag())."'></i>" : "<i class='flag flag-".strtolower($match->getTeamAFlag())."'></i>";
+                        $team1_flag = $match->getTeamA()->exists() ? "<i class='flag flag-" . strtolower($match->getTeamA()->getFlag()) . "'></i>" : "<i class='flag flag-" . strtolower($match->getTeamAFlag()) . "'></i>";
 
                         $team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
-                        $team2_flag = $match->getTeamB()->exists() ? "<i class='flag flag-".strtolower($match->getTeamB()->getFlag())."'></i>" : "<i class='flag flag-".strtolower($match->getTeamBFlag())."'></i>";
+                        $team2_flag = $match->getTeamB()->exists() ? "<i class='flag flag-" . strtolower($match->getTeamB()->getFlag()) . "'></i>" : "<i class='flag flag-" . strtolower($match->getTeamBFlag()) . "'></i>";
 
                         if ($match->getMap() && $match->getMap()->exists()) {
                             \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
@@ -274,20 +276,20 @@ function getButtons($status) {
                             </td>
                             <?php if ($match->getMapSelectionMode() == "normal"): ?>
                                 <td width="50" style="text-align: center;" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></td>
-                            <?php elseif($match->getMapSelectionMode() == "bo3_modeb"): ?>
+                            <?php elseif ($match->getMapSelectionMode() == "bo3_modeb"): ?>
                                 <td width="50" style="text-align: center;">
                                     <?php
                                     foreach ($match->getMaps() as $index => $map) {
                                         foreach ($map->getMapsScore() as $score) {
-                                            $bo3_score1 = ($score->getScore1Side1()+$score->getScore1Side2());
-                                            $bo3_score2 = ($score->getScore2Side1()+$score->getScore2Side2());
+                                            $bo3_score1 = ($score->getScore1Side1() + $score->getScore1Side2());
+                                            $bo3_score2 = ($score->getScore2Side1() + $score->getScore2Side2());
                                             \ScoreColorUtils::colorForScore($bo3_score1, $bo3_score2);
-                                            $bo3_score .= ($index+1).". Map: " . $bo3_score1 . " - " . $bo3_score2."<br>";
+                                            $bo3_score .= ($index + 1) . ". Map: " . $bo3_score1 . " - " . $bo3_score2 . "<br>";
                                         }
                                     }
                                     ?>
                                     <a href="#" class="bo3" data-toggle="popover" data-trigger="hover" data-html="true"
-                                    data-content='<?php echo $bo3_score; ?>'><?php echo $score1; ?> - <?php echo $score2; ?></a>
+                                       data-content='<?php echo $bo3_score; ?>'><?php echo $score1; ?> - <?php echo $score2; ?></a>
                                 </td>
                             <?php endif; ?>
                             <td width="100"><span style="float:right; text-align:right;" id="team_b-<?php echo $match->getId(); ?>"><?php echo $team2; ?></span></td>
@@ -301,12 +303,12 @@ function getButtons($status) {
                                             $bo3_maps .= "<i class='icon-chevron-right' style='padding-right: 5px;'></i>";
                                         else
                                             $bo3_maps .= "<i class='icon-pause' style='padding-right: 5px;'></i>";
-                                        $bo3_maps .= ($index+1).". Map: ".$map->getMapName()."<br>";
+                                        $bo3_maps .= ($index + 1) . ". Map: " . $map->getMapName() . "<br>";
                                     }
                                     ?>
                                     <a href="#" class="bo3" data-toggle="popover" data-trigger="hover" data-html="true"
-                                    data-content="<?php echo $bo3_maps; ?>"><?php echo __("BO3 Maps"); ?></a>
-                                <?php endif; ?>
+                                       data-content="<?php echo $bo3_maps; ?>"><?php echo __("BO3 Maps"); ?></a>
+                                   <?php endif; ?>
                             </td>
                             <td width="170">
                                 <?php echo $match->getSeason(); ?>
@@ -347,16 +349,17 @@ function getButtons($status) {
                                             <?php if ($match->getMapSelectionMode() == "bo3_modeb"): ?>
                                                 <li><b><div style="float:left;"><?php echo __("Maps"); ?>:</b></div><div style="float:left; padding-left:5px;"><?php echo $bo3_maps; ?></div></li>
                                             <?php endif; ?>
-                                            <li><b><?php echo __("Streamer"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-". ($match->getConfigStreamer() ? "ok" : "remove") . "'></i>"); ?></li>
-                                            <li><b><?php echo __("Auto-Start"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-". ($match->getAutoStart() ? "ok" : "remove") . "'></i>"); ?>
+                                            <li><b><?php echo __("Streamer"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-" . ($match->getConfigStreamer() ? "ok" : "remove") . "'></i>"); ?></li>
+                                            <li><b><?php echo __("Auto-Start"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-" . ($match->getAutoStart() ? "ok" : "remove") . "'></i>"); ?>
                                                 <?php if ($match->getAutoStart()): ?>
-                                                    (<?php echo $match->getAutoStartTime()." ".__("min before"); ?>)
+                                                    (<?php echo $match->getAutoStartTime() . " " . __("min before"); ?>)
                                                 <?php endif; ?>
                                             </li>
                                             <?php if ($match->getAutoStart()): ?>
                                                 <li><b><?php echo __("Startdate"); ?></b>: <?php echo $match->getDateTimeObject('startdate')->format('d.m.Y H:i'); ?></b></li>
                                             <?php endif; ?>
-                                            <li><textarea onclick="this.focus();this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller; margin:5px;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
+                                            <li><textarea onclick="this.focus();
+            this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller; margin:5px;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
                                         </ul>
                                         <hr style="margin:5px 0;"/>
                                         <?php $buttons = $match->getActionAdmin($match->getEnable()); ?>
@@ -382,12 +385,12 @@ function getButtons($status) {
                                                             <?php if (@$button['action']) echo 'onclick="doRequest(\'' . $button['action'] . '\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\')"'; ?>>
                                                             <?php echo __($button['label']); ?></button>
                                                         <button
-                                                            style="<?php echo @$buttons[$index+1]['style']; ?>; margin-bottom: 5px; width: 49%; float:right;"
-                                                            class="btn hide<?php if (@$buttons[$index+1]['add_class']) echo ' ' . $buttons[$index+1]['add_class']; ?> <?php echo @$buttons[$index+1]['type'] . '_' . $match->getId(); ?>"
-                                                            <?php if (@$buttons[$index+1]['action']) echo 'onclick="doRequest(\'' . $buttons[$index+1]['action'] . '\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\')"'; ?>>
-                                                            <?php echo __($buttons[$index+1]['label']); ?></button>
+                                                            style="<?php echo @$buttons[$index + 1]['style']; ?>; margin-bottom: 5px; width: 49%; float:right;"
+                                                            class="btn hide<?php if (@$buttons[$index + 1]['add_class']) echo ' ' . $buttons[$index + 1]['add_class']; ?> <?php echo @$buttons[$index + 1]['type'] . '_' . $match->getId(); ?>"
+                                                            <?php if (@$buttons[$index + 1]['action']) echo 'onclick="doRequest(\'' . $buttons[$index + 1]['action'] . '\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\')"'; ?>>
+                                                            <?php echo __($buttons[$index + 1]['label']); ?></button>
                                                     </div>
-                                                <?php elseif($button['action'] == "skipmapnext"): ?>
+                                                <?php elseif ($button['action'] == "skipmapnext"): ?>
                                                     <hr style="margin:5px 0; clear:both;"/>
                                                     <?php continue; ?>
                                                 <?php else: ?>
@@ -399,7 +402,7 @@ function getButtons($status) {
                                                             <?php echo __($button['label']); ?></button>
                                                     </div>
                                                 <?php endif; ?>
-                                                <?php if (@$buttons[$index+1]['add_class'] != @$buttons[$index]['add_class']): ?>
+                                                <?php if (@$buttons[$index + 1]['add_class'] != @$buttons[$index]['add_class']): ?>
                                                     <hr style="margin:5px 0;"/>
                                                 <?php endif; ?>
                                             <?php endif; ?>
