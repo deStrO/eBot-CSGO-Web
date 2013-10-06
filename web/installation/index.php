@@ -76,7 +76,8 @@
                             <li <?php if ($step == "2") echo "class='active'"; ?>><a href="<?php echo $_SERVER['PHP_SELF']; ?>?step=2">Create Account</a></li>
                             <li <?php if ($step == "3") echo "class='active'"; ?>><a href="<?php echo $_SERVER['PHP_SELF']; ?>?step=3">Configure eBot</a></li>
                             <li <?php if ($step == "4") echo "class='active'"; ?>><a href="<?php echo $_SERVER['PHP_SELF']; ?>?step=4">Configure eBot-Server</a></li>
-                            <li <?php if ($step == "5") echo "class='active'"; ?>><a href="<?php echo $_SERVER['PHP_SELF']; ?>?step=5">Finish</a></li>
+                            <li <?php if ($step == "5") echo "class='active'"; ?>><a href="<?php echo $_SERVER['PHP_SELF']; ?>?step=5">Manual Steps</a></li>
+                            <li <?php if ($step == "6") echo "class='active'"; ?>><a href="<?php echo $_SERVER['PHP_SELF']; ?>?step=6">Finish</a></li>
                         </ul>
                     </div>
                 </div>
