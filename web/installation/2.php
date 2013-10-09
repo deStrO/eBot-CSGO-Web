@@ -22,7 +22,7 @@ if (isset($_SESSION['mysql_connection'])) {
 
                 foreach ($import as $i){
                     if ($i != '' && $i != ' '){
-                        //mysql_query($i);
+                        mysql_query($i);
                     }
                }
                $_SESSION['mysql_connection']['status'] = 'success';
@@ -32,11 +32,10 @@ if (isset($_SESSION['mysql_connection'])) {
                 } else {
                     $salt = md5(rand(100000, 999999).$_POST['username']);
                     $password = sha1($salt.$_POST['password']);
-                    /*mysql_query("INSERT INTO `sf_guard_user` 
+                    mysql_query("INSERT INTO `sf_guard_user` 
                         (`email_address`, `username`, `algorithm`, `salt`, `password`, `is_active`, `is_super_admin`, `created_at`, `updated_at`) 
                         VALUES 
                         ('".$_POST['email']."', '".$_POST['username']."', 'sha1', '".$salt."', '".$_POST['password']."', '1', '1', NOW(), NOW())");
-                    */
                     $_SESSION['createAdmin']['status'] = 'success';
                 }
            }
