@@ -6,7 +6,7 @@ all:
   <?php require_once(sfConfig::get('sf_root_dir')."/config/app_user.yml") ?>
 
   .array:
-    maps: [ de_dust2_se, de_nuke_se, de_nuke_ve, de_train_se, de_mirage_csgo, de_mirage_ce, de_inferno_se ]
+    maps: [ de_dust2_se, de_nuke_se, de_nuke_ve, de_train_se, de_mirage_csgo, de_mirage_ce, de_inferno_se, de_dust2, de_nuke, de_inferno, de_train, de_mirage, de_season, de_cache ]
     flag_team:
       ZA:	AFRIQUE DU SUD
       DZ:	ALGERIE
