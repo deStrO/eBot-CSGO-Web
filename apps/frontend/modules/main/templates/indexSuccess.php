@@ -1,16 +1,14 @@
 <script>
 $(document).ready(function(){
-    if ("WebSocket" in window) {
-        match = new WebSocket("ws://<?php echo $ebot_ip . ':' . $ebot_port; ?>/match");
-        match.onopen = function() {
-            $("#refreshOffline").hide();
-            $("#refreshOnline").show();
-        };
-        match.onmessage = function (msg) {
-            var data = jQuery.parseJSON(msg.data);
-            if (data['content'] == "stop")
+    initSocketIo(function(socket) {
+        $("#refreshOffline").hide();
+        $("#refreshOnline").show();
+        socket.emit("identify", { type: "matchs" });
+        socket.on("matchsHandler", function (data) {
+            var data = jQuery.parseJSON(data);
+            if (data['content'] == "stop") {
                 location.reload();
-            else if (data['message'] == 'status') {
+            } else if (data['message'] == 'status') {
                 if (data['content'] == 'Finished') {
                     location.reload();
                 }
@@ -18,8 +16,7 @@ $(document).ready(function(){
                     $("#flag-"+data['id']).attr('src',"/images/icons/flag_green.png");
                 }
                 $("div.status-"+data['id']).html(data['content']);
-            }
-            else if (data['message'] == 'score') {
+            } else if (data['message'] == 'score') {
                 if (data['scoreA'] < 10)
                     data['scoreA'] = "0"+data['scoreA'];
                 if (data['scoreB'] < 10)
@@ -32,14 +29,12 @@ $(document).ready(function(){
                 else if (data['scoreA'] < data['scoreB'])
                     $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
             }
-        };
-        match.onclose = function () {
+        });
+        socket.on("disconnect", function() {
             $("#refreshOnline").hide();
             $("#refreshOffline").show();
-        };
-    } else {
-        $("#refreshOffline").show();
-    }
+        });
+    });
 });
 </script>
 
