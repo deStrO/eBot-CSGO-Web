@@ -5,6 +5,8 @@ rendering: ~
 remember_me:
   class: sfGuardRememberMeFilter
 # insert your own filters here
+installDirectory:
+  class: installCheck
 
 security:  ~
 cache:     ~

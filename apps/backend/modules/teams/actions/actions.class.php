@@ -105,7 +105,7 @@ class teamsActions extends sfActions {
                     $teams['name'][] = $name[0]['name'];
                     $teams['flag'][] = $name[0]['flag'];
                 }
-                print_r(json_encode($teams));
+                echo json_encode($teams);
             }
         }
         return sfView::NONE;
