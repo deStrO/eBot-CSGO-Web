@@ -2,7 +2,7 @@
 
 <div class="well">
     <p>
-		<?php echo __("L'eBot possède tout une série de commande qui peuvent être appelée à différent moment dans le jeu via le tchat. Ces commandes permettent de demande par exemple ses stats, le score du match, démarrer le match, etc ..."); ?>
+        <?php echo __("L'eBot possède tout une série de commande qui peuvent être appelée à différent moment dans le jeu via le tchat. Ces commandes permettent de demande par exemple ses stats, le score du match, démarrer le match, etc ..."); ?>
     </p>
 </div>
 <hr/>
@@ -40,7 +40,7 @@
 
 <div class="well">
     <p>
-		<?php echo __("A la fin du knife round, l'équipe gagnante <b>DEVRA</b> signaler à l'eBot ce qu'il décide (stay ou switch). L'eBot switchera automatiquement les joueurs et inversera les équipes après."); ?>
+        <?php echo __("A la fin du knife round, l'équipe gagnante <b>DEVRA</b> signaler à l'eBot ce qu'il décide (stay ou switch). L'eBot switchera automatiquement les joueurs et inversera les équipes après."); ?>
     </p>
     <ul class="unstyled">
         <li><b>!stay</b> : <?php echo __("pas de changement"); ?></li>
@@ -54,8 +54,8 @@
 <div class="well">
     <ul class="unstyled">
         <li><b>!stop</b> : <?php echo __("signal que votre équipe veut un arrêt du match. L'arrêt du match n'est possible que si l'autre équipe est d'accord. Elle devra écrire à son tour !stop pour arrêter le round en cours."); ?></li>
-		<li><b>!continue</b> : <?php echo __("signal que votre équipe est prête pour reprendre le match (dans le cas d'un stop)"); ?></li>
-		<li><b>!pause</b> : <?php echo __("signal que votre équipe veut une pause"); ?></li>
-		<li><b>!unpause</b> : <?php echo __("signal que votre équipe veut retirer la pause"); ?></li>
-	</ul>
+        <li><b>!continue</b> : <?php echo __("signal que votre équipe est prête pour reprendre le match (dans le cas d'un stop)"); ?></li>
+        <li><b>!pause</b> : <?php echo __("signal que votre équipe veut une pause"); ?></li>
+        <li><b>!unpause</b> : <?php echo __("signal que votre équipe veut retirer la pause"); ?></li>
+    </ul>
 </div>

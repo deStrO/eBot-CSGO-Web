@@ -13,10 +13,10 @@
     function toggleScroll(type) {
         if (autoscroll[type]) {
             autoscroll[type] = false;
-            $('#'+type+'_scroll').html('<i class="icon-play"></i><a href="#" onclick="toggleScroll(\'logger\'); return false;"> resume auto-scrolling</a>');
+            $('#' + type + '_scroll').html('<i class="icon-play"></i><a href="#" onclick="toggleScroll(\'logger\'); return false;"> resume auto-scrolling</a>');
         } else {
             autoscroll[type] = true;
-            $('#'+type+'_scroll').html('<i class="icon-pause"></i><a href="#" onclick="toggleScroll(\'logger\'); return false;"> pause auto-scrolling</a>');
+            $('#' + type + '_scroll').html('<i class="icon-pause"></i><a href="#" onclick="toggleScroll(\'logger\'); return false;"> pause auto-scrolling</a>');
         }
     }
 
@@ -31,39 +31,36 @@
             var data = Aes.Ctr.encrypt(message, "<?php echo $crypt_key; ?>", 256);
             send = JSON.stringify([data, "<?php echo $match->getIp(); ?>"]);
             $("#rcon").append("<b>Send:</b> " + $('#data').val() + "<br>");
-            rcon.send(send);
+            socket.emit("rconSend", send);
             return false;
         });
 
-        if ("WebSocket" in window) {
-            rcon = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/rcon");
-            rcon.onopen = function() {
-                rcon.send('registerMatch_<?php echo $match->getId(); ?>');
-            };
-            rcon.onmessage = function(msg) {
-                console.log(msg.data);
-                var message = jQuery.parseJSON(msg.data);
+        initSocketIo(function(socket) {
+            var loggerFirstMessage = true;
+
+            socket.emit("identify", {type: "rcon", match_id: <?php echo $match->getId(); ?>});
+            socket.emit("identify", {type: "logger", match_id: <?php echo $match->getId(); ?>});
+
+            socket.on("rconHandler", function(data) {
+                var message = jQuery.parseJSON(data);
                 $("#rcon").append(nl2br("<b>Answer</b>: " + message['content']) + "<hr style='margin: 5px 0px;'>")
                 if (autoscroll['rcon']) {
                     var height = $('#rcon')[0].scrollHeight;
                     $('#rcon').scrollTop(height);
                 }
-            };
-            rcon.onclose = function(err) {
+            });
+
+            socket.on("disconnect", function() {
                 $("#rcon").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');
                 $('#data_form input').attr('readonly', 'readonly');
-            };
+                $("#logger").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');
+            });
 
-            var loggerFirstMessage = true;
-            logger = new WebSocket("ws://<?php echo $ebot_ip . ':' . ($ebot_port); ?>/logger");
-            logger.onopen = function() {
-                logger.send('registerMatch_<?php echo $match->getId(); ?>');
-            }
-            logger.onmessage = function(msg) {
+            socket.on("loggerHandler", function(data) {
                 if (loggerFirstMessage) {
                     loggerFirstMessage = false;
-                    var oldlog = jQuery.parseJSON(msg.data);
-                    for (var i=0; i < oldlog.length; i++) {
+                    var oldlog = jQuery.parseJSON(data);
+                    for (var i = 0; i < oldlog.length; i++) {
                         var message = jQuery.parseJSON(oldlog[i]);
                         $("#logger").append($("<span/>").text(message['content']));
                         if (autoscroll['logger']) {
@@ -79,7 +76,7 @@
                                 var teamcolor = "red";
                             else
                                 var teamcolor = "black";
-                            $("#chatlog").append($("<span/>").html("<font color='"+teamcolor+"'>"+chatlog[1]+"</font>: "+chatlog[3]+"<br />"));
+                            $("#chatlog").append($("<span/>").html("<font color='" + teamcolor + "'>" + chatlog[1] + "</font>: " + chatlog[3] + "<br />"));
                             if (autoscroll['chat']) {
                                 var height = $('#chatlog')[0].scrollHeight;
                                 $('#chatlog').scrollTop(height);
@@ -87,7 +84,7 @@
                         }
                     }
                 } else {
-                    var message = jQuery.parseJSON(msg.data);
+                    var message = jQuery.parseJSON(data);
                     $("#logger").append($("<span/>").text(message['content']));
                     if (autoscroll['logger']) {
                         var height = $('#logger')[0].scrollHeight;
@@ -102,25 +99,22 @@
                             var teamcolor = "red";
                         else
                             var teamcolor = "black";
-                        $("#chatlog").append($("<span/>").html("<font color='"+teamcolor+"'>"+chatlog[1]+"</font>: "+chatlog[3]+"<br />"));
+                        $("#chatlog").append($("<span/>").html("<font color='" + teamcolor + "'>" + chatlog[1] + "</font>: " + chatlog[3] + "<br />"));
                         if (autoscroll['chat']) {
                             var height = $('#chatlog')[0].scrollHeight;
                             $('#chatlog').scrollTop(height);
                         }
                     }
                 }
-            };
-            logger.onclose = function(err) {
-                $("#logger").append('<b><font color="red">Server not available!</font></b> <a href="" onlick="location.reload();"><img src="/images/reload.png"></a>');
-            };
-        }
+            });
+        });
     });
 
     function doRequest(event, ip, id, authkey, added) {
         var data = id + " " + event + " " + ip + added;
         data = Aes.Ctr.encrypt(data, authkey, 256);
         send = JSON.stringify([data, ip]);
-        rcon.send(send);
+        socket.emit("rconSend", send);
         return false;
     }
 </script>
