@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [bootstrap.min.css, tipsy.css, datetimepicker.css, datepicker.css, flags.css]
+  stylesheets:    [bootstrap.min.css, tipsy.css, datetimepicker.css, datepicker.css, flags.css, datatable.bootstrap.css]
 
-  javascripts:    [jquery-1.8.2.min.js, bootstrap.min.js, jquery.validate.min.js, jquery.tipsy.js, jquery.tablesorter.min.js, heatmap.js, raphael-min.js, aes.js, bootstrap-datetimepicker.min.js, bootstrap-datepicker.js]
+  javascripts:    [jquery-1.8.2.min.js, bootstrap.min.js, jquery.validate.min.js, bootbox.js, jquery.tipsy.js, jquery.tablesorter.min.js, jquery.autosize.min.js, heatmap.js, raphael-min.js, aes.js, bootstrap-datetimepicker.min.js, bootstrap-datepicker.js]
 
   has_layout:     true
   layout:         layout
