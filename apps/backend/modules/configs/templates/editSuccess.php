@@ -71,6 +71,7 @@
                 var files = event.originalEvent.dataTransfer.files;
                 readBlob(files);
              });
+            $(":file").filestyle({classButton: "btn btn-primary"});
         } else {
             $('#fileReader').hide();
         }
@@ -97,16 +98,17 @@
         <div class="control-group">
             <label class="control-label"><?php echo __("Config"); ?></label>
             <div class="controls">
-                <div id="fileReader">
-                    <input type="file" id="files" name="files" style="margin-top:5px;"><button type="button" id="readBytesButtons" class="btn btn-inverse"><?php echo __("Insert File"); ?></button>
-                    <span style="display:none; font-weight: bold;" class="text-error" id="files_helper"></span>
-                </div>
                 <div style="margin-top: 15px;" id="dropzone">
                     <div id="dropzone_textarea">
                         <textarea name="config" id="config" style="width: 50%; height: 250px;"><?php echo $config->getContent(); ?></textarea>
                     </div>
+                    <div style="text-align:center; width:685px; margin: 20px 0px;"><p class="lead"><?php echo __("Drop your configfile above or choose it by hand:"); ?></p></div>
+                    <div id="fileReader" style="width: 685px; text-align:center;">
+                        <input type="file" id="files" name="files" style="margin-top:5px;" class="filestyle" data-classButton="btn btn-primary"><button type="button" id="readBytesButtons" class="btn btn-inverse" style="margin-left: 10px;"><?php echo __("Insert"); ?></button>
+                    </div>
+                    <div style="display:none; font-weight: bold; text-align:center; width:685px;" class="text-error" id="files_helper"></div>
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
 </form>

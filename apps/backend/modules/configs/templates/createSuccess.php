@@ -23,7 +23,7 @@
         }
 
         if (!files.length) {
-            $('#files_helper').text('<?php echo __("Please select a file or just drag&amp;drop the file into the textarea."); ?>').show();
+            $('#files_helper').html('<?php echo __("Please select a file or just drag&amp;drop the file into the textarea."); ?>').show();
             return;
         }
 
@@ -31,7 +31,7 @@
 
         if (!file.size) {
             $('#config').empty();
-            $('#files_helper').text('<?php echo __("This file is empty."); ?>').show();
+            $('#files_helper').html('<?php echo __("This file is empty."); ?>').show();
             return;
         }
         
@@ -75,6 +75,12 @@
                 var files = event.originalEvent.dataTransfer.files;
                 readBlob(files);
              });
+
+            $('#dropzone').on('click', function(event) {
+                $('#dropzone_image').hide();
+                $('#dropzone_textarea').show();
+            });
+            $(":file").filestyle({classButton: "btn btn-primary"});
         } else {
             $('#fileReader').hide();
         }
@@ -100,10 +106,6 @@
         <div class="control-group">
             <label class="control-label"><?php echo __("Config"); ?></label>
             <div class="controls">
-                <div id="fileReader">
-                    <input type="file" id="files" name="files" style="margin-top:5px;"><button type="button" id="readBytesButtons" class="btn btn-inverse"><?php echo __("Insert File"); ?></button>
-                    <span style="display:none; font-weight: bold;" class="text-error" id="files_helper"></span>
-                </div>
                 <div style="margin-top: 15px;" id="dropzone">
                     <div style="display:none;" id="dropzone_textarea">
                         <textarea name="config" id="config" style="width: 50%; height: 250px;" placeholder="<?php echo __("Please select a file or just drag&amp;drop the file into the textarea."); ?>"></textarea>
@@ -111,6 +113,11 @@
                     <div id="dropzone_image">
                         <?php echo image_tag("/images/dropzone2.png"); ?>
                     </div>
+                    <div style="text-align:center; width:685px; margin: 20px 0px;"><p class="lead"><?php echo __("Drop your configfile above or choose it by hand:"); ?></p></div>
+                    <div id="fileReader" style="width: 685px; text-align:center;">
+                        <input type="file" id="files" name="files" style="margin-top:5px;" class="filestyle" data-classButton="btn btn-primary"><button type="button" id="readBytesButtons" class="btn btn-inverse" style="margin-left: 10px;"><?php echo __("Insert"); ?></button>
+                    </div>
+                    <div style="display:none; font-weight: bold; text-align:center; width:685px;" class="text-error" id="files_helper"></div>
                 </div>
             </div>
         </div>

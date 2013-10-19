@@ -36,9 +36,12 @@
             <li><a href="<?php echo url_for("matchs_create"); ?>"><?php echo __("Create New Match"); ?></a></li>
             <li><a href="<?php echo url_for("matchs_current"); ?>"><?php echo __("Matches in Progress"); ?> <span class="badge badge-info"><?php echo $nbMatchs; ?></span></a></li>
             <li><a href="<?php echo url_for("matchs_archived"); ?>"><?php echo __("Archived Matches"); ?></a></li>
+            <hr style="margin:3px 0;">
+            <li><a href="<?php echo url_for("config_create"); ?>"><?php echo __("Add Config"); ?></a></li>
+            <li><a href="<?php echo url_for("config_index"); ?>"><?php echo __("Config Management"); ?></a></li>
             <li>
-                <div class="input-append">
-                    <input class="span2" id="match_id_go" size="16" type="text">
+                <div class="input-append" style="margin-top:10px;" >
+                    <input class="span8" id="match_id_go" type="text" placeholder="<?php echo __("Match ID"); ?>">
                     <button class="btn" type="button" onclick="goToMatch();"><?php echo __("Go"); ?></button>
                 </div>
             </li>
