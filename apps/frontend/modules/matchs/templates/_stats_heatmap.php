@@ -1,38 +1,38 @@
 <script type="text/javascript">
-    function generateHeatmap() {
-        $("#generateButton").attr("disabled","disabled");
+    function generateHeatmap<?php echo $map->getId(); ?>() {
+        $("#generateButton").attr("disabled", "disabled");
         var type = $("#eventType").val();
         $.post("<?php echo url_for("matchs_heatmap_data", $match); ?>",
-        { type: type, rounds : $("#eventRounds").val(), sides : $("#eventSide").val(), players: $("#eventPlayers").val() },
+                {map_id : <?php echo $map->getId(); ?>,type: type, rounds: $("#eventRounds").val(), sides: $("#eventSide").val(), players: $("#eventPlayers").val()},
         function(data) {
-            processData(data.points);
+            processData<?php echo $map->getId(); ?>(data.points);
             $("#generateButton").removeAttr("disabled");
         }, "json");
     }
 
-    function processData(points) {
-        if (heatmap) {
-            heatmap.clear();
-            for(var i in points) {
+    function processData<?php echo $map->getId(); ?>(points) {
+        if (heatmap<?php echo $map->getId(); ?>) {
+            heatmap<?php echo $map->getId(); ?>.clear();
+            for (var i in points) {
                 point = points[i];
-                heatmap.store.addDataPoint(point.x, point.y);
-            };
+                heatmap<?php echo $map->getId(); ?>.store.addDataPoint(point.x, point.y);
+            }
         }
     }
 
-    var heatmap;
+    var heatmap<?php echo $map->getId(); ?>;
 
-    window.onload = function(){
-		heatmap = h337.create(
-		{
-			"element": document.getElementById("heatmapArea"),
-			"radius" : 11,
-			"opacity": 40,
-			"visible": true,
-			"gradient" : { 0.45: "rgb(0,0,255)", 0.55: "rgb(0,255,255)", 0.65: "rgb(0,255,0)", 0.95: "yellow", 1: "rgb(255,0,0)"}
-		}
-	);
-    };
+    $(function() {
+        heatmap<?php echo $map->getId(); ?> = h337.create(
+                {
+                    "element": document.getElementById("heatmapArea<?php echo $map->getId(); ?>"),
+                    "radius": 11,
+                    "opacity": 40,
+                    "visible": true,
+                    "gradient": {0.45: "rgb(0,0,255)", 0.55: "rgb(0,255,255)", 0.65: "rgb(0,255,0)", 0.95: "yellow", 1: "rgb(255,0,0)"}
+                }
+        );
+    });
 
 </script>
 
@@ -45,7 +45,7 @@
                     <h3><?php echo __("Heatmap"); ?></h3>
                 </div>
                 <div class="modal-body" style="max-height: 0%; text-align: center;">
-                    <div id="heatmapArea" style="border: 5px solid black; border-radius: 10px; position:relative; background-image: url(<?php echo image_path($class_heatmap->getMapImage(), true); ?>); width: <?php echo $class_heatmap->getResX(); ?>px;  height: <?php echo $class_heatmap->getResY(); ?>px;">
+                    <div id="heatmapArea<?php echo $map->getId(); ?>" style="border: 5px solid black; border-radius: 10px; position:relative; background-image: url(<?php echo image_path($class_heatmap->getMapImage(), true); ?>); width: <?php echo $class_heatmap->getResX(); ?>px;  height: <?php echo $class_heatmap->getResY(); ?>px;">
 
                     </div>
                 </div>
@@ -78,9 +78,9 @@
                             <label class="control-label"><?php echo __("Rounds"); ?></label>
                             <div class="controls">
                                 <select id="eventRounds" multiple="true">
-									<?php foreach ($match->getRoundSummaries() as $round): ?>
-										<option value="<?php echo $round->getRoundId(); ?>"><?php echo __("Round"); ?> #<?php echo $round->getRoundId(); ?></option>
-									<?php endforeach; ?>
+                                    <?php foreach ($map->getRoundSummaries() as $round): ?>
+                                        <option value="<?php echo $round->getRoundId(); ?>"><?php echo __("Round"); ?> #<?php echo $round->getRoundId(); ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -100,17 +100,17 @@
                             <label class="control-label"><?php echo __("Players"); ?></label>
                             <div class="controls">
                                 <select id="eventPlayers" multiple="true">
-									<?php foreach ($match->getPlayers() as $player): ?>
-										<?php if ($player->getTeam() == "other") continue; ?>s
-										<option value="<?php echo $player->getId(); ?>"><?php echo $player->getPseudo(); ?></option>
-									<?php endforeach; ?>
+                                    <?php foreach ($map->getPlayers() as $player): ?>
+                                        <?php if ($player->getTeam() == "other") continue; ?>s
+                                        <option value="<?php echo $player->getId(); ?>"><?php echo $player->getPseudo(); ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" onclick="generateHeatmap();" id="generateButton"><?php echo __("Generate Heatmap"); ?></button>
+                    <button class="btn btn-primary" onclick="generateHeatmap<?php echo $map->getId(); ?>();" id="generateButton"><?php echo __("Generate Heatmap"); ?></button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <script>
     $(function() {
-       if ($("#tablePlayers").find("tbody").find("tr").size() > 0)
-            $("#tablePlayers").tablesorter({sortList: [[2,1] ]});
+       if ($("#tablePlayers<?php echo $map->getId(); ?>").find("tbody").find("tr").size() > 0)
+            $("#tablePlayers<?php echo $map->getId(); ?>").tablesorter({sortList: [[2,1] ]});
     });
 </script>
 <style>
@@ -24,7 +24,7 @@
 
 <h5><i class="icon-fire"></i> <?php echo __("Player Statistics"); ?></h5>
 
-<table class="table table-striped table-condensed" id="tablePlayers">
+<table class="table table-striped table-condensed" id="tablePlayers<?php echo $map->getId(); ?>">
     <thead>
         <tr>
             <th><?php echo __("Team"); ?></th>
@@ -61,7 +61,7 @@
     );
     ?>
     <tbody>
-        <?php foreach ($match->getMap()->getPlayer() as $player): ?>
+        <?php foreach ($map->getPlayer() as $player): ?>
             <?php if ($player->getTeam() == "other") continue; ?>
             <?php
             $total['kill']+=$player->getNbKill();

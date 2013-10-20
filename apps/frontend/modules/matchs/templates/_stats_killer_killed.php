@@ -28,7 +28,7 @@ $(function() {
 
 <?php
 $players = array();
-$kills = PlayerKillTable::getInstance()->createQuery()->where("match_id = ?", $match->getId())->execute();
+$kills = PlayerKillTable::getInstance()->createQuery()->where("map_id = ?", $map->getId())->execute();
 foreach ($kills as $kill) {
     @$players[$kill->getKillerId()][$kill->getKilledId()]++;
 }
@@ -39,7 +39,7 @@ foreach ($kills as $kill) {
         <tr>
             <td></td>
             <?php $count = 0; ?>
-            <?php foreach ($match->getMap()->getPlayer() as $player): ?>
+            <?php foreach ($map->getPlayer() as $player): ?>
                 <?php if ($player->getTeam() == "other") continue; ?>
                 <td style="width: 30px; text-align: center;">
                     <div class="progress progress-striped" style="width: 25px; height: 25px;  margin-bottom: 0px; margin: auto; ">
@@ -51,7 +51,7 @@ foreach ($kills as $kill) {
     </thead>
     <tbody>
         <?php $count = 0; ?>
-        <?php foreach ($match->getMap()->getPlayer() as $player): ?>
+        <?php foreach ($map->getPlayer() as $player): ?>
             <?php if ($player->getTeam() == "other") continue; ?>
             <tr>
                 <td style="width: 250px; min-width: 250px;" id="player-<?php echo $player->getId(); ?>">
@@ -60,7 +60,7 @@ foreach ($kills as $kill) {
                     </div>
                     <a style="font-size: 11px" href="<?php echo url_for("player_stats", array("id" => $player->getSteamid())); ?>"><?php echo $player->getPseudo(); ?></a>
                 </td>
-                <?php foreach ($match->getMap()->getPlayer() as $player2): ?>
+                <?php foreach ($map->getPlayer() as $player2): ?>
                     <?php if ($player2->getTeam() == "other") continue; ?>
                     <td class="highlight_name<?php if (@$players[$player->getId()][$player2->getId()] * 1 == 0) echo ' muted'; ?>" player="<?php echo $player->getId(); ?>" target="<?php echo $player2->getId(); ?>" style="text-align: center;"><?php echo @$players[$player->getId()][$player2->getId()] * 1; ?></td>
                 <?php endforeach; ?>

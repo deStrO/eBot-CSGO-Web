@@ -26,36 +26,38 @@
     <?php
     $maps = array();
     foreach ($matchs as $match):
-        $map_name = $match->getMap()->getMapName();
-        $sideCT = ($match->getMap()->getCurrentSide() == "t") ? "a" : "b";
-        if ($match->getScoreA() > $match->getScoreB()) {
-            if ($sideCT == "a") {
-                @$maps[$map_name]["side_t_map_win"]++;
-            } else {
-                @$maps[$map_name]["side_ct_map_win"]++;
-            }
-        } elseif ($match->getScoreB() > $match->getScoreA()) {
-            if ($sideCT == "b") {
-                @$maps[$map_name]["side_t_map_win"]++;
-            } else {
-                @$maps[$map_name]["side_ct_map_win"]++;
-            }
-        } elseif ($match->getScoreB() == $match->getScoreA()) {
-            @$maps[$map_name]["draw_map_win"]++;
-        }
-
-        @$maps[$map_name]["count"]++;
-        $rounds = $match->getRoundSummaries();
-        foreach ($rounds as $round) {
-            if ($round->getCtWin()) {
-                @$maps[$map_name]["ct"]++;
-                if ($round->getRoundId() % $match->getMaxRound() == 1) {
-                    @$maps[$map_name]["gr_ct"]++;
+        foreach ($match->getMaps() as $map) {
+            $map_name = $map->getMapName();
+            $sideCT = ($map->getCurrentSide() == "t") ? "a" : "b";
+            if ($map->score_1 > $map->score_2) {
+                if ($sideCT == "a") {
+                    @$maps[$map_name]["side_t_map_win"]++;
+                } else {
+                    @$maps[$map_name]["side_ct_map_win"]++;
                 }
-            } else {
-                @$maps[$map_name]["t"]++;
-                if ($round->getRoundId() % $match->getMaxRound() == 1) {
-                    @$maps[$map_name]["gr_t"]++;
+            } elseif ($map->score_2 > $map->score_1) {
+                if ($sideCT == "b") {
+                    @$maps[$map_name]["side_t_map_win"]++;
+                } else {
+                    @$maps[$map_name]["side_ct_map_win"]++;
+                }
+            } elseif ($map->score_1 == $map->map_score_2) {
+                @$maps[$map_name]["draw_map_win"]++;
+            }
+
+            @$maps[$map_name]["count"]++;
+            $rounds = $map->getRoundSummaries();
+            foreach ($rounds as $round) {
+                if ($round->getCtWin()) {
+                    @$maps[$map_name]["ct"]++;
+                    if ($round->getRoundId() % $match->getMaxRound() == 1) {
+                        @$maps[$map_name]["gr_ct"]++;
+                    }
+                } else {
+                    @$maps[$map_name]["t"]++;
+                    if ($round->getRoundId() % $match->getMaxRound() == 1) {
+                        @$maps[$map_name]["gr_t"]++;
+                    }
                 }
             }
         }
@@ -66,7 +68,7 @@
 </div>
 
 <script>
-    $(function () {
+    $(function() {
         var chart;
         $(document).ready(function() {
             chart = new Highcharts.Chart({
@@ -96,11 +98,10 @@ echo json_encode($mapData);
                         text: <?php echo json_encode(__("Number of rounds won by side")); ?>
                     }
                 },
-
                 tooltip: {
                     formatter: function() {
-                        return ''+
-                            this.series.name +': '+ this.y +' <?php echo __("rounds"); ?>';
+                        return '' +
+                                this.series.name + ': ' + this.y + ' <?php echo __("rounds"); ?>';
                     }
                 },
                 plotOptions: {
@@ -183,8 +184,8 @@ echo json_encode($mapData);
                 <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo $stats["draw_map_win"]; ?></td>
             </tr>
         <?php endforeach; ?>
-            <tr>
-                <td colspan="12"><span style="float:right; text-align:right;"><?php echo __("* may not be 100%, if the result was a draw."); ?></span></td>
-            </tr>
+        <tr>
+            <td colspan="12"><span style="float:right; text-align:right;"><?php echo __("* may not be 100%, if the result was a draw."); ?></span></td>
+        </tr>
     </tbody>
 </table>

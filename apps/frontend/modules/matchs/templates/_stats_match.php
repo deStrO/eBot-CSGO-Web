@@ -3,7 +3,7 @@ $last = null;
 $data = array();
 $i = -1;
 $count = 0;
-$rounds = $match->getRoundSummaries();
+$rounds = $map->getRoundSummaries();
 
 $round_current = 0;
 $round_a = 0;
@@ -118,6 +118,7 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                     <td>
                         <div class="progress progress-striped" style="width: 450px;">
                             <?php foreach ($data as $d): ?>
+                                <?php $class = ""; ?>
                                 <?php if ($d["type"] == "seperator"): ?>
                                     <div class="bar bar-warning needTips" title="<?php echo __("Halftime"); ?>" style="width: <?php echo $size * 1; ?>px;" >
                                     </div>
@@ -150,8 +151,8 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
             <table class="table table-striped table-condensed">
                 <tr>
                     <th width="200"></th>
-                    <th><?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName(); ?> <?php if ($match->getScoreA() > $match->getScoreB()): ?><i class="icon-star"></i><?php endif; ?></th>
-                    <th><?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?> <?php if ($match->getScoreB() > $match->getScoreA()): ?><i class="icon-star"></i><?php endif; ?></th>
+                    <th><?php echo $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName(); ?> <?php if ($map->score_1 > $map->score_2): ?><i class="icon-star"></i><?php endif; ?></th>
+                    <th><?php echo $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName(); ?> <?php if ($map->score_2 > $map->score_1): ?><i class="icon-star"></i><?php endif; ?></th>
                 </tr>
                 <tr>
                     <th width="200"><?php echo __("Victory: Bomb Exploded"); ?></th>
@@ -230,31 +231,31 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
 
         function generateTimeLine(index) {
             if (event[index]) {
-                var paper = Raphael("canvas-"+index, $("#canvas-"+index).width(), 30);
-                var rect = paper.rect(10,10,$("#canvas-"+index).width()-20,5,3);
+                var paper = Raphael("canvas-" + index, $("#canvas-" + index).width(), 30);
+                var rect = paper.rect(10, 10, $("#canvas-" + index).width() - 20, 5, 3);
                 rect.attr("fill", "#000");
                 rect.attr("stroke", "#fff");
 
-                timer_event_default = ($("#canvas-"+index).width()-20)/round_max_time;
+                timer_event_default = ($("#canvas-" + index).width() - 20) / round_max_time;
                 $(event[index]).each(function() {
                     var e = this;
-                    var default_pos = default_decal+(this.time)*timer_event_default;
+                    var default_pos = default_decal + (this.time) * timer_event_default;
 
                     var circle = paper.circle(default_pos, 12, 8);
-                    circle.attr( {"fill" : this.color, "stroke" : "#fff", "stroke-width" : 2 });
-                    $(circle.node).attr("id", "circle-"+index+"-"+e.time);
+                    circle.attr({"fill": this.color, "stroke": "#fff", "stroke-width": 2});
+                    $(circle.node).attr("id", "circle-" + index + "-" + e.time);
                     $(circle.node).hover(function() {
-                        $("#tipsy-content-"+index).html(e.text);
+                        $("#tipsy-content-" + index).html(e.text);
 
                         var top = $(this).offset().top + parseInt($(this).attr("cy")) + 5;
-                        var left = $(this).offset().left- ($("#tipsy-"+index).width()/2) +4;
+                        var left = $(this).offset().left - ($("#tipsy-" + index).width() / 2) + 4;
 
-                        $("#tipsy-"+index).offset( { top: top,left: left });
-                        $("#tipsy-"+index).css("visibility", "visible");
+                        $("#tipsy-" + index).offset({top: top, left: left});
+                        $("#tipsy-" + index).css("visibility", "visible");
                     });
 
                     $(circle.node).mouseout(function() {
-                        $("#tipsy-"+index).css("visibility", "hidden");
+                        $("#tipsy-" + index).css("visibility", "hidden");
                     });
                 });
 
@@ -265,7 +266,7 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
 
         function goToRound(id) {
             $("#myCarousel").carousel("pause");
-            $("#myCarousel").carousel(id-1);
+            $("#myCarousel").carousel(id - 1);
         }
 
         var event = new Array();
@@ -287,6 +288,8 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                             $eventArray = array();
                             $events = RoundTable::getInstance()->createQuery("r")->where("r.map_id = ?", $match->getMap()->getId())->andWhere("r.round_id = ?", $round->getRoundId())->orderBy("r.event_time ASC")->leftJoin("r.Kill pk")->execute();
                             foreach ($events as $event) {
+                                if ($event->getEventName() == "purchased")
+                                    continue;
                                 $color = "#000";
 
                                 $text = $event->getEventName();
@@ -335,12 +338,12 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                             ?>
 
                             <script>
-                                event[<?php echo $round->getRoundId(); ?>] = <?php echo json_encode($eventArray) ?>;
+                                event<?php echo $map->getId(); ?>[<?php echo $round->getRoundId(); ?>] = <?php echo json_encode($eventArray) ?>;
                             </script>
                             <table border="0" cellpadding="5" cellspacing="5" width="100%">
                                 <tr>
                                     <td valign="top" width="50%">
-                                        <h5><?php echo __("Round #").$round->getRoundId(); ?></h5>
+                                        <h5><?php echo __("Round #") . $round->getRoundId(); ?></h5>
                                         <table class="table">
                                             <tr>
                                                 <th width="200"><?php echo __("Winner"); ?></th>
@@ -472,7 +475,7 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                 paused = !paused;
                 return false;
             }
-            $(document).on('mouseleave','.carousel', function(){
+            $(document).on('mouseleave', '.carousel', function() {
                 if (paused) {
                     $(this).carousel('pause');
                 }
@@ -485,8 +488,9 @@ $size = 450 / ($match->getMaxRound() * 2 + 1);
                     <div class="pagination">
                         <ul id="paginatorRound">
                             <?php foreach ($rounds as $round): ?>
-                                <li><a href="#" onclick="goToRound(<?php echo $round->getRoundId(); ?>); return false;"><?php echo $round->getRoundId(); ?></a></li>
-                            <?php endforeach; ?>
+                                <li><a href="#" onclick="goToRound(<?php echo $round->getRoundId(); ?>);
+                        return false;"><?php echo $round->getRoundId(); ?></a></li>
+                                <?php endforeach; ?>
                             <li><a href="#" onclick="return pauseResume();">&nbsp;<i class="icon-pause" id="buttonPauseResume"></i></a></li>
                         </ul>
                     </div>

@@ -33,8 +33,8 @@ class statsActions extends sfActions {
 
     public function executeGlobal(sfWebRequest $request) {
         $this->filter = new MatchsFormFilter($this->getFilters());
-		$query = $this->filter->buildQuery($this->getFilters());
-		$this->filterValues = $this->getFilters();
+        $query = $this->filter->buildQuery($this->getFilters());
+        $this->filterValues = $this->getFilters();
 
         $matchs = $this->getUser()->getAttribute("global.stats.matchs", array());
         if (count($matchs) > 0) {
@@ -82,8 +82,8 @@ class statsActions extends sfActions {
 
     public function executeMapsStats(sfWebRequest $request) {
         $this->filter = new MatchsFormFilter($this->getFilters());
-		$query = $this->filter->buildQuery($this->getFilters());
-		$this->filterValues = $this->getFilters();
+        $query = $this->filter->buildQuery($this->getFilters());
+        $this->filterValues = $this->getFilters();
 
         $this->matchs = $query->andWhere("status >= ?", array(Matchs::STATUS_END_MATCH))->execute();
     }
@@ -105,26 +105,26 @@ class statsActions extends sfActions {
     }
 
     public function executeFilters(sfWebRequest $request) {
-		$this->filter = new MatchsFormFilter();
-		$this->filter->bind($request->getPostParameter($this->filter->getName()));
-		if ($this->filter->isValid()) {
-			$this->setFilters($this->filter->getValues());
-		}
+        $this->filter = new MatchsFormFilter();
+        $this->filter->bind($request->getPostParameter($this->filter->getName()));
+        if ($this->filter->isValid()) {
+            $this->setFilters($this->filter->getValues());
+        }
 
-		$this->redirect($request->getReferer());
-	}
+        $this->redirect($request->getReferer());
+    }
 
-	public function executeFiltersClear(sfWebRequest $request) {
-		$this->setFilters(array());
-		$this->redirect($request->getReferer());
-	}
+    public function executeFiltersClear(sfWebRequest $request) {
+        $this->setFilters(array());
+        $this->redirect($request->getReferer());
+    }
 
-	private function getFilters() {
-		return $this->getUser()->getAttribute('matchs.filters', array(), 'admin_module');
-	}
+    private function getFilters() {
+        return $this->getUser()->getAttribute('matchs.filters', array(), 'admin_module');
+    }
 
-	private function setFilters($filters) {
-		return $this->getUser()->setAttribute('matchs.filters', $filters, 'admin_module');
-	}
+    private function setFilters($filters) {
+        return $this->getUser()->setAttribute('matchs.filters', $filters, 'admin_module');
+    }
 
 }

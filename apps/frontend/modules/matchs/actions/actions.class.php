@@ -89,10 +89,12 @@ class matchsActions extends sfActions {
     public function executeHeatmapData(sfWebRequest $request) {
         $this->match = $this->getRoute()->getObject();
 
-        $this->heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->count() > 0;
+        $this->heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->andWhere("map_id = ?", $request->getPostParameter("map_id"))->count() > 0;
+        $this->map = MapsTable::getInstance()->find($request->getPostParameter("map_id"));
         if ($this->heatmap) {
-            if (class_exists($this->match->getMap()->getMapName())) {
-                $map = $this->match->getMap()->getMapName();
+            
+            if (class_exists($this->map->getMapName())) {
+                $map = $this->map->getMapName();
                 $this->class_heatmap = new $map($this->match->getId());
             } else {
                 $this->heatmap = false;
@@ -100,7 +102,7 @@ class matchsActions extends sfActions {
         }
 
         $map = $this->class_heatmap;
-        foreach ($this->match->getPlayersHeatmap() as $event) {
+        foreach (PlayersHeatmapTable::getInstance()->createQuery()->where("map_id = ?", $request->getPostParameter("map_id"))->execute() as $event) {
             $map->addInformation($event->getId(), $event->getEventName(), $event->getEventX(), $event->getEventY(), $event->getPlayerId(), ($event->getPlayerTeam() == "CT") ? 1 : 2, $event->getRoundId(), $event->getRoundTime(), 0, 1, $event->getAttackerX(), $event->getAttackerY(), $event->getAttackerName(), $event->getAttackerTeam());
         }
 

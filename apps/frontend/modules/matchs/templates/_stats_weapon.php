@@ -2,7 +2,7 @@
 
 <?php
 $players = array();
-$kills = PlayerKillTable::getInstance()->createQuery()->where("match_id = ?", $match->getId())->execute();
+$kills = PlayerKillTable::getInstance()->createQuery()->where("map_id = ?", $map->getId())->execute();
 foreach ($kills as $kill) {
     @$players[$kill->getKillerId()][$kill->getWeapon()]["k"]++;
     @$players[$kill->getKilledId()][$kill->getWeapon()]["d"]++;
@@ -28,7 +28,7 @@ $weapons = array("glock", "hkp2000", "deagle", "p250", "tec9", "awp", "m4a1", "a
     </thead>
     <tbody>
         <?php $weaponsStats = array(); ?>
-        <?php foreach ($match->getMap()->getPlayer() as $player): ?>
+        <?php foreach ($map->getPlayer() as $player): ?>
             <?php if ($player->getTeam() == "other") continue; ?>
             <tr>
                 <td style="width: 150px; min-width: 150px;"><a href="<?php echo url_for("player_stats", array("id" => $player->getSteamid())); ?>"><?php echo $player->getPseudo(); ?></a></td>

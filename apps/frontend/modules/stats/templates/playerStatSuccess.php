@@ -19,8 +19,8 @@
     <li class="active"><a href="#home"><?php echo __("Information / Global Statistics"); ?></a></li>
     <?php foreach ($stats as $stat): ?>
         <?php if ($stat->getTeam() == "other") continue; ?>
-        <?php $team = ($stat->getTeam() == 'a') ? $stat->getMatch()->getTeamB() : $stat->getMatch()->getTeamA(); ?>
-        <li><a href="#match-<?php echo $stat->getMatchId(); ?>"><?php echo __("vs. " . $team); ?></a></li>
+        <?php $team = ($stat->getTeam() == 'a') ? ($stat->getMatch()->getTeamB()->exists() ? $stat->getMatch()->getTeamB() : $stat->getMatch()->getTeamBName()) : ($stat->getMatch()->getTeamA()->exists() ? $stat->getMatch()->getTeamA() : $stat->getMatch()->getTeamAName()); ?>
+        <li><a href="#match-<?php echo $stat->getMapId(); ?>"><?php echo __("vs. " . $team); ?></a></li>
     <?php endforeach; ?>
 </ul>
 
@@ -49,7 +49,7 @@
         @$total["match"]++;
         ?>
         <?php $match = $stat->getMatch(); ?>
-        <div class="tab-pane" id="match-<?php echo $stat->getMatchId(); ?>">
+        <div class="tab-pane" id="match-<?php echo $stat->getMapId(); ?>">
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span6">
@@ -142,10 +142,10 @@
 
                         \ScoreColorUtils::colorForScore($score1, $score2);
 
-                        $team1 = $match->getTeamA();
-                        $team2 = $match->getTeamB();
-                        if ($match->getMap() && $match->getMap()->exists()) {
-                            \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
+                        $team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
+                        $team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
+                        if ($stat->getMap() && $stat->getMap()->exists()) {
+                            \ScoreColorUtils::colorForMaps($stat->getCurrentSide(), $team1, $team2);
                         }
                         ?>
                         <h5><i class="icon-tasks"></i> <?php echo __("Match Informations"); ?></h5>
@@ -161,7 +161,7 @@
                             </tr>
                             <tr>
                                 <th width="200"><?php echo __("Map"); ?></th>
-                                <td><?php echo $match->getMap()->getMapName(); ?></td>
+                                <td><?php echo $stat->getMap()->getMapName(); ?></td>
                             </tr>
                         </table>
 
