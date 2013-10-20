@@ -38,5 +38,9 @@ class Maps extends BaseMaps {
     public function getPlayer() {
         return PlayersTable::getInstance()->createQuery()->where("map_id = ?", $this->getId())->orderBy("team")->execute();
     }
+    
+    public function getRoundSummaries() {
+        return RoundSummaryTable::getInstance()->createQuery()->where("map_id = ?", $this->getId())->orderBy("round_id ASC")->execute();
+    }
 
 }
