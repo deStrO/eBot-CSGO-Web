@@ -240,16 +240,12 @@ for ($i = 0; $i < count($id); $i++) {
 
                         $score1 = $score2 = 0;
 
-                        if ($match->getMapSelectionMode() == "bo3_modeb") {
+                        if ($match->getMaps()->count() > 1) {
                             foreach ($match->getMaps() as $map) {
-                                foreach ($map->getMapsScore() as $score) {
-                                    if ($map->getStatus() == Matchs::STATUS_END_MATCH) {
-                                        if (($score->getScore1Side1() + $score->getScore1Side2()) > ($score->getScore2Side1() + $score->getScore2Side2())) {
-                                            @$score1++;
-                                        } elseif (($score->getScore1Side1() + $score->getScore1Side2()) < ($score->getScore2Side1() + $score->getScore2Side2())) {
-                                            @$score2++;
-                                        }
-                                    }
+                                if ($map->getScore_1() > $map->getScore_2()) {
+                                    @$score1++;
+                                } elseif ($map->getScore_1() < $map->getScore_2()) {
+                                    @$score2++;
                                 }
                             }
                         } else {
@@ -278,24 +274,16 @@ for ($i = 0; $i < count($id); $i++) {
                             <td width="100"  style="padding-left: 10px;">
                                 <span style="float:left" id="team_a-<?php echo $match->getId(); ?>"><?php echo $team1; ?></span>
                             </td>
-                            <?php if ($match->getMapSelectionMode() == "normal"): ?>
+                            <?php if ($match->getMaps()->count() == 1): ?>
                                 <td width="50" style="text-align: center;" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></td>
-                            <?php elseif ($match->getMapSelectionMode() == "bo3_modeb"): ?>
+                            <?php else: ?>
                                 <td width="50" style="text-align: center;">
                                     <?php
                                     foreach ($match->getMaps() as $index => $map) {
-                                        foreach ($map->getMapsScore() as $score) {
-                                            $bo3_score1 = ($score->getScore1Side1() + $score->getScore1Side2());
-                                            $bo3_score2 = ($score->getScore2Side1() + $score->getScore2Side2());
-                                            \ScoreColorUtils::colorForScore($bo3_score1, $bo3_score2);
-                                            $bo3_score .= ($index + 1) . ". Map (" . $map->getMapName() . "): " . $bo3_score1 . " - " . $bo3_score2 . "<br>";
-                                        }
-                                        if (!count($map->getMapsScore())) {
-                                            $bo3_score1 = 0;
-                                            $bo3_score2 = 0;
-                                            \ScoreColorUtils::colorForScore($bo3_score1, $bo3_score2);
-                                            $bo3_score .= ($index + 1) . ". Map (" . $map->getMapName() . "): " . $bo3_score1 . " - " . $bo3_score2 . "<br>";
-                                        }
+                                        $bo3_score1 = $map->getScore_1();
+                                        $bo3_score2 = $map->getScore_2();
+                                        \ScoreColorUtils::colorForScore($bo3_score1, $bo3_score2);
+                                        $bo3_score .= ($index + 1) . ". Map (" . $map->getMapName() . "): " . $bo3_score1 . " - " . $bo3_score2 . "<br>";
                                     }
                                     ?>
                                     <a href="#" class="bo3" data-toggle="popover" data-trigger="hover" data-html="true"
