@@ -395,7 +395,7 @@ class matchsActions extends sfActions {
 
         if ($request->getMethod() == sfWebRequest::POST) {
             $this->form->bind($request->getPostParameter($this->form->getName()));
-            if ($this->form->isValid() && in_array($_POST["maps"], $this->maps)) {
+            if ($this->form->isValid()) {
                 $match = $this->form->save();
 
                 if ($match->getTeamA()->exists()) {
@@ -428,20 +428,37 @@ class matchsActions extends sfActions {
                         $match->setAutoStart(false);
                 }
 
-                $maps = new Maps();
-                $maps->setMatch($match);
-                $maps->setMapsFor("default");
-                $maps->setNbOt(0);
-                $maps->setStatus(0);
-                $maps->score_1 = 0;
-                $maps->score_2 = 0;
-                $maps->current_side = $side;
-                $maps->setMapName($request->getPostParameter("maps"));
-                $maps->save();
+                $maps_set = $request->getPostParameter('maps');
+                if ($match->getMapSelectionMode() == "bo3_modeb") {
+                    $setMapsFor = array("team1", "team2", "default");
+                } else {
+                    $setMapsFor = array("default", "default", "default");
+                }
+
+                if ($match->map_selection_mode == "normal") {
+                    $nb = 1;
+                } else {
+                    $nb = 3;
+                }
+                
+                for ($i = 0; $i < $nb; $i++) {
+                    $maps[$i] = new Maps();
+                    $maps[$i]->setMatch($match);
+                    $maps[$i]->setMapsFor($setMapsFor[$i]);
+                    $maps[$i]->setNbOt(0);
+                    $maps[$i]->setStatus(0);
+                    $maps[$i]->score_1 = 0;
+                    $maps[$i]->score_2 = 0;
+                    $maps[$i]->current_side = $side;
+                    $maps[$i]->setMapName($maps_set[$i]);
+                    $maps[$i]->save();
+                    if ($i == 0)
+                        $match->setCurrentMap($maps[$i]);
+                }
+
 
                 $match->setScoreA(0);
                 $match->setScoreB(0);
-                $match->setCurrentMap($maps);
                 $match->setStatus(Matchs::STATUS_NOT_STARTED);
                 $match->setConfigAuthkey(uniqid(mt_rand(), true));
                 $match->save();

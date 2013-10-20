@@ -243,10 +243,12 @@ for ($i = 0; $i < count($id); $i++) {
                         if ($match->getMapSelectionMode() == "bo3_modeb") {
                             foreach ($match->getMaps() as $map) {
                                 foreach ($map->getMapsScore() as $score) {
-                                    if (($score->getScore1Side1() + $score->getScore1Side2()) > ($score->getScore2Side1() + $score->getScore2Side2())) {
-                                        @$score1++;
-                                    } elseif (($score->getScore1Side1() + $score->getScore1Side2()) < ($score->getScore2Side1() + $score->getScore2Side2())) {
-                                        @$score2++;
+                                    if ($map->getStatus() == Matchs::STATUS_END_MATCH) {
+                                        if (($score->getScore1Side1() + $score->getScore1Side2()) > ($score->getScore2Side1() + $score->getScore2Side2())) {
+                                            @$score1++;
+                                        } elseif (($score->getScore1Side1() + $score->getScore1Side2()) < ($score->getScore2Side1() + $score->getScore2Side2())) {
+                                            @$score2++;
+                                        }
                                     }
                                 }
                             }
@@ -266,6 +268,8 @@ for ($i = 0; $i < count($id); $i++) {
                         if ($match->getMap() && $match->getMap()->exists()) {
                             \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                         }
+
+                        $bo3_score = "";
                         ?>
                         <tr class="match-selectable" data-id="<?php echo $match->getId(); ?>">
                             <td width="20" style="padding-left: 10px;">
@@ -284,7 +288,13 @@ for ($i = 0; $i < count($id); $i++) {
                                             $bo3_score1 = ($score->getScore1Side1() + $score->getScore1Side2());
                                             $bo3_score2 = ($score->getScore2Side1() + $score->getScore2Side2());
                                             \ScoreColorUtils::colorForScore($bo3_score1, $bo3_score2);
-                                            $bo3_score .= ($index + 1) . ". Map: " . $bo3_score1 . " - " . $bo3_score2 . "<br>";
+                                            $bo3_score .= ($index + 1) . ". Map (" . $map->getMapName() . "): " . $bo3_score1 . " - " . $bo3_score2 . "<br>";
+                                        }
+                                        if (!count($map->getMapsScore())) {
+                                            $bo3_score1 = 0;
+                                            $bo3_score2 = 0;
+                                            \ScoreColorUtils::colorForScore($bo3_score1, $bo3_score2);
+                                            $bo3_score .= ($index + 1) . ". Map (" . $map->getMapName() . "): " . $bo3_score1 . " - " . $bo3_score2 . "<br>";
                                         }
                                     }
                                     ?>
@@ -294,6 +304,7 @@ for ($i = 0; $i < count($id); $i++) {
                             <?php endif; ?>
                             <td width="100"><span style="float:right; text-align:right;" id="team_b-<?php echo $match->getId(); ?>"><?php echo $team2; ?></span></td>
                             <td width="100">
+                                <?php $bo3_maps = ""; ?>
                                 <?php if ($match->getMap() && $match->getMap()->exists() && $match->getMapSelectionMode() == "normal"): ?>
                                     <?php echo $match->getMap()->getMapName(); ?>
                                 <?php elseif ($match->getMapSelectionMode() == "bo3_modeb"): ?>
@@ -358,8 +369,7 @@ for ($i = 0; $i < count($id); $i++) {
                                             <?php if ($match->getAutoStart()): ?>
                                                 <li><b><?php echo __("Startdate"); ?></b>: <?php echo $match->getDateTimeObject('startdate')->format('d.m.Y H:i'); ?></b></li>
                                             <?php endif; ?>
-                                            <li><textarea onclick="this.focus();
-            this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller; margin:5px;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
+                                            <li><textarea onclick="this.focus(); this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller; margin:5px;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
                                         </ul>
                                         <hr style="margin:5px 0;"/>
                                         <?php $buttons = $match->getActionAdmin($match->getEnable()); ?>

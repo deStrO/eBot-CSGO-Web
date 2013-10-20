@@ -56,12 +56,12 @@
 
         $('#form-match').validate({
             rules: {
-                "matchs[team_a]": { team_a: true },
-                "matchs[team_a_name]": { team_a: true },
-                "matchs[team_b]": { team_b: true },
-                "matchs[team_b_name]": { team_b: true },
-                "matchs[max_round]": { number: true, required: true },
-                "matchs[rules]": { minlength: 1, required: true }
+                "matchs[team_a]": {team_a: true},
+                "matchs[team_a_name]": {team_a: true},
+                "matchs[team_b]": {team_b: true},
+                "matchs[team_b_name]": {team_b: true},
+                "matchs[max_round]": {number: true, required: true},
+                "matchs[rules]": {minlength: 1, required: true}
             },
             highlight: function(label) {
                 $(label).closest('.validate-field').addClass('error').removeClass("success");
@@ -75,22 +75,24 @@
         matchs_team_content = $('#matchs_team_a').html();
 
         $('#matchs_season_id').change(
-            function() {
-                if($(this).val() != "") {
-                    $.ajax({
-                        url: "/admin.php/teams/getbyseasons",
-                        data: {season_id: $(this).val()},
-                        datatype: "json",
-                        type: "POST",
-                        success: function(data) { setTeamData(data); }
-                    });
-                } else {
-                    $('#matchs_team_a').empty();
-                    $('#matchs_team_b').empty();
-                    $('#matchs_team_a').append(matchs_team_content);
-                    $('#matchs_team_b').append(matchs_team_content);
+                function() {
+                    if ($(this).val() != "") {
+                        $.ajax({
+                            url: "/admin.php/teams/getbyseasons",
+                            data: {season_id: $(this).val()},
+                            datatype: "json",
+                            type: "POST",
+                            success: function(data) {
+                                setTeamData(data);
+                            }
+                        });
+                    } else {
+                        $('#matchs_team_a').empty();
+                        $('#matchs_team_b').empty();
+                        $('#matchs_team_a').append(matchs_team_content);
+                        $('#matchs_team_b').append(matchs_team_content);
+                    }
                 }
-            }
         );
 
         function setTeamData(data) {
@@ -99,7 +101,7 @@
             $('#matchs_team_b').empty();
             if (!$.isEmptyObject(data)) {
                 var optionsAsString = '<option value="" selected="selected"></option>';
-                for(var i = 0; i < data['id'].length; i++) {
+                for (var i = 0; i < data['id'].length; i++) {
                     optionsAsString += "<option value='" + data['id'][i] + "'>" + data['name'][i] + " (" + data['flag'][i] + ") </option>";
                 }
                 $('#matchs_team_a').append($(optionsAsString));
@@ -108,26 +110,26 @@
         }
 
         $("#matchs_team_a").change(
-            function() {
-                if ($(this).val() == 0) {
-                    $("#team_a").show();
-                } else {
-                    $("#team_a").hide();
+                function() {
+                    if ($(this).val() == 0) {
+                        $("#team_a").show();
+                    } else {
+                        $("#team_a").hide();
+                    }
                 }
-            }
         );
 
         $("#matchs_team_b").change(
-            function() {
-                if ($(this).val() == 0) {
-                    $("#team_b").show();
-                } else {
-                    $("#team_b").hide();
+                function() {
+                    if ($(this).val() == 0) {
+                        $("#team_b").show();
+                    } else {
+                        $("#team_b").hide();
+                    }
                 }
-            }
         );
         $("#matchs_config_ot").click(function() {
-            if( $(this).is(':checked')) {
+            if ($(this).is(':checked')) {
                 $("#overtime_startmoney").show();
                 $("#overtime_max_round").show();
             } else {
@@ -137,7 +139,7 @@
         });
 
         $("#matchs_auto_start").click(function() {
-            if( $(this).is(':checked')) {
+            if ($(this).is(':checked')) {
                 $("#startdate").show();
                 $("#auto_start_time").show();
             } else {
@@ -145,6 +147,16 @@
                 $("#auto_start_time").hide();
             }
         });
+
+        $('#matchs_map_selection_mode').change(
+                function() {
+                    if ($(this).val() == "bo3_modeb") {
+                        $('.bo3').show();
+                    } else {
+                        $('.bo3').hide();
+                    }
+                }
+        );
 
         $("#match_startdate").datetimepicker({format: 'dd.mm.yyyy hh:ii', autoclose: true, language: 'de'});
     });
@@ -216,15 +228,33 @@
             <div class="control-group">
                 <label class="control-label"><?php echo __("Map"); ?></label>
                 <div class="controls">
-                    <select name="maps">
-                        <?php foreach ($maps as $map): ?>
-                            <?php if ($map == 'tba'): ?>
-                                <option value="<?php echo $map; ?>">Choose by Mapveto</option>
-                            <?php else: ?>
-                                <option value="<?php echo $map; ?>"><?php echo $map; ?></option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select>
+                    <?php for ($i = 0; $i < 3; $i++): ?>
+                        <?php if ($i == 0): ?>
+                            <span class="help-inline"><?php echo $i + 1; ?>. Map:</span>
+                            <select name="maps[]">
+                                <?php foreach ($maps as $map): ?>
+                                    <?php if ($map == 'tba'): ?>
+                                        <option value="<?php echo $map; ?>"><?php echo __("Choose by Mapveto"); ?></option>
+                                    <?php else: ?>
+                                        <option value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php else: ?>
+                            <div class="bo3" style="display:none;">
+                                <span class="help-inline"><?php echo $i + 1; ?>. Map:</span>
+                                <select name="maps[]">
+                                    <?php foreach ($maps as $map): ?>
+                                        <?php if ($map == 'tba'): ?>
+                                            <option value="<?php echo $map; ?>"><?php echo __("Choose by Mapveto"); ?></option>
+                                        <?php else: ?>
+                                            <option value="<?php echo $map; ?>"><?php echo $map; ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        <?php endif; ?>
+                    <?php endfor; ?>
                 </div>
             </div>
             <div class="control-group">
