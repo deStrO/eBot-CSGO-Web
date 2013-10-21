@@ -2,6 +2,9 @@
 
 <script>
 $(document).ready(function(){
+
+    $(".bo3").popover();
+
     initSocketIo(function(socket) {
         $("#refreshOffline").hide();
         $("#refreshOnline").show();
@@ -13,23 +16,30 @@ $(document).ready(function(){
             } else if (data['message'] == 'status') {
                 if (data['content'] == 'Finished') {
                     location.reload();
+                } else if (data['content'] == 'is_paused') {
+                    $("#flag-" + data['id']).attr('src', "/images/icons/flag_yellow.png");
+                } else if (data['content'] == 'is_unpaused') {
+                    $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                } else if (data['content'] != 'Starting') {
+                    if ($("#flag-" + data['id']).attr('src') == "/images/icons/flag_red.png") {
+                        location.reload();
+                    } else {
+                        $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                    }
+                    $("div.status-" + data['id']).html(data['content']);
                 }
-                if (data['content'] != 'Starting') {
-                    $("#flag-"+data['id']).attr('src',"/images/icons/flag_green.png");
-                }
-                $("div.status-"+data['id']).html(data['content']);
             } else if (data['message'] == 'score') {
                 if (data['scoreA'] < 10)
-                    data['scoreA'] = "0"+data['scoreA'];
+                    data['scoreA'] = "0" + data['scoreA'];
                 if (data['scoreB'] < 10)
-                    data['scoreB'] = "0"+data['scoreB'];
+                    data['scoreB'] = "0" + data['scoreB'];
 
                 if (data['scoreA'] == data['scoreB'])
-                    $("#score-"+data['id']).html("<font color=\"blue\">"+data['scoreA']+"</font> - <font color=\"blue\">"+data['scoreB']+"</font>");
+                    $("#score-" + data['id']).html("<font color=\"blue\">" + data['scoreA'] + "</font> - <font color=\"blue\">" + data['scoreB'] + "</font>");
                 else if (data['scoreA'] > data['scoreB'])
-                    $("#score-"+data['id']).html("<font color=\"green\">"+data['scoreA']+"</font> - <font color=\"red\">"+data['scoreB']+"</font>");
+                    $("#score-" + data['id']).html("<font color=\"green\">" + data['scoreA'] + "</font> - <font color=\"red\">" + data['scoreB'] + "</font>");
                 else if (data['scoreA'] < data['scoreB'])
-                    $("#score-"+data['id']).html("<font color=\"red\">"+data['scoreA']+"</font> - <font color=\"green\">"+data['scoreB']+"</font>");
+                    $("#score-" + data['id']).html("<font color=\"red\">" + data['scoreA'] + "</font> - <font color=\"green\">" + data['scoreB'] + "</font>");
             }
         });
         socket.on("disconnect", function() {
@@ -96,36 +106,80 @@ $(document).ready(function(){
         <tbody>
             <?php foreach ($pager->getResults() as $match): ?>
                 <?php
-                $score1 = $match->getScoreA();
-                $score2 = $match->getScoreB();
+                if (($match->getEnable() == 1) && ($match->getStatus() > Matchs::STATUS_NOT_STARTED) && ($match->getStatus() < Matchs::STATUS_END_MATCH)) {
+                    $used[] = $match->getServer()->getIp();
+                }
+
+                $score1 = $score2 = 0;
+
+                if ($match->getMaps()->count() > 1) {
+                    foreach ($match->getMaps() as $map) {
+                        if ($map->getScore_1() > $map->getScore_2()) {
+                            @$score1++;
+                        } elseif ($map->getScore_1() < $map->getScore_2()) {
+                            @$score2++;
+                        }
+                    }
+                } else {
+                    $score1 = $match->getScoreA();
+                    $score2 = $match->getScoreB();
+                }
 
                 \ScoreColorUtils::colorForScore($score1, $score2);
 
                 $team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
-                $team1_flag = $match->getTeamA()->exists() ? "<i class='flag flag-".strtolower($match->getTeamA()->getFlag())."'></i>" : "<i class='flag flag-".strtolower($match->getTeamAFlag())."'></i>";
+                $team1_flag = $match->getTeamA()->exists() ? "<i class='flag flag-" . strtolower($match->getTeamA()->getFlag()) . "'></i>" : "<i class='flag flag-" . strtolower($match->getTeamAFlag()) . "'></i>";
 
                 $team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
-                $team2_flag = $match->getTeamB()->exists() ? "<i class='flag flag-".strtolower($match->getTeamB()->getFlag())."'></i>" : "<i class='flag flag-".strtolower($match->getTeamBFlag())."'></i>";
+                $team2_flag = $match->getTeamB()->exists() ? "<i class='flag flag-" . strtolower($match->getTeamB()->getFlag()) . "'></i>" : "<i class='flag flag-" . strtolower($match->getTeamBFlag()) . "'></i>";
 
                 if ($match->getMap() && $match->getMap()->exists()) {
                     \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
                 }
+
+                $bo3_score = "";
                 ?>
-                <tr>
+                <tr class="match-selectable" data-id="<?php echo $match->getId(); ?>">
                     <td width="20" style="padding-left: 10px;">
                         <span style="float:left">#<?php echo $match->getId(); ?></span>
                     </td>
-                    <td width="200" style="padding-left: 10px;">
-                        <span style="float:left"><?php echo $team1_flag." ".$team1; ?></span>
+                    <td width="200"  style="padding-left: 10px;">
+                        <span style="float:left" id="team_a-<?php echo $match->getId(); ?>"><?php echo $team1; ?></span>
                     </td>
-                    <td width="50">
-                        <div class="score" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></div>
-                    </td>
-                    <td width="200"><span style="float:right; text-align:right;"><?php echo $team2." ".$team2_flag; ?></span></td>
-                    <td width="150" align="center">
-                        <?php if ($match->getMap() && $match->getMap()->exists()): ?>
+                    <?php if ($match->getMaps()->count() == 1): ?>
+                        <td width="50" style="text-align: center;" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></td>
+                    <?php else: ?>
+                        <td width="50" style="text-align: center;">
+                            <?php
+                            foreach ($match->getMaps() as $index => $map) {
+                                $bo3_score1 = $map->getScore_1();
+                                $bo3_score2 = $map->getScore_2();
+                                \ScoreColorUtils::colorForScore($bo3_score1, $bo3_score2);
+                                $bo3_score .= ($index + 1) . ". Map (" . $map->getMapName() . "): " . $bo3_score1 . " - " . $bo3_score2 . "<br>";
+                            }
+                            ?>
+                            <a href="#" class="bo3" data-toggle="popover" data-trigger="hover" data-html="true"
+                               data-content='<?php echo $bo3_score; ?>'><?php echo $score1; ?> - <?php echo $score2; ?></a>
+                        </td>
+                    <?php endif; ?>
+                    <td width="200"><span style="float:right; text-align:right;" id="team_b-<?php echo $match->getId(); ?>"><?php echo $team2; ?></span></td>
+                    <td width="150">
+                        <?php $bo3_maps = ""; ?>
+                        <?php if ($match->getMap() && $match->getMap()->exists() && $match->getMapSelectionMode() == "normal"): ?>
                             <?php echo $match->getMap()->getMapName(); ?>
-                        <?php endif; ?>
+                        <?php elseif ($match->getMapSelectionMode() == "bo3_modeb"): ?>
+                            <?php
+                            foreach ($match->getMaps() as $index => $map) {
+                                if ($map == $match->getCurrentMap())
+                                    $bo3_maps .= "<i class='icon-chevron-right' style='padding-right: 5px;'></i>";
+                                else
+                                    $bo3_maps .= "<i class='icon-pause' style='padding-right: 5px;'></i>";
+                                $bo3_maps .= ($index + 1) . ". Map: " . $map->getMapName() . "<br>";
+                            }
+                            ?>
+                            <a href="#" class="bo3" data-toggle="popover" data-trigger="hover" data-html="true"
+                               data-content="<?php echo $bo3_maps; ?>"><?php echo __("BO3 Maps"); ?></a>
+                           <?php endif; ?>
                     </td>
                     <td width="250">
                         <?php echo $match->getSeason(); ?>
@@ -134,6 +188,9 @@ $(document).ready(function(){
                         <?php if ($match->getEnable()): ?>
                             <?php if ($match->getStatus() == Matchs::STATUS_STARTING): ?>
                                 <?php echo image_tag("/images/icons/flag_blue.png", "id='flag-" . $match->getId() . "'"); ?>
+                                <?php echo '<script> $(document).ready(function() { $("#loading_' . $match->getId() . '").show(); }); </script>'; ?>
+                            <?php elseif ($match->getIsPaused()): ?>
+                                <?php echo image_tag("/images/icons/flag_yellow.png", "id='flag-" . $match->getId() . "'"); ?>
                             <?php else: ?>
                                 <?php echo image_tag("/images/icons/flag_green.png", "id='flag-" . $match->getId() . "'"); ?>
                             <?php endif; ?>

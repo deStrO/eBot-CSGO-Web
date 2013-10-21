@@ -12,10 +12,11 @@
     <tbody>
         <?php $noentry = true; ?>
         <?php foreach($match->getMaps() as $index => $map): ?>
-            <?php
-                $mapScore = $map->getMapsScore();
-                $score1 = $mapScore[$index]->getScore1Side1() + $mapScore[$index]->getScore1Side2();
-                $score2 = $mapScore[$index]->getScore2Side1() + $mapScore[$index]->getScore2Side2();
+            <?php $demo_file = sfConfig::get("app_demo_path") . DIRECTORY_SEPARATOR . $map->getTvRecordFile() . ".dem.zip"; ?>
+            <?php if (file_exists($demo_file)): ?>
+                <?php
+                $score1 = $map->getScore_1();
+                $score2 = $map->getScore_2();
 
                 \ScoreColorUtils::colorForScore($score1, $score2);
 
@@ -26,9 +27,7 @@
                 $team2_flag = $match->getTeamB()->exists() ? "<i class='flag flag-".strtolower($match->getTeamB()->getFlag())."'></i>" : "<i class='flag flag-".strtolower($match->getTeamBFlag())."'></i>";
 
                 \ScoreColorUtils::colorForMaps($map->getCurrentSide(), $team1, $team2);
-            ?>
-            <?php $demo_file = sfConfig::get("app_demo_path") . DIRECTORY_SEPARATOR . $map->getTvRecordFile() . ".dem.zip"; ?>
-            <?php if (file_exists($demo_file)): ?>
+                ?>
                 <tr>
                     <td>#<?php echo $map->getId(); ?></td>
                     <td><span style="float:left"><?php echo $team1_flag." ".$team1; ?></span></td>
