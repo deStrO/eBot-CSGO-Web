@@ -174,6 +174,10 @@ global_stats:
   url: /stats/global
   param: { module: stats, action: global }
 
+credits_index:
+  url: /credits
+  param: { module: credits, action: index }
+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:

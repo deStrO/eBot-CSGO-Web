@@ -12,6 +12,7 @@
             <li class="nav-header"><?php echo __("Main Menu"); ?></li>
             <li <?php if ($current_route == "homepage") echo 'class="active"'; ?>><a href="<?php echo url_for("homepage"); ?>"><?php echo __("Home"); ?></a></li>
             <li <?php if (preg_match('!^stats_index$!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("stats/index"); ?>"><?php echo __("Statistics"); ?></a></li>
+            <li <?php if (preg_match('!^credits_index$!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("credits/index"); ?>"><?php echo __("Credits"); ?></a></li>
             <!--<li <?php if (preg_match('!^ingame!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("main/ingame"); ?>"><?php echo __("Ingame Help"); ?></a></li>-->
             <li class="nav-header"><?php echo __("Match Menu"); ?></li>
             <li <?php if (preg_match('!^matchs_current!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("@matchs_current_page?page=1"); ?>"><?php echo __("Matches in Progress"); ?> <span class="badge badge-info"><?php echo $nbMatchs; ?></span></a></li>
