@@ -33,8 +33,8 @@
             var loadingSocketIo = false;
             var callbacks = new Array();
             function initSocketIo(callback) {
+                callbacks.push(callback);
                 if (loadingSocketIo) {
-                    callbacks.push(callback);
                     return;
                 }
                 
@@ -57,7 +57,7 @@
                         for (var c in callbacks) {
                             callbacks[c](socket);
                         }
-                        callbacks = new Array();
+                        //callbacks = new Array();
                     });
                 });
             }

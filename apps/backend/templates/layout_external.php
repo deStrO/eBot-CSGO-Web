@@ -9,22 +9,22 @@
             var loadingSocketIo = false;
             var callbacks = new Array();
             function initSocketIo(callback) {
+                callbacks.push(callback);
                 if (loadingSocketIo) {
-                    callbacks.push(callback);
                     return;
                 }
-
+                
                 if (socketIoLoaded) {
                     if (typeof callback == "function") {
                         callback(socket);
                     }
                     return;
                 }
-
+                
                 loadingSocketIo = true;
-                $.getScript("http://" + socketIoAddress + "/socket.io/socket.io.js", function() {
-                    socket = io.connect("http://" + socketIoAddress);
-                    socket.on('connect', function() {
+                $.getScript("http://"+socketIoAddress+"/socket.io/socket.io.js", function(){
+                    socket = io.connect("http://"+socketIoAddress);
+                    socket.on('connect', function(){ 
                         socketIoLoaded = true;
                         loadingSocketIo = false;
                         if (typeof callback == "function") {
@@ -33,7 +33,7 @@
                         for (var c in callbacks) {
                             callbacks[c](socket);
                         }
-                        callbacks = new Array();
+                        //callbacks = new Array();
                     });
                 });
             }
