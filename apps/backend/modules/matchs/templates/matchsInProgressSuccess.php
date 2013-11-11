@@ -192,7 +192,7 @@
                 setSessionStorageValue("current.selected", currentMatchAdmin);
                 $(this).addClass("warning");
                 $('#button-container').append($('#container-matchs-'+currentMatchAdmin).html());
-                $('#matchs-actions-'+currentMatchAdmin).fadeIn();
+                $('#matchs-actions-'+currentMatchAdmin).show();
             }
             
         });
