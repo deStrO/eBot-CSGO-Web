@@ -157,7 +157,7 @@ $(document).ready(function(){
         </tbody>
         <tfoot>
             <tr>
-                <td>
+                <td colspan="8">
                     <div class="pagination pagination-centered">
                         <?php
                         use_helper("TablePagination");
