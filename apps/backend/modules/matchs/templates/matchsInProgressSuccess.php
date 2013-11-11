@@ -1,20 +1,3 @@
-<?php
-foreach ($pager->getResults() as $match) {
-    $id[] = $match->getId();
-    $status[] = $match->getStatus();
-}
-
-function getButtons($status) {
-    if ($status == 2)
-        return "warmupknife";
-    else if ($status == 3)
-        return "endknife";
-    else if ($status == 2 || $status == 5 || $status == 7 || $status == 9 || $status == 11)
-        return "skipwarmup";
-    else if ($status == 3 || $status == 6 || $status == 8 || $status == 10 || $status == 12)
-        return "endmatch";
-}
-?>
 <script>
     function doRequest(event, ip, id, authkey) {
         var data = id + " " + event + " " + ip;
@@ -24,57 +7,43 @@ function getButtons($status) {
         $('#loading_' + id).show();
         return false;
     }
-    function getButtons(status) {
-        if (status == 2)
-            return "warmupknife";
-        else if (status == 3)
-            return "endknife";
-        else if (status == 2 || status == 5 || status == 7 || status == 9 || status == 11)
-            return "skipwarmup";
-        else if (status == 3 || status == 6 || status == 8 || status == 10 || status == 12)
-            return "endmatch";
+   function getButtons(match_id) {
+        $.ajax({
+            type: "POST",
+            url: "/admin.php/matchs/actions/" + match_id,
+        }).done(function( msg ) {
+            var data = $.parseJSON(msg);
+            var output = "";
+            for (var i = 0; i < data.length; i++) {
+                output += data[i];
+            }
+            $('#matchs-actions-'+match_id).children('td.matchs-actions-container').empty().append(output);
+        });
     }
     $(document).ready(function() {
-        initSocketIo(function(socket) {
-            var buttons = new Array("warmupknife", "endknife", "skipwarmup", "endmatch");
-            socket.on("connect", function() {
-<?php
-for ($i = 0; $i < count($id); $i++) {
-    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
-    echo '$(".running_' . $id[$i] . '").show(); ';
-}
-?>
-            });
-
-<?php
-for ($i = 0; $i < count($id); $i++) {
-    echo '$(".' . getButtons($status[$i]) . '_' . $id[$i] . '").show(); ';
-    echo '$(".running_' . $id[$i] . '").show(); ';
-}
-?>
+        initSocketIo(function(socket) {            
             socket.emit("identify", {type: "matchs"});
             socket.on("matchsHandler", function(data) {
                 var data = jQuery.parseJSON(data);
                 if (data['content'] == 'stop')
                     location.reload();
                 else if (data['message'] == 'button') {
-                    var button_command = getButtons(data['content']);
-                    for (var i = 0, j = buttons.length; i < j; i++) {
-                        if (buttons[i] == button_command) {
-                            $('.' + buttons[i] + '_' + data['id']).show();
-                        }
-                        else {
-                            $('.' + buttons[i] + '_' + data['id']).hide();
-                        }
-                    }
+                    getButtons(data['id']);
+                    $('#loading_' + data['id']).hide();
+                } else if (data['message'] == 'streamerReady') {
+                    $('.streamer_' + data['id']).addClass('disabled');
                     $('#loading_' + data['id']).hide();
                 } else if (data['message'] == 'status') {
                     if (data['content'] == 'Finished') {
                         location.reload();
                     } else if (data['content'] == 'is_paused') {
                         $("#flag-" + data['id']).attr('src', "/images/icons/flag_yellow.png");
+                        if (getSessionStorageValue('sound') == "on")
+                            $("#soundHandle").trigger('play');
                     } else if (data['content'] == 'is_unpaused') {
                         $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
+                        if (getSessionStorageValue('sound') == "on")
+                            $("#soundHandle").trigger('play');
                     } else if (data['content'] != 'Starting') {
                         if ($("#flag-" + data['id']).attr('src') == "/images/icons/flag_red.png") {
                             location.reload();
@@ -96,6 +65,16 @@ for ($i = 0; $i < count($id); $i++) {
                         $("#score-" + data['id']).html("<font color=\"green\">" + data['scoreA'] + "</font> - <font color=\"red\">" + data['scoreB'] + "</font>");
                     else if (data['scoreA'] < data['scoreB'])
                         $("#score-" + data['id']).html("<font color=\"red\">" + data['scoreA'] + "</font> - <font color=\"green\">" + data['scoreB'] + "</font>");
+                } else if (data['message'] == 'teams') {
+                    if (data['teamA'] == 'ct') {
+                        $("#team_a-"+data['id']).html("<font color='blue'>"+$("#team_a-"+data['id']).text()+"</font>")
+                        $("#team_b-"+data['id']).html("<font color='red'>"+$("#team_b-"+data['id']).text()+"</font>")
+                    } else {
+                        $("#team_a-"+data['id']).html("<font color='red'>"+$("#team_a-"+data['id']).text()+"</font>")
+                        $("#team_b-"+data['id']).html("<font color='blue'>"+$("#team_b-"+data['id']).text()+"</font>")
+                    }
+                } else if (data['message'] == 'currentMap') {
+                    $("#map-"+data['id']).html(data['mapname']);
                 }
             });
         });
@@ -158,16 +137,18 @@ for ($i = 0; $i < count($id); $i++) {
     </form>
 </div>
 
+<audio id="soundHandle" style="display: none;"></audio>
+
 <script>
     function getSessionStorageValue(key) {
         if (sessionStorage) {
             try {
                 return sessionStorage.getItem(key);
             } catch (e) {
-                return null;
+                return 0;
             }
         }
-        return null;
+        return 0;
     }
 
     function setSessionStorageValue(key, value) {
@@ -184,36 +165,44 @@ for ($i = 0; $i < count($id); $i++) {
         $("#match_start").submit();
         $('#loading_' + id).show();
     }
+
     var currentMatchAdmin = 0;
     $(function() {
         $(".bo3").popover();
 
-        $(".match-selectable").click(function() {
-            if (currentMatchAdmin == $(this).attr("data-id")) {
-                $("tr[data-id=" + currentMatchAdmin + "]:first").removeClass("warning");
-                $("#button-container").find(".buttons-container").hide().appendTo($("#container-matchs-" + currentMatchAdmin));
-                currentMatchAdmin = 0;
-                setSessionStorageValue("current.selected", null);
-                return;
-            }
-
-            if (currentMatchAdmin != 0) {
-                $("tr[data-id=" + currentMatchAdmin + "]:first").removeClass("warning");
-                $("#button-container").find(".buttons-container").hide().appendTo($("#container-matchs-" + currentMatchAdmin));
-            }
-
-            $(this).addClass("warning");
-            $(this).find("div.buttons-container:first").show().appendTo($("#button-container"));
-            currentMatchAdmin = $(this).attr("data-id");
-            setSessionStorageValue("current.selected", currentMatchAdmin);
+        $.ajax({ 
+            url: "/images/soundHandle/notify.mp3"
+        }).done(function(data) {
+            $("#soundHandle").attr('src', '/images/soundHandle/notify.mp3');
         });
 
-        if (getSessionStorageValue("current.selected") != null) {
+        $(".match-selectable").click(function() {
+            if (currentMatchAdmin != 0) {
+                $('#button-container').empty();
+                $('.match-selectable').removeClass('warning');
+                $('.matchs-actions').hide();
+                if (currentMatchAdmin == $(this).attr('data-id')) {
+                    currentMatchAdmin = 0;
+                    return;
+                }
+            } 
+
+            if (currentMatchAdmin != $(this).attr('data-id')) {
+                currentMatchAdmin = $(this).attr("data-id");
+                setSessionStorageValue("current.selected", currentMatchAdmin);
+                $(this).addClass("warning");
+                $('#button-container').append($('#container-matchs-'+currentMatchAdmin).html());
+                $('#matchs-actions-'+currentMatchAdmin).fadeIn();
+            }
+            
+        });
+
+        if (getSessionStorageValue("current.selected") != 0) {
             var value = getSessionStorageValue("current.selected");
             if ($("[data-id=" + value + "]:first").length == 1) {
                 $("[data-id=" + value + "]:first").click();
             } else {
-                setSessionStorageValue("current.selected", null);
+                setSessionStorageValue("current.selected", 0);
             }
         }
     });
@@ -232,7 +221,7 @@ for ($i = 0; $i < count($id); $i++) {
         <div id="tableMatch">
             <table class="table table-striped">
                 <tbody>
-                    <?php foreach ($pager->getResults() as $match): ?>
+                    <?php foreach ($pager->getResults() as $index => $match): ?>
                         <?php
                         if (($match->getEnable() == 1) && ($match->getStatus() > Matchs::STATUS_NOT_STARTED) && ($match->getStatus() < Matchs::STATUS_END_MATCH)) {
                             $used[] = $match->getServer()->getIp();
@@ -258,10 +247,10 @@ for ($i = 0; $i < count($id); $i++) {
                         \ScoreColorUtils::colorForScore($score1, $score2);
 
                         $team1 = $match->getTeamA()->exists() ? $match->getTeamA() : $match->getTeamAName();
-                        $team1_flag = $match->getTeamA()->exists() ? "<i class='flag flag-" . strtolower($match->getTeamA()->getFlag()) . "'></i>" : "<i class='flag flag-" . strtolower($match->getTeamAFlag()) . "'></i>";
+                        $team1_flag = $match->getTeamA()->exists() ? "<i class='flag flag-".strtolower($match->getTeamA()->getFlag())."'></i>" : "<i class='flag flag-".strtolower($match->getTeamAFlag())."'></i>";
 
                         $team2 = $match->getTeamB()->exists() ? $match->getTeamB() : $match->getTeamBName();
-                        $team2_flag = $match->getTeamB()->exists() ? "<i class='flag flag-" . strtolower($match->getTeamB()->getFlag()) . "'></i>" : "<i class='flag flag-" . strtolower($match->getTeamBFlag()) . "'></i>";
+                        $team2_flag = $match->getTeamB()->exists() ? "<i class='flag flag-".strtolower($match->getTeamB()->getFlag())."'></i>" : "<i class='flag flag-".strtolower($match->getTeamBFlag())."'></i>";
 
                         if ($match->getMap() && $match->getMap()->exists()) {
                             \ScoreColorUtils::colorForMaps($match->getMap()->getCurrentSide(), $team1, $team2);
@@ -276,24 +265,30 @@ for ($i = 0; $i < count($id); $i++) {
                             </td>
                             <?php if ($match->getMapSelectionMode() == "normal"): ?>
                                 <td width="50" style="text-align: center;" id="score-<?php echo $match->getId(); ?>"><?php echo $score1; ?> - <?php echo $score2; ?></td>
-                            <?php elseif ($match->getMapSelectionMode() == "bo3_modeb"): ?>
+                            <?php elseif($match->getMapSelectionMode() == "bo3_modeb"): ?>
                                 <td width="50" style="text-align: center;">
                                     <?php
                                     foreach ($match->getMaps() as $index => $map) {
                                         foreach ($map->getMapsScore() as $score) {
-                                            $bo3_score1 = ($score->getScore1Side1() + $score->getScore1Side2());
-                                            $bo3_score2 = ($score->getScore2Side1() + $score->getScore2Side2());
+                                            $bo3_score1 = ($score->getScore1Side1()+$score->getScore1Side2());
+                                            $bo3_score2 = ($score->getScore2Side1()+$score->getScore2Side2());
                                             \ScoreColorUtils::colorForScore($bo3_score1, $bo3_score2);
-                                            $bo3_score .= ($index + 1) . ". Map: " . $bo3_score1 . " - " . $bo3_score2 . "<br>";
+                                            $bo3_score .= ($index+1).". Map: " . $bo3_score1 . " - " . $bo3_score2."<br>";
+                                        }
+                                        if (!count($map->getMapsScore())) {
+                                            $bo3_score1 = 0;
+                                            $bo3_score2 = 0;
+                                            \ScoreColorUtils::colorForScore($bo3_score1, $bo3_score2);
+                                            $bo3_score .= ($index+1).". Map: " . $bo3_score1 . " - " . $bo3_score2."<br>";
                                         }
                                     }
                                     ?>
                                     <a href="#" class="bo3" data-toggle="popover" data-trigger="hover" data-html="true"
-                                       data-content='<?php echo $bo3_score; ?>'><?php echo $score1; ?> - <?php echo $score2; ?></a>
+                                    data-content='<?php echo $bo3_score; ?>'><?php echo $score1; ?> - <?php echo $score2; ?></a>
                                 </td>
                             <?php endif; ?>
                             <td width="100"><span style="float:right; text-align:right;" id="team_b-<?php echo $match->getId(); ?>"><?php echo $team2; ?></span></td>
-                            <td width="100">
+                            <td width="100" id="map-<?php echo $match->getId(); ?>">
                                 <?php if ($match->getMap() && $match->getMap()->exists() && $match->getMapSelectionMode() == "normal"): ?>
                                     <?php echo $match->getMap()->getMapName(); ?>
                                 <?php elseif ($match->getMapSelectionMode() == "bo3_modeb"): ?>
@@ -303,12 +298,12 @@ for ($i = 0; $i < count($id); $i++) {
                                             $bo3_maps .= "<i class='icon-chevron-right' style='padding-right: 5px;'></i>";
                                         else
                                             $bo3_maps .= "<i class='icon-pause' style='padding-right: 5px;'></i>";
-                                        $bo3_maps .= ($index + 1) . ". Map: " . $map->getMapName() . "<br>";
+                                        $bo3_maps .= ($index+1).". Map: ".$map->getMapName()."<br>";
                                     }
                                     ?>
                                     <a href="#" class="bo3" data-toggle="popover" data-trigger="hover" data-html="true"
-                                       data-content="<?php echo $bo3_maps; ?>"><?php echo __("BO3 Maps"); ?></a>
-                                   <?php endif; ?>
+                                    data-content="<?php echo $bo3_maps; ?>"><?php echo __("BO3 Maps"); ?></a>
+                                <?php endif; ?>
                             </td>
                             <td width="170">
                                 <?php echo $match->getSeason(); ?>
@@ -335,82 +330,45 @@ for ($i = 0; $i < count($id); $i++) {
                                 <div style="display: inline-block;" class="status status-<?php echo $match->getId(); ?>">
                                     <?php echo $match->getStatusText(); ?>
                                 </div>
-                                <?php echo image_tag("/images/loading.gif", "style='display:none; padding-left:5px;' name='loading_" . $match->getId() . "' id='loading_" . $match->getId() . "'"); ?>
                             </td>
                             <td style="padding-left: 3px;text-align:right;">
-                                <div id="container-matchs-<?php echo $match->getId(); ?>">
-                                    <div class="buttons-container"  style="display: none">
-                                        <ul class="nav nav-list" style="padding-left:0; padding-right: 0; font-size: smaller;">
-                                            <li class="nav-header">Match information</li>
-                                            <!--<li><b><?php echo __("#ID"); ?>:</b> <span style="text-align:right;"><?php echo $match->getId(); ?></span></li>-->
-                                            <li><b><?php echo __("Team 1"); ?>:</b> <?php echo $team1; ?></li>
-                                            <li><b><?php echo __("Team 2"); ?>:</b> <?php echo $team2; ?></li>
-                                            <li><b><?php echo __("Server"); ?>:</b> <?php echo $match->getIp(); ?></li>
-                                            <?php if ($match->getMapSelectionMode() == "bo3_modeb"): ?>
-                                                <li><b><div style="float:left;"><?php echo __("Maps"); ?>:</b></div><div style="float:left; padding-left:5px;"><?php echo $bo3_maps; ?></div></li>
-                                            <?php endif; ?>
-                                            <li><b><?php echo __("Streamer"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-" . ($match->getConfigStreamer() ? "ok" : "remove") . "'></i>"); ?></li>
-                                            <li><b><?php echo __("Auto-Start"); ?>:</b> <?php echo ("<i style='margin-left: 5px;' class='icon-" . ($match->getAutoStart() ? "ok" : "remove") . "'></i>"); ?>
+                                <div id="container-matchs-<?php echo $match->getId(); ?>" style="display:none;">
+                                    <ul class="nav nav-list" style="padding-left:0; padding-right: 0; font-size: smaller;">
+                                        <li class="nav-header"><?php echo __("Match Information"); ?></li>
+                                        <li><b><?php echo __("Team 1"); ?>:</b> <?php echo $team1; ?></li>
+                                        <li><b><?php echo __("Team 2"); ?>:</b> <?php echo $team2; ?></li>
+                                        <li><b><?php echo __("Server"); ?>:</b> <?php echo $match->getIp(); ?></li>
+                                        <?php if ($match->getMapSelectionMode() == "bo3_modeb"): ?>
+                                            <li><b><div style="float:left;"><?php echo __("Maps"); ?>:</b></div><div style="float:left; padding-left:5px;"><?php echo $bo3_maps; ?></div></li>
+                                        <?php endif; ?>
+                                        <li>
+                                            <table>
+                                                <tr><td><b><?php echo __("Streamer"); ?>:</b></td><td><?php echo "<i style='margin-left: 5px;' class='icon-". ($match->getConfigStreamer() ? "ok" : "remove") . "'></i>"; ?></li>
+                                                <tr><td><b><?php echo __("Overtime"); ?>:</b></td><td><?php echo "<i style='margin-left: 5px;' class='icon-". ($match->getConfigOt() ? "ok" : "remove") . "'></i>"; ?></li>
                                                 <?php if ($match->getAutoStart()): ?>
-                                                    (<?php echo $match->getAutoStartTime() . " " . __("min before"); ?>)
+                                                    <?php $autostart_time = "(".$match->getAutoStartTime()." ".__("min before").")"; ?>
+                                                <?php else: $autostart_time = ""; ?>
                                                 <?php endif; ?>
-                                            </li>
-                                            <?php if ($match->getAutoStart()): ?>
-                                                <li><b><?php echo __("Startdate"); ?></b>: <?php echo $match->getDateTimeObject('startdate')->format('d.m.Y H:i'); ?></b></li>
-                                            <?php endif; ?>
-                                            <li><textarea onclick="this.focus();
-            this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller; margin:5px;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
-                                        </ul>
-                                        <hr style="margin:5px 0;"/>
-                                        <?php $buttons = $match->getActionAdmin($match->getEnable()); ?>
-                                        <?php foreach ($buttons as $index => $button): ?>
-                                            <?php if ($button["route"] == "matchs_start"): ?>
-                                                <div>
-                                                    <button
-                                                        onclick="startMatch(<?php echo $match->getId(); ?>);"
-                                                        style="margin-bottom: 5px; width: 100%;" class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo __($button["label"]); ?></button>
-                                                </div>
-                                            <?php elseif ($button["type"] == "routing"): ?>
-                                                <div>
-                                                    <a href="<?php echo url_for($button["route"], $match); ?>">
-                                                        <button style="margin-bottom: 5px; width: 100%;" class="btn<?php if (@$button["add_class"]) echo " " . $button["add_class"]; ?>"><?php echo __($button["label"]); ?></button>
-                                                    </a>
-                                                </div>
-                                            <?php else: ?>
-                                                <?php if ($button['action'] == "skipmapprev"): ?>
-                                                    <div style="float:left; width:100%">
-                                                        <button
-                                                            style="<?php echo @$button['style']; ?>; margin-bottom: 5px; width: 49%; float:left;"
-                                                            class="btn hide<?php if (@$button['add_class']) echo ' ' . $button['add_class']; ?> <?php echo @$button['type'] . '_' . $match->getId(); ?>"
-                                                            <?php if (@$button['action']) echo 'onclick="doRequest(\'' . $button['action'] . '\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\')"'; ?>>
-                                                            <?php echo __($button['label']); ?></button>
-                                                        <button
-                                                            style="<?php echo @$buttons[$index + 1]['style']; ?>; margin-bottom: 5px; width: 49%; float:right;"
-                                                            class="btn hide<?php if (@$buttons[$index + 1]['add_class']) echo ' ' . $buttons[$index + 1]['add_class']; ?> <?php echo @$buttons[$index + 1]['type'] . '_' . $match->getId(); ?>"
-                                                            <?php if (@$buttons[$index + 1]['action']) echo 'onclick="doRequest(\'' . $buttons[$index + 1]['action'] . '\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\')"'; ?>>
-                                                            <?php echo __($buttons[$index + 1]['label']); ?></button>
-                                                    </div>
-                                                <?php elseif ($button['action'] == "skipmapnext"): ?>
-                                                    <hr style="margin:5px 0; clear:both;"/>
-                                                    <?php continue; ?>
-                                                <?php else: ?>
-                                                    <div>
-                                                        <button
-                                                            style="<?php echo @$button['style']; ?>; margin-bottom: 5px; width: 100%"
-                                                            class="btn hide<?php if (@$button['add_class']) echo ' ' . $button['add_class']; ?> <?php echo @$button['type'] . '_' . $match->getId(); ?>"
-                                                            <?php if (@$button['action']) echo 'onclick="doRequest(\'' . $button['action'] . '\', \'' . $match->getIp() . '\', \'' . $match->getId() . '\', \'' . $match->getConfigAuthkey() . '\')"'; ?>>
-                                                            <?php echo __($button['label']); ?></button>
-                                                    </div>
+                                                <tr><td><b><?php echo __("Auto-Start"); ?>:</b></td><td><?php echo "<i style='margin-left: 5px;' class='icon-". ($match->getAutoStart() ? "ok" : "remove") . "'></i> ".$autostart_time; ?></td></tr>
+                                                <?php if ($match->getAutoStart()): ?>
+                                                    <tr><td><b><?php echo __("Startdate"); ?>:</b></td><td><?php echo $match->getDateTimeObject('startdate')->format('d.m.Y H:i'); ?></b></td></tr>
                                                 <?php endif; ?>
-                                                <?php if (@$buttons[$index + 1]['add_class'] != @$buttons[$index]['add_class']): ?>
-                                                    <hr style="margin:5px 0;"/>
-                                                <?php endif; ?>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </div>
+                                            </table>
+                                        </li>
+                                        <li><textarea onclick="this.focus();this.select()" readonly id="connectCopy" style="width:170px; font-size:smaller; margin:5px;">connect <?php echo $match->getIp(); ?>; password <?php echo $match->getConfigPassword(); ?></textarea></li>
+                                    </ul>
                                 </div>
                                 <a href="<?php echo url_for("matchs_view", $match); ?>"><button class="btn btn-inverse btn-mini"><?php echo __("Show"); ?></button></a>
                             </td>
+                        </tr>
+
+                        <!-- NEW matchs actions row -->
+
+                        <tr style="display:none; style:max-height: 31px;" class="matchs-actions" id="matchs-actions-<?php echo $match->getId(); ?>">
+                            <td>
+                                <?php echo image_tag("/images/loading.gif", "style='display:none; padding-left:5px;' name='loading_" . $match->getId() . "' id='loading_" . $match->getId() . "'"); ?>
+                            </td>
+                            <td colspan="9" class="matchs-actions-container"><?php for($i = 0; $i < count($buttons[0]); $i++): ?><?php echo html_entity_decode($buttons[0][$i]); ?><?php endfor; ?></td>
                         </tr>
                     <?php endforeach; ?>
                     <?php if ($pager->getNbResults() == 0): ?>
@@ -452,12 +410,11 @@ for ($i = 0; $i < count($id); $i++) {
         </div>
     </div>
     <div class="span2">
-        <h4><?php echo __("Match Admin"); ?></h4>
-        <div style="min-width: 167px;" class="well">
+        <div style="min-width: 167px;" class="well well-small">
             <div id="button-container">
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 
 <script>

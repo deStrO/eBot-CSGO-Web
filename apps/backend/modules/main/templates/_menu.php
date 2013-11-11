@@ -4,10 +4,40 @@
             function goToMatch() {
                 var id = $("#match_id_go").val();
                 if (id > 0)
-                    document.location.href = "<?php echo url_for("@matchs_view?id="); ?>" + id;
+                    document.location.href = "<?php echo url_for("@matchs_view?id="); ?>"+id;
+            };
+            function getSessionStorageValue(key) {
+                if (sessionStorage) {
+                    try {
+                        return sessionStorage.getItem(key);
+                    } catch (e) {
+                        return null;
+                    }
+                }
+                return null;
             }
+
+            function setSessionStorageValue(key, value) {
+                if (sessionStorage) {
+                    try {
+                        return sessionStorage.setItem(key, value);
+                    } catch (e) {
+                    }
+                }
+            }
+
+            function ebotSound(parameter) {
+                if (parameter == "on") {
+                    $('div#ebotSound').html('<font color="green"><b>Sound On <a href="#" onclick="ebotSound(\'off\');">(Turn Off)</a></b></font>');
+                    setSessionStorageValue('sound', 'on');
+                } else if (parameter == "off") {
+                    $('div#ebotSound').html('<font color="red"><b>Sound Off <a href="#" onclick="ebotSound(\'on\');">(Turn On)</a></b></font>');
+                    setSessionStorageValue('sound', 'off');
+                }
+            }
+
             $(document).ready(function() {
-                initSocketIo(function(socket) {
+                 initSocketIo(function(socket) {
                    $('div#websocketAlive').html('<font color="green"><b>WebSocket online</b></font>');
                    socket.on('connect', function() {
                        $('div#websocketAlive').html('<font color="green"><b>WebSocket online</b></font>');
@@ -19,10 +49,20 @@
                         }
                    });
                    socket.on('disconnect', function(){
-                       $('div#websocketAlive').html('<font color="red"><b>WebSocket offline</b></font>');
+                        $('div#websocketAlive').html('<font color="red"><b>WebSocket offline</b></font>');
                         $('div#ebotAlive').html('<font color="red"><b>eBot offline</b></font>');
                    });
                 });
+
+                if (getSessionStorageValue('sound') == null) {
+                    setSessionStorageValue('sound', 'on');
+                }
+
+                if (getSessionStorageValue('sound') == 'on') {
+                    $('div#ebotSound').html('<font color="green"><b>Sound On <a href="#" onclick="ebotSound(\'off\');">(Turn Off)</a></b></font>');
+                } else if (getSessionStorageValue('sound') == 'off') {
+                    $('div#ebotSound').html('<font color="red"><b>Sound Off <a href="#" onclick="ebotSound(\'on\');">(Turn On)</a></b></font>');
+                }
             });
         </script>
         <ul class="nav nav-list">
@@ -32,6 +72,7 @@
             <li><div id="websocketAlive"><?php echo __("Loading"); ?></div></li>
             <li><div id="ebotAlive"><?php echo __("Loading"); ?></div></li>
 
+            <li><div id="ebotSound"><?php echo __("Loading"); ?></div></li>
             <li class="nav-header"><?php echo __("Match Menu"); ?></li>
             <li><a href="<?php echo url_for("matchs_create"); ?>"><?php echo __("Create New Match"); ?></a></li>
             <li><a href="<?php echo url_for("matchs_current"); ?>"><?php echo __("Matches in Progress"); ?> <span class="badge badge-info"><?php echo $nbMatchs; ?></span></a></li>
