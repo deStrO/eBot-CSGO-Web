@@ -368,7 +368,7 @@
                             <td>
                                 <?php echo image_tag("/images/loading.gif", "style='display:none; padding-left:5px;' name='loading_" . $match->getId() . "' id='loading_" . $match->getId() . "'"); ?>
                             </td>
-                            <td colspan="9" class="matchs-actions-container"><?php for($i = 0; $i < count($buttons[0]); $i++): ?><?php echo html_entity_decode($buttons[0][$i]); ?><?php endfor; ?></td>
+                            <td colspan="9" class="matchs-actions-container"><?php for($i = 0; $i < count($buttons[$index]); $i++): ?><?php echo html_entity_decode($buttons[$index][$i]); ?><?php endfor; ?></td>
                         </tr>
                     <?php endforeach; ?>
                     <?php if ($pager->getNbResults() == 0): ?>
