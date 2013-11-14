@@ -677,9 +677,9 @@ class matchsActions extends sfActions {
                     $result[] = array("label" => "Map >", "add_class" => "btn-danger", "action" => "skipmapnext", "type" => "doRequest");
                 }
                 if ($match->getConfigStreamer() == "1")
-                    $result[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary streamer_".$this->getId(), "type" => "doRequest");
+                    $result[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary streamer_".$match->getId(), "type" => "doRequest");
                 elseif ($match->getConfigStreamer() == "2")
-                    $result[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary disabled streamer_".$this->getId(), "type" => "doRequest");
+                    $result[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary disabled streamer_".$match->getId(), "type" => "doRequest");
                 $result[] = array("label" => "Fix Sides", "action" => "fixsides", "type" => "running", "add_class" => "btn-primary", "type" => "doRequest");
 
                 if ($match->getStatus() == Matchs::STATUS_WU_KNIFE) {
