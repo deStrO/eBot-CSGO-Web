@@ -335,7 +335,7 @@ class matchsActions extends sfActions {
         $this->pager = new sfDoctrinePager(
                 'Matchs', 12
         );
-        $this->pager->setQuery($query->andWhere("status >= ? AND status <= ?", array(Matchs::STATUS_NOT_STARTED, Matchs::STATUS_END_MATCH))->orderBy("id ASC"));
+        $this->pager->setQuery($query->andWhere("status >= ? AND status <= ?", array(Matchs::STATUS_NOT_STARTED, Matchs::STATUS_END_MATCH))->orderBy("enable DESC, status DESC"));
         $this->pager->setPage($request->getParameter('page', 1));
         $this->pager->init();
 
