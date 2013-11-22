@@ -6,6 +6,15 @@ homepage:
   url:   /
   param: { module: main, action: index }
 
+widget_match_player_stat:
+  url: /widget/match/:id/players/stat
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: widget, action: matchPlayersStat }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
 switch_lang:
   url:   /switch/lang/:langage
   param: { module: language, action: switch }
