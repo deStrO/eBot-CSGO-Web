@@ -656,7 +656,10 @@ class matchsActions extends sfActions {
 
             $result = array();
             if (!($match->getEnable())) {
-                if ($match->getEnable() == 0 && $match->getStatus() != 0) {                        
+				if ($match->getStatus() == Matchs::STATUS_END_MATCH) {
+                    $result[] = array("label" => "Archive", "route" => "match_put_archive", "add_class" => "btn-info", "type" => "routing");
+                    $result[] = array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing");
+                } else if ($match->getEnable() == 0 && $match->getStatus() != 0) {                        
                     $result[] = array("label" => "Restart", "route" => "matchs_start_retry", "add_class" => "btn-success", "type" => "routing");
                     $result[] = array("label" => "Reset " . $match->getMap()->getMapName(), "route" => "matchs_reset", "add_class" => "btn-warning", "type" => "routing");
                     $result[] = array("label" => "Edit", "route" => "matchs_edit", "add_class" => "btn-primary", "type" => "routing");
@@ -665,10 +668,7 @@ class matchsActions extends sfActions {
                     $result[] = array("label" => "Start", "route" => "matchs_start", "add_class" => "btn-success", "type" => "routing");
                     $result[] = array("label" => "Edit", "route" => "matchs_edit", "add_class" => "btn-primary", "type" => "routing");
                     $result[] = array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing");
-                } else if ($match->getStatus() == Matchs::STATUS_END_MATCH) {
-                    $result[] = array("label" => "Archive", "route" => "match_put_archive", "add_class" => "btn-info", "type" => "routing");
-                    $result[] = array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing");
-                }
+                } 
             } else {
                 $result[] = array("label" => "Stop", "add_class" => "btn-danger", "action" => "stopNoRs", "type" => "doRequest");
                 $result[] = array("label" => "Stop with Restart", "add_class" => "btn-danger", "action" => "stop", "type" => "doRequest");
