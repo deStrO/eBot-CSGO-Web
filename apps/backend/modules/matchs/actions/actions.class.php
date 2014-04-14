@@ -680,7 +680,7 @@ class matchsActions extends sfActions {
                     $result[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary streamer_".$match->getId(), "type" => "doRequest");
                 elseif ($match->getConfigStreamer() == "2")
                     $result[] = array("label" => "Streamer Ready", "action" => "streamerready", "add_class" => "btn-primary disabled streamer_".$match->getId(), "type" => "doRequest");
-                $result[] = array("label" => "Fix Sides", "action" => "fixsides", "type" => "running", "add_class" => "btn-primary", "type" => "doRequest");
+                //$result[] = array("label" => "Fix Sides", "action" => "fixsides", "type" => "running", "add_class" => "btn-primary", "type" => "doRequest");
 				$result[] = array("label" => "RCON/Backup", "route" => "matchs_rcon", "add_class" => "btn-primary", "type" => "routing");
 
                 if ($match->getStatus() == Matchs::STATUS_WU_KNIFE) {
