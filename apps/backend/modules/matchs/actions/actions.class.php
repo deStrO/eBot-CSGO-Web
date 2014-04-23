@@ -326,6 +326,23 @@ class matchsActions extends sfActions {
     }
 
     public function executeMatchsInProgress(sfWebRequest $request) {
+		if ($request->getMethod() == sfWebRequest::POST) {
+			if ($request->getPostParameter('server_id', 0) && $request->getPostParameter('match_id', 0)) {
+				$match = MatchsTable::getInstance()->find($request->getPostParameter('match_id'));
+				$server = ServersTable::getInstance()->find($request->getPostParameter('server_id'));
+				
+				if ($match && $server && $match->exists() && $server->exists()) {
+					if ($match->getStatus() == 0) {
+						$match->setServer($server);
+						$match->setIp($server->getIp());
+						$match->save();
+						$this->getUser()->setFlash("notification_ok", $this->__("Server assigned"));
+
+					}
+				}
+			}
+			$this->redirect("matchs_current");
+		}
         $this->filter = new MatchsActiveFormFilter($this->getFilters());
         $query = $this->filter->buildQuery($this->getFilters());
         $this->filterValues = $this->getFilters();
@@ -396,7 +413,7 @@ class matchsActions extends sfActions {
         $this->form = new MatchsForm();
         $this->maps = sfConfig::get("app_maps");
         array_push($this->maps, 'tba');
-        $this->servers = ServersTable::getInstance()->findAll();
+        $this->servers = ServersTable::getInstance()->createQuery()->orderBy("hostname ASC")->execute();
 
         if ($request->getMethod() == sfWebRequest::POST) {
             $this->form->bind($request->getPostParameter($this->form->getName()));
@@ -460,6 +477,54 @@ class matchsActions extends sfActions {
             }
         }
     }
+	
+	public function executeDuplicate(sfWebRequest $request) {
+		$match = $this->getRoute()->getObject();
+        $this->forward404Unless($match);
+				
+		$newMatch = new Matchs();
+		$newMatch->setIp($match->getIp());
+		$newMatch->setServer($match->getServer());
+		$newMatch->setSeason($match->getSeason());
+		$newMatch->setTeamA($match->getTeamA());
+		$newMatch->setTeamAFlag($match->getTeamAFlag());
+		$newMatch->setTeamAName($match->getTeamAName());
+		$newMatch->setTeamB($match->getTeamB());
+		$newMatch->setTeamBFlag($match->getTeamBFlag());
+		$newMatch->setTeamBName($match->getTeamBName());
+		$newMatch->setScoreA(0);
+		$newMatch->setScoreB(0);
+		$newMatch->setMaxRound($match->getMaxRound());
+		$newMatch->setRules($match->getRules());
+		$newMatch->overtime_startmoney = $match->overtime_startmoney;
+		$newMatch->overtime_max_round = $match->overtime_max_round;
+		$newMatch->config_full_score = $match->config_full_score;
+		$newMatch->config_ot = $match->config_ot;
+		$newMatch->config_streamer = $match->config_streamer;
+		$newMatch->config_knife_round = $match->config_knife_round;
+		$newMatch->config_password = $match->config_password;
+		$newMatch->map_selection_mode = $match->map_selection_mode;
+		$newMatch->setConfigAuthkey(uniqid(mt_rand(), true));
+		$newMatch->setStatus(Matchs::STATUS_NOT_STARTED);
+		$newMatch->save();
+		
+		$maps = new Maps();
+		$maps->setMatch($newMatch);
+		$maps->setMapsFor("default");
+		$maps->setNbOt(0);
+		$maps->setStatus(0);
+		$maps->score_1 = 0;
+		$maps->score_2 = 0;
+		$maps->current_side = $match->getMap()->getCurrentSide();
+		$maps->setMapName("tba");
+		$maps->save();
+		
+		$newMatch->setCurrentMap($maps);
+		$newMatch->save();
+		
+		$this->getUser()->setFlash("notification_ok", $this->__("Match cloned with ID") . " " . $newMatch->getId());
+		$this->redirect("matchs_current");
+	}
 
     public function executeEdit(sfWebRequest $request) {
         $this->match = $this->getRoute()->getObject();
@@ -669,6 +734,7 @@ class matchsActions extends sfActions {
                     $result[] = array("label" => "Edit", "route" => "matchs_edit", "add_class" => "btn-primary", "type" => "routing");
                     $result[] = array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing");
                 } 
+				$result[] = array("label" => "Duplicate", "route" => "matchs_duplicate", "add_class" => "btn-warning", "type" => "routing");
             } else {
                 $result[] = array("label" => "Stop", "add_class" => "btn-danger", "action" => "stopNoRs", "type" => "doRequest");
                 $result[] = array("label" => "Stop with Restart", "add_class" => "btn-danger", "action" => "stop", "type" => "doRequest");

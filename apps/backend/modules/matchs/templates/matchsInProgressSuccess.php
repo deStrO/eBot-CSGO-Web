@@ -7,6 +7,9 @@
         $('#loading_' + id).show();
         return false;
     }
+	
+	var enableNotifScore = false;
+	var lastMatchEnd = 0;
    function getButtons(match_id) {
         $.ajax({
             type: "POST",
@@ -21,6 +24,7 @@
         });
     }
     $(document).ready(function() {
+		PNotify.desktop.permission(); 
         initSocketIo(function(socket) {            
             socket.emit("identify", {type: "matchs"});
             socket.on("matchsHandler", function(data) {
@@ -35,12 +39,39 @@
                     $('#loading_' + data['id']).hide();
                 } else if (data['message'] == 'status') {
                     if (data['content'] == 'Finished') {
+						if (lastMatchEnd != data['id']) {
+							new PNotify({
+								title: 'Match finished',
+								type: 'info',
+								text: $("#team_a-"+data['id']).text()+ " vs "+$("#team_b-"+data['id']).text(),
+								desktop: {
+									desktop: true
+								}
+							});
+						}
+						lastMatchEnd = data['id'];
                         location.reload();
                     } else if (data['content'] == 'is_paused') {
+						new PNotify({
+							title: 'Match paused!',
+							type: 'info',
+							text: $("#team_a-"+data['id']).text()+ " vs "+$("#team_b-"+data['id']).text(),
+							desktop: {
+								desktop: true
+							}
+						});
                         $("#flag-" + data['id']).attr('src', "/images/icons/flag_yellow.png");
                         if (getSessionStorageValue('sound') == "on")
                             $("#soundHandle").trigger('play');
                     } else if (data['content'] == 'is_unpaused') {
+						new PNotify({
+							title: 'Match unpaused!',
+							type: 'info',
+							text: $("#team_a-"+data['id']).text()+ " vs "+$("#team_b-"+data['id']).text(),
+							desktop: {
+								desktop: true
+							}
+						});
                         $("#flag-" + data['id']).attr('src', "/images/icons/flag_green.png");
                         if (getSessionStorageValue('sound') == "on")
                             $("#soundHandle").trigger('play');
@@ -58,6 +89,17 @@
                         data['scoreA'] = "0" + data['scoreA'];
                     if (data['scoreB'] < 10)
                         data['scoreB'] = "0" + data['scoreB'];
+						
+						if (enableNotifScore) {
+					new PNotify({
+						title: 'Score Update',
+						type: 'info',
+						text: $("#team_a-"+data['id']).text()+ " ("+data['scoreA']+") vs ("+data['scoreB']+") "+$("#team_b-"+data['id']).text(),
+						desktop: {
+							desktop: true
+						}
+					});
+					}
 
                     if (data['scoreA'] == data['scoreB'])
                         $("#score-" + data['id']).html("<font color=\"blue\">" + data['scoreA'] + "</font> - <font color=\"blue\">" + data['scoreB'] + "</font>");
@@ -215,7 +257,7 @@
 </style>
 
 <?php $used = array(); ?>
-
+<?php $servers = ServersTable::getInstance()->createQuery()->orderBy("hostname ASC")->execute(); ?>
 <div class="container-fluid">
     <div class="span10">
         <div id="tableMatch">
@@ -226,7 +268,7 @@
                         if (($match->getEnable() == 1) && ($match->getStatus() > Matchs::STATUS_NOT_STARTED) && ($match->getStatus() < Matchs::STATUS_END_MATCH)) {
                             $used[] = $match->getServer()->getIp();
                         }
-
+						
                         $score1 = $score2 = 0;
 
                         if ($match->getMapSelectionMode() == "bo3_modeb") {
@@ -368,7 +410,20 @@
                             <td>
                                 <?php echo image_tag("/images/loading.gif", "style='display:none; padding-left:5px;' name='loading_" . $match->getId() . "' id='loading_" . $match->getId() . "'"); ?>
                             </td>
-                            <td colspan="9" class="matchs-actions-container"><?php for($i = 0; $i < count($buttons[$index]); $i++): ?><?php echo html_entity_decode($buttons[$index][$i]); ?><?php endfor; ?></td>
+                            <td colspan="9" class="matchs-actions-container">
+							<?php for($i = 0; $i < count($buttons[$index]); $i++): ?><?php echo html_entity_decode($buttons[$index][$i]); ?><?php endfor; ?>
+								<?php if ($match->getStatus() == 0): ?>
+								<form method="post" style="display: inline; padding-left: 30px;">
+									<input type="hidden" name="match_id" value="<?php echo $match->getId(); ?>"/>
+									<select name="server_id">
+										<?php foreach ($servers as $server): ?>
+											<option value="<?php echo $server->getId(); ?>"><?php echo $server->getIp(); ?> - <?php echo $server->getHostname(); ?></option>
+										<?php endforeach; ?>
+									</select>
+									<input type="submit" class="btn btn-primary" value="Assign this server"/>
+								</form>
+								<?php endif; ?>
+							</td>
                         </tr>
                     <?php endforeach; ?>
                     <?php if ($pager->getNbResults() == 0): ?>

@@ -19,14 +19,14 @@ matchs_current:
   class: sfRequestRoute
   param: { module: matchs, action: matchsInProgress }
   requirements:
-    sf_method: [get]
+    sf_method: [get, post]
 
 matchs_current_page:
   url: /matchs/current/:page
   class: sfRequestRoute
   param: { module: matchs, action: matchsInProgress }
   requirements:
-    sf_method: [get]
+    sf_method: [get, post]
     page: \d+
 
 matchs_archived:
@@ -66,6 +66,15 @@ matchs_actions:
   requirements:
     id : \d+
     sf_method: [get,post]
+
+matchs_duplicate:
+  url: /matchs/duplicate/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: duplicate }
+  requirements:
+    id : \d+
+    sf_method: [get]
 
 matchs_create:
   url: /matchs/create
