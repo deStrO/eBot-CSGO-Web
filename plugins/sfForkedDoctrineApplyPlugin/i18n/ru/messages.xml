@@ -46,15 +46,15 @@
       </trans-unit>
       <trans-unit id="12" approved="yes">
         <source>An account with that email address already exists. If you have forgotten your password, click "cancel", then "Reset My Password."</source>
-        <target>Аккаунт с этим email уже вуществует. Если вы просто забыли пароль нажмите "отмена", а потом "Востановить пароль"</target>
+        <target>Аккаунт с этим email уже существует. Если вы просто забыли пароль нажмите "Отмена", а затем "Востановить пароль".</target>
       </trans-unit>
       <trans-unit id="13" approved="yes">
         <source>The passwords did not match.</source>
-        <target>Пароли не совпадают..</target>
+        <target>Пароли не совпадают.</target>
       </trans-unit>
       <trans-unit id="14" approved="yes">
         <source>The email addresses did not match.</source>
-        <target>Email не совпадают..</target>
+        <target>Email адреса не совпадают.</target>
       </trans-unit>
       <trans-unit id="15" approved="yes">
         <source>First name may not contain &lt;, &gt;, | or &amp;.</source>
@@ -86,7 +86,7 @@
       </trans-unit>
       <trans-unit id="22" approved="yes">
         <source>The username and/or password is invalid.</source>
-        <target>Лоигн или пароль не верные.</target>
+        <target>Такого логина и/или пароля не существует.</target>
       </trans-unit>
       <trans-unit id="23" approved="yes">
         <source>Login</source>
@@ -94,7 +94,7 @@
       </trans-unit>
       <trans-unit id="24" approved="yes">
         <source>Username or E-Mail</source>
-        <target>Логин или Email</target>
+        <target>Логин или E-Mail</target>
       </trans-unit>
       <trans-unit id="25" approved="yes">
         <source>sign in</source>
