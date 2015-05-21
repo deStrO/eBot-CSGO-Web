@@ -20,6 +20,7 @@ all:
       BR:	BRESIL
       BG:	BULGARIE
       CA:	CANADA
+      CC:	CIS
       CL:	CHILIE
       CN:	CHINE
       CC:	CIS
@@ -84,6 +85,7 @@ all:
       BR:	BRAZIL
       BG:	BULGARIA
       CA:	CANADA
+      CC:	CIS
       CL:	CHILE
       CN:	CHINA
       CC:	CIS
