@@ -21,7 +21,7 @@ switch_lang:
   allow_empty: false
   requirements:
     sf_method: [post]
-    langage: (?:fr|en|de|cn)
+    langage: (?:fr|en|de|ru|cn)
 
 sf_guard_signin:
   url:   /login
