@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="ru" datatype="plaintext" original="messages" date="2013-06-22T16:33:12Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Administration</source>
+        <target>Управление</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Back to site</source>
+        <target>Вернуться на сайт</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Help</source>
+        <target>Помощь</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>About</source>
+        <target>О нас</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Error:</source>
+        <target>Ошибка:</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Information</source>
+        <target>Информация</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Warning!</source>
+        <target>Внимание!</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Your Browser does not support WebSocket Connections. Without WebSockets you are not abled to control and manage Matches at the eBot Webpanel!</source>
+        <target>Ваш браузер не поддерживает WebSockets. Без их поддержки вы не сможете управлять матчами в веб панели eBot!</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Update your Browser to the latest version. To check supported Browsers, visit:</source>
+        <target>Обновите ваш браузер до последней версии. Чтобы узнать поддерживаемые браузеры, посетите:</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Prev</source>
+        <target>Назад</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Next</source>
+        <target>Вперёд</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>ERROR</source>
+        <target>ОШИБКА</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Page not found!</source>
+        <target>Страница не найдена!</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>You do not have the required rights to access this site!</source>
+        <target>У вас нет прав на посещение этого сайта!</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>eBot-CSGO</source>
+        <target>eBot-CSGO</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Welcome to CSGO eBot administration panel, you can manage your matches and also consult various statistics.</source>
+        <target>Приветствуем в панели администрирования CSGO eBot</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>You can start using the panel via the menus on your left.</source>
+        <target>Вы можете начать пользоваться панелью используя меню слева.</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>News</source>
+        <target>Новости</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>No news available.</source>
+        <target>Новостей нет.</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Main Menu</source>
+        <target>Главное меню</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Home</source>
+        <target>Начало</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>Statistics</source>
+        <target>Статистика</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>Loading</source>
+        <target>Загрузка</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>Match Menu</source>
+        <target>Матчи</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Create New Match</source>
+        <target>Создать новый матч</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>Matches in Progress</source>
+        <target>Текущие матчи</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>Archived Matches</source>
+        <target>Архив матчей</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>Go</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>Server Management</source>
+        <target>Управление серверами</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>Add Gameserver</source>
+        <target>Добавить сервер</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>Usage Statistics</source>
+        <target>Статистика серверов</target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>Team Management</source>
+        <target>Управление командами</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>Create Team</source>
+        <target>Создать команду</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>Season Management</source>
+        <target>Сезоны</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>Create Season</source>
+        <target>Создать сезон</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>Seasons Management</source>
+        <target>Управление сезонами</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>Advertising</source>
+        <target>Объявления</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>Add Advert</source>
+        <target>Добавить объявление</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>Advertising Management</source>
+        <target>Управление</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>User Management</source>
+        <target>Пользователи</target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>Add new User</source>
+        <target>Добавить пользователи</target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>No match started</source>
+        <target>Нет запущенных матчей</target>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>No Server available</source>
+        <target>Нет доступных серверов</target>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>The matches were started successfully</source>
+        <target>Матчи были успешно запущены</target>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>Command send to the server, match will be stopped.</source>
+        <target>Команда передана на сервер, матч остановлен.</target>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>Match deleted</source>
+        <target>Матч удалён</target>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>Command send to the server, knife will be skipped.</source>
+        <target>Команда передана на сервер, ножевой раунд пропущен.</target>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>Command send to the server, knife will be forced.</source>
+        <target>Команда передана на сервер, ножевой раунд начат.</target>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>Command send to the server, match will skipped to warmup.</source>
+        <target>Команда передана на сервер, матч будет начат с разминки.</target>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>Command send to the server, match will be started.</source>
+        <target>Команда передана на сервер, матч запущен.</target>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>Command send to the server, match will be stopped to warmup.</source>
+        <target>Команда передана на сервер, матч возвращён на разминку.</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>Command send to the server, match will be paused/unpaused.</source>
+        <target>Команда передана на сервер, пауза установлена/снята</target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>No server available</source>
+        <target>Нет доступных серверов</target>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>Match will be started on</source>
+        <target>Матч будет начат на</target>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Match archived</source>
+        <target>Матч архивирован</target>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>No Match archived</source>
+        <target>Нет архивированных матчей</target>
+      </trans-unit>
+      <trans-unit id="57">
+        <source> match(es) archived</source>
+        <target> матч(и) архивированы</target>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>Match is resetted</source>
+        <target>Матч сброшен</target>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>Match can't be resetted</source>
+        <target>Матч не может быть сброшен</target>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Match is restarted on</source>
+        <target>Матч перезапущен на</target>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>A match is currently played on</source>
+        <target>Матч сейчас играется на</target>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>Server resetted from match</source>
+        <target>Сервер сброшен с матча</target>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Match created with ID</source>
+        <target>Матч создан с ID</target>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>Match is currently in progress, can't be edited.</source>
+        <target>Матч играется, он не может быть изменён</target>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Match edited successfully</source>
+        <target>Матч успешно изменён</target>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>Match is currently in progress.</source>
+        <target>Матч играется.</target>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Score updated successfully - New Score</source>
+        <target>Счёт успешно изменён - Новый счёт</target>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>Error, invalid data.</source>
+        <target>Ошибка, неверные данные</target>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>#ID</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>Opponent - Score</source>
+        <target>Оппонент - Счёт</target>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Map</source>
+        <target>Карта</target>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>IP</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>Enabled</source>
+        <target>Включён</target>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>Status</source>
+        <target>Статус</target>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Show</source>
+        <target>Показать</target>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>Delete</source>
+        <target>Удалить</target>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>No results available.</source>
+        <target>Нет доступных результатов.</target>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>Player Statistics</source>
+        <target>Статистика игроков</target>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Team</source>
+        <target>Команда</target>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Player</source>
+        <target>Игрок</target>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>Kill</source>
+        <target>Убийства</target>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>Assist</source>
+        <target>Помощь</target>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>Death</source>
+        <target>Смерти</target>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>K/D Rate</source>
+        <target>K/D %</target>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>Points</source>
+        <target>Очки</target>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>HeadShot</source>
+        <target>В голову</target>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>HS Rate</source>
+        <target>HS %</target>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>Defuse</source>
+        <target>Обезврежено</target>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>Bombe</source>
+        <target>Взорвано</target>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>TK</source>
+        <target>TK</target>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>1v1</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>1v2</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>1v3</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="94">
+        <source>1v4</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>1v5</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>1K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>2K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>3K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>4K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>5K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>FK</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>Pt Clutch</source>
+        <target>Очки клатча</target>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>Total</source>
+        <target>Всего</target>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Info</source>
+        <target>Инфо</target>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>&lt;p&gt;Vous pouvez trier tous les champs du tableau pour obtenir des résultats personallisés.&lt;/p&gt;
+			&lt;p&gt;Les colonnes &lt;b&gt;1K&lt;/b&gt;, &lt;b&gt;2K&lt;/b&gt;, ... représentent le nombre de kill par round effectué. Par exemple, si j'ai 2 dans la colonne 3K, cela veut dire que j'ai fais 2 rounds où j'ai fais 3 kills.
+			&lt;p&gt;La colonne &lt;b&gt;FK&lt;/b&gt; signifie &lt;b&gt;First Kill&lt;/b&gt;, utile pour voir les personnes qui font les premiers kills&lt;/p&gt;
+			&lt;p&gt;Les points clutchs représentent si la personne a réalisé plusieurs "clutch", par exemple, gagné un 1v1. Ils sont calculés comme ceci: nombre de 1 v X gagné multiplé par X. Si j'ai fais trois 1v1 et un 1v2, j'aurai donc 5 points. (1v1 x 3 = 3, 1v2 x 1 = 2)&lt;/p&gt;
+		</source>
+        <target>&lt;p&gt;Вы можете сортировать все поля в таблице.&lt;/p&gt;
+			&lt;p&gt;Колонки &lt;b&gt;1K&lt;/b&gt;, &lt;b&gt;2K&lt;/b&gt;, ... показывают число убийств за раунд. К примеру, 2 в колонке 3К означает, что в двух раундах сделано 3 убийства.&lt;/p&gt;
+			&lt;p&gt;Колонка &lt;b&gt;FK&lt;/b&gt; означает &lt;b&gt;Первое убийство&lt;/b&gt;, полезно, чтобы узнать первого убийцу&lt;/p&gt;
+			&lt;p&gt;Clutch очки показывают, сколько \"клатчей\" выиграл игрок. К примеру, 1v1. Они рассчитываются следующим образом: в клатче 1 vs X, 1 умножается на X, а затем на количество выигранных таким образом клатчей. К примеру, вы наберёте 5 очков, выиграв 3 клатча 1x1 и 1 клатч 1х2 (1v1 x 3 = 3, 1v2 x 1 = 2)&lt;/p&gt;
+        </target>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Server-Log</source>
+        <target>Лог сервера</target>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>Chat-Log</source>
+        <target>Лог чата</target>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Refresh</source>
+        <target>Обновить</target>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Quick Administration</source>
+        <target>Быстрое администрирование</target>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Start all Matches</source>
+        <target>Запустить все матчи</target>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>Archive all Matches</source>
+        <target>Архивировать все матчи</target>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Search Match</source>
+        <target>Поиск матча</target>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>Reset Filter</source>
+        <target>Сбросить фильтр</target>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Search</source>
+        <target>Поиск</target>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>Close</source>
+        <target>Закрыть</target>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>Cancel</source>
+        <target>Отменить</target>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>BO3 Maps</source>
+        <target>BO3 карты</target>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>Team 1</source>
+        <target>Команда 1</target>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Team 2</source>
+        <target>Команда 2</target>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>Server</source>
+        <target>Сервер</target>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>Maps</source>
+        <target>Карты</target>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>Streamer</source>
+        <target>Стрим</target>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>Auto-Start</source>
+        <target>Автозапуск</target>
+      </trans-unit>
+      <trans-unit id="124">
+        <source>min before</source>
+        <target>минут до начала</target>
+      </trans-unit>
+      <trans-unit id="125">
+        <source>Startdate</source>
+        <target>Начало</target>
+      </trans-unit>
+      <trans-unit id="126">
+        <source>No results for this filter.</source>
+        <target>Нет результатов для этого фильтра</target>
+      </trans-unit>
+      <trans-unit id="127">
+        <source>Score</source>
+        <target>Счёт</target>
+      </trans-unit>
+      <trans-unit id="128">
+        <source>Season</source>
+        <target>Сезон</target>
+      </trans-unit>
+      <trans-unit id="129">
+        <source>Hostname</source>
+        <target>Сервер</target>
+      </trans-unit>
+      <trans-unit id="130">
+        <source>Password</source>
+        <target>Пароль</target>
+      </trans-unit>
+      <trans-unit id="131">
+        <source>Match Admin</source>
+        <target>Админ Матча</target>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>Are you sure, you want to do this?</source>
+        <target>Вы уверены, что хотите сделать это?</target>
+      </trans-unit>
+      <trans-unit id="133">
+        <source>Edit Match</source>
+        <target>Изменить матч</target>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>Edit Match information</source>
+        <target>Общая информация</target>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>Match Status</source>
+        <target>Статус матча</target>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>Enter the name of the .cfg File without the extension (esl5on5.cfg =&gt; esl5on5)</source>
+        <target>Введить название конфига без расширения (esl5on5.cfg =&gt; esl5on5)</target>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>Choose Random Server</source>
+        <target>Выбрать случайный сервер</target>
+      </trans-unit>
+      <trans-unit id="138">
+        <source>Save Match</source>
+        <target>Сохранить матч</target>
+      </trans-unit>
+      <trans-unit id="139">
+        <source>Edit Match Score</source>
+        <target>Изменить счёт</target>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>Score Type</source>
+        <target>Тип счёта</target>
+      </trans-unit>
+      <trans-unit id="141">
+        <source>Save Scores</source>
+        <target>Сохранить счета</target>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>&lt;b&gt;Attention!&lt;/b&gt; - Changing the Match Scores will recalc the match!</source>
+        <target>&lt;b&gt;Внимание!&lt;/b&gt; - Изменение счёта матча пересчитает матч!</target>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>Heatmap</source>
+        <target>Горячие точки</target>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>Configuration</source>
+        <target>Настройки</target>
+      </trans-unit>
+      <trans-unit id="145">
+        <source>Event</source>
+        <target>Событие</target>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>All Events</source>
+        <target>Все события</target>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>Rounds</source>
+        <target>Раунды</target>
+      </trans-unit>
+      <trans-unit id="148">
+        <source>Round</source>
+        <target>Раунд</target>
+      </trans-unit>
+      <trans-unit id="149">
+        <source>Side</source>
+        <target>Сторона</target>
+      </trans-unit>
+      <trans-unit id="150">
+        <source>Both Sides</source>
+        <target>Обе стороны</target>
+      </trans-unit>
+      <trans-unit id="151">
+        <source>Side CT</source>
+        <target>Сторона CT</target>
+      </trans-unit>
+      <trans-unit id="152">
+        <source>Side T</source>
+        <target>Сторона T</target>
+      </trans-unit>
+      <trans-unit id="153">
+        <source>Players</source>
+        <target>Игроки</target>
+      </trans-unit>
+      <trans-unit id="154">
+        <source>Generate Heatmap</source>
+        <target>Генерировать</target>
+      </trans-unit>
+      <trans-unit id="155">
+        <source>Create new Match</source>
+        <target>Создать матч</target>
+      </trans-unit>
+      <trans-unit id="156">
+        <source>First Side</source>
+        <target>Первая сторона</target>
+      </trans-unit>
+      <trans-unit id="157">
+        <source>Team A CT / Team B T</source>
+        <target>Команда A CT / Команда B T</target>
+      </trans-unit>
+      <trans-unit id="158">
+        <source>Team A CT / Team B CT</source>
+        <target>Команда A T / Команда B CT</target>
+      </trans-unit>
+      <trans-unit id="159">
+        <source>Random</source>
+        <target>Случайно</target>
+      </trans-unit>
+      <trans-unit id="160">
+        <source>Create Match</source>
+        <target>Создать матч</target>
+      </trans-unit>
+      <trans-unit id="161">
+        <source>Match</source>
+        <target>Матч</target>
+      </trans-unit>
+      <trans-unit id="162">
+        <source>RCON</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="163">
+        <source>Server-LOG</source>
+        <target>Лог сервера</target>
+      </trans-unit>
+      <trans-unit id="164">
+        <source>Chat-LOG</source>
+        <target>Лог чата</target>
+      </trans-unit>
+      <trans-unit id="165">
+        <source>Backup System</source>
+        <target>Восстановление раундов</target>
+      </trans-unit>
+      <trans-unit id="166">
+        <source>RCON-Log</source>
+        <target>RCON лог</target>
+      </trans-unit>
+      <trans-unit id="167">
+        <source>Send</source>
+        <target>Отправить</target>
+      </trans-unit>
+      <trans-unit id="168">
+        <source>Weapon Statistics by Player</source>
+        <target>Статистика оружия по игрокам</target>
+      </trans-unit>
+      <trans-unit id="169">
+        <source>The column &lt;b&gt;K&lt;/b&gt; represents the number of kill with this weapons, the column &lt;b&gt;D&lt;/b&gt; represents the number of times the player has been killed by the weapon</source>
+        <target>Колонка &lt;b&gt;K&lt;/b&gt; показывает количество убийств, сделанных с указанного оружия, колонка &lt;b&gt;D&lt;/b&gt; показывает количество смертей игрока от данного оружия</target>
+      </trans-unit>
+      <trans-unit id="170">
+        <source>Round #</source>
+        <target>Раунд #</target>
+      </trans-unit>
+      <trans-unit id="172">
+        <source>Reload to round</source>
+        <target>Восстановить раунд</target>
+      </trans-unit>
+      <trans-unit id="173">
+        <source>Livemap</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="174">
+        <source>Log</source>
+        <target>Лог</target>
+      </trans-unit>
+      <trans-unit id="175">
+        <source>Legende</source>
+        <target>Легенда</target>
+      </trans-unit>
+      <trans-unit id="176">
+        <source>Match Statistics</source>
+        <target>Статистика матча</target>
+      </trans-unit>
+      <trans-unit id="177">
+        <source>Round Series</source>
+        <target>Серия раундов</target>
+      </trans-unit>
+      <trans-unit id="178">
+        <source>Halftime</source>
+        <target>Смена сторон</target>
+      </trans-unit>
+      <trans-unit id="179">
+        <source>rounds</source>
+        <target>раундов</target>
+      </trans-unit>
+      <trans-unit id="180">
+        <source>Caption</source>
+        <target>Участники</target>
+      </trans-unit>
+      <trans-unit id="181">
+        <source>Victory: Bomb Exploded</source>
+        <target>Победа: Бомба взорвана</target>
+      </trans-unit>
+      <trans-unit id="182">
+        <source>Defeat: Bomb Defused</source>
+        <target>Поражение: Бомба обезврежена</target>
+      </trans-unit>
+      <trans-unit id="183">
+        <source>Victory: Bomb Defused</source>
+        <target>Победа: Бомба обезврежена</target>
+      </trans-unit>
+      <trans-unit id="184">
+        <source>Victory</source>
+        <target>Победа</target>
+      </trans-unit>
+      <trans-unit id="185">
+        <source>Total Elimination</source>
+        <target>Уничтожение противника</target>
+      </trans-unit>
+      <trans-unit id="186">
+        <source>Victory: Out of Time</source>
+        <target>Победа: время истекло</target>
+      </trans-unit>
+      <trans-unit id="187">
+        <source>Longest Round Streak</source>
+        <target>Наибольшая серия раундов</target>
+      </trans-unit>
+      <trans-unit id="188">
+        <source>Round Details</source>
+        <target>Детали раунда</target>
+      </trans-unit>
+      <trans-unit id="189">
+        <source>Winner</source>
+        <target>Победитель</target>
+      </trans-unit>
+      <trans-unit id="190">
+        <source>Victory by</source>
+        <target>Победа</target>
+      </trans-unit>
+      <trans-unit id="191">
+        <source>Bomb defused</source>
+        <target>Бомба обезврежена</target>
+      </trans-unit>
+      <trans-unit id="192">
+        <source>Bomb exploded</source>
+        <target>Бомба взорвана</target>
+      </trans-unit>
+      <trans-unit id="193">
+        <source>Out of Time</source>
+        <target>Время истекло</target>
+      </trans-unit>
+      <trans-unit id="194">
+        <source>Bomb planted</source>
+        <target>Бомба установлена</target>
+      </trans-unit>
+      <trans-unit id="195">
+        <source>Bombe defused</source>
+        <target>Бомба обезврежена</target>
+      </trans-unit>
+      <trans-unit id="196">
+        <source>Bombe exploded</source>
+        <target>Бомба взорвана</target>
+      </trans-unit>
+      <trans-unit id="197">
+        <source>Action of the Round</source>
+        <target>Действие раунда</target>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>a mis un</source>
+        <target>вытащил клатч</target>
+      </trans-unit>
+      <trans-unit id="199">
+        <source>did</source>
+        <target>сделал</target>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>Kills</source>
+        <target>убийств</target>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>Details / Matchsettings</source>
+        <target>Информация / Настройки матча</target>
+		</trans-unit>
+      <trans-unit id="202">
+        <source>Weapon Statistics</source>
+        <target>Использование оружия</target>
+	  </trans-unit>
+      <trans-unit id="203">
+        <source>Killer / Killed</source>
+        <target>Таблица убийств</target>
+	  </trans-unit>
+      <trans-unit id="204">
+        <source>The following Player(s) buyed more then one Smokegrenade per Round:</source>
+        <target>Следующий(ие) игрок(и) купил(и) больше одной дымовой гранаты за раунд:</target>
+	  </trans-unit>
+      <trans-unit id="205">
+        <source>Match Settings</source>
+        <target>Настройки матча</target>
+	  </trans-unit>
+      <trans-unit id="206">
+        <source>Configuration File</source>
+        <target>Конфигурация</target>
+	  </trans-unit>
+      <trans-unit id="207">
+        <source>MaxRound</source>
+        <target>Кол-во раундов</target>
+	  </trans-unit>
+      <trans-unit id="208">
+        <source>Active</source>
+        <target>Статус</target>
+	  </trans-unit>
+      <trans-unit id="209">
+        <source>Config: Full Score</source>
+        <target>Конфигурация: Все раунды</target>
+	  </trans-unit>
+      <trans-unit id="210">
+        <source>Config: Streamer</source>
+        <target>Конфигурация: Ожидание стримеров</target>
+	  </trans-unit>
+      <trans-unit id="211">
+        <source>Config: Overtime</source>
+        <target>Конфигурация: Овертаймы</target>
+	  </trans-unit>
+      <trans-unit id="212">
+        <source>Config: Knife Round</source>
+        <target>Конфигурация: Ножевой раунд</target>
+	  </trans-unit>
+      <trans-unit id="213">
+        <source>Config: Switch Auto</source>
+        <target>Конфигурация: Автостарт</target>
+	  </trans-unit>
+      <trans-unit id="214">
+        <source>Match Details</source>
+        <target>Информация о матче</target>
+      </trans-unit>
+      <trans-unit id="215">
+        <source>Played Rounds</source>
+        <target>Сыграно раундов</target>
+      </trans-unit>
+      <trans-unit id="216">
+        <source>Gameserver</source>
+        <target>Сервер</target>
+      </trans-unit>
+      <trans-unit id="217">
+        <source>Player Numbers</source>
+        <target>Кол-во игроков</target>
+      </trans-unit>
+      <trans-unit id="218">
+        <source>Spectator</source>
+        <target>Наблюдателей</target>
+      </trans-unit>
+      <trans-unit id="219">
+        <source>Score Details</source>
+        <target>Счёт по половинам</target>
+      </trans-unit>
+      <trans-unit id="220">
+        <source>Overtime</source>
+        <target>Овертаймы</target>
+      </trans-unit>
+      <trans-unit id="221">
+        <source>Second Side</source>
+        <target>Вторая половина</target>
+      </trans-unit>
+      <trans-unit id="222">
+        <source>Team created successfully.</source>
+        <target>Команда успешно создана</target>
+      </trans-unit>
+      <trans-unit id="223">
+        <source>Error, invalid form</source>
+        <target>Ошибка, неверная форма</target>
+      </trans-unit>
+      <trans-unit id="224">
+        <source>Team edited successfully.</source>
+        <target>Команда успешно изменена</target>
+      </trans-unit>
+      <trans-unit id="225">
+        <source>Team deleted successfully.</source>
+        <target>Команда успешно удалена</target>
+      </trans-unit>
+      <trans-unit id="226">
+        <source>Edit Team</source>
+        <target>Изменить команду</target>
+      </trans-unit>
+      <trans-unit id="227">
+        <source>Team Managment</source>
+        <target>Управление командами</target>
+      </trans-unit>
+      <trans-unit id="228">
+        <source>Name</source>
+        <target>Название</target>
+      </trans-unit>
+      <trans-unit id="229">
+        <source>Shorthandle</source>
+        <target>Короткое название</target>
+      </trans-unit>
+      <trans-unit id="230">
+        <source>Team Link</source>
+        <target>Ссылка</target>
+      </trans-unit>
+      <trans-unit id="231">
+        <source>Link</source>
+        <target>Ссылка</target>
+      </trans-unit>
+      <trans-unit id="232">
+        <source>Edit</source>
+        <target>Изменить</target>
+      </trans-unit>
+      <trans-unit id="233">
+        <source>Create new Team</source>
+        <target>Создать команда</target>
+      </trans-unit>
+      <trans-unit id="234">
+        <source>ID</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="235">
+        <source>Details</source>
+        <target>Детали</target>
+      </trans-unit>
+      <trans-unit id="236">
+        <source>Signin</source>
+        <target>Войти</target>
+      </trans-unit>
+      <trans-unit id="237">
+        <source>Forgot your password?</source>
+        <target>Забыли пароль?</target>
+      </trans-unit>
+      <trans-unit id="238">
+        <source>Want to register?</source>
+        <target>Хотите зарегистрироваться?</target>
+      </trans-unit>
+      <trans-unit id="239">
+        <source>Login</source>
+        <target>Вход</target>
+      </trans-unit>
+      <trans-unit id="240">
+        <source>You have to be logged in to access this site!</source>
+        <target>Вы должны войти для доступа в эту часть сайта!</target>
+      </trans-unit>
+      <trans-unit id="241">
+        <source>Oops! The page you asked for is secure and you do not have proper credentials.</source>
+        <target>Упс. Запрошенная страница скрыта и у вас нет прав на её просмотр!</target>
+      </trans-unit>
+      <trans-unit id="242">
+        <source>Login below to gain access</source>
+        <target>Войдите для получения доступа</target>
+      </trans-unit>
+      <trans-unit id="243">
+        <source>User created successfully</source>
+        <target>Аккаунт успешно создан</target>
+      </trans-unit>
+      <trans-unit id="244">
+        <source>User could not be added</source>
+        <target>Аккаунт не может быть добавлен</target>
+      </trans-unit>
+      <trans-unit id="245">
+        <source>User edited successfully</source>
+        <target>Аккаунт успешно изменён</target>
+      </trans-unit>
+      <trans-unit id="246">
+        <source>User deleted successfully</source>
+        <target>Аккаунт успешно удалён</target>
+      </trans-unit>
+      <trans-unit id="247">
+        <source>Edit User</source>
+        <target>Изменить аккаунт</target>
+      </trans-unit>
+      <trans-unit id="248">
+        <source>Username</source>
+        <target>Ник</target>
+      </trans-unit>
+      <trans-unit id="249">
+        <source>Created</source>
+        <target>Создан</target>
+      </trans-unit>
+      <trans-unit id="250">
+        <source>Updated</source>
+        <target>Обновлён</target>
+      </trans-unit>
+      <trans-unit id="251">
+        <source>Last Loging</source>
+        <target>Последний вход</target>
+      </trans-unit>
+      <trans-unit id="252">
+        <source>Action</source>
+        <target>Действия</target>
+      </trans-unit>
+      <trans-unit id="253">
+        <source>Create new User</source>
+        <target>Создать аккаунт</target>
+      </trans-unit>
+      <trans-unit id="254">
+        <source>Create User</source>
+        <target>Создать аккаунт</target>
+      </trans-unit>
+      <trans-unit id="255">
+        <source>This server is currently in use!</source>
+        <target>Сервер уже используется!</target>
+      </trans-unit>
+      <trans-unit id="256">
+        <source>Server deleted.</source>
+        <target>Сервер удалён.</target>
+      </trans-unit>
+      <trans-unit id="257">
+        <source>Unknown Server-Format</source>
+        <target>Неизвестный формат сервера</target>
+      </trans-unit>
+      <trans-unit id="258">
+        <source> server were added </source>
+        <target> сервер был добавлен </target>
+      </trans-unit>
+      <trans-unit id="259">
+        <source>1 Server was added with IP (</source>
+        <target>1 сервер был добавлен с IP (</target>
+      </trans-unit>
+      <trans-unit id="260">
+        <source>IP Adress</source>
+        <target>IP</target>
+      </trans-unit>
+      <trans-unit id="261">
+        <source>used?</source>
+        <target>Активность</target>
+      </trans-unit>
+      <trans-unit id="262">
+        <source>in use</source>
+        <target>Активен</target>
+      </trans-unit>
+      <trans-unit id="263">
+        <source>not used</source>
+        <target>Неактивен</target>
+      </trans-unit>
+      <trans-unit id="264">
+        <source>No Servers registered.</source>
+        <target>Нет серверов.</target>
+      </trans-unit>
+      <trans-unit id="265">
+        <source>Create new Server</source>
+        <target>Добавить сервер</target>
+      </trans-unit>
+      <trans-unit id="266">
+        <source>Create Server</source>
+        <target>Добавить сервер</target>
+      </trans-unit>
+      <trans-unit id="267">
+        <source>To create several gameservers at once, you can type the server address in various formats:</source>
+        <target>Чтобы добавить несколько серверов за раз, вы можете ввести адреса серверов в разных форматах:</target>
+      </trans-unit>
+      <trans-unit id="268">
+        <source>will generate 3 gameservers with ips like 172.16.100.101:27015, 172.16.100.102:27015, 172.16.100.103:27015</source>
+        <target>добавит 3 сервера с адресами 172.16.100.101:27015, 172.16.100.102:27015, 172.16.100.103:27015</target>
+      </trans-unit>
+      <trans-unit id="269">
+        <source>will generate 4 gameservers with ips like 172.16.100.101:27015, 172.16.100.101:27025, 172.16.100.101:27035</source>
+        <target>добавит 4 сервера с адресами:  172.16.100.101:27015, 172.16.100.101:27025, 172.16.100.101:27035</target>
+      </trans-unit>
+      <trans-unit id="270">
+        <source>will generate 9 gameservers with ips like 172.16.100.101:27015&gt; 172.16.100.101:27035, etc ...</source>
+        <target>добавит 9 серверов с адресами: 172.16.100.101:27015&gt; 172.16.100.101:27035, и т.д...</target>
+      </trans-unit>
+      <trans-unit id="271">
+        <source>Server list</source>
+        <target>Список серверов</target>
+      </trans-unit>
+      <trans-unit id="272">
+        <source>Statistics are generated on page loading, which can explain why it loads slowly!</source>
+        <target>Статистика генерируется во время загрузки страницы, что объясняет долгую загрузку.</target>
+      </trans-unit>
+      <trans-unit id="273">
+        <source>Matches</source>
+        <target>Матчи</target>
+      </trans-unit>
+      <trans-unit id="274">
+        <source>Headshots</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="275">
+        <source>Headshot Rate</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="276">
+        <source>Advert added successfully</source>
+        <target>Объявление успешно добавлено</target>
+      </trans-unit>
+      <trans-unit id="277">
+        <source>Advert edited successfully.</source>
+        <target>Объявление успешно изменено</target>
+      </trans-unit>
+      <trans-unit id="278">
+        <source>Advert deleted successfully</source>
+        <target>Объявление успешно удалено</target>
+      </trans-unit>
+      <trans-unit id="279">
+        <source>Advert de/activated successfully</source>
+        <target>Объявление (де)активировано</target>
+      </trans-unit>
+      <trans-unit id="280">
+        <source>Edit Advert</source>
+        <target>Удалить объявление</target>
+      </trans-unit>
+      <trans-unit id="281">
+        <source>Message</source>
+        <target>Сообщение</target>
+      </trans-unit>
+      <trans-unit id="282">
+        <source>Season Name</source>
+        <target>Сезон</target>
+      </trans-unit>
+      <trans-unit id="283">
+        <source>De/Activate</source>
+        <target>(Де)активировать</target>
+      </trans-unit>
+      <trans-unit id="284">
+        <source>Add new Advert</source>
+        <target>Добавить объявление</target>
+      </trans-unit>
+      <trans-unit id="285">
+        <source>Empty, if it's a general Advert</source>
+        <target>Оставьте пустым, если это общееобъявление</target>
+      </trans-unit>
+      <trans-unit id="286">
+        <source>You will find all eBot usage statistics here.</source>
+        <target>Здесь вы можете найти всю статистику использования eBot</target>
+      </trans-unit>
+      <trans-unit id="287">
+        <source>Players Statistics</source>
+        <target>Статистика игроков</target>
+      </trans-unit>
+      <trans-unit id="288">
+        <source>Number of Kills</source>
+        <target>Убийства</target>
+      </trans-unit>
+      <trans-unit id="289">
+        <source>Number of Headshots</source>
+        <target>Убийства в голову</target>
+      </trans-unit>
+      <trans-unit id="290">
+        <source>not available</source>
+        <target>не доступно</target>
+      </trans-unit>
+      <trans-unit id="291">
+        <source>Matches not Started</source>
+        <target>Не запущенные матчи</target>
+      </trans-unit>
+      <trans-unit id="292">
+        <source>Finished/archived Matches</source>
+        <target>Оконченные/Архивированные матчи</target>
+      </trans-unit>
+      <trans-unit id="293">
+        <source>Matches Count</source>
+        <target>Кол-во матчей</target>
+      </trans-unit>
+      <trans-unit id="294">
+        <source>Server Statistics</source>
+        <target>Статистика по серверам</target>
+      </trans-unit>
+      <trans-unit id="295">
+        <source>Number of Servers</source>
+        <target>Кол-во серверов</target>
+      </trans-unit>
+      <trans-unit id="296">
+        <source>Season created successfully</source>
+        <target>Сезон успешно создан</target>
+      </trans-unit>
+      <trans-unit id="297">
+        <source>Season edited successfully.</source>
+        <target>Сезон успешно изменён</target>
+      </trans-unit>
+      <trans-unit id="298">
+        <source>Season deleted successfully</source>
+        <target>Сезон успешно удалён</target>
+      </trans-unit>
+      <trans-unit id="299">
+        <source>Season de/activated successfully</source>
+        <target>Сезон успешно (де)активирован</target>
+      </trans-unit>
+      <trans-unit id="300">
+        <source>Edit Season</source>
+        <target>Изменить сезон</target>
+      </trans-unit>
+      <trans-unit id="301">
+        <source>Start</source>
+        <target>Начало</target>
+      </trans-unit>
+      <trans-unit id="302">
+        <source>End</source>
+        <target>Конец</target>
+      </trans-unit>
+	  <trans-unit id="303">
+        <source>Server IP</source>
+        <target>IP сервера</target>
+      </trans-unit>
+	  <trans-unit id="302">
+        <source>Internal Servername</source>
+        <target>Внутреннее название</target>
+      </trans-unit>
+	  <trans-unit id="302">
+        <source>RCON Password</source>
+        <target>RCON пароль</target>
+      </trans-unit>
+	  <trans-unit id="302">
+        <source>Memory usage</source>
+        <target>Использование памяти</target>
+      </trans-unit>
+	  <trans-unit id="303">
+        <source>Total:</source>
+        <target>Всего:</target>
+      </trans-unit>
+	  <trans-unit id="304">
+        <source>Used:</source>
+        <target>Использовано:</target>
+      </trans-unit>
+	  <trans-unit id="305">
+        <source>Free:</source>
+        <target>Свободно:</target>
+      </trans-unit>
+	  <trans-unit id="306">
+        <source>Add Config</source>
+        <target>Добавить конфиг</target>
+      </trans-unit>
+	  <trans-unit id="307">
+        <source>Config Management</source>
+        <target>Список конфигураций</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+
