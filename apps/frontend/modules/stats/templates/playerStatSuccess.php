@@ -19,7 +19,9 @@
     <li class="active"><a href="#home"><?php echo __("Information / Global Statistics"); ?></a></li>
     <?php foreach ($stats as $stat): ?>
         <?php if ($stat->getTeam() == "other") continue; ?>
-        <?php $team = ($stat->getTeam() == 'a') ? $stat->getMatch()->getTeamB() : $stat->getMatch()->getTeamA(); ?>
+		<?php $teamA =  $stat->getMatch()->getTeamA()->exists() ?  $stat->getMatch()->getTeamA() :  $stat->getMatch()->getTeamAName(); ?>
+		<?php $teamB =  $stat->getMatch()->getTeamB()->exists() ?  $stat->getMatch()->getTeamB() :  $stat->getMatch()->getTeamBName(); ?>
+        <?php $team = ($stat->getTeam() == 'a') ? $teamB : $teamA; ?>
         <li><a href="#match-<?php echo $stat->getMatchId(); ?>"><?php echo __("vs. " . $team); ?></a></li>
     <?php endforeach; ?>
 </ul>

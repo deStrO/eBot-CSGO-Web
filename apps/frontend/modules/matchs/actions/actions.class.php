@@ -169,4 +169,327 @@ class matchsActions extends sfActions {
         return sfView::NONE;
     }
 
+    public function executeExternalTvStats(sfWebRequest $request) {
+        $this->setLayout("layout_external");
+        $this->forward404Unless($request->getParameter("id"));
+        $this->match = MatchsTable::getInstance()->find($request->getParameter("id"));
+
+        $this->heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->count() > 0;
+        if ($this->heatmap) {
+            if (class_exists($this->match->getMap()->getMapName())) {
+                $map = $this->match->getMap()->getMapName();
+                $this->class_heatmap = new $map($this->match->getId());
+            } else {
+                $this->heatmap = false;
+            }
+        }
+    }
+
+    public function executeExternalTvStatsGunround(sfWebRequest $request) {
+        $this->setLayout("layout_external");
+        $this->forward404Unless($request->getParameter("id"));
+        $this->match = MatchsTable::getInstance()->find($request->getParameter("id"));
+    }
+
+    public function executeExternalTvStatsTeams(sfWebRequest $request) {
+        $this->setLayout("layout_external");
+        $this->forward404Unless($request->getParameter("ids"));
+        $this->forward404Unless($request->getParameter("team1"));
+        $this->forward404Unless($request->getParameter("team2"));
+        $this->matchs = MatchsTable::getInstance()->createQuery()->where("id IN ?", array(explode(",", $request->getParameter("ids"))))->execute();
+        $this->team1 = TeamsTable::getInstance()->find($request->getParameter("team1"));
+        $this->team2 = TeamsTable::getInstance()->find($request->getParameter("team2"));
+    }
+
+    public function executeExternalLiveStats(sfWebRequest $request) {
+        $this->setLayout("layout_external");
+        $this->ebot_ip = sfConfig::get("app_ebot_ip");
+        $this->ebot_port = sfConfig::get("app_ebot_port");
+
+        $this->filter = new MatchsActiveFormFilter($this->getFilters());
+        $query = $this->filter->buildQuery($this->getFilters());
+        $this->filterValues = $this->getFilters();
+
+        $type = $request->getParameter('type', 'live');
+
+        if ($type == 'live')
+            $this->matchs = $query->andWhere("status >= ?", array(Matchs::STATUS_NOT_STARTED))->andWhere("status <= ?", array(Matchs::STATUS_END_MATCH))->orderBy("enable DESC, status DESC")->limit(15)->execute();
+        /* elseif ($type == 'archived')
+          $this->matchs = $query->andWhere("status >= ?", array(Matchs::STATUS_NOT_STARTED))->andWhere("status <= ?", array(Matchs::STATUS_ARCHIVE))->andWhere("updated_at <= ADDTIME(NOW(), )"->orderBy("id ASC$
+         */
+    }
+
+    public function executeDemos(sfWebRequest $request) {
+        
+    }
+
+    public function executeExportPlayers(sfWebRequest $request) {
+        $this->match = $this->getRoute()->getObject();
+        $players = $this->match->getPlayers();
+
+        $stats = array();
+        foreach ($players as $player) {
+            if ($player->team == "other")
+                continue;
+            $stats[$player->getSteamid()] = array(
+                "userName" => $player->getPseudo(),
+                "steamId" => $player->getSteamid(),
+                "v1" => $player->nb1,
+                "v2" => $player->nb2,
+                "v3" => $player->nb3,
+                "v4" => $player->nb4,
+                "v5" => $player->nb5,
+                "nb1kill" => $player->nb1kill,
+                "nb2kill" => $player->nb2kill,
+                "nb3kill" => $player->nb3kill,
+                "nb4kill" => $player->nb4kill,
+                "nb5kill" => $player->nb5kill,
+                "kill" => $player->nb_kill,
+                "death" => $player->death,
+                "headshot" => $player->hs,
+                "point" => $player->point,
+                "tk" => $player->tk,
+                "defuse" => $player->defuse,
+                "bombe" => $player->bombe,
+                "assist" => $player->assist,
+                "firstKill" => $player->firstkill,
+            );
+        }
+
+        return $this->renderText(json_encode($stats));
+    }
+
+    public function executeExportRounds(sfWebRequest $request) {
+        $this->match = $this->getRoute()->getObject();
+        $rounds = $this->match->getRoundSummaries();
+
+        $stats = array();
+
+        $side = $this->match->getMap()->getCurrentSide() == "ct" ? "t" : "ct";
+        $scoreCT = 0;
+        $scoreT = 0;
+
+        foreach ($rounds as $round) {
+            $data = unserialize(utf8_decode($round->getBestActionParam()));
+            $player = PlayersTable::getInstance()->find($data['player']);
+
+            switch ($round->best_action_type) {
+                case "1kill":
+                    $bestAction = array(
+                        "type" => "kill",
+                        "nb" => 1,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+                case "2kill":
+                    $bestAction = array(
+                        "type" => "kill",
+                        "nb" => 2,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+                case "3kill":
+                    $bestAction = array(
+                        "type" => "kill",
+                        "nb" => 3,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+                case "4kill":
+                    $bestAction = array(
+                        "type" => "kill",
+                        "nb" => 4,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+                case "5kill":
+                    $bestAction = array(
+                        "type" => "kill",
+                        "nb" => 5,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+                case "1v1":
+                    $bestAction = array(
+                        "type" => "cluch",
+                        "situation" => 1,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+                case "1v2":
+                    $bestAction = array(
+                        "type" => "cluch",
+                        "situation" => 2,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+                case "1v3":
+                    $bestAction = array(
+                        "type" => "cluch",
+                        "situation" => 3,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+                case "1v4":
+                    $bestAction = array(
+                        "type" => "cluch",
+                        "situation" => 4,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+                case "1v5":
+                    $bestAction = array(
+                        "type" => "cluch",
+                        "situation" => 5,
+                        "player" => $player->getSteamid()
+                    );
+                    break;
+            }
+
+            if ($side == "ct") {
+                $scoreA = $round->getScoreA();
+                $scoreB = $round->getScoreB();
+            } else {
+                $scoreB = $round->getScoreA();
+                $scoreA = $round->getScoreB();
+            }
+
+            if ($round->getRoundId() > 15) {
+                if ($side == "t") {
+                    $scoreA = $round->getScoreA();
+                    $scoreB = $round->getScoreB();
+                } else {
+                    $scoreB = $round->getScoreA();
+                    $scoreA = $round->getScoreB();
+                }
+            }
+
+
+
+            if ($round->getCtWin())
+                $scoreCT++;
+            else
+                $scoreT++;
+
+
+            $stats[$round->getRoundId()] = array(
+                "roundId" => (integer) $round->getRoundId(),
+                "bombPlanted" => $round->getBombPlanted(),
+                "bombDefused" => $round->getBombDefused(),
+                "bombExploded" => $round->getBombExploded(),
+                "winType" => $round->getWinType(),
+                "teamWin" => $round->getCtWin() ? "CT" : "TERRORIST",
+                "ctWin" => $round->getCtWin(),
+                "tWin" => $round->getTWin(),
+                "scoreCT" => $scoreA,
+                "scoreT" => $scoreB,
+                "bestKiller" => array(
+                    "player" => $round->getBestKiller()->getSteamid(),
+                    "nb" => (integer) $round->getBestKillerNb(),
+                    "fk" => $round->getBestKillerFk(),
+                ),
+                "bestAction" => $bestAction
+            );
+        }
+
+
+        return $this->renderText(json_encode($stats));
+    }
+
+    public function executeExportKills(sfWebRequest $request) {
+        $this->match = $this->getRoute()->getObject();
+
+        $stats = array();
+        $rounds = $this->match->getRoundSummaries();
+
+        $stats = array();
+
+        foreach ($rounds as $round) {
+            $events = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->andWhere("round_id	= ?", $round->getRoundId())->andWhere("event_name = ?", "kill")->orderBy("id ASC")->execute();
+
+            foreach ($events as $event) {
+                $kill = PlayerKillTable::getInstance()->createQuery()->where("match_id = ?", $this->match->getId())->andWhere("round_id	= ?", $round->getRoundId())->andWhere("killer_id = ?", $event->getAttackerId())->andWhere("killed_id = ?", $event->getPlayerId())->fetchOne();
+                if ($kill)
+                    $stats[$round->getRoundId()][] = array(
+                        "killerUserName" => $event->getAttackerName(),
+                        "killerUserId" => $event->getAttackerId(),
+                        "killerUserSteamId" => $event->getKiller()->getSteamid(),
+                        "killerUserTeam" => $event->getAttackerTeam(),
+                        "killerPosX" => $event->getAttackerX(),
+                        "killerPosY" => $event->getAttackerY(),
+                        "killerPosZ" => $event->getAttackerZ(),
+                        "killedUserName" => $event->getPlayerName(),
+                        "killedUserId" => $event->getPlayerId(),
+                        "killedUserSteamId" => $event->getPlayer()->getSteamid(),
+                        "killedUserTeam" => $event->getPlayerTeam(),
+                        "killedPosX" => $event->getEventX(),
+                        "killedPosY" => $event->getEventY(),
+                        "killedPosZ" => $event->getEventZ(),
+                        "weapon" => $kill->getWeapon(),
+                        "headshot" => $kill->getHeadshot(),
+                    );
+            }
+        }
+
+        return $this->renderText(json_encode($stats));
+    }
+
+    public function executeExportEstats(sfWebRequest $request) {
+        $mO = $this->getRoute()->getObject();
+        $stats = array();
+
+        $match = $mO->toArray();
+        unset($match['id'], $match['config_password'], $match['season_id'], $match['server_id'], $match['rules'], $match['team_a'], $match['team_b'], $match['config_authkey'], $match['current_map']);
+        $stats['match'] = $match;
+
+        foreach ($mO->getMaps() as $mapO) {
+            $map = $mapO->toArray();
+            unset($map['match_id'], $map['id']);
+            $stats['map'] = $map;
+
+            foreach ($mapO->getMapsScore() as $sO) {
+                $score = $sO->toArray();
+                unset($score['id'], $score['map_id']);
+                $stats['scores'][] = $score;
+            }
+        }
+
+        foreach ($mO->getPlayers() as $pO) {
+            $player = $pO->toArray();
+            unset($player['map_id'], $player['match_id'], $player['ip']);
+            $stats['players'][] = $player;
+        }
+
+
+        $heatmap = PlayersHeatmapTable::getInstance()->createQuery()->where("match_id = ?", $mO->getId())->orderBy("created_at ASC")->execute();
+        foreach ($heatmap as $hO) {
+            $data = $hO->toArray();
+            unset($data['id'], $data['match_id'], $data['map_id']);
+            $stats['heatmap'][] = $data;
+        }
+
+        $kills = PlayerKillTable::getInstance()->createQuery()->where("match_id = ?", $mO->getId())->orderBy("created_at ASC")->execute();
+        foreach ($kills as $hO) {
+            $data = $hO->toArray();
+            unset($data['match_id'], $data['map_id']);
+            $stats['kills'][] = $data;
+        }
+        
+        $kills = RoundTable::getInstance()->createQuery()->where("match_id = ?", $mO->getId())->orderBy("created_at ASC")->execute();
+        foreach ($kills as $hO) {
+            $data = $hO->toArray();
+            unset($data['id'], $data['match_id'], $data['map_id']);
+            $stats['rounds'][] = $data;
+        }
+        
+        $kills = RoundSummaryTable::getInstance()->createQuery()->where("match_id = ?", $mO->getId())->orderBy("created_at ASC")->execute();
+        foreach ($kills as $hO) {
+            $data = $hO->toArray();
+            unset($data['id'], $data['match_id'], $data['map_id']);
+            $stats['summary'][] = $data;
+        }
+
+        return $this->renderText(json_encode($stats));
+    }
+
 }

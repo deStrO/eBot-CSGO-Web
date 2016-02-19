@@ -65,7 +65,7 @@ foreach ($matchs as $m) {
         if ($p->getTeam() == "other")
             continue;
         if (!@$scores[$p->getSteamid()])
-            $scores[$p->getSteamid()] = array("clutch" => 0, "assist" => 0, "kill" => 0, "death" => 0, "hs" => 0, "bombe" => 0, "defuse" => 0, "point" => 0, "tk" => 0, "name" => "unknow", "nbMatch" => 0);
+            $scores[$p->getSteamid()] = array("clutch" => 0, "assist" => 0, "kill" => 0, "death" => 0, "hs" => 0, "bombe" => 0, "defuse" => 0, "point" => 0, "tk" => 0, "firstkill" => 0, "name" => "unknow", "nbMatch" => 0);
         $scores[$p->getSteamid()]['kill'] += $p->getNbKill();
         $scores[$p->getSteamid()]['assist'] += $p->getAssist();
         $scores[$p->getSteamid()]['death'] += $p->getDeath();
@@ -73,6 +73,7 @@ foreach ($matchs as $m) {
         $scores[$p->getSteamid()]['bombe'] += $p->getBombe();
         $scores[$p->getSteamid()]['defuse'] += $p->getDefuse();
         $scores[$p->getSteamid()]['point'] += $p->getPoint();
+        $scores[$p->getSteamid()]['firstkill'] += $p->getFirstkill();
         $scores[$p->getSteamid()]['tk'] += $p->getTk();
         $scores[$p->getSteamid()]['name'] = $p->getPseudo();
         $scores[$p->getSteamid()]['nbMatch'] += 1;
@@ -118,6 +119,7 @@ uksort($scores, "cmp");
             <th><?php echo __("K/D"); ?></th>
             <th><?php echo __("HS"); ?></th>
             <th><?php echo __("HS Rate"); ?></th>
+            <th><?php echo __("Entry kill"); ?></th>
             <th><?php echo __("TK"); ?></th>
             <th><?php echo __("Bomb"); ?></th>
             <th><?php echo __("Defuse"); ?></th>
@@ -142,6 +144,7 @@ uksort($scores, "cmp");
                 <td><?php echo ($v['death'] == 0) ? $v['kill'] : round($v['kill'] / $v['death'], 2); ?></td>
                 <td><?php echo $v['hs']; ?></td>
                 <td><?php echo ($v['kill'] == 0) ? 0 : round(($v['hs'] / $v['kill']) * 100, 2); ?>%</td>
+                <td><?php echo $v['firstkill']; ?></td>
                 <td><?php echo $v['tk']; ?></td>
                 <td><?php echo $v['bombe']; ?></td>
                 <td><?php echo $v['defuse']; ?></td>

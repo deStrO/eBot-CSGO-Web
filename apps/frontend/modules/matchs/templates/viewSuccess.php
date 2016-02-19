@@ -24,7 +24,7 @@ if (!$team2->exists())
 
 <script>
     $(function() {
-        $('#myTab a').click(function (e) {
+        $('#myTab a').click(function(e) {
             e.preventDefault();
             $(this).tab('show');
             if ($(this).attr("href") == "#stats-match") {
@@ -34,14 +34,14 @@ if (!$team2->exists())
 
         var url = document.location.toString();
         if (url.match('#')) {
-            $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+            $('.nav-tabs a[href=#' + url.split('#')[1] + ']').tab('show');
         }
-        $('.nav-tabs a').on('shown', function (e) {
+        $('.nav-tabs a').on('shown', function(e) {
             window.location.hash = e.target.hash;
         })
 
-        $(".needTips").tipsy({live:true});
-        $(".needTips_S").tipsy({live:true, gravity: "s"});
+        $(".needTips").tipsy({live: true});
+        $(".needTips_S").tipsy({live: true, gravity: "s"});
     });
 </script>
 
@@ -51,6 +51,8 @@ if (!$team2->exists())
     <li><a href="#stats-players"><?php echo __("Player Statistics"); ?></a></li>
     <li><a href="#stats-weapon"><?php echo __("Weapon Statistics"); ?></a></li>
     <li><a href="#stats-killer-killed"><?php echo __("Killer / Killed"); ?></a></li>
+    <li><a href="#stats-entry-kills"><?php echo __("Entry Kills"); ?></a></li>
+    <li><a href="#stats-funny-facts"><?php echo __("Funny facts"); ?></a></li>    
     <?php if ($heatmap): ?>
         <li><a href="#heatmap"><?php echo __("Heatmap"); ?></a></li>
     <?php endif; ?>
@@ -280,6 +282,11 @@ if (!$team2->exists())
     <div class="tab-pane" id="demos">
         <?php include_partial("matchs/stats_demos", array("match" => $match)); ?>
     </div>
-
+    <div class="tab-pane" id="stats-entry-kills">
+        <?php include_partial("matchs/stats_entry_kills", array("match" => $match)); ?>
+    </div>
+    <div class="tab-pane" id="stats-funny-facts">
+        <?php include_partial("matchs/stats_funny_facts", array("match" => $match)); ?>
+    </div>
 </div>
 

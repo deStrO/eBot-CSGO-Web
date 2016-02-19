@@ -27,7 +27,12 @@
 
     $(document).ready(function() {
         $('form').submit(function(event) {
-            var message = "<?php echo $match->getId(); ?> executeCommand <?php echo $match->getIp(); ?> " + $('#data').val();
+			var command = $(this).find("input[name=data]:first").val();
+			if ($(this).find("input[name=mode]").length) {
+				command = $(this).find("input[name=mode]").val()+ ' "'+command+'"';
+			}
+		
+            var message = "<?php echo $match->getId(); ?> executeCommand <?php echo $match->getIp(); ?> " + command;
             var data = Aes.Ctr.encrypt(message, "<?php echo $crypt_key; ?>", 256);
             send = JSON.stringify([data, "<?php echo $match->getIp(); ?>"]);
             $("#rcon").append("<b>Send:</b> " + $('#data').val() + "<br>");
@@ -141,7 +146,26 @@
                     </div>
                     <h4><?php echo __("Send"); ?>:</h4>
                     <form method="POST" id="data_form" name="data_form">
-                        <input type="text" name="data" id="data" style="width: 500px;"><br><input type="submit" class="btn btn-primary" name="Send" value="<?php echo __("Send"); ?>">
+                        <input type="text" name="data" id="data" style="width: 500px;">
+						<input type="submit" class="btn btn-primary" name="Send" value="<?php echo __("Send"); ?>">
+                    </form>
+					<h4><?php echo __("Match Brand (empty will clear it)"); ?>:</h4>
+					<form method="POST" id="data_form" name="data_form">
+						<input type="hidden" name="mode" value="mp_teammatchstat_txt"/>
+                        <input type="text" name="data" id="data" style="width: 500px;">
+						<input type="submit" class="btn btn-primary" name="Send" value="<?php echo __("Send"); ?>">
+                    </form>
+					<h4><?php echo __("Match Stats Team 1 (empty will clear it)"); ?>:</h4>
+					<form method="POST" id="data_form" name="data_form">
+						<input type="hidden" name="mode" value="mp_teammatchstat_1"/>
+                        <input type="text" name="data" id="data" style="width: 500px;">
+						<input type="submit" class="btn btn-primary" name="Send" value="<?php echo __("Send"); ?>">
+                    </form>
+					<h4><?php echo __("Match Stats Team 2 (empty will clear it)"); ?>:</h4>
+					<form method="POST" id="data_form" name="data_form">
+						<input type="hidden" name="mode" value="mp_teammatchstat_2"/>
+                        <input type="text" name="data" id="data" style="width: 500px;">
+						<input type="submit" class="btn btn-primary" name="Send" value="<?php echo __("Send"); ?>">
                     </form>
                 </div>
             </div>

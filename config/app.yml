@@ -6,7 +6,7 @@ all:
   <?php require_once(sfConfig::get('sf_root_dir')."/config/app_user.yml") ?>
 
   .array:
-    maps: [ de_dust2_se, de_nuke_se, de_nuke_ve, de_train_se, de_mirage_csgo, de_mirage_ce, de_inferno_se, de_dust2, de_nuke, de_inferno, de_train, de_mirage, de_season, de_cache ]
+    maps: [ de_dust2, de_nuke, de_inferno, de_train, de_mirage, de_season, de_cache, de_overpass, de_cbble, de_tuscan ]
     flag_team:
       ZA:	AFRIQUE DU SUD
       DZ:	ALGERIE
@@ -22,6 +22,7 @@ all:
       CA:	CANADA
       CL:	CHILIE
       CN:	CHINE
+      CC:	CIS
       KR:	COREE DU SUD
       HR:	CROATIE
       DK:	DANEMARK
@@ -85,6 +86,7 @@ all:
       CA:	CANADA
       CL:	CHILE
       CN:	CHINA
+      CC:	CIS
       HR:	CROATIA
       CZ:	CZECH REPUBLIC
       DK:	DENMARK
@@ -109,6 +111,7 @@ all:
       LY:	LIBYA
       LT:	LITHUANIA
       LU:	LUXEMBOURG
+      MK:       MACEDONIA
       MY:	MALAYSIA
       MX:	MEXICO
       NL:	NETHERLANDS
@@ -138,5 +141,9 @@ all:
       GB:	UNITED KINGDOM
       US:	UNITED STATES
       VE:	VENEZUELA
-
-  version: "3.1.0"
+      TN:	TUNISIA
+      MA:	Morocco
+      HK:	Hong Kong
+      VN:	VIETNAM
+      MN:	MONGOLIA
+  version: "3.2.0 threads"

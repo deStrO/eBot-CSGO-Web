@@ -135,8 +135,8 @@
             <td><?php echo $total["point"]; ?></td>
             <td><?php echo $total["hs"]; ?></td>
             <td><?php echo @round($total["hs"] / $total["kill"], 4) * 100; ?>%</td>
+            <td><?php echo $total["defuse"]; ?></td>
             <td><?php echo $total["bombe"]; ?></td>
-            <td><?php echo $total["defuse"]; ?>td>
             <td><?php echo $total["tk"]; ?></td>
             <td><?php echo $total["1v1"]; ?></td>
             <td><?php echo $total["1v2"]; ?></td>

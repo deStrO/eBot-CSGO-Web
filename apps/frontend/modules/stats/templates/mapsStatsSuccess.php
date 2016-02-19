@@ -30,15 +30,15 @@
         $sideCT = ($match->getMap()->getCurrentSide() == "t") ? "a" : "b";
         if ($match->getScoreA() > $match->getScoreB()) {
             if ($sideCT == "a") {
-                @$maps[$map_name]["side_t_map_win"]++;
-            } else {
                 @$maps[$map_name]["side_ct_map_win"]++;
+            } else {
+                @$maps[$map_name]["side_t_map_win"]++;
             }
         } elseif ($match->getScoreB() > $match->getScoreA()) {
             if ($sideCT == "b") {
-                @$maps[$map_name]["side_t_map_win"]++;
-            } else {
                 @$maps[$map_name]["side_ct_map_win"]++;
+            } else {
+                @$maps[$map_name]["side_t_map_win"]++;
             }
         } elseif ($match->getScoreB() == $match->getScoreA()) {
             @$maps[$map_name]["draw_map_win"]++;
@@ -168,7 +168,7 @@ echo json_encode($mapData);
     <tbody>
         <?php foreach ($maps as $map => $stats): ?>
             <tr>
-                <td><?php echo $map; ?></td>
+                <td><?php echo $map; ?> <a href="<?php echo url_for("stats/heatmap?maps=".$map); ?>">heatmap</a></td>
                 <td><?php echo $stats["count"]; ?></td>
                 <td style="border-left: 1px solid #DDDDDD; text-align:center;"><?php echo $stats["ct"]; ?></td>
                 <td style="border-left: 1px solid #EEEEEE; text-align:center;"><?php echo round(($stats["ct"] / ($stats["t"] + $stats["ct"])) * 100, 2); ?> %</td>

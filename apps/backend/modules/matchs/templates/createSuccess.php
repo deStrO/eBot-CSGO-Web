@@ -92,6 +92,16 @@
                 }
             }
         );
+		
+		if ( $('#matchs_season_id').val() != "") {
+			$.ajax({
+				url: "/admin.php/teams/getbyseasons",
+				data: {season_id: $('#matchs_season_id').val()},
+				datatype: "json",
+				type: "POST",
+				success: function(data) { setTeamData(data); }
+			});
+		}
 
         function setTeamData(data) {
             var data = jQuery.parseJSON(data);

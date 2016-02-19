@@ -230,7 +230,7 @@ class matchsActions extends sfActions {
     public function executeSetArchive(sfWebRequest $request) {
         $match = $this->getRoute()->getObject();
         $this->forward404Unless($match);
-        $this->forward404Unless($match->getStatus() == Matchs::STATUS_END_MATCH);
+        $this->forward404Unless(!$match->getEnable());
 
         $match->setEnable(0);
         $match->setStatus(Matchs::STATUS_ARCHIVE);
