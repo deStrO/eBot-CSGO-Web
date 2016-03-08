@@ -960,6 +960,22 @@
 			&lt;p&gt;Clutch очки показывают, сколько \"клатчей\" выиграл игрок. К примеру, 1v1. Они рассчитываются следующим образом: в клатче 1 vs X, 1 умножается на X, а затем на количество выигранных таким образом клатчей. К примеру, вы наберёте 5 очков, выиграв 3 клатча 1x1 и 1 клатч 1х2 (1v1 x 3 = 3, 1v2 x 1 = 2)&lt;/p&gt;
         </target>
       </trans-unit>
+      <trans-unit id="268">
+        <source>Credits</source>
+        <target>Создатели</target>
+      </trans-unit>
+      <trans-unit id="269">
+        <source>Entry Kills</source>
+        <target>Первые фраги</target>
+      </trans-unit>
+      <trans-unit id="270">
+        <source>Funny facts</source>
+        <target>Забавные факты</target>
+      </trans-unit>
+      <trans-unit id="271">
+        <source>Demos</source>
+        <target>Демо</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
