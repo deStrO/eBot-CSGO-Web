@@ -33,7 +33,7 @@
         <target>搜索</target>
       </trans-unit>
       <trans-unit id="12">
-        <source>Matches in Progress / Upcomming Matches</source>
+        <source>Matches in Progress / Upcoming Matches</source>
         <target>正在进行/即将举行的比赛</target>
       </trans-unit>
       <trans-unit id="13">
