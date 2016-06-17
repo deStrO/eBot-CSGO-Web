@@ -2,9 +2,9 @@
 # white space are VERY important, don't remove it or it will not work
 # ----------------------------------------------------------------------
 
-  log_match: ../../ebotv3/logs/log_match
-  log_match_admin: ../../ebotv3/logs/log_match_admin
-  demo_path: ../../ebotv3/demos
+  log_match: ../../ebot-csgo/logs/log_match
+  log_match_admin: ../../ebot-csgo/logs/log_match_admin
+  demo_path: ../../ebot-csgo/demos
 
   # true or false, whether demos will be downloaded by the ebot server
   # the demos can be downloaded at the matchpage, if it's true
@@ -16,7 +16,7 @@
 
   # lan or net, it's to display the server IP or the GO TV IP
   # net mode display only started match on home page
-  mode: lan
+  mode: net
 
   # set to 0 if you don't want a refresh
   refresh_time: 30
