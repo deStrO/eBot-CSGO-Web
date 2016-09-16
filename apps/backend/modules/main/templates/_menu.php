@@ -77,6 +77,9 @@
             <li><a href="<?php echo url_for("matchs_create"); ?>"><?php echo __("Create New Match"); ?></a></li>
             <li><a href="<?php echo url_for("matchs_current"); ?>"><?php echo __("Matches in Progress"); ?> <span class="badge badge-info"><?php echo $nbMatchs; ?></span></a></li>
             <li><a href="<?php echo url_for("matchs_archived"); ?>"><?php echo __("Archived Matches"); ?></a></li>
+            <?php if (sfConfig::get('app_toornament_api_key') != ''): ?>
+                <li><a href="<?php echo url_for("matchs_toornament"); ?>"><?php echo __("Toornament"); ?></a></li>
+            <?php endif; ?>
             <li class="divider"></li>
             <li><a href="<?php echo url_for("config_create"); ?>"><?php echo __("Add Config"); ?></a></li>
             <li><a href="<?php echo url_for("config_index"); ?>"><?php echo __("Config Management"); ?></a></li>

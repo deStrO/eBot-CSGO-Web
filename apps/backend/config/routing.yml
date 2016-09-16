@@ -444,6 +444,27 @@ users_delete:
     id : \d+
     sf_method: [get]
 
+matchs_toornament:
+  url: /matchs/toornament
+  class: sfRequestRoute
+  param: { module: matchs, action: toornament }
+
+matchs_toornament_import:
+  url: /matchs/toornament/import/:toornamentId/:toornamentMatchId/:gameId
+  class: sfRequestRoute
+  param: { module: matchs, action: toornamentImport }
+  requirements:
+    sf_method: [put,post]
+
+matchs_toornament_export_match:
+  url: /matchs/toornament/export/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: export }
+  requirements:
+    id : \d+
+    sf_method: [put,post]
+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:

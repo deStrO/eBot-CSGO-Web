@@ -88,7 +88,7 @@ abstract class BaseMatchsForm extends BaseFormDoctrine
       'ingame_enable'               => new sfValidatorBoolean(array('required' => false)),
       'current_map'                 => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Map'), 'required' => false)),
       'force_zoom_match'            => new sfValidatorBoolean(array('required' => false)),
-      'identifier_id'               => new sfValidatorInteger(array('required' => false)),
+      'identifier_id'               => new sfValidatorPass(array('required' => false)),
       'startdate'                   => new sfValidatorDateTime(array('required' => false)),
       'auto_start'                  => new sfValidatorBoolean(array('required' => false)),
       'auto_start_time'             => new sfValidatorInteger(array('required' => false)),

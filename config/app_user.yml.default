@@ -6,6 +6,11 @@
   log_match_admin: ../../ebot-csgo/logs/log_match_admin
   demo_path: ../../ebot-csgo/demos
 
+  default_max_round: 15
+  default_rules: rules
+  default_overtime_max_round: 3
+  default_overtime_startmoney: 16000
+
   # true or false, whether demos will be downloaded by the ebot server
   # the demos can be downloaded at the matchpage, if it's true
 
@@ -20,3 +25,9 @@
 
   # set to 0 if you don't want a refresh
   refresh_time: 30
+
+  # Toornament Configuration
+  toornament_id:
+  toornament_secret:
+  toornament_api_key:
+  toornament_plugin_key: test-123457890

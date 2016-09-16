@@ -34,7 +34,7 @@ Matchs:
     ingame_enable: { type: boolean }
     current_map: { type: integer(20) }
     force_zoom_match: { type: boolean }
-    identifier_id: { type: integer(20) }
+    identifier_id: { type: varchar(100) }
     startdate: { type: timestamp }
     auto_start: { type: boolean }
     auto_start_time: { type: integer(3) }

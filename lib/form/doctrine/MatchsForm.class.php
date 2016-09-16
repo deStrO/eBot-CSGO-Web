@@ -21,7 +21,7 @@ class MatchsForm extends BaseMatchsForm {
         $password = $password[rand(0, count($password)-1)];
 
         $this->widgetSchema["max_round"] = new sfWidgetFormSelect(array("choices" => array("15" => "MR15", "12" => "MR12", "9" => "MR9", "5" => "MR5", "3" => "MR3"), "default" => "MR15"));
-        $this->widgetSchema["overtime_max_round"] = new sfWidgetFormSelect(array("choices" => array("5" => "MR5", "3" => "MR3"), "default" => "MR5"));
+        $this->widgetSchema["overtime_max_round"] = new sfWidgetFormSelect(array("choices" => array("5" => "MR5", "3" => "MR3"), "default" => sfConfig::get("app_default_overtime_max_round")));
         $this->widgetSchema["auto_start_time"] = new sfWidgetFormSelect(array("choices" => array("5" => "05 Minutes Before Startdate", "10" => "10 Minutes Before Startdate", "15" => "15 Minutes Before Startdate", "30" => "30 Minutes Before Startdate")));
         $this->widgetSchema["startdate"] = new sfWidgetFormInputText(array("default" => date("d.m.Y H:i")), array("id" => "match_startdate", "style" => "width:180px;"));
 
@@ -41,10 +41,10 @@ class MatchsForm extends BaseMatchsForm {
         $this->widgetSchema["config_password"]->setLabel("Password");
         $this->widgetSchema["config_password"]->setDefault($password);
         $this->widgetSchema["map_selection_mode"]->setDefault("normal");
-        $this->widgetSchema["rules"]->setDefault("eps");
+        $this->widgetSchema["rules"]->setDefault(sfConfig::get("app_default_rules"));
 
         $this->widgetSchema["overtime_startmoney"]->setLabel("Overtime: Startmoney");
-        $this->widgetSchema["overtime_startmoney"]->setDefault("16000");
+        $this->widgetSchema["overtime_startmoney"]->setDefault(sfConfig::get("app_default_overtime_startmoney"));
         $this->widgetSchema["overtime_max_round"]->setLabel("Overtime: Max Rounds");
 
         $this->widgetSchema['team_a']->addOption('method', 'getNameFlag');
