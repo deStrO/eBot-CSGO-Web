@@ -187,6 +187,15 @@ credits_index:
   url: /credits
   param: { module: credits, action: index }
 
+matchs_toornament_export_match:
+  url: /matchs/toornament/export/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matchs, action: export }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
