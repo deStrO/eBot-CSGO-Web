@@ -845,8 +845,8 @@ class matchsActions extends sfActions
 
         $api = new ToornamentAPI();
         try {
-            $matchData = $api->get("v1/tournaments/$idTournament/matches/$idMatch", array("with_games" => 1));
-            $stage = $api->get("v1/tournaments/$idTournament/stages/" . $matchData['stage_number']);
+            $matchData = $api->get("v1/tournaments/$idTournament/matches/$idMatch", array("with_games" => 1), true);
+            $stage = $api->get("v1/tournaments/$idTournament/stages/" . $matchData['stage_number'], array(), true);
             if ($matchData['games'][$gameId - 1]) {
                 $game = $matchData['games'][$gameId - 1];
                 $identifier = $idTournament . "." . $idMatch . "." . $gameId;
@@ -925,7 +925,7 @@ class matchsActions extends sfActions
         try {
 
             $api = new ToornamentAPI();
-            $result = $api->get("v1/tournaments/" . $tournamentId . "/matches/" . $matchId . "/games/" . $gameId . "/result");
+            $result = $api->get("v1/tournaments/" . $tournamentId . "/matches/" . $matchId . "/games/" . $gameId . "/result", array(), true);
 
             $result['status'] = "pending";
             if ($match->getStatus() > 1)
@@ -1067,7 +1067,7 @@ class matchsActions extends sfActions
         $filename = $folder . DIRECTORY_SEPARATOR . "toornament-tournament-" . $tournamentId . ".json";
         if (!file_exists($filename) || @filemtime($filename) + 30 < time()) {
             try {
-                $stages = $api->get("v1/tournaments/" . $tournamentId . "/stages");
+                $stages = $api->get("v1/tournaments/" . $tournamentId . "/stages", array(), true);
 
                 foreach ($stages as $stage) {
                     $matches['stages'][$stage['number']] = array(
@@ -1078,7 +1078,7 @@ class matchsActions extends sfActions
                     );
                 }
 
-                $games = $api->get("v1/tournaments/" . $tournamentId . "/matches?with_games=1&sort=schedule");
+                $games = $api->get("v1/tournaments/" . $tournamentId . "/matches?with_games=1&sort=schedule", array(), true);
                 foreach ($games as $match) {
                     $matches['stages'][$match['stage_number']]['matches'][] = $match;
                 }
