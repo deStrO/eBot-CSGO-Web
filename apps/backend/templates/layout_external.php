@@ -3,6 +3,7 @@
         <?php include_stylesheets() ?>
         <?php include_javascripts() ?>
         <script>
+            var protocol = window.location.protocol + "//";
             var socketIoAddress = "<?php echo sfConfig::get("app_ebot_ip"); ?>:<?php echo sfConfig::get("app_ebot_port"); ?>";
             var socket = null;
             var socketIoLoaded = false;
@@ -13,18 +14,18 @@
                 if (loadingSocketIo) {
                     return;
                 }
-                
+
                 if (socketIoLoaded) {
                     if (typeof callback == "function") {
                         callback(socket);
                     }
                     return;
                 }
-                
+
                 loadingSocketIo = true;
-                $.getScript("http://"+socketIoAddress+"/socket.io/socket.io.js", function(){
-                    socket = io.connect("http://"+socketIoAddress);
-                    socket.on('connect', function(){ 
+                $.getScript(protocol+socketIoAddress+"/socket.io/socket.io.js", function(){
+                    socket = io.connect(protocol+socketIoAddress);
+                    socket.on('connect', function(){
                         socketIoLoaded = true;
                         loadingSocketIo = false;
                         if (typeof callback == "function") {
