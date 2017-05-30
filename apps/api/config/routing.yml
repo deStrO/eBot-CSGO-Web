@@ -1,0 +1,28 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+
+matchs_view:
+  url: /matches/view/:id
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matches, action: view }
+  requirements:
+    id : \d+
+    sf_method: [get]
+
+matchs_list:
+  url: /matches/list
+  class: sfDoctrineRoute
+  options: { model: Matchs, type: object}
+  param: { module: matches, action: list }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
