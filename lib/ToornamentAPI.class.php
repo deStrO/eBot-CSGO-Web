@@ -27,12 +27,8 @@ class ToornamentAPI
         $folder = sfConfig::get("sf_app_base_cache_dir");
         $filename = $folder . DIRECTORY_SEPARATOR . "toornament.json";
         if (!file_exists($filename) || @filemtime($filename) + 60 * 60 * 24 < time()) {
-            $this->token = $this->get("oauth/v2/token", array(
-                "grant_type" => "client_credentials",
-                "client_id" => $this->clientId,
-                "client_secret" => $this->clientSecret
-            ));
-            file_put_contents($filename, json_encode($this->token));
+            $this->token = $this->requestOAuth2();
+            file_put_contents($filename, $this->token);
         } else {
             $this->token = json_decode(file_get_contents($filename), true);
         }
@@ -137,6 +133,30 @@ class ToornamentAPI
             return json_decode($result, true);
         } else {
             throw new Exception("PUT {$this->baseUrl}$uri returned $httpcode");
+        }
+    }
+
+    private function requestOAuth2()
+    {
+        $ch = $this->prepare('oauth/v2/token', array(
+            'Content-Type: application/x-www-form-urlencoded'
+        ));
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array(
+            "grant_type" => 'client_credentials',
+            "client_id" => $this->clientId,
+            "client_secret" => $this->clientSecret
+        )));
+
+        $result = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($httpcode == 200) {
+            return $result;
+        } else {
+            throw new Exception("{$this->baseUrl}oauth/v2/token returned $httpcode");
         }
     }
 }
