@@ -554,7 +554,7 @@
       </trans-unit>
       <trans-unit id="136">
         <source>Enter the name of the .cfg File without the extension (esl5on5.cfg =&gt; esl5on5)</source>
-        <target>Введить название конфига без расширения (esl5on5.cfg =&gt; esl5on5)</target>
+        <target>Введите название конфига без расширения (esl5on5.cfg =&gt; esl5on5)</target>
       </trans-unit>
       <trans-unit id="137">
         <source>Choose Random Server</source>
@@ -658,7 +658,7 @@
       </trans-unit>
       <trans-unit id="162">
         <source>RCON</source>
-        <target></target>
+        <target>RCON</target>
       </trans-unit>
       <trans-unit id="163">
         <source>Server-LOG</source>
@@ -698,7 +698,7 @@
       </trans-unit>
       <trans-unit id="173">
         <source>Livemap</source>
-        <target></target>
+        <target>Карта</target>
       </trans-unit>
       <trans-unit id="174">
         <source>Log</source>
@@ -811,55 +811,55 @@
       <trans-unit id="201">
         <source>Details / Matchsettings</source>
         <target>Информация / Настройки матча</target>
-		</trans-unit>
+      </trans-unit>
       <trans-unit id="202">
         <source>Weapon Statistics</source>
         <target>Использование оружия</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="203">
         <source>Killer / Killed</source>
         <target>Таблица убийств</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="204">
         <source>The following Player(s) buyed more then one Smokegrenade per Round:</source>
         <target>Следующий(ие) игрок(и) купил(и) больше одной дымовой гранаты за раунд:</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="205">
         <source>Match Settings</source>
         <target>Настройки матча</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="206">
         <source>Configuration File</source>
         <target>Конфигурация</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="207">
         <source>MaxRound</source>
         <target>Кол-во раундов</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="208">
         <source>Active</source>
         <target>Статус</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="209">
         <source>Config: Full Score</source>
         <target>Конфигурация: Все раунды</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="210">
         <source>Config: Streamer</source>
         <target>Конфигурация: Ожидание стримеров</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="211">
         <source>Config: Overtime</source>
         <target>Конфигурация: Овертаймы</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="212">
         <source>Config: Knife Round</source>
         <target>Конфигурация: Ножевой раунд</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="213">
         <source>Config: Switch Auto</source>
         <target>Конфигурация: Автостарт</target>
-	  </trans-unit>
+      </trans-unit>
       <trans-unit id="214">
         <source>Match Details</source>
         <target>Информация о матче</target>
