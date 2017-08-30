@@ -952,6 +952,9 @@
 </source>
         <target/>
       </trans-unit>
+      <trans-unit id="268">
+        <source>InGame Help</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
