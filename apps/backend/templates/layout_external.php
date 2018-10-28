@@ -22,8 +22,8 @@
                 }
                 
                 loadingSocketIo = true;
-                $.getScript("https://"+socketIoAddress+"/socket.io/socket.io.js", function(){
-                    socket = io.connect("https://"+socketIoAddress);
+                $.getScript("http://"+socketIoAddress+"/socket.io/socket.io.js", function(){
+                    socket = io.connect("http://"+socketIoAddress);
                     socket.on('connect', function(){ 
                         socketIoLoaded = true;
                         loadingSocketIo = false;
