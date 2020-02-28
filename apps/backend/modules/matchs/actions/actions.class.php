@@ -1048,7 +1048,7 @@ class matchsActions extends sfActions
         $filename = $folder . DIRECTORY_SEPARATOR . "toornament-tournaments.json";
         if (!file_exists($filename) || @filemtime($filename) + 60 * 2 < time()) {
             try {
-                $tournaments = $api->get("v1/me/tournaments", array(), true);
+                $tournaments = $api->get("organizer/v2/tournaments", ['disciplines' => 'counterstrike_go'], true, ["Range: tournaments=0-49"]);
             } catch (Exception $e) {
             }
 

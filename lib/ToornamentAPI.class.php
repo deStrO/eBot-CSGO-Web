@@ -49,19 +49,19 @@ class ToornamentAPI
     }
 
 
-    public function get($uri, $params = array(), $needOAuth = false)
+    public function get($uri, $params = array(), $needOAuth = false, $headers = [])
     {
         if (count($params) > 0) {
             $uri .= "?" . http_build_query($params);
         }
 
-        $ch = $this->prepare($uri, $needOAuth);
+        $ch = $this->prepare($uri, $needOAuth, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         $result = curl_exec($ch);
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if ($httpcode == 200) {
+        if ($httpcode < 300) {
             return json_decode($result, true);
         } else {
             throw new Exception("{$this->baseUrl}$uri returned $httpcode");
@@ -146,7 +146,8 @@ class ToornamentAPI
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array(
             "grant_type" => 'client_credentials',
             "client_id" => $this->clientId,
-            "client_secret" => $this->clientSecret
+            "client_secret" => $this->clientSecret,
+            "scope" => 'organizer:admin  organizer:view organizer:result'
         )));
 
         $result = curl_exec($ch);
