@@ -29,6 +29,7 @@ class ToornamentAPI
         if (!file_exists($filename) || @filemtime($filename) + 60 * 60 * 24 < time()) {
             $this->token = $this->requestOAuth2();
             file_put_contents($filename, $this->token);
+            $this->token = json_decode($this->token, true);
         } else {
             $this->token = json_decode(file_get_contents($filename), true);
         }
