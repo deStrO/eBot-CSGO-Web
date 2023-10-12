@@ -46,7 +46,7 @@
                 }
 
                 <?php
-                $jwt = new JWT('generatestrongsecretkey', 'HS256', 60 * 60 * 24 * 31, 10);
+                $jwt = new JWT(sfConfig::get('websocket_secret_key'), 'HS256', 60 * 60 * 24 * 31, 10);
 
                 if ($sf_user->isAuthenticated()) {
                     $token = $jwt->encode([
