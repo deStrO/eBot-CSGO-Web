@@ -45,9 +45,28 @@
                     return;
                 }
 
+                <?php
+                $jwt = new JWT('generatestrongsecretkey', 'HS256', 60 * 60 * 24 * 31, 10);
+
+                if ($sf_user->isAuthenticated()) {
+                    $token = $jwt->encode([
+                        'admin' => true,
+                        'user'  => $sf_user->getGuarduser()->getUsername()
+                    ]);
+                } else {
+                    $token = $jwt->encode([
+                        'admin' => false,
+                    ]);
+                }
+                ?>
+
                 loadingSocketIo = true;
                 $.getScript("http://"+socketIoAddress+"/socket.io/socket.io.js", function(){
-                    socket = io.connect("http://"+socketIoAddress);
+                    socket = io("http://"+socketIoAddress, {
+                        auth: {
+                            token: 'Bearer <?php echo $token; ?>'
+                        }
+                    });
                     socket.on('connect', function(){
                         socketIoLoaded = true;
                         loadingSocketIo = false;

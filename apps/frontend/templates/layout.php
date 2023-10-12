@@ -47,7 +47,19 @@
 
                 loadingSocketIo = true;
                 $.getScript("http://"+socketIoAddress+"/socket.io/socket.io.js", function(){
-                    socket = io.connect("http://"+socketIoAddress);
+                    <?php
+                    $jwt = new JWT(sfConfig::get('websocket_secret_key'), 'HS256', 60 * 60 * 24 * 31, 10);
+
+                    $token = $jwt->encode([
+                        'admin' => false,
+                    ]);
+                    ?>
+
+                    socket = io("http://"+socketIoAddress, {
+                        auth: {
+                            token: 'Bearer <?php echo $token; ?>'
+                        }
+                    });
                     socket.on('connect', function(){
                         socketIoLoaded = true;
                         loadingSocketIo = false;

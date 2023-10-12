@@ -31,3 +31,6 @@
   toornament_secret:
   toornament_api_key:
   toornament_plugin_key: test-123457890
+
+  # Same as eBot config
+  websocket_secret_key: generatestrongsecretkey
