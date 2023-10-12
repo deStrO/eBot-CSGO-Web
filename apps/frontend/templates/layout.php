@@ -48,7 +48,7 @@
                 loadingSocketIo = true;
                 $.getScript("http://"+socketIoAddress+"/socket.io/socket.io.js", function(){
                     <?php
-                    $jwt = new JWT(sfConfig::get('websocket_secret_key'), 'HS256', 60 * 60 * 24 * 31, 10);
+                    $jwt = new JWT(sfConfig::get('app_websocket_secret_key'), 'HS256', 60 * 60 * 24 * 31, 10);
 
                     $token = $jwt->encode([
                         'admin' => false,
