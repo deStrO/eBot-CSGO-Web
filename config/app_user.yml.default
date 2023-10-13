@@ -6,7 +6,7 @@
   log_match_admin: ../../ebot-csgo/logs/log_match_admin
   demo_path: ../../ebot-csgo/demos
 
-  default_max_round: 15
+  default_max_round: 12
   default_rules: rules
   default_overtime_max_round: 3
   default_overtime_startmoney: 16000
