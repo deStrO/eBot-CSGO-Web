@@ -17,10 +17,11 @@ class MatchsForm extends BaseMatchsForm {
               'weg', 'berlin', 'aachen', 'mensch', 'tier', 'turtle', 'adler', 'raupe', 'rauben', 'bank', 'schalter', 'ticket', 'bahn', 'zug', 'delay', 'flugzeug', 'ratte',
               'nager', 'hase', 'feld', 'gras', 'kraut', 'gurke', 'apfel', 'salat', 'tomate', 'dressing', 'essig', 'zwiebel', 'kuchen', 'zucker', 'salz', 'kaffee', 'tee',
               'monday', 'tuesday', 'wednesday', 'friday', 'weekend', 'holiday', 'doctor', 'game', 'cup', 'death', 'player', 'monitor', 'hand', 'food', 'paper', 'windows', 'together');
-
         $password = $password[rand(0, count($password)-1)];
-
-        $this->widgetSchema["max_round"] = new sfWidgetFormSelect(array("choices" => array("15" => "MR15", "12" => "MR12", "9" => "MR9", "5" => "MR5", "3" => "MR3"), "default" => "MR15"));
+        $supportedRoundFormats = array("15" => "MR15", "12" => "MR12", "9" => "MR9", "5" => "MR5", "3" => "MR3");
+        $defaultRoundFormat = sfConfig::get('app_default_max_round');
+        if (!array_key_exists($defaultRoundFormat, $supportedRoundFormats)) $defaultRoundFormat = 12;
+        $this->widgetSchema["max_round"] = new sfWidgetFormSelect(array("choices" => $supportedRoundFormats, "default" => $defaultRoundFormat));
         $this->widgetSchema["overtime_max_round"] = new sfWidgetFormSelect(array("choices" => array("5" => "MR5", "3" => "MR3"), "default" => sfConfig::get("app_default_overtime_max_round")));
         $this->widgetSchema["auto_start_time"] = new sfWidgetFormSelect(array("choices" => array("5" => "05 Minutes Before Startdate", "10" => "10 Minutes Before Startdate", "15" => "15 Minutes Before Startdate", "30" => "30 Minutes Before Startdate")));
         $this->widgetSchema["startdate"] = new sfWidgetFormInputText(array("default" => date("d.m.Y H:i")), array("id" => "match_startdate", "style" => "width:180px;"));
