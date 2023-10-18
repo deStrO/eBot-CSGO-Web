@@ -242,7 +242,7 @@
                 <div class="controls">
                     <select name="server_id">
                         <?php foreach ($servers as $server): ?>
-                            <option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?></option>
+                            <option value="<?php echo $server->getId(); ?>"><?php echo $server->getHostname(); ?> - <?php echo $server->getIp(); ?> <?php echo $server->used() ? " (". __("IN USE") . ")" : ""; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
