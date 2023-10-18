@@ -1208,6 +1208,10 @@
         <source>End</source>
         <target>结束</target>
       </trans-unit>
+      <trans-unit id="303">
+        <source>IN USE</source>
+        <target>正在使用</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
