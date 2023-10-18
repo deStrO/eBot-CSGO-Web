@@ -1216,41 +1216,9 @@
         <source>End</source>
         <target>Конец</target>
       </trans-unit>
-	  <trans-unit id="303">
-        <source>Server IP</source>
-        <target>IP сервера</target>
-      </trans-unit>
-	  <trans-unit id="302">
-        <source>Internal Servername</source>
-        <target>Внутреннее название</target>
-      </trans-unit>
-	  <trans-unit id="302">
-        <source>RCON Password</source>
-        <target>RCON пароль</target>
-      </trans-unit>
-	  <trans-unit id="302">
-        <source>Memory usage</source>
-        <target>Использование памяти</target>
-      </trans-unit>
-	  <trans-unit id="303">
-        <source>Total:</source>
-        <target>Всего:</target>
-      </trans-unit>
-	  <trans-unit id="304">
-        <source>Used:</source>
-        <target>Использовано:</target>
-      </trans-unit>
-	  <trans-unit id="305">
-        <source>Free:</source>
-        <target>Свободно:</target>
-      </trans-unit>
-	  <trans-unit id="306">
-        <source>Add Config</source>
-        <target>Добавить конфиг</target>
-      </trans-unit>
-	  <trans-unit id="307">
-        <source>Config Management</source>
-        <target>Список конфигураций</target>
+      <trans-unit id="303">
+        <source>IN USE</source>
+        <target>ИСПОЛЬЗУЕТСЯ</target>
       </trans-unit>
     </body>
   </file>
