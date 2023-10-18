@@ -228,7 +228,7 @@
                             </div>
                         <?php endif; ?>
                     <?php endforeach; ?>
-
+                    
                     <div class="control-group">
                         <label class="control-label"><?php echo __("Server"); ?></label>
                         <div class="controls">
@@ -238,9 +238,9 @@
                                     <?php if (in_array($server->getIp(), $used)) continue; ?>
                                     <?php
                                     if ($server->getId() == $match->getServerId())
-                                        echo '<option selected value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . '</option>';
-                                    else
-                                        echo '<option value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . '</option>';
+                                    echo '<option selected value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . ($server->used() ? " (IN USE)" : "") . '</option>';
+                                else
+                                    echo '<option value="' . $server->getId() . '">' . $server->getHostname() . ' - ' . $server->getIp() . ($server->used() ? " (IN USE)" : "") . '</option>';
                                     ?>
                                 <?php endforeach; ?>
                             </select>
