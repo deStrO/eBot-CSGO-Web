@@ -20,7 +20,7 @@ class MatchsForm extends BaseMatchsForm {
 
         $password = $password[rand(0, count($password)-1)];
 
-        $this->widgetSchema["max_round"] = new sfWidgetFormSelect(array("choices" => array("15" => "MR15", "12" => "MR12", "9" => "MR9", "5" => "MR5", "3" => "MR3"), "default" => "MR15"));
+        $this->widgetSchema["max_round"] = new sfWidgetFormSelect(array("choices" => array("15" => "MR15", "12" => "MR12", "9" => "MR9", "5" => "MR5", "3" => "MR3"), "default" => "12"));
         $this->widgetSchema["overtime_max_round"] = new sfWidgetFormSelect(array("choices" => array("5" => "MR5", "3" => "MR3"), "default" => sfConfig::get("app_default_overtime_max_round")));
         $this->widgetSchema["auto_start_time"] = new sfWidgetFormSelect(array("choices" => array("5" => "05 Minutes Before Startdate", "10" => "10 Minutes Before Startdate", "15" => "15 Minutes Before Startdate", "30" => "30 Minutes Before Startdate")));
         $this->widgetSchema["startdate"] = new sfWidgetFormInputText(array("default" => date("d.m.Y H:i")), array("id" => "match_startdate", "style" => "width:180px;"));
