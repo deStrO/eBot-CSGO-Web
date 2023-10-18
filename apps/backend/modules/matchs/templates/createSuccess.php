@@ -156,6 +156,11 @@
             }
         });
 
+        if ($('#matchs_config_ot').prop('checked')) {
+            $("#overtime_startmoney").show();
+            $("#overtime_max_round").show();
+        }
+
         $("#match_startdate").datetimepicker({format: 'dd.mm.yyyy hh:ii', autoclose: true, language: 'de'});
     });
 </script>

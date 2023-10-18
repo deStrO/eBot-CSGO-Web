@@ -34,6 +34,7 @@ class MatchsForm extends BaseMatchsForm {
         $this->widgetSchema["max_round"]->setLabel("Max Rounds (MR)");
 
         $this->widgetSchema["config_ot"]->setLabel("OverTime");
+        $this->widgetSchema["config_ot"]->setDefault(true);
         $this->widgetSchema["config_streamer"]->setLabel("Streamer Ready");
         $this->widgetSchema["config_knife_round"]->setLabel("Knife Round");
         $this->widgetSchema["config_knife_round"]->setDefault(true);
