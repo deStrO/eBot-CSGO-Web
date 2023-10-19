@@ -20,7 +20,7 @@
             <li <?php if (preg_match('!^seasons!', $current_route)) echo 'class="active"'; ?>><a href="<?php echo url_for("seasons_index"); ?>"><?php echo __("Seasons Overview"); ?></a></li>
             <li>
                 <div style="margin-top: 5px; margin-bottom: 5px;" class="input-append">
-                    <input class="span2" id="match_id_go" size="16" type="text">
+                    <input class="span8" id="match_id_go" type="text" placeholder="<?php echo __("Match ID"); ?>">
                     <button class="btn" type="button" onclick="goToMatch();"><?php echo __("Go"); ?></button>
                 </div>
             </li>

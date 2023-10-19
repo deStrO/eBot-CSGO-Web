@@ -35,7 +35,7 @@ if (isset($_SESSION['mysql_connection'])) {
                     mysql_query("INSERT INTO `sf_guard_user` 
                         (`email_address`, `username`, `algorithm`, `salt`, `password`, `is_active`, `is_super_admin`, `created_at`, `updated_at`) 
                         VALUES 
-                        ('".$_POST['email']."', '".$_POST['username']."', 'sha1', '".$salt."', '".$_POST['password']."', '1', '1', NOW(), NOW())");
+                        ('".$_POST['email']."', '".$_POST['username']."', 'sha1', '".$salt."', '".$password."', '1', '1', NOW(), NOW())");
                     $_SESSION['createAdmin']['status'] = 'success';
                 }
            }
