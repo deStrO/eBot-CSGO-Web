@@ -786,8 +786,8 @@ class matchsActions extends sfActions
                     $result[] = array("label" => "Skip Knife", "action" => "passknife", "type" => "doRequest");
                 } else if ($match->getStatus() == Matchs::STATUS_KNIFE) {
                     $result[] = array("label" => "End Knife", "action" => "forceknifeend", "type" => "doRequest");
-                } else if ($match->getStatus() == Matchs::STATUS_WU_1_SIDE || $match->getStatus() == Matchs::STATUS_WU_2_SIDE) {
-                    $result[] = array("label" => "End Warmup", "action" => "forcestart", "type" => "doRequest");
+                } else if (in_array($match->getStatus(), array(Matchs::STATUS_WU_1_SIDE, Matchs::STATUS_WU_2_SIDE, Matchs::STATUS_WU_OT_1_SIDE, Matchs::STATUS_WU_OT_2_SIDE))) {
+                    $result[] = array("label" => "End warmup / halftime", "action" => "forcestart", "type" => "doRequest");
                 } else if ($match->getStatus() == Matchs::STATUS_FIRST_SIDE ||
                     $match->getStatus() == Matchs::STATUS_SECOND_SIDE ||
                     $match->getStatus() == Matchs::STATUS_OT_FIRST_SIDE ||
