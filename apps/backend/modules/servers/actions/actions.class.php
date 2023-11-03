@@ -86,7 +86,15 @@ class serversActions extends sfActions {
 							$this->form->save();
 							$added[] = $ip;
 						}
-					} else {
+					} elseif (preg_match("/^(?<hostname>[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}):(?<port>\d+)$/", $this->form->getValue('ip'), $matches)) {
+                        if (gethostbyname($matches['hostname']) === $matches['hostname']) {
+                            $this->getUser()->setFlash("notification_error", $this->__("The hostname can't be resolved"));
+                        } else {
+                            $server = $this->form->save();
+                            $this->getUser()->setFlash("notification_ok", $this->__("1 Server was added with IP (") . $server->getIp() . ")");
+                            $this->redirect("servers_create");
+                        }
+                    } else {
 						$this->getUser()->setFlash("notification_error", $this->__("Unknown Server-Format"));
 					}
 
