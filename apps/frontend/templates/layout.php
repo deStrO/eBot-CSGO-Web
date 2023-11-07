@@ -27,7 +27,7 @@
                 $("#" + id).submit();
             }
 
-            var socketIoAddress = "<?php echo sfConfig::get("app_ebot_ip"); ?>:<?php echo sfConfig::get("app_ebot_port"); ?>";
+            var socketIoAddress = "<?php echo sfConfig::get("app_websocket_url"); ?>";
             var socket = null;
             var socketIoLoaded = false;
             var loadingSocketIo = false;
@@ -46,7 +46,7 @@
                 }
 
                 loadingSocketIo = true;
-                $.getScript("http://"+socketIoAddress+"/socket.io/socket.io.js", function(){
+                $.getScript(socketIoAddress+"/socket.io/socket.io.js", function(){
                     <?php
                     $jwt = new JWT(sfConfig::get('app_websocket_secret_key'), 'HS256', 60 * 60 * 24 * 31, 10);
 
@@ -55,7 +55,7 @@
                     ]);
                     ?>
 
-                    socket = io("http://"+socketIoAddress, {
+                    socket = io(socketIoAddress, {
                         auth: {
                             token: 'Bearer <?php echo $token; ?>'
                         }
