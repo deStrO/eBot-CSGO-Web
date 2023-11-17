@@ -1078,7 +1078,7 @@ class matchsActions extends sfActions
                     );
                 }
 
-                $games = $api->get("v1/tournaments/" . $tournamentId . "/matches?with_games=1&sort=schedule", array(), true);
+                $games = $api->get("v1/tournaments/" . $tournamentId . "/matches?with_games=1&sort=schedule&has_result=0", array(), true);
                 foreach ($games as $match) {
                     $matches['stages'][$match['stage_number']]['matches'][] = $match;
                 }
