@@ -927,28 +927,13 @@ class matchsActions extends sfActions
             $api = new ToornamentAPI();
             $result = $api->get("v1/tournaments/" . $tournamentId . "/matches/" . $matchId . "/games/" . $gameId . "/result", array(), true);
 
-            $result['status'] = "pending";
-            if ($match->getStatus() > 1)
-                $result['status'] = "running";
-            if ($match->getStatus() >= 13) {
-                $result['status'] = "completed";
-
-                if ($match->getScoreA() > $match->getScoreB()) {
-                    $result['opponents'][0]['result'] = 1;
-                    $result['opponents'][1]['result'] = 3;
-                } elseif ($match->getScoreA() < $match->getScoreB()) {
-                    $result['opponents'][0]['result'] = 3;
-                    $result['opponents'][1]['result'] = 1;
-                } else {
-                    $result['opponents'][0]['result'] = 2;
-                    $result['opponents'][1]['result'] = 2;
-                }
-            }
-
             $result['map'] = $match->getMap()->getMapName();
+			
+			if ($match->getStatus() >= 13) {
             $result['opponents'][0]['score'] = $match->getScoreA();
             $result['opponents'][1]['score'] = $match->getScoreB();
-
+			}
+			
             $api->put("v1/tournaments/" . $tournamentId . "/matches/" . $matchId . "/games/" . $gameId . "/result", $result, true);
 
             $result = array();
