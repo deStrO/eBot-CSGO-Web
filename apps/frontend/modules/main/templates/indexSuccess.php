@@ -81,7 +81,7 @@ $(document).ready(function(){
                 </ul>
             </div>
         </div>
-        <h5 style="display:inline;"><?php echo ucfirst(__("Matches in Progress / Upcomming Matches")); ?></h5><div id="switch" style="float:right; display:inline;"></div><div style="float:right; display:inline; padding-right:5px;"><b><?php echo __("Display Scores"); ?></b></div>
+        <h5 style="display:inline;"><?php echo ucfirst(__("Matches in Progress / Upcoming Matches")); ?></h5><div id="switch" style="float:right; display:inline;"></div><div style="float:right; display:inline; padding-right:5px;"><b><?php echo __("Display Scores"); ?></b></div>
         <div id=""><b><?php echo __("Live Refresh"); ?>:</b>
             <?php echo image_tag("/images/refreshOnline.png", "id='refreshOnline' style='display:none;'"); ?>
             <?php echo image_tag("/images/refreshOffline.png", "id='refreshOffline' style='display:none;'"); ?>
