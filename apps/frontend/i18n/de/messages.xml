@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="DE" target-language="de" datatype="plaintext" original="messages" date="2013-06-22T16:53:16Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Home</source>
+        <target>Start</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Admin</source>
+        <target>Admin</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>About</source>
+        <target>Über</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Information</source>
+        <target>Informationen</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Reset Filter</source>
+        <target>Filter zurücksetzen</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Select Season: </source>
+        <target>Saison auswählen: </target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Search</source>
+        <target>Suchen</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Matches in Progress / Upcomming Matches</source>
+        <target>Laufende Matches / Nächste Matches</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Display Scores</source>
+        <target>Spielstand anzeigen</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Live Refresh</source>
+        <target>Live Aktualisierung</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Show</source>
+        <target>Anzeigen</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>No results to display.</source>
+        <target>Keine ergebnisse zum anzeigen</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Display all Matches</source>
+        <target>Alle Matches anzeigen</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>#ID</source>
+        <target>#ID</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>Team 1</source>
+        <target>Team 1</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Score</source>
+        <target>Punkte</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Team 2</source>
+        <target>Team 2</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>Map</source>
+        <target>Map</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>Season</source>
+        <target>Saison</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Informationen</source>
+        <target>Informationen</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>Main Menu</source>
+        <target>Hauptmenü</target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>Statistics</source>
+        <target>Statistiken</target>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>Ingame Help</source>
+        <target>Spielhilfe</target>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Match Menu</source>
+        <target>Matchmenü</target>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>Matches in Progress</source>
+        <target>Laufende Matches</target>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>Archived Matches</source>
+        <target>Archivierte Matches</target>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>Seasons Overview</source>
+        <target>Saison Übersicht</target>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>Go</source>
+        <target>Los</target>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Global Statistics</source>
+        <target>Globale Statistiken</target>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>Statistics by Map</source>
+        <target>Statistiken nach Map</target>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>Statistics by Weapon</source>
+        <target>Statistiken nach Waffe</target>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Opponent - Score</source>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>IP</source>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Enable</source>
+        <target>Aktivieren</target>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>No results available.</source>
+        <target>Keine ergebnisse verfügbar!</target>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Player Statistics</source>
+        <target>Spieler Statistiken</target>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>Team</source>
+        <target>Team</target>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>Player</source>
+        <target>Spieler</target>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>Kill</source>
+        <target>Kill</target>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Assist</source>
+        <target>Assist</target>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>Death</source>
+        <target>Tode</target>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>K/D Rate</source>
+        <target>K/D Rate</target>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>Points</source>
+        <target>Punkte</target>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>HeadShot</source>
+        <target>HeadShot</target>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>HS Rate</source>
+        <target>HS Rate</target>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>Defuse</source>
+        <target>Entschärfung</target>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>Bombe</source>
+        <target>Bombe</target>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>TK</source>
+        <target>TK</target>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>1v1</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>1v2</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>1v3</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>1v4</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>1v5</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>1K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>2K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>3K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>4K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>5K</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>FK</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>Pt Clutch</source>
+        <target>Pt Clutch</target>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>Total</source>
+        <target>Total</target>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>Info</source>
+        <target>Info</target>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>Match Search</source>
+        <target>Match Suche</target>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>Search Match</source>
+        <target>Suche Match</target>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>Close</source>
+        <target>Schließen</target>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>Cancel</source>
+        <target>Abbrechen</target>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>No results found.</source>
+        <target>Keine ergebnisse gefunden!</target>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>Heatmap</source>
+        <target>Heatmap</target>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>Configuration</source>
+        <target>Konfiguration</target>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>Event</source>
+        <target>Event</target>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>All Events</source>
+        <target>Alle Events</target>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Rounds</source>
+        <target>Runden</target>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>Round</source>
+        <target>Runde</target>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Side</source>
+        <target>Seite</target>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>Both Sides</source>
+        <target>Beide Seiten</target>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Side CT</source>
+        <target>CT Seite</target>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Side T</source>
+        <target>T Seite</target>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Players</source>
+        <target>Spieler</target>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>Generate Heatmap</source>
+        <target>Generate Heatmap</target>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Weapon Statistics by Player</source>
+        <target>Waffenstatistiken nach Spieler</target>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>The column &lt;b&gt;K&lt;/b&gt; represents the number of kill with this weapons, the column &lt;b&gt;D&lt;/b&gt; represents the number of times the player has been killed by the weapon</source>
+        <target>Die Spalte &lt;b&gt;K&lt;/b&gt; zeigt die Anzahl an Kills mit dieser Waffe, die Spalte &lt;b&gt;D&lt;/b&gt; zeigt die Anzahl an Toden durch diese Waffe.</target>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Livemap</source>
+        <target>Livemap</target>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>Log</source>
+        <target>Log</target>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>Caption</source>
+        <target>Caption</target>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>Websocket offline</source>
+        <target>Websocket Offline</target>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>Archivied Matches</source>
+        <target>Archivierte Matches</target>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Match Statistics</source>
+        <target>Match Statistiken</target>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>Round Series</source>
+        <target>Runden Serie</target>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>Halftime</source>
+        <target>Halbzeit</target>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>rounds</source>
+        <target>Runden</target>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>Victory: Bomb Exploded</source>
+        <target>Sieg: Bombe explodiert</target>
+      </trans-unit>
+      <trans-unit id="124">
+        <source>Defeat: Bomb Defused</source>
+        <target>Niederlage: Bombe entschärft</target>
+      </trans-unit>
+      <trans-unit id="125">
+        <source>Victory: Bomb Defused</source>
+        <target>Sieg: Bombe entschärft</target>
+      </trans-unit>
+      <trans-unit id="126">
+        <source>Victory</source>
+        <target>Sieg</target>
+      </trans-unit>
+      <trans-unit id="127">
+        <source>Total Elimination</source>
+        <target>Totale Kills</target>
+      </trans-unit>
+      <trans-unit id="128">
+        <source>Victory: Out of Time</source>
+        <target>Sieg: ablauf der Zeit</target>
+      </trans-unit>
+      <trans-unit id="129">
+        <source>Longest Round Streak</source>
+        <target>Längste Rundenserie</target>
+      </trans-unit>
+      <trans-unit id="130">
+        <source>Round Details</source>
+        <target>Rundendetails</target>
+      </trans-unit>
+      <trans-unit id="131">
+        <source>Round #</source>
+        <target>Runde #</target>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>Winner</source>
+        <target>Gewinner</target>
+      </trans-unit>
+      <trans-unit id="133">
+        <source>Victory by</source>
+        <target>Sieg durch</target>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>Bomb defused</source>
+        <target>Bombe entschärft</target>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>Bomb exploded</source>
+        <target>Bombe explodiert</target>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>Out of Time</source>
+        <target>ablauf der Zeit</target>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>Bomb planted</source>
+        <target>Bombe plaziert</target>
+      </trans-unit>
+      <trans-unit id="138">
+        <source>Bombe defused</source>
+        <target>Bombe entschärft</target>
+      </trans-unit>
+      <trans-unit id="139">
+        <source>Bombe exploded</source>
+        <target>Dombe explodiert</target>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>Action of the Round</source>
+        <target>Aktion der Runde</target>
+      </trans-unit>
+      <trans-unit id="141">
+        <source>a mis un</source>
+        <target>Hat eine</target>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>did</source>
+        <target>machte</target>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>Kills</source>
+        <target>Kills</target>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>Match</source>
+        <target>Match</target>
+      </trans-unit>
+      <trans-unit id="145">
+        <source>Information / Match Configuration</source>
+        <target>Information / Matchkonfiguration</target>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>Weapon Statistics</source>
+        <target>Waffenstatistiken</target>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>Killer / Killed</source>
+        <target>Killer / Opfer</target>
+      </trans-unit>
+      <trans-unit id="148">
+        <source>Logs</source>
+        <target>Logs</target>
+      </trans-unit>
+      <trans-unit id="149">
+        <source>Match Configuration</source>
+        <target>Matchkonfiguration</target>
+      </trans-unit>
+      <trans-unit id="150">
+        <source>Config Name</source>
+        <target>Configname</target>
+      </trans-unit>
+      <trans-unit id="151">
+        <source>MaxRounds</source>
+        <target>MaxRunden</target>
+      </trans-unit>
+      <trans-unit id="152">
+        <source>Active</source>
+        <target>Aktiv</target>
+      </trans-unit>
+      <trans-unit id="153">
+        <source>Config: All Rounds</source>
+        <target>Config: Alle Runden</target>
+      </trans-unit>
+      <trans-unit id="154">
+        <source>Config: Streamer</source>
+        <target>Config: Streamer</target>
+      </trans-unit>
+      <trans-unit id="155">
+        <source>Config: Overtime</source>
+        <target>Config: Overtime</target>
+      </trans-unit>
+      <trans-unit id="156">
+        <source>Config: Knife Round</source>
+        <target>Config: Knife Round</target>
+      </trans-unit>
+      <trans-unit id="157">
+        <source>Config: Auto Switch</source>
+        <target>Config: Auto Switch</target>
+      </trans-unit>
+      <trans-unit id="158">
+        <source>Match Information</source>
+        <target>Match Informationen</target>
+      </trans-unit>
+      <trans-unit id="159">
+        <source>Rounds Played</source>
+        <target>Runden gespielt</target>
+      </trans-unit>
+      <trans-unit id="160">
+        <source>Server IP</source>
+        <target>ServerIP</target>
+      </trans-unit>
+      <trans-unit id="161">
+        <source>GO TV</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="162">
+        <source>Number of Players</source>
+        <target>Anzahl an Spielern</target>
+      </trans-unit>
+      <trans-unit id="163">
+        <source>Spectator</source>
+        <target>Zuschauer</target>
+      </trans-unit>
+      <trans-unit id="164">
+        <source>Score Details</source>
+        <target>Punkte Details</target>
+      </trans-unit>
+      <trans-unit id="165">
+        <source>Overtime</source>
+        <target>Overtime</target>
+      </trans-unit>
+      <trans-unit id="166">
+        <source>First Side</source>
+        <target>Erste Hälfte</target>
+      </trans-unit>
+      <trans-unit id="167">
+        <source>Second Side</source>
+        <target>Zweite Hälfte</target>
+      </trans-unit>
+      <trans-unit id="168">
+        <source>Register</source>
+        <target>Registrieren</target>
+      </trans-unit>
+      <trans-unit id="169">
+        <source>Forgot your password?</source>
+        <target>Paswort vergessen?</target>
+      </trans-unit>
+      <trans-unit id="170">
+        <source>Signin</source>
+        <target>Anmelden</target>
+      </trans-unit>
+      <trans-unit id="171">
+        <source>Want to register?</source>
+        <target>Registrieren</target>
+      </trans-unit>
+      <trans-unit id="172">
+        <source>Login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="173">
+        <source>You have to be logged in to access this site!</source>
+        <target>Du musst dich anmelden um diese Seite nutzen zu können!</target>
+      </trans-unit>
+      <trans-unit id="174">
+        <source>Oops! The page you asked for is secure and you do not have proper credentials.</source>
+        <target>Du hast nicht die benötigten rechte!</target>
+      </trans-unit>
+      <trans-unit id="175">
+        <source>Login below to gain access</source>
+        <target>Anmelden um zugriff zu erhalten</target>
+      </trans-unit>
+      <trans-unit id="176">
+        <source>Average Rounds by Map</source>
+        <target>Durchschnittliche Runden per Map</target>
+      </trans-unit>
+      <trans-unit id="177">
+        <source>Number of rounds won by side</source>
+        <target>Anzahl an gewonnen Runden nach Seite</target>
+      </trans-unit>
+      <trans-unit id="178">
+        <source>Details</source>
+        <target>Details</target>
+      </trans-unit>
+      <trans-unit id="179">
+        <source>Number of Matches</source>
+        <target>Anzahl an Matches</target>
+      </trans-unit>
+      <trans-unit id="180">
+        <source>Probability of winning by starting on this side</source>
+        <target>Wahrscheinlichkeit eines Sieges bei start auf dieser Seite</target>
+      </trans-unit>
+      <trans-unit id="181">
+        <source>Draws</source>
+        <target>Unentschieden</target>
+      </trans-unit>
+      <trans-unit id="182">
+        <source>Pistol Round</source>
+        <target>Pistolrunden</target>
+      </trans-unit>
+      <trans-unit id="183">
+        <source>* may not be 100%, if the result was a draw.</source>
+        <target>* keine 100%, wenn das ergebniss ein Unentschieden war.</target>
+      </trans-unit>
+      <trans-unit id="184">
+        <source>Global Player Statistics</source>
+        <target>Globale Spieler Statistiken</target>
+      </trans-unit>
+      <trans-unit id="185">
+        <source>Filter</source>
+        <target>Filter</target>
+      </trans-unit>
+      <trans-unit id="186">
+        <source>Matches</source>
+        <target>Matches</target>
+      </trans-unit>
+      <trans-unit id="187">
+        <source>records per page</source>
+        <target>einträge pro Seite</target>
+      </trans-unit>
+      <trans-unit id="188">
+        <source>Nickname</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="189">
+        <source>K</source>
+        <target>K</target>
+      </trans-unit>
+      <trans-unit id="190">
+        <source>A</source>
+        <target>A</target>
+      </trans-unit>
+      <trans-unit id="191">
+        <source>D</source>
+        <target>D</target>
+      </trans-unit>
+      <trans-unit id="192">
+        <source>K/D</source>
+        <target>K/D</target>
+      </trans-unit>
+      <trans-unit id="193">
+        <source>HS</source>
+        <target>HS</target>
+      </trans-unit>
+      <trans-unit id="194">
+        <source>Bomb</source>
+        <target>Bomb</target>
+      </trans-unit>
+      <trans-unit id="195">
+        <source>MVP</source>
+        <target>MVP</target>
+      </trans-unit>
+      <trans-unit id="196">
+        <source>Clutch</source>
+        <target>Clutch</target>
+      </trans-unit>
+      <trans-unit id="197">
+        <source>Player Statistics of</source>
+        <target>Spielerstatistiken von - </target>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>Information / Global Statistics</source>
+        <target>Informationen / Globale Statistiken</target>
+      </trans-unit>
+      <trans-unit id="199">
+        <source>vs. </source>
+        <target>vs</target>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>Deaths</source>
+        <target>Tode</target>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>1 kill per round</source>
+        <target>1 kill pro Runde</target>
+      </trans-unit>
+      <trans-unit id="202">
+        <source>2 kills per round</source>
+        <target>2 kills pro Runde</target>
+      </trans-unit>
+      <trans-unit id="203">
+        <source>3 kills per round</source>
+        <target>3 kills pro Runde</target>
+      </trans-unit>
+      <trans-unit id="204">
+        <source>4 kills per round</source>
+        <target>4 kills pro Runde</target>
+      </trans-unit>
+      <trans-unit id="205">
+        <source>5 kills per round</source>
+        <target>5 kills pro Runde</target>
+      </trans-unit>
+      <trans-unit id="206">
+        <source>TKs</source>
+        <target>TKs</target>
+      </trans-unit>
+      <trans-unit id="207">
+        <source>First Kills</source>
+        <target>First Blood</target>
+      </trans-unit>
+      <trans-unit id="208">
+        <source>Match Informations</source>
+        <target>Match Informationen</target>
+      </trans-unit>
+      <trans-unit id="209">
+        <source>Used Weapons</source>
+        <target>Genutze Waffen</target>
+      </trans-unit>
+      <trans-unit id="210">
+        <source>Weapon</source>
+        <target>Waffe</target>
+      </trans-unit>
+      <trans-unit id="211">
+        <source>Normal Kills</source>
+        <target>Normale Kills</target>
+      </trans-unit>
+      <trans-unit id="212">
+        <source>HeadShots</source>
+        <target>HeadShots</target>
+      </trans-unit>
+      <trans-unit id="213">
+        <source>Point Clutch</source>
+        <target>Point Clutch</target>
+      </trans-unit>
+      <trans-unit id="214">
+        <source>Statistics by Weapons</source>
+        <target>Statistiken nach Waffen</target>
+      </trans-unit>
+      <trans-unit id="215">
+        <source>Weapons</source>
+        <target>Waffen</target>
+      </trans-unit>
+      <trans-unit id="216">
+        <source>Kill Rate</source>
+        <target>Kill Rate</target>
+      </trans-unit>
+      <trans-unit id="217">
+        <source>Players Statistics</source>
+        <target>Spielerstatistiken</target>
+      </trans-unit>
+      <trans-unit id="218">
+        <source>Number of Kills</source>
+        <target>Anzahl an Kills</target>
+      </trans-unit>
+      <trans-unit id="219">
+        <source>Number of Headshots</source>
+        <target>Anzahl an HeadShots</target>
+      </trans-unit>
+      <trans-unit id="220">
+        <source>Headshot Rate</source>
+        <target>Headshot Rate</target>
+      </trans-unit>
+      <trans-unit id="221">
+        <source>not available</source>
+        <target>nicht verfügbar</target>
+      </trans-unit>
+      <trans-unit id="222">
+        <source>Matches not Started</source>
+        <target>ungestartete Matches</target>
+      </trans-unit>
+      <trans-unit id="223">
+        <source>Finished/Archived Matches</source>
+        <target>Beendete/Archivierte Matches</target>
+      </trans-unit>
+      <trans-unit id="224">
+        <source>Matches Count</source>
+        <target>Matches Anzahl</target>
+      </trans-unit>
+      <trans-unit id="225">
+        <source>Server Statistics</source>
+        <target>Server Statistiken</target>
+      </trans-unit>
+      <trans-unit id="226">
+        <source>Number of Servers</source>
+        <target>Anzahl an Server</target>
+      </trans-unit>
+      <trans-unit id="227">
+        <source>Currently Running Seasons</source>
+        <target>Aktuell Aktive Saisons</target>
+      </trans-unit>
+      <trans-unit id="228">
+        <source>Startdate</source>
+        <target>Startdatum</target>
+      </trans-unit>
+      <trans-unit id="229">
+        <source>Enddate</source>
+        <target>Enddatum</target>
+      </trans-unit>
+      <trans-unit id="230">
+        <source>Link</source>
+        <target>Link</target>
+      </trans-unit>
+      <trans-unit id="231">
+        <source>View Matches</source>
+        <target>Matches anzeigen</target>
+      </trans-unit>
+      <trans-unit id="232">
+        <source>No Matches played yet.</source>
+        <target>Bisher keine Matches gespielt.</target>
+      </trans-unit>
+      <trans-unit id="233">
+        <source>Team A</source>
+        <target>Team A</target>
+      </trans-unit>
+      <trans-unit id="234">
+        <source>Team B</source>
+        <target>Team B</target>
+      </trans-unit>
+      <trans-unit id="235">
+        <source>No Teams assigned to this Season</source>
+        <target>Keine Teams in dieser Saison</target>
+      </trans-unit>
+      <trans-unit id="236">
+        <source>Shorthandle</source>
+        <target>Kürzel</target>
+      </trans-unit>
+      <trans-unit id="237">
+        <source>Last Seasons</source>
+        <target>Letzte Saison</target>
+      </trans-unit>
+      <trans-unit id="238">
+        <source>Help</source>
+        <target>Hilfe</target>
+      </trans-unit>
+      <trans-unit id="239">
+        <source>Error</source>
+        <target>Fehler</target>
+      </trans-unit>
+      <trans-unit id="240">
+        <source>Page not found!</source>
+        <target>Seite nicht gefunden!</target>
+      </trans-unit>
+      <trans-unit id="241">
+        <source>You do not have the required rights to access this site!</source>
+        <target>Du besitzt nicht die nötigen Recht um diese Seite aufzurufen!</target>
+      </trans-unit>
+      <trans-unit id="242">
+        <source>The new version of eBot allows you to have access to more statistics about your matches, but it also makes match management easier.</source>
+        <target>The new version of eBot allows you to have access to more statistics about your matches, but it also makes match management easier.</target>
+      </trans-unit>
+      <trans-unit id="243">
+        <source>If you encounter any problem with eBot, please read the help section. In this section, you will find both ingame help and website help.</source>
+        <target>If you encounter any problem with eBot, please read the help section. In this section, you will find both ingame help and website help.</target>
+      </trans-unit>
+      <trans-unit id="244">
+        <source>Go to</source>
+        <target>Gehe Zu</target>
+      </trans-unit>
+      <trans-unit id="245">
+        <source>for more information!</source>
+        <target>Für mehr Infos!</target>
+      </trans-unit>
+      <trans-unit id="246">
+        <source>eBot includes a whole series of commands which can be used via the chat, at various moments of the match. With these commands you can ask for your personal stats, the score match, you can restart the match, etc ...</source>
+        <target>eBot includes a whole series of commands which can be used via the chat, at various moments of the match. With these commands you can ask for your personal stats, the score match, you can restart the match, etc ...</target>
+      </trans-unit>
+      <trans-unit id="247">
+        <source>Commands usable at any moment</source>
+        <target>Dauerhaft verfügbare Befehle</target>
+      </trans-unit>
+      <trans-unit id="248">
+        <source>displays the available commands</source>
+        <target>zeigt verfügbare Befehle</target>
+      </trans-unit>
+      <trans-unit id="249">
+        <source>sends the statistics of the match (number of kills, K/D ratio, HD ratio, ...)</source>
+        <target>zeigt einfache Statistiken</target>
+      </trans-unit>
+      <trans-unit id="250">
+        <source>sends the detailed statistics, such as the number of First Kill, 1vX, kill per round, etc ...</source>
+        <target>zeigt detaillierte Statistiken</target>
+      </trans-unit>
+      <trans-unit id="251">
+        <source>displays the match status</source>
+        <target>zeigt den Matchstatus</target>
+      </trans-unit>
+      <trans-unit id="252">
+        <source>sends the match scores</source>
+        <target>zeigt den Spielstand</target>
+      </trans-unit>
+      <trans-unit id="253">
+        <source>Commands usable during warmup</source>
+        <target>Verfügbare Befehle während dem WarmUp</target>
+      </trans-unit>
+      <trans-unit id="254">
+        <source>telling the bot that the team is ready. When the 2 teams are ready, the match is launched</source>
+        <target>setzt den Status des Teams auf Spielbereit</target>
+      </trans-unit>
+      <trans-unit id="255">
+        <source>telling the bot that the team is not ready anymore.</source>
+        <target>setzt den Status des Teams auf nicht Spielbereit</target>
+      </trans-unit>
+      <trans-unit id="256">
+        <source>Commands usable during knife round</source>
+        <target>Verfügbare Befehle während der KnifeRound</target>
+      </trans-unit>
+      <trans-unit id="257">
+        <source>tells that your team wants the knife round to be restarted. The restart of the knife round is only possible if the other team agrees.</source>
+        <target>zeigt an das das Team die KnifeRound wiederholen möchte</target>
+      </trans-unit>
+      <trans-unit id="258">
+        <source>Commands usable at the end of the knife round</source>
+        <target>Verfügbare Befehle nach der KnifeRound</target>
+      </trans-unit>
+      <trans-unit id="259">
+        <source>At the end of the knife round, the winning team &lt;b&gt;WILL HAVE TO&lt;/b&gt; tell the eBot what they decide to do (stay or switch). The eBot will automatically switch the players and reverse the team.</source>
+        <target>Am ende der KnifeRound &lt;b&gt;muss&lt;/b&gt;das Gewinner Team dem eBot mitteilen auf welcher seite es starten möchte.(stay oder switch). Der eBot wird dann automatisch die Teams switchen.</target>
+      </trans-unit>
+      <trans-unit id="260">
+        <source>no team switch</source>
+        <target>Kein Seitenwechsel</target>
+      </trans-unit>
+      <trans-unit id="261">
+        <source>switches the teams</source>
+        <target>Wechselt die Seiten</target>
+      </trans-unit>
+      <trans-unit id="262">
+        <source>Commands usable during the match</source>
+        <target>Verfügbare Befehle während des Matches</target>
+      </trans-unit>
+      <trans-unit id="263">
+        <source>tells the other team that your team wants to stop the match. The match stop is only possible if the other team agrees. The other team will also have to write !stop to stop the match. The match stop makes the match return to the previous state (warmup).</source>
+        <target>teilt dem anderen Team mit, das dein Team das Match stoppen möchte. Das Match wird nur dann gestoppt wenn das andere Team ebenfalls mit !stop zustimmt.</target>
+      </trans-unit>
+      <trans-unit id="264">
+        <source>tells the other team your team wants to continue the match (if stopped)</source>
+        <target>teilt dem anderen Team mit, das dein Team das Match fortsetzen möchte. (Wenn gestoppt) </target>
+      </trans-unit>
+      <trans-unit id="265">
+        <source>tells the other team you want to pause</source>
+        <target>teilt dem anderen Team mit, das dein Team das Match Pausieren möchte.</target>
+      </trans-unit>
+      <trans-unit id="266">
+        <source>tells the other team you want to unpause</source>
+        <target>teilt dem anderen Team mit, das dein Team die Pause beenden möchte.</target>
+      </trans-unit>
+      <trans-unit id="267">
+        <source><p>You can sort the table to have custom statistics.</p>
+			<p>The columns <b>1K</b>, <b>2K</b>, ... represent the number of kills per round. i.e : if there is a 2 in the 3K column, in means I played 2 rounds during which I made 3 kills.</p>
+			<p>The column <b>FK</b> means <b>First Kill</b>, useful to see who made a first kill</p>
+			<p>The clutch points tell if a player made various clutches, such as winning a 1vs1. They are calculated this way : number of won 1 v X multiplied by X. If I made three 1vs1 and a 1vs2, I will therefore have 5 points. (1vs1 x 3 = 3, 1vs2 x 1 = 2)</p>
+        </source>
+        <target>&lt;p&gt;Du kannst die Tabelle sortieren um Custom Statistiken zu erhalten.&lt;/p&gt;
+			&lt;p&gt;Die Spalten&lt;b&gt;1K&lt;/b&gt;, &lt;b&gt;2K&lt;/b&gt;, ...steht für die Anzahl an Kills pro Runde. Bsp. Wenn eine 2 in der dritten Spalte steht, bedeutet das "Ich habe 2 Runden gespielt und habe 3 Kills gemacht".&lt;/p&gt;
+			&lt;p&gt;Die Spalte&lt;b&gt;FK&lt;/b&gt;代表&lt;b&gt;Frist Blood&lt;/b&gt;Nützlich um zu sehen wer den ersten Kill gemacht hat.&lt;/p&gt;
+			&lt;p&gt;Die Clutch Points zeigen an das ein Spieler verschieden Clutches (bspw. gewann ein 1vs1) gemacht hat. So werden die Clutch Points berechnet: Anzahl an gewonnen 1 vs x Multipliziert mit X. Bsp. Gewinnt der Spieler 3x 1vs1 und 1x 1vs2 bekommt er 5 Punkte (1vs1 x3 = 3 | 1vs2 x1 = 2)&lt;/p&gt;
+			 </target>
+      </trans-unit>
+	  <trans-unit id="268">
+        <source>InGame Help</source>
+        <target>Spielhilfe</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
