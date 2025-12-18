@@ -284,7 +284,7 @@ class matchsActions extends sfActions
             $match->setStatus(0);
             $match->setIngameEnable(NULL);
             $match->setIsPaused(NULL);
-//			$match->setIp(null);
+            //			$match->setIp(null);
 //			$match->setServer(null);
             $match->save();
             foreach ($match->getMaps() as $map) {
@@ -368,7 +368,8 @@ class matchsActions extends sfActions
         $table = MatchsTable::getInstance();
         $this->pager = null;
         $this->pager = new sfDoctrinePager(
-            'Matchs', 12
+            'Matchs',
+            12
         );
         $this->pager->setQuery($query->andWhere("status >= ? AND status <= ?", array(Matchs::STATUS_NOT_STARTED, Matchs::STATUS_END_MATCH))->orderBy("enable DESC, status DESC"));
         $this->pager->setPage($request->getParameter('page', 1));
@@ -396,7 +397,8 @@ class matchsActions extends sfActions
         $table = MatchsTable::getInstance();
         $this->pager = null;
         $this->pager = new sfDoctrinePager(
-            'Matchs', 12
+            'Matchs',
+            12
         );
         $this->pager->setQuery($query->andWhere("status = ?", Matchs::STATUS_ARCHIVE)->orderBy("id DESC"));
         $this->pager->setPage($request->getParameter('page', 1));
@@ -756,7 +758,7 @@ class matchsActions extends sfActions
             if (!($match->getEnable())) {
                 if ($match->getStatus() == Matchs::STATUS_END_MATCH) {
                     $result[] = array("label" => "Archive", "route" => "match_put_archive", "add_class" => "btn-info", "type" => "routing");
-                    $result[] = array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing");/apps/frontend/lib/myActions.class.php
+                    $result[] = array("label" => "Delete", "route" => "matchs_delete", "add_class" => "btn-danger", "type" => "routing");
                 } else if ($match->getEnable() == 0 && $match->getStatus() != 0) {
                     $result[] = array("label" => "Restart", "route" => "matchs_start_retry", "add_class" => "btn-success", "type" => "routing");
                     $result[] = array("label" => "Reset " . $match->getMap()->getMapName(), "route" => "matchs_reset", "add_class" => "btn-warning", "type" => "routing");
@@ -789,7 +791,8 @@ class matchsActions extends sfActions
                     $result[] = array("label" => "End Knife", "action" => "forceknifeend", "type" => "doRequest");
                 } else if (in_array($match->getStatus(), array(Matchs::STATUS_WU_1_SIDE, Matchs::STATUS_WU_2_SIDE, Matchs::STATUS_WU_OT_1_SIDE, Matchs::STATUS_WU_OT_2_SIDE))) {
                     $result[] = array("label" => "End warmup / halftime", "action" => "forcestart", "type" => "doRequest");
-                } else if ($match->getStatus() == Matchs::STATUS_FIRST_SIDE ||
+                } else if (
+                    $match->getStatus() == Matchs::STATUS_FIRST_SIDE ||
                     $match->getStatus() == Matchs::STATUS_SECOND_SIDE ||
                     $match->getStatus() == Matchs::STATUS_OT_FIRST_SIDE ||
                     $match->getStatus() == Matchs::STATUS_OT_SECOND_SIDE
@@ -903,16 +906,19 @@ class matchsActions extends sfActions
 
                     $match->save();
 
-                    return $this->renderText(json_encode(array(
+                    return $this->renderText(json_encode(
+                        array(
                             "status" => true,
-                            "matchId" => $match->getId())
+                            "matchId" => $match->getId()
+                        )
                     ));
                 }
             }
         } catch (\Exception $e) {
             return $this->renderText(json_encode(array(
                 "status" => false,
-                "error" => "apiError")));
+                "error" => "apiError"
+            )));
         }
     }
 
@@ -987,7 +993,8 @@ class matchsActions extends sfActions
                         'result' => $round->getTeamWin() == 'a' ? 1 : 3,
                         'side' => $sideA,
                         'players' => array()
-                    ), array(
+                    ),
+                    array(
                         'number' => 2,
                         'result' => $round->getTeamWin() == 'b' ? 1 : 3,
                         'side' => $sideB,
