@@ -23,6 +23,7 @@ Matchs:
     config_full_score: { type: boolean }
     config_ot: { type: boolean }
     config_streamer: { type: boolean }
+    config_ready_on_halftime: { type: boolean }
     config_knife_round: { type: boolean }
     config_switch_auto: { type: boolean }
     config_auto_change_password: { type: boolean }
@@ -30,7 +31,7 @@ Matchs:
     config_heatmap: { type: boolean }
     config_authkey: { type: varchar(200) }
     enable: { type: boolean }
-    map_selection_mode: { type: enum, values: [ bo2, bo3_modea, bo3_modeb, normal ]}
+    map_selection_mode: { type: enum, values: [bo2, bo3_modea, bo3_modeb, normal] }
     ingame_enable: { type: boolean }
     current_map: { type: integer(20) }
     force_zoom_match: { type: boolean }
@@ -54,9 +55,9 @@ Maps:
     map_name: { type: varchar(50) }
     score_1: { type: integer(5) }
     score_2: { type: integer(5) }
-    current_side: { type: enum, values: [ ct, t ] }
+    current_side: { type: enum, values: [ct, t] }
     status: { type: integer(3) }
-    maps_for: { type: enum, values: [ default, team1, team2 ]}
+    maps_for: { type: enum, values: [default, team1, team2] }
     nb_ot: { type: integer(20) }
     identifier_id: { type: integer(20) }
     tv_record_file: { type: varchar(255) }
@@ -69,7 +70,7 @@ MapsScore:
   columns:
     id: { primary: true, type: integer(20), autoincrement: true }
     map_id: { type: integer(20), notnull: true }
-    type_score: { type: enum, values: [ normal, ot ] }
+    type_score: { type: enum, values: [normal, ot] }
     score1_side1: { type: integer(5) }
     score1_side2: { type: integer(5) }
     score2_side1: { type: integer(5) }
@@ -85,11 +86,11 @@ Players:
     match_id: { type: integer(20), notnull: true }
     map_id: { type: integer(20), notnull: true }
     player_key: { type: varchar(255) }
-    team: { type: enum, values: [ a,b,other], default: other}
+    team: { type: enum, values: [a, b, other], default: other }
     ip: { type: varchar(255) }
     steamid: { type: varchar(255) }
-    first_side: { type: enum, values: [ ct, t, other ] }
-    current_side: { type: enum, values: [ ct, t, other ] }
+    first_side: { type: enum, values: [ct, t, other] }
+    current_side: { type: enum, values: [ct, t, other] }
     pseudo: { type: varchar(255) }
     nb_kill: { type: integer(5), default: 0 }
     assist: { type: integer(5), default: 0 }
@@ -122,8 +123,8 @@ PlayersSnapshot:
     id: { primary: true, type: integer(20), autoincrement: true }
     player_id: { type: integer(20), notnull: true }
     player_key: { type: varchar(255) }
-    first_side: { type: enum, values: [ ct, t, other ] }
-    current_side: { type: enum, values: [ ct, t, other ] }
+    first_side: { type: enum, values: [ct, t, other] }
+    current_side: { type: enum, values: [ct, t, other] }
     nb_kill: { type: integer(5), default: 0 }
     assist: { type: integer(5), default: 0 }
     death: { type: integer(5), default: 0 }
@@ -175,12 +176,14 @@ RoundSummary:
     bomb_planted: { type: boolean }
     bomb_defused: { type: boolean }
     bomb_exploded: { type: boolean }
-    win_type: { type: enum, values: [ bombdefused, bombeexploded, normal, saved], default: normal }
-    team_win: { type: enum, values: [ a, b ]}
+    win_type: { type: enum, values: [bombdefused, bombeexploded, normal, saved], default: normal }
+    team_win: { type: enum, values: [a, b] }
     ct_win: { type: boolean }
     t_win: { type: boolean }
-    score_a: { type: integer(2)}
-    score_b: { type: integer(2)}
+    score_a: { type: integer(2) }
+    score_b: { type: integer(2) }
+    side_a: { type: enum, values: [ct, t] }
+    side_b: { type: enum, values: [ct, t] }
     best_killer: { type: integer(20) }
     best_killer_nb: { type: integer(5) }
     best_killer_fk: { type: boolean }
@@ -291,7 +294,7 @@ TeamsInSeasons:
   actAs:
     Timestampable: ~
   columns:
-    id: { primary: true, type: integer(20), autoincrement: true  }
+    id: { primary: true, type: integer(20), autoincrement: true }
     season_id: { type: integer(20) }
     team_id: { type: integer(20) }
   relations:
