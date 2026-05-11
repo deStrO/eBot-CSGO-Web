@@ -4,6 +4,7 @@
         <?php include_javascripts() ?>
         <script>
             var socketIoAddress = "<?php echo sfConfig::get("app_ebot_ip"); ?>:<?php echo sfConfig::get("app_ebot_port"); ?>";
+            var httpMode = "<?php echo sfConfig::get("app_ebot_httpmode"); ?>";
             var socket = null;
             var socketIoLoaded = false;
             var loadingSocketIo = false;
@@ -22,7 +23,7 @@
                 }
                 
                 loadingSocketIo = true;
-                $.getScript("http://"+socketIoAddress+"/socket.io/socket.io.js", function(){
+                $.getScript(httpMode+socketIoAddress+"/socket.io/socket.io.js", function(){
                     socket = io.connect("http://"+socketIoAddress);
                     socket.on('connect', function(){ 
                         socketIoLoaded = true;

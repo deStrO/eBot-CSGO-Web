@@ -13,11 +13,18 @@ class MatchsForm extends BaseMatchsForm {
     public function configure() {
         unset($this["config_authkey"], $this["ip"], $this["identifier_id"], $this["force_zoom_match"], $this["config_switch_auto"], $this["server_id"], $this["ingame_enable"], $this["config_auto_change_password"], $this["created_at"], $this["updated_at"], $this["current_map"], $this["status"], $this["score_a"], $this["score_b"], $this["config_heatmap"], $this["enable"], $this["is_paused"]);
 
-        $password = array('frosch', 'gehen', 'rennen', 'gucken', 'fliegen', 'rasen', 'snobb', 'peter', 'wackel', 'dackel', 'gut', 'schlecht', 'win', 'loss', 'tragen',
+        $passwordArray = array('frosch', 'gehen', 'rennen', 'gucken', 'fliegen', 'rasen', 'snobb', 'peter', 'wackel', 'dackel', 'gut', 'schlecht', 'win', 'loss', 'tragen',
               'weg', 'berlin', 'aachen', 'mensch', 'tier', 'turtle', 'adler', 'raupe', 'rauben', 'bank', 'schalter', 'ticket', 'bahn', 'zug', 'delay', 'flugzeug', 'ratte',
               'nager', 'hase', 'feld', 'gras', 'kraut', 'gurke', 'apfel', 'salat', 'tomate', 'dressing', 'essig', 'zwiebel', 'kuchen', 'zucker', 'salz', 'kaffee', 'tee',
               'monday', 'tuesday', 'wednesday', 'friday', 'weekend', 'holiday', 'doctor', 'game', 'cup', 'death', 'player', 'monitor', 'hand', 'food', 'paper', 'windows', 'together');
-        $password = $password[rand(0, count($password)-1)];
+
+        $defaultPassword = sfConfig::get('app_default_password', '');
+        if (empty($defaultPassword)) {
+            $password = $passwordArray[rand(0, count($passwordArray) - 1)];
+        } else {
+            $password = $defaultPassword;
+        }
+
         $supportedRoundFormats = array("15" => "MR15", "12" => "MR12", "9" => "MR9", "5" => "MR5", "3" => "MR3");
         $defaultRoundFormat = sfConfig::get('app_default_max_round');
         if (!array_key_exists($defaultRoundFormat, $supportedRoundFormats)) $defaultRoundFormat = 12;
